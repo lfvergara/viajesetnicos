@@ -1,0 +1,132 @@
+.mkdf-tours-search-page-holder{
+	> .mkdf-container > .mkdf-container-inner{
+		margin-top: 82px;
+	}
+}
+
+.mkdf-tours-search-content {
+	@include mkdfRelativeHolderLayout();
+	
+	&.mkdf-tours-searching {
+		opacity: 0.2;
+	}
+
+	.mkdf-tours-search-item {
+
+		&.mkdf-tours-search-list-item {
+			margin-bottom: 60px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.mkdf-tours-gallery-item-image {
+		&:after {
+		    content: '';
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    height: 100%;
+		    width: 100%;
+		    z-index: -1;
+		    opacity: 0.6;
+		    @include mkdfTransition(opacity .6s);
+		    background-color: rgba(0,0,0,.4);
+		}
+
+		&:hover {
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+
+	.mkdf-tours-revealing-item {
+		.mkdf-tours-revealing-item-image-holder{
+			border-bottom: 1px solid $default-border-color;
+		}
+
+		.mkdf-tours-revealing-item-content-holder{
+			border-left: 1px solid $default-border-color;
+			border-right: 1px solid $default-border-color;			
+		}
+	}
+}
+
+.mkdf-tours-item-with-smaller-spacing {
+	
+	&.mkdf-tours-search-item {
+		
+		.mkdf-tours-standard-item {
+			
+			.mkdf-tours-standard-item-content-inner {
+				padding: 21px 20px;
+				border: 1px solid #ebebeb;
+				border-top: none;
+				border-bottom: none;
+			}
+			
+			@media only screen and (min-width: 1025px) {
+				.mkdf-tours-standard-item-title-price-holder {
+					padding-right: 80px;
+				}
+			}
+			
+			.mkdf-tours-standard-item-title-price-holder .mkdf-tour-title,
+			.mkdf-tours-price-holder {
+				font-size: 15px;
+			}
+			
+			.mkdf-tours-price-with-discount {
+				
+				.mkdf-tours-item-price {
+					font-size: 12px;
+				}
+				
+				.mkdf-tours-item-discount-price {
+					font-size: 15px;
+				}
+			}
+			
+			.mkdf-tours-standard-item-excerpt {
+				@include mkdfRelativeHolderLayout();
+				margin: 10px 0 0;
+			}
+		}
+		
+		.mkdf-tours-gallery-item {
+			
+			.mkdf-tours-gallery-item-image {
+				border: 1px solid #ebebeb;
+				border-top: none;
+				box-sizing: border-box;
+			}
+			
+			.mkdf-tours-gallery-title-holder .mkdf-tour-title,
+			.mkdf-tours-price-holder {
+				font-size: 15px;
+			}
+			
+			.mkdf-tours-price-with-discount {
+				
+				.mkdf-tours-item-price {
+					font-size: 12px;
+				}
+				
+				.mkdf-tours-item-discount-price {
+					font-size: 15px;
+				}
+			}
+		}
+	}
+}
+
+.mkdf-tours-search-page-holder {
+
+	.mkdf-tours-search-pagination {
+		margin-top: 60px;
+		margin-bottom: 110px;
+	}
+}

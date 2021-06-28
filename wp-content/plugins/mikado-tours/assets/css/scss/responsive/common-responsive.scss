@@ -1,0 +1,50 @@
+.mkdf-tours-row{
+
+	@include laptop-landscape-large {
+
+		$gallery_columns_number: ('6');
+			
+		@for $i from 0 to length($gallery_columns_number) {
+			&.mkdf-tours-columns-#{nth($gallery_columns_number,$i+1)} {
+				
+				.mkdf-tours-row-item,
+				.mkdf-tours-list-grid-sizer {
+					width: 33.33%;
+				}
+			}
+		}
+	}
+
+	@include ipad-landscape {
+
+		$gallery_columns_number: ('3', '4', '5', '6');
+			
+		@for $i from 0 to length($gallery_columns_number) {
+			&.mkdf-tours-columns-#{nth($gallery_columns_number,$i+1)} {
+				
+				.mkdf-tours-row-item,
+				.mkdf-tours-list-grid-sizer {
+					width: 50%;
+					
+				}
+			}
+		}
+	}
+
+
+	@include phone-landscape {
+
+		$gallery_columns_number: ('2', '3', '4', '5', '6');
+			
+		@for $i from 0 to length($gallery_columns_number) {
+			&.mkdf-tours-columns-#{nth($gallery_columns_number,$i+1)} {
+				
+				.mkdf-tours-row-item,
+				.mkdf-tours-list-grid-sizer {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+}

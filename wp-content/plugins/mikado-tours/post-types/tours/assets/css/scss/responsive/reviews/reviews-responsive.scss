@@ -1,0 +1,16 @@
+
+.mkdf-tour-reviews-criteria-holder {
+
+	@media only screen and (min-width: 769px) and (max-width: 1280px){
+		width: 50%;
+
+		&:nth-child(2n+1) {
+			clear: both;
+		}
+	}
+
+	@include ipad-portrait{
+		width: 100%;
+		float: none;
+	}
+}

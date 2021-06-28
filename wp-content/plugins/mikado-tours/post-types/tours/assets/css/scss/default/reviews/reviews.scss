@@ -1,0 +1,210 @@
+.mkdf-review-ratings {
+	margin-top: 24px;
+}
+
+.mkdf-tour-reviews-criteria-holder {
+	display: inline-block;
+	float: left;
+	width: 33.33%;
+	padding: 6px 0;
+	
+	@media only screen and (min-width: 1281px) {
+		
+		&:nth-child(3n+1) {
+			clear: both;
+		}
+	}
+
+	.mkdf-tour-reviews-criterion-name {
+		display: inline-block;
+		margin: 0 7px 0 0;
+		font-size: 17px;
+		font-weight: 700;
+        color: $default-heading-color;
+	}
+
+	.mkdf-tour-reviews-rating-holder {
+		display: inline-block;
+		color: $first-main-color;
+
+		.mkdf-tour-reviews-star-holder {
+			margin-right: 3px;
+		}
+	}
+}
+
+.mkdf-tour-reviews-input-wrapper {
+	margin-bottom: 37px;
+
+	.mkdf-tour-reviews-input {
+		@include mkdfRelativeHolderLayout();
+
+		.mkdf-tour-reviews-criteria-holder {
+
+			.mkdf-tour-reviews-rating-holder {
+				cursor: pointer;
+			}
+
+			.mkdf-tour-reviews-hidden-input {
+				display: none !important;
+			}
+		}
+	}
+}
+
+.mkdf-tour-reviews-display-wrapper {
+	position: relative;
+	
+	.mkdf-tour-review-title {
+		margin: 0 0 6px;
+	}
+
+	.mkdf-tour-review-subtitle {
+		margin: 0 0 32px;
+		color: $first-main-color;
+	}
+
+	.mkdf-tours-reviews-breakdown {
+		@include mkdfTableLayout();
+	}
+
+	.mkdf-tour-reviews-display-left {
+		display: table-cell;
+		vertical-align: middle;
+		width: 178px;
+		background-color: #f4f4f4;
+		padding: 5px 0;
+		
+		.mkdf-tour-reviews-display-left-inner {
+			position: relative;
+			display: table;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+		}
+		
+		.mkdf-tour-reviews-average-wrapper {
+			position: relative;
+			display: table-cell;
+			width: 100%;
+			height: 100%;
+			vertical-align: middle;
+		}
+	}
+
+	.mkdf-tour-reviews-average-rating {
+		color: $first-main-color;
+		font-size: 50px;
+		line-height: 1em;
+		font-weight: 700;
+	}
+
+	.mkdf-tour-reviews-verbal-description {
+		vertical-align: middle;
+		margin: 9px 0 0;
+
+        .mkdf-tour-reviews-rating-description {
+            font-size: 20px;
+            font-weight: 400;
+            color: $default-heading-color;
+        }
+	}
+	
+	.mkdf-tour-reviews-rating-icon {
+		vertical-align: middle;
+		font-size: 20px;
+	}
+
+	.mkdf-tour-reviews-display-right {
+		display: table-cell;
+		vertical-align: middle;
+		padding-left: 18px;
+		box-sizing: border-box;
+
+		.mkdf-tour-reviews-display-bar {
+			line-height: 28px;
+
+			.mkdf-tour-reviews-display-bar-inner {
+				padding: 6px 0;
+			}
+
+            &:first-child {
+                .mkdf-tour-reviews-display-bar-inner {
+                    padding-top: 0;
+                }
+            }
+
+            &:last-child {
+                .mkdf-tour-reviews-display-bar-inner {
+                    padding-bottom: 0;
+                }
+            }
+		}
+
+		.mkdf-tour-reviews-bar-holder {
+			width: 100%;
+			background: #f4f4f4;
+			position: relative;
+
+			.mkdf-tour-reviews-bar-progress {
+				background: $first-main-color;
+				color: white;
+				text-align: right;
+
+				.mkdf-tour-reviews-bar-rating {
+					margin-right: 10px;
+					display: inline-block;
+				}
+			}
+
+			.mkdf-tour-reviews-bar-title {
+				left: 12px;
+				position: absolute;
+				top: 0;
+				color: #fff;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+#tour-item-review-id {
+    .mkdf-comment-holder {
+
+        .mkdf-comment-holder-inner {
+            padding-top: 60px;
+        }
+
+        .mkdf-comments-title {
+            display: none;
+        }
+
+        .mkdf-comment-image {
+            width: 92px;
+            height: 92px;
+            top: 0;
+        }
+
+        .mkdf-comment-text {
+            padding-left: 112px;
+
+            .mkdf-comment-name,
+            .mkdf-comment-date {
+                float: none;
+                margin-left: 0;
+            }
+
+            .mkdf-comment-info {
+                margin-bottom: 10px;
+            }
+        }
+
+        .mkdf-comment-list {
+            li {
+                border-top: 1px solid #ebebeb;
+                padding: 63px 0 47px;
+                margin: 0;
+            }
+        }
+    }
+}

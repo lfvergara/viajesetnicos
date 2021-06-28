@@ -1,0 +1,56 @@
+.mkdf-tour-type-list-holder {
+	font-size: 0; //because of the spaces between items
+
+	.mkdf-tours-type-item {
+
+		a {
+			display: block;
+			border-bottom: 1px solid $default-border-color;
+			background-color: transparent;
+			padding: 20px 0;
+			@include mkdfTransition(color .25s ease-out,background-color .25s ease-out);
+
+			&:hover{
+				background-color: #fefefe;
+
+				.mkdf-tour-type-name{
+					color: inherit;
+				}
+			}
+
+		}
+
+		&:last-child a{
+			border-bottom: none;
+		}
+
+		.mkdf-tour-type-name{
+			display: inline-block;
+			margin: 0;
+		}
+
+		.mkdf-tour-type-icon,
+		.mkdf-tour-type-name,
+		.mkdf-tour-type-min-price-label,
+		.mkdf-tour-type-min-price {
+			vertical-align: middle;
+		}
+
+		.mkdf-tour-type-icon {
+			display: inline-block;
+			width: 33px;
+			font-size: 20px;
+			margin-right: 26px;
+
+			span{
+				vertical-align: middle;
+			}
+		}
+
+		.mkdf-tour-type-min-price-holder {
+			float: right;
+			color: $default-text-color;
+			font-size: 14px;
+		}
+	}
+}

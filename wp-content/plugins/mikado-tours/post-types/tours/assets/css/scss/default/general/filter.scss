@@ -1,0 +1,35 @@
+
+/* Filter styles
+   ========================================================================== */
+.mkdf-tours-list-holder {
+
+	.mkdf-tours-list-filter-holder {
+		margin-bottom: 64px;
+
+		ul {
+			list-style-type: none;
+			text-align: center;
+			margin: 0;
+
+			li {
+				display: inline-block;
+				margin: 0 13px;
+
+				a {
+					color: #999;
+					text-transform: uppercase;
+					font-weight: 700;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+
+	.mkdf-tour-list-filter-item.mkdf-tour-list-current-filter a {
+		color: $first-main-color;
+	}
+
+}
+
+/* Filter styles end
+   ========================================================================== */

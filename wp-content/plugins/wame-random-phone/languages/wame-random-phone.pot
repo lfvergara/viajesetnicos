@@ -1,0 +1,49 @@
+# Copyright (C) 2019 Creame
+# This file is distributed under the same license as the WAme Random Phone plugin.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WAme Random Phone 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wame-random-phone\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Creame <hola@crea.me>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-10-03 16:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Domain: wame-random-phone\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;"
+"_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-wame-random-phone-admin.php:122 admin/class-wame-random-phone-admin.php:170
+msgid "White Label"
+msgstr ""
+
+#: admin/class-wame-random-phone-admin.php:163
+msgid "Add phone number"
+msgstr ""
+
+#: admin/class-wame-random-phone-admin.php:164
+msgid "Contact phone numbers <strong>(users will contact one of them randomly)</strong>"
+msgstr ""
+
+#: admin/class-wame-random-phone-admin.php:172
+msgid "Remove \"Powered by WAme\" link"
+msgstr ""
+
+#: wame-random-phone.php:67
+msgid "You need to install and activate <strong>WAme chat</strong> in order to use <strong>WAme Random Phone</strong>"
+msgstr ""
+
+#: wame-random-phone.php:84
+msgid "<strong>WAme Random Phone</strong> require a newer version of <strong>WAme chat</strong>."
+msgstr ""
+
+#: wame-random-phone.php:85
+msgid "Update now"
+msgstr ""

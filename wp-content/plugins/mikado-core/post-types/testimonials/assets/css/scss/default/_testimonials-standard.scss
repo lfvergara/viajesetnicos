@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Testimonials standard style - begin
+   ========================================================================== */
+
+.mkdf-testimonials-holder {
+    
+    &.mkdf-testimonials-standard {
+        text-align: center;
+
+        .mkdf-testimonial-image {
+            @include mkdfRelativeHolderLayout();
+            margin: 25px 0 0;
+
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        .mkdf-testimonial-title {
+            margin: 0;
+        }
+
+        .mkdf-testimonial-author {
+            margin: 11px 0 0;
+
+            .mkdf-testimonials-author-name {
+                color: $first-main-color;
+                display: inline-block;
+            }
+
+            .mkdf-testimonials-author-job {
+                color: #737373;
+            }
+        }
+
+        .mkdf-testimonial-text {
+            margin: 26px 0 0;
+            color: $default-text-color;
+            font-weight: 400;
+            line-height: 1.65em;
+        }
+
+        /* Light/Dark styles */
+        &.mkdf-testimonials-light {
+            
+            .mkdf-testimonial-title,
+            .mkdf-testimonial-text,
+            .mkdf-testimonial-author,
+            .mkdf-testimonials-author-job {
+                color: #fff;
+            }
+
+            .owl-dots {
+                
+                .owl-dot {
+                    
+                    span {
+                        border: 2px solid rgba(#fff, .5);
+                    }
+                    
+                    &:hover,
+                    &.active {
+
+                        span {
+                            background-color: #fff;
+                            border-color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* ==========================================================================
+   Testimonials standard style - end
+   ========================================================================== */

@@ -1,0 +1,114 @@
+.mkdf-tours-destination-masonry-carousel {
+	overflow: hidden;
+
+	.mkdf-tdm-carousel.mkdf-owl-slider-style{
+		width: auto;
+	}
+
+	.mkdf-tdmc-item{
+		position: relative;
+		display: block;
+
+		&.mkdf-dmc-item-landscape,
+		&.mkdf-dmc-item-small-landscape{
+			padding-top: 75%;
+		}
+
+		&.mkdf-dmc-item-portrait{
+			padding-top: 150%;
+		}
+
+		.mkdf-tours-destination-item-holder{
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+		}
+
+		.mkdf-tdc-item-link{
+			position: relative;
+			display: block;
+			height: 100%;
+		}
+	}
+
+	.mkdf-tours-destination-item-holder {
+		@include mkdfRelativeHolderLayout();
+
+		> a {
+			overflow: hidden;
+		}
+		
+		.touch & {
+			cursor: pointer;
+		}
+
+		.mkdf-tours-destination-item-content {
+			@include mkdfAbsoluteHolderLayout();
+			z-index: 2;
+		}
+
+		.mkdf-tours-destination-item-content-table {
+			@include mkdfTableLayout();
+			text-align: center;
+			
+			.mkdf-tours-destination-item-content-table-cell {
+				@include mkdfTableCellLayout();
+				padding: 0 20px;
+
+				.mkdf-tours-destination-item-title{
+					color: #fff;
+					margin: 0;
+				}
+
+				.mkdf-tours-destination-desc{
+					color: #fff;
+					margin: 12px 0 0;
+				}
+			}
+		}
+
+		.mkdf-tours-destination-item-image {
+			visibility: hidden;
+			overflow: hidden;
+			z-index: 10;
+
+			img {
+				display: block;
+			}
+		}
+
+		.mkdf-tdc-item-background{
+			@include mkdfAbsoluteHolderLayout();
+			background-size: cover;
+			background-position: center;
+			-webkit-transition: -webkit-transform .3s;
+			transition: transform .3s;
+
+			&:after{
+				content: '';
+				@include mkdfAbsoluteHolderLayout();
+				background-color: rgba(0,0,0,0.5);
+				opacity: .75;
+				@include mkdfTransition(opacity .6s);
+			}
+		}
+
+		&:hover {
+			.mkdf-tdc-item-background {
+				@include mkdfTransform(scale(1.04));
+				-webkit-transition: -webkit-transform .6s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+				transition: transform .6s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+
+				&:after {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.mkdf-owl-slider-style .owl-dots{
+		margin-bottom: 30px;
+	}
+}

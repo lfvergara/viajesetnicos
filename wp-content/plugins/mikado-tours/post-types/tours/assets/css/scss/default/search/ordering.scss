@@ -1,0 +1,93 @@
+.mkdf-tours-search-content .mkdf-social-share-holder .mkdf-icon-name {
+	display: none;
+}
+
+.mkdf-tours-search-order-container{
+	background-color: #f4f4f4;
+}
+
+.mkdf-search-ordering-holder {
+	@include mkdfRelativeHolderLayout();
+
+	.mkdf-search-ordering-list {
+		display: table;
+		width: 100%;
+		margin: 0;
+
+		li {
+			position: relative;
+			display: table-cell;
+			vertical-align: middle;
+			background-color: #f4f4f4;
+			border-right: 1px solid #d7d7d7;
+			@include mkdfTransition(background-color .2s ease-in-out, padding .2s ease-in-out);
+
+			&:before {
+				content: '';
+				position: absolute;
+				display: none;
+				bottom: 0;
+				left: -1px;
+				width: 1px;
+				height: 100%;
+				background-color: #fff;
+				z-index: 1;
+			}
+			
+			&:first-child {
+				&:before {
+					display: none;
+				}
+			}
+			
+			&:last-child {
+				border-right: 0;
+			}
+			
+			&.mkdf-search-ordering-item-active {
+				color: $first-main-color;
+				background-color: #fff;
+				border-color: #fff;
+				
+				&:before {
+					display: block;
+				}
+			}
+
+			a {
+				position: relative;
+				display: block;
+				margin: 0;
+				width: auto;
+				font-size: 16px;
+                line-height: 26px;
+				font-weight: 500;
+				color: $default-text-color;
+				letter-spacing: -0.005em;
+				border: none;
+				padding: 22px;
+				text-align: center;
+				@include mkdfTransition(color .2s ease-in-out);
+				
+				
+				.mkdf-search-ordering-icon {
+					display: inline-block;
+					font-size: 18px;
+					line-height: 1em;
+					font-weight: normal;
+                    vertical-align: text-top;
+				}
+				
+				.mkdf-search-ordering-title {
+					display: inline-block;
+					line-height: 20px;
+					margin: 0 0 0 12px;
+				}
+				
+				&:hover {
+					color: $first-main-color;
+				}
+			}
+		}
+	}
+}

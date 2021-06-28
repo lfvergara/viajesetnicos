@@ -1,0 +1,637 @@
+/* ==========================================================================
+   Global partials
+   ========================================================================== */
+/* Button mixins - start */
+/* Button mixins - end */
+/* ==========================================================================
+   Custom Post Types styles
+   ========================================================================== */
+/* ==========================================================================
+# Team list - begin
+	========================================================================== */
+.mkdf-team-list-holder {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  /***** Team Columns - begin *****/
+  /***** Team Columns - end *****/
+}
+
+.mkdf-team-list-holder .mkdf-team {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  float: left;
+  box-sizing: border-box;
+}
+
+.mkdf-team-list-holder.mkdf-tl-two-columns .mkdf-team {
+  width: 50%;
+}
+
+@media only screen and (min-width: 1025px) {
+  .mkdf-team-list-holder.mkdf-tl-two-columns .mkdf-team:nth-child(2n+1) {
+    clear: both;
+  }
+}
+
+.mkdf-team-list-holder.mkdf-tl-three-columns .mkdf-team {
+  width: 33.33333%;
+}
+
+@media only screen and (min-width: 1025px) {
+  .mkdf-team-list-holder.mkdf-tl-three-columns .mkdf-team:nth-child(3n+1) {
+    clear: both;
+  }
+}
+
+.mkdf-team-list-holder.mkdf-tl-four-columns .mkdf-team {
+  width: 25%;
+}
+
+@media only screen and (min-width: 1201px) {
+  .mkdf-team-list-holder.mkdf-tl-four-columns .mkdf-team:nth-child(4n+1) {
+    clear: both;
+  }
+}
+
+.mkdf-team-list-holder.mkdf-tl-five-columns .mkdf-team {
+  width: 20%;
+}
+
+@media only screen and (min-width: 1201px) {
+  .mkdf-team-list-holder.mkdf-tl-five-columns .mkdf-team:nth-child(5n+1) {
+    clear: both;
+  }
+}
+
+/* ==========================================================================
+# Team list - end
+========================================================================== */
+/* ==========================================================================
+# Team slider - begin
+	========================================================================== */
+.mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-prev {
+  left: -47px;
+}
+
+.mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-next {
+  right: -47px;
+}
+
+.mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-prev,
+.mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-next {
+  color: #919191;
+}
+
+.mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-prev:hover,
+.mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-next:hover {
+  color: #ff681a;
+}
+
+/* ==========================================================================
+# Team slider - end
+	========================================================================== */
+/* ==========================================================================
+# Team info bellow - begin
+	========================================================================== */
+.mkdf-team.info-bellow .mkdf-team-inner {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+.mkdf-team.info-bellow .mkdf-team-image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
+}
+
+.mkdf-team.info-bellow .mkdf-team-image a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mkdf-team.info-bellow .mkdf-team-image a:hover:after {
+  opacity: 0.3;
+}
+
+.mkdf-team.info-bellow .mkdf-team-image a:after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+.mkdf-team.info-bellow .mkdf-team-image img {
+  display: block;
+  margin: 0 auto;
+}
+
+.mkdf-team.info-bellow .mkdf-team-title-holder {
+  margin: 32px 0 0;
+}
+
+.mkdf-team.info-bellow .mkdf-team-name {
+  margin: 0 0 23px;
+}
+
+.mkdf-team.info-bellow .mkdf-team-name:hover {
+  color: #d0d0d0;
+}
+
+.mkdf-team.info-bellow .mkdf-team-position {
+  margin: 0;
+  font-weight: 300;
+}
+
+.mkdf-team.info-bellow .mkdf-team-social-holder-between {
+  margin: 25px 0 0;
+}
+
+.mkdf-team.info-bellow .mkdf-team-description {
+  color: #777;
+}
+
+.mkdf-team.info-bellow .mkdf-icon-shortcode {
+  margin: 0 8px;
+  font-size: 14px;
+}
+
+.mkdf-team.info-bellow .mkdf-icon-shortcode:first-child {
+  margin-left: 0;
+}
+
+/* ==========================================================================
+# Team info bellow - end
+	========================================================================== */
+/* ==========================================================================
+# Team info hover - begin
+	========================================================================== */
+.mkdf-team.info-hover .mkdf-team-inner {
+  position: relative;
+}
+
+.mkdf-team.info-hover .mkdf-team-image img {
+  display: block;
+}
+
+.mkdf-team.info-hover .mkdf-team-image:hover .mkdf-team-info-tb {
+  opacity: 1;
+}
+
+.mkdf-team.info-hover .mkdf-team-name,
+.mkdf-team.info-hover .mkdf-team-position,
+.mkdf-team.info-hover .mkdf-team-text,
+.mkdf-team.info-hover .mkdf-icon-shortcode,
+.mkdf-team.info-hover .mkdf-icon-shortcode > * {
+  color: #000;
+}
+
+.mkdf-team.info-hover .mkdf-team-info-tb {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-transition: opacity 0.2s ease;
+  -moz-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+.mkdf-team.info-hover .mkdf-team-info-tc {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.mkdf-team.info-hover .mkdf-team-name {
+  margin: 0 0 13px;
+}
+
+.mkdf-team.info-hover .mkdf-team-position {
+  margin: 0;
+  font-weight: 300;
+}
+
+.mkdf-team.info-hover .mkdf-team-social-holder-between {
+  margin: 15px 0 0;
+}
+
+.mkdf-team.info-hover .mkdf-icon-shortcode {
+  margin: 0 8px;
+  font-size: 14px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.mkdf-team.info-hover .mkdf-icon-shortcode:first-child {
+  margin-left: 0;
+}
+
+.mkdf-team.info-hover .mkdf-team-overlay-link {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.mkdf-team.info-hover .mkdf-team-title-holder {
+  overflow: hidden;
+}
+
+.mkdf-team.info-hover .mkdf-team-title-holder .mkdf-team-name,
+.mkdf-team.info-hover .mkdf-team-title-holder .mkdf-team-position {
+  opacity: 0;
+  -webkit-transform: translate3d(-20%, 0, 0);
+  -moz-transform: translate3d(-20%, 0, 0);
+  transform: translate3d(-20%, 0, 0);
+  -webkit-transition: all 0s 0.2s;
+  -moz-transition: all 0s 0.2s;
+  transition: all 0s 0.2s;
+}
+
+.mkdf-team.info-hover .mkdf-icon-shortcode {
+  overflow: hidden;
+}
+
+.mkdf-team.info-hover .mkdf-icon-shortcode span {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: all 0s 0.2s;
+  -moz-transition: all 0s 0.2s;
+  transition: all 0s 0.2s;
+}
+
+.mkdf-team.info-hover .mkdf-icon-shortcode a:hover span {
+  color: #ff681a;
+}
+
+.mkdf-team.info-hover:hover .mkdf-team-info {
+  opacity: 1;
+}
+
+.mkdf-team.info-hover:hover .mkdf-team-name {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.4s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+  -moz-transition: all 0.4s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+  transition: all 0.4s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+}
+
+.mkdf-team.info-hover:hover .mkdf-team-position {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.4s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.15s;
+  -moz-transition: all 0.4s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.15s;
+  transition: all 0.4s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.15s;
+}
+
+.mkdf-team.info-hover:hover .mkdf-icon-shortcode:nth-child(1) span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.1s, opacity 0.2s 0.1s, color 0.2s;
+  transition: transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.1s, opacity 0.2s 0.1s, color 0.2s;
+}
+
+.mkdf-team.info-hover:hover .mkdf-icon-shortcode:nth-child(2) span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.2s, opacity 0.2s 0.2s, color 0.2s;
+  transition: transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.2s, opacity 0.2s 0.2s, color 0.2s;
+}
+
+.mkdf-team.info-hover:hover .mkdf-icon-shortcode:nth-child(3) span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.3s, opacity 0.2s 0.3s, color 0.2s;
+  transition: transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.3s, opacity 0.2s 0.3s, color 0.2s;
+}
+
+.mkdf-team.info-hover:hover .mkdf-icon-shortcode:nth-child(4) span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.4s, opacity 0.2s 0.4s, color 0.2s;
+  transition: transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.4s, opacity 0.2s 0.4s, color 0.2s;
+}
+
+.mkdf-team.info-hover:hover .mkdf-icon-shortcode:nth-child(5) span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.5s, opacity 0.2s 0.5s, color 0.2s;
+  transition: transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.5s, opacity 0.2s 0.5s, color 0.2s;
+}
+
+.mkdf-team.info-hover:hover .mkdf-icon-shortcode:nth-child(6) span {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.6s, opacity 0.2s 0.6s, color 0.2s;
+  transition: transform 0.2s cubic-bezier(0.6, 0.23, 0.32, 0.95) 0.6s, opacity 0.2s 0.6s, color 0.2s;
+}
+
+/* ==========================================================================
+# Team info bellow - end
+	========================================================================== */
+.mkdf-team-single-holder {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  margin-bottom: 100px;
+}
+
+.mkdf-team-single-holder .mkdf-ts-image-holder img {
+  display: block;
+}
+
+.mkdf-team-single-holder .mkdf-name {
+  margin: 0 0 5px;
+}
+
+.mkdf-team-single-holder .mkdf-position {
+  display: inline-block;
+  vertical-align: middle;
+  color: #ababab;
+  margin: 0;
+}
+
+.mkdf-team-single-holder .mkdf-position .mkdf-icon-shortcode {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+.mkdf-team-single-holder .mkdf-position .mkdf-icon-shortcode a, .mkdf-team-single-holder .mkdf-position .mkdf-icon-shortcode span, .mkdf-team-single-holder .mkdf-position .mkdf-icon-shortcode i {
+  color: #999;
+}
+
+.mkdf-team-single-holder .mkdf-team-single-content-title {
+  margin: 10px 0;
+}
+
+.mkdf-team-single-holder .mkdf-ts-info-row {
+  padding: 10px 0;
+  color: #ababab;
+  font-size: 14px;
+}
+
+.mkdf-team-single-holder .mkdf-ts-info-row:last-child {
+  border: 0;
+}
+
+.mkdf-team-single-holder .mkdf-ts-info-row .mkdf-ts-bio-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px 0 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.mkdf-team-single-holder .mkdf-ts-info-row .mkdf-ts-bio-info-title {
+  color: #333;
+  font-weight: 500;
+}
+
+.mkdf-team-single-holder .mkdf-ts-info-row .mkdf-ts-bio-info {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mkdf-team-single-holder .mkdf-team-social {
+  margin-top: 20px;
+}
+
+.mkdf-team-single-holder .mkdf-icon-shortcode {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.mkdf-team-single-holder .mkdf-icon-shortcode:last-child {
+  margin: 0;
+}
+
+.mkdf-team-single-holder .mkdf-icon-shortcode a {
+  color: #333;
+}
+
+.mkdf-team-single-holder .mkdf-icon-shortcode a:hover {
+  color: #ff681a;
+}
+
+.mkdf-team-single-holder .mkdf-icon-shortcode span, .mkdf-team-single-holder .mkdf-icon-shortcode i {
+  color: inherit;
+}
+
+.mkdf-team-single-holder .mkdf-team-single-content {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  margin: 15px 0 0;
+}
+
+/* ==========================================================================
+   Testimonials boxed style - begin
+   ========================================================================== */
+.mkdf-testimonials-holder.mkdf-testimonials-boxed {
+  /* Light/Dark styles */
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed .mkdf-testimonials {
+  margin: 0 -50px;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed .mkdf-testimonial-content {
+  padding: 40px 57px 58px;
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed .mkdf-testimonials-author-holder {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  margin: 9px 0 0;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed .mkdf-testimonials-author-holder .mkdf-testimonial-image {
+  float: left;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed .mkdf-testimonials-author-holder .mkdf-testimonial-author {
+  padding: 3px 0 0 110px;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed.mkdf-testimonials-light .mkdf-testimonial-title,
+.mkdf-testimonials-holder.mkdf-testimonials-boxed.mkdf-testimonials-light .mkdf-testimonial-text,
+.mkdf-testimonials-holder.mkdf-testimonials-boxed.mkdf-testimonials-light .mkdf-testimonial-author {
+  color: #fff;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed.mkdf-testimonials-light .owl-dots .owl-dot span {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-boxed.mkdf-testimonials-light .owl-dots .owl-dot:hover span, .mkdf-testimonials-holder.mkdf-testimonials-boxed.mkdf-testimonials-light .owl-dots .owl-dot.active span {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+/* ==========================================================================
+   Testimonials boxed style - end
+   ========================================================================== */
+/* ==========================================================================
+   Testimonials standard style - begin
+   ========================================================================== */
+.mkdf-testimonials-holder.mkdf-testimonials-standard {
+  text-align: center;
+  /* Light/Dark styles */
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-image {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  margin: 25px 0 0;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-image img {
+  display: block;
+  margin: 0 auto;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-title {
+  margin: 0;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-author {
+  margin: 11px 0 0;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-author .mkdf-testimonials-author-name {
+  color: #ff681a;
+  display: inline-block;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-author .mkdf-testimonials-author-job {
+  color: #737373;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-text {
+  margin: 26px 0 0;
+  color: #595959;
+  font-weight: 400;
+  line-height: 1.65em;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .mkdf-testimonial-title,
+.mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .mkdf-testimonial-text,
+.mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .mkdf-testimonial-author,
+.mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .mkdf-testimonials-author-job {
+  color: #fff;
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .owl-dots .owl-dot span {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .owl-dots .owl-dot:hover span, .mkdf-testimonials-holder.mkdf-testimonials-standard.mkdf-testimonials-light .owl-dots .owl-dot.active span {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+/* ==========================================================================
+   Testimonials standard style - end
+   ========================================================================== */
+/* ==========================================================================
+   Testimonials shortcode style - begin
+   ========================================================================== */
+.mkdf-testimonials-holder {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.mkdf-testimonials-holder .mkdf-testimonials,
+.mkdf-testimonials-holder .mkdf-testimonial-content,
+.mkdf-testimonials-holder .mkdf-testimonial-text-holder {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.mkdf-testimonials-holder .mkdf-testimonials {
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.mkdf-testimonials-holder .mkdf-testimonial-image img {
+  width: auto !important;
+  border-radius: 5em;
+}
+
+@media only screen and (max-width: 680px) {
+  .mkdf-testimonials-holder .mkdf-testimonials {
+    padding: 0 10px;
+  }
+  .mkdf-testimonials-holder.mkdf-testimonials-standard .mkdf-testimonial-author .mkdf-testimonials-author-name {
+    display: block;
+    margin-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   Testimonials shortcode style - end
+   ========================================================================== */
+
+/*# sourceMappingURL=../../../../plugins/mikado-core/assets/css/custom-post-types-map.css.map */

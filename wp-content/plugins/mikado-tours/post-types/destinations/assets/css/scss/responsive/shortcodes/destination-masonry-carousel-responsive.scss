@@ -1,0 +1,12 @@
+.mkdf-tours-destination-masonry-carousel {
+	.mkdf-tdmc-item{
+
+		@include ipad-portrait{
+
+			&.mkdf-dmc-item-landscape{
+				padding-top: 150%;
+			}
+		}
+
+	}
+}

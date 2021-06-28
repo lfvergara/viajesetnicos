@@ -1,0 +1,111 @@
+
+/* Revealing type styles
+   ========================================================================== */
+
+.mkdf-tours-revealing-item {
+	@include mkdfRelativeHolderLayout();
+	
+	.touch & {
+		cursor: pointer;
+	}
+	
+	.mkdf-tours-revealing-item-image-holder {
+		@include mkdfRelativeHolderLayout();
+	}
+	
+	.mkdf-tours-revealing-item-image {
+		@include mkdfRelativeHolderLayout();
+		overflow: hidden;
+		
+		img {
+			vertical-align: middle;
+		}
+
+		&:after {
+			content:'';
+			position: absolute;
+			top:0;
+			left:0;
+			height: 100%;
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.2);
+			opacity: 0;
+			z-index: 10;
+			@include mkdfTransition(opacity 1s cubic-bezier(0.29, 0.22, 0.11, 1));
+		}
+	}
+	
+	.mkdf-tours-revealing-item-content-holder {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		z-index: 20;
+		height: auto;
+		padding: 11px 19px;
+		background-color: #fff;
+		box-sizing: border-box;
+		@include mkdfTransition(all .2s cubic-bezier(0.29, 0.22, 0.07, 0.88));
+	}
+	
+	.mkdf-tours-revealing-item-content-inner {
+		@include mkdfRelativeHolderLayout();
+		overflow: hidden;
+	}
+	
+	.mkdf-tours-revealing-title-holder {
+		display: table;
+		width: 100%;
+		padding: 10px 0;
+		box-sizing: border-box;
+		
+		.mkdf-tour-title {
+			display: table-cell;
+			vertical-align: middle;
+			margin: 0;
+		}
+		
+		.mkdf-tours-revealing-item-price-holder {
+			position: relative;
+			top: 1px;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: right;
+		}
+	}
+
+	.mkdf-tour-item-label {
+		z-index: 30;
+	}
+	
+	.mkdf-tours-revealing-item-excerpt {
+		position: relative;
+		overflow: hidden;
+		opacity:0;
+		@include mkdfTransition(all .15s cubic-bezier(0.29, 0.22, 0.11, 1));
+	}
+	
+	.mkdf-tours-revealing-item-excerpt-inner {
+		@include mkdfRelativeHolderLayout();
+		margin: 4px 0 15px;
+	}
+
+	.mkdf-tours-revealing-item-link {
+		@include mkdfAbsoluteHolderLayout();
+		z-index: 100;
+	}
+	
+	&:hover {
+		.mkdf-tours-revealing-item-content-holder {
+			@include mkdfTransition(all .3s cubic-bezier(0.6, 0.23, 0.32, 0.95));
+		}
+
+		.mkdf-tours-revealing-item-image:after,
+		.mkdf-tours-revealing-item-excerpt {
+			opacity:1;
+		}
+	}	
+}
+
+/* Revealing type styles end
+	========================================================================== */

@@ -1,0 +1,23 @@
+.mkdf-tours-list-holder {
+
+	.mkdf-tours-list-holder-inner {
+		opacity: 0;
+		@include mkdfTransition(opacity 0.2s ease-out);
+	}
+	
+	$gallery_columns_number: ('1', '2', '3', '4', '5', '6');
+		
+	@for $i from 0 to length($gallery_columns_number) {
+		&.mkdf-tours-columns-#{nth($gallery_columns_number,$i+1)} {
+			
+			.mkdf-tours-list-grid-sizer {
+				width: 100% / ($i+1);
+			}
+		}
+	}
+
+	.mkdf-tours-pagination-holder.mkdf-tours-pagination-load-more {
+		text-align: center;
+		margin-top: 60px;
+	}
+}

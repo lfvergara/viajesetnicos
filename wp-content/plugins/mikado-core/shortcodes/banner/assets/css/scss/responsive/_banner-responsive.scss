@@ -1,0 +1,33 @@
+@include ipad-landscape {
+    .mkdf-banner-holder {
+        .mkdf-single-banner-holder .mkdf-banner-text-inner {
+            .mkdf-banner-text-inner-image {
+                margin: 0 auto;
+                max-width: 70%;
+            }
+        }
+    }
+}
+
+@include ipad-portrait {
+    .mkdf-banner-holder {
+        &.mkdf-banner-four-columns .mkdf-single-banner-holder {
+            width: 50%;
+        }
+    }
+}
+
+@include phone-landscape {
+    .mkdf-banner-holder {
+
+        $columns_label: ('two', 'three', 'four');
+        @for $i from 0 to length($columns_label) {
+            &.mkdf-banner-#{nth($columns_label,$i+1)}-columns {
+
+                .mkdf-single-banner-holder {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

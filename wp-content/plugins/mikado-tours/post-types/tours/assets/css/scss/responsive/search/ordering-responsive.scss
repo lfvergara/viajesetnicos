@@ -1,0 +1,27 @@
+@include phone-landscape {
+	
+	.mkdf-search-ordering-holder {
+		
+		.mkdf-search-ordering-list {
+			@include ipad-portrait{
+				li {
+					display: block;
+					border-right: none;
+					border-bottom: 1px solid #d7d7d7;
+
+					&:before {
+						top: -1px;
+						bottom: auto;
+						left: 0;
+						height: 1px;
+						width: 100%;
+					}
+
+					&:last-child {
+						border-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,352 @@
+/* Login/Register widget - start
+   ========================================================================== */
+
+/* User not logged in */
+.mkdf-login-register-widget {
+    &.mkdf-user-not-logged-in {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+
+        .mkdf-menu-area & {
+            height: 100%;
+        }
+
+        .mkdf-sidebar & {
+            width: 100%;
+        }
+
+        .mkdf-login-opener {
+            &:before {
+                position: relative;
+                display: inline-block;
+                top: -1px;
+                font-family: 'FontAwesome';
+                content: "\f2bd";
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+
+            /* Top bar */
+            .mkdf-top-bar & {
+                color: #fff;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+
+            /* Menu area */
+            .mkdf-menu-area & {
+                color: #9c9c9c;
+                font-size: 11px;
+                line-height: 23px;
+                margin: 0 10px;
+                font-weight: 600;
+                text-transform: uppercase;
+                position: relative;
+                display: inline-block;
+                top: 50%;
+                transform: translateY(-50%);
+                &:hover {
+                    color: #000;
+                }
+            }
+
+            .mkdf-dark-header .mkdf-menu-area:not(.fixed):not(.mkdf-sticky-header) & {
+                color: #000 !important;
+                &:hover {
+                    color: rgba(0, 0, 0, .8);
+                }
+            }
+
+            .mkdf-header-tabbed .mkdf-header-tabbed-top &,
+            .mkdf-light-header .mkdf-menu-area:not(.fixed):not(.mkdf-sticky-header) & {
+                color: #fff !important;
+                &:hover {
+                    color: rgba(255, 255, 255, .8);
+                }
+            }
+
+            /* Sidebar */
+            .mkdf-sidebar & {
+                color: #000;
+                font-size: 11px;
+                font-weight: 500;
+                text-transform: uppercase;
+                &:hover {
+                    color: $first-main-color;
+                }
+            }
+
+            /* Footer */
+            footer & {
+                color: #000;
+                font-size: 11px;
+                font-weight: 500;
+                text-transform: uppercase;
+                &:hover {
+                    color: $first-main-color;
+                }
+            }
+
+            /* Side area */
+            .mkdf-side-menu & {
+                color: #000;
+                font-size: 11px;
+                font-weight: 500;
+                text-transform: uppercase;
+                &:hover {
+                    color: $first-main-color;
+                }
+            }
+        }
+    }
+}
+
+/* User logged in */
+
+.mkdf-login-register-widget {
+    &.mkdf-user-logged-in {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+
+        .mkdf-logged-in-user {
+            .mkdf-logged-in-user-inner{
+                & > span {
+                    img {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 18px;
+                        height: 18px;
+                        margin: 0 5px 0 0;
+                        border-radius: 100%;
+                    }
+                }
+            }
+        }
+
+        /* Top bar and menu area dropdown position */
+        .mkdf-menu-area &,
+        .mkdf-top-bar & {
+            .mkdf-login-dropdown {
+                position: absolute;
+                top: 100%;
+                margin: 0;
+                left: 0;
+                opacity: 0;
+                list-style-type: none;
+                text-align: left;
+                padding: 0;
+                width: 193px;
+                box-sizing: border-box;
+                visibility: hidden;
+                z-index: 100;
+                @include mkdfTransition(opacity 0.3s ease);
+
+                li {
+                    padding: 0;
+                    margin: 0;
+                    line-height: 1em;
+
+                    a {
+                        display: block;
+                        position: relative;
+                        @include mkdfTransition(color 0.3s ease);
+                    }
+                }
+            }
+
+            &:hover .mkdf-login-dropdown {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        /* Menu area style */
+        .mkdf-menu-area & {
+            cursor: pointer;
+            /* User part */
+            .mkdf-logged-in-user {
+                height: 100%;
+                display: table;
+                vertical-align: middle;
+
+                .mkdf-logged-in-user-inner {
+                    display: table-cell;
+                    vertical-align: middle;
+                    height: 100%;
+                    & > span {
+                        color: #9c9c9c;
+                        font-size: 11px;
+                        line-height: 23px;
+                        margin: 0 10px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+            &:hover {
+                .mkdf-logged-in-user {
+                    .mkdf-logged-in-user-inner {
+                        & > span {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+
+            /* Dropdown part */
+            .mkdf-login-dropdown {
+                background-color: #fff;
+
+                li {
+                    a {
+                        font-size: 13px;
+                        line-height: 23px;
+                        font-weight: 600;
+                        color: #9c9c9c;
+                        padding: 5px 20px;
+                        &:hover {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+
+            &:hover .mkdf-login-dropdown {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        .mkdf-dark-header .mkdf-menu-area:not(.fixed):not(.mkdf-sticky-header) & {
+            .mkdf-logged-in-user {
+                .mkdf-logged-in-user-inner {
+                    & > span span,
+                    & > span i {
+                        color: #000 !important;
+                        &:hover {
+                            color: rgba(0, 0, 0, .8);
+                        }
+                    }
+                }
+            }
+        }
+
+        .mkdf-header-tabbed .mkdf-header-tabbed-top &,
+        .mkdf-light-header .mkdf-menu-area:not(.fixed):not(.mkdf-sticky-header) & {
+            .mkdf-logged-in-user {
+                .mkdf-logged-in-user-inner {
+                    & > span span,
+                    & > span i {
+                        color: #fff !important;
+                        &:hover {
+                            color: rgba(#fff, .8);
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Top bar style */
+        .mkdf-top-bar & {
+            cursor: pointer;
+            /* User part */
+            .mkdf-logged-in-user {
+                .mkdf-logged-in-user-inner {
+                    & > span {
+                        color: #fff;
+                        font-weight: 500;
+                        line-height: 20px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            /* Dropdown part */
+            .mkdf-login-dropdown {
+                background-color: #212121;
+                padding: 15px 0;
+                li {
+                    a {
+                        color: #fff;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        padding: 8px 20px;
+                        &:hover {
+                            color: rgba(255, 255, 255, .8);
+                        }
+                    }
+                }
+            }
+
+            &:hover .mkdf-login-dropdown {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        /* Sidebar style */
+        .mkdf-sidebar & {
+            .mkdf-logged-in-user {
+                .mkdf-logged-in-user-inner {
+                    padding-bottom: 3px;
+                    border-bottom: 1px solid $default-border-color;
+                    & > span {
+                        color: #000;
+                        font-size: 13px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        i {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Footer style */
+        footer & {
+            height: auto;
+            .mkdf-logged-in-user {
+                .mkdf-logged-in-user-inner {
+                    padding-bottom: 3px;
+                    border-bottom: 1px solid $default-border-color;
+                    & > span {
+                        color: #000;
+                        font-size: 13px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        i {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Sidearea style */
+        .mkdf-side-menu & {
+            height: auto;
+            .mkdf-logged-in-user {
+                .mkdf-logged-in-user-inner {
+                    padding-bottom: 3px;
+                    border-bottom: 1px solid $default-border-color;
+                    & > span {
+                        color: #666;
+                        font-size: 13px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        i {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Login/Register widget - end
+   ========================================================================== */

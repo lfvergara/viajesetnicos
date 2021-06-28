@@ -1,0 +1,77 @@
+# Translation of Plugins - Redirection for Contact Form 7 - Development (trunk) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Redirection for Contact Form 7 - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-10-14 08:21:55+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Redirection for Contact Form 7 - Development (trunk)\n"
+
+#. Plugin Name of the plugin
+#: wpcf7r-functions.php:311 wpcf7r-functions.php:329 wpcf7r-functions.php:364
+msgid "Redirection for Contact Form 7"
+msgstr "Redirección a Contact Form 7 Pro"
+
+#: classes/class-wpcf7r-form-helper.php:377
+msgid "Close Banner"
+msgstr "Cerrar el banner"
+
+#: classes/actions/class-wpcf7r-action-redirect.php:100
+msgid "Pass all the fields from the form as URL query parameters"
+msgstr "Pasar todos los campos del formulario como parámetros de consulta de la URL"
+
+#: wpcf7r-functions.php:377
+msgid "Contact Form Redirection"
+msgstr "Redirección de Contact Form 7"
+
+#: wpcf7r-functions.php:367
+msgid "Error: Contact Form 7 version is too old. Redirection for Contact Form 7 is compatible from version 4.8 and above. Please update Contact Form 7."
+msgstr "Error: la versión de Contact Form 7 es demasiado antigua. Redirection for Contact Form 7 es compatible con la versión 4.8 o superior. Por favor, actualiza Contact Form 7."
+
+#: classes/actions/class-wpcf7r-action-firescript.php:49
+msgid "Warning!"
+msgstr "¡Advertencia!"
+
+#: classes/actions/class-wpcf7r-action-redirect.php:109
+msgid "Pass specific fields from the form as URL query parameters"
+msgstr "Pasar campos específicos del formulario como parámetros de consulta de la URL"
+
+#: classes/actions/class-wpcf7r-action-firescript.php:50
+msgid ""
+"This option is for developers only - use with caution. If the plugin does not redirect after you have added scripts,\n"
+"                    it means you have a problem with your script. Either fix the script, or remove it."
+msgstr ""
+"Esta opción es solo para desarrolladores - úsala con precaución. Si el plugin no redirige después de que hayas añadido los scripts,\n"
+"                    significa que tienes un problema con tu script. Corrige el script o elimínalo."
+
+#: classes/actions/class-wpcf7r-action-redirect.php:92
+msgid "This option might not work as expected, since browsers often block popup windows. This option depends on the browser settings."
+msgstr "Esta opción puede no funcionar como se espera, ya que los navegadores suelen bloquear las ventanas de mensajes emergentes. Esta opción depende de los ajustes del navegador."
+
+#: classes/actions/class-wpcf7r-action-honeypot.php:30
+#: classes/actions/class-wpcf7r-action-sendmail.php:78
+#: classes/actions/class-wpcf7r-action-redirect.php:91
+#: classes/actions/class-wpcf7r-action-firescript.php:39
+msgid "Notice!"
+msgstr "¡Aviso!"
+
+#: classes/actions/class-wpcf7r-action-redirect.php:82
+msgid "Open page in a new tab"
+msgstr "Abrir la página en una nueva pestaña"
+
+#. Author of the plugin
+msgid "Query Solutions"
+msgstr "Query Solutions"
+
+#: classes/actions/class-wpcf7r-action-redirect.php:64
+#: classes/actions/class-wpcf7r-action-redirect.php:65
+msgid "Use external URL"
+msgstr "Usar una URL externa"
+
+#: wpcf7r-functions.php:380
+msgid "Error: Please install and activate Contact Form 7."
+msgstr "Error: por favor, instala y activa Contact Form 7."

@@ -1,0 +1,42 @@
+/* ==========================================================================
+   Info Items shortcode style - begin
+   ========================================================================== */
+
+.mkdf-info-items-holder{
+
+	.mkdf-info-title{
+		margin-top: 0;
+		margin-bottom: 40px;
+	}
+
+	.mkdf-info-item-row{
+		display: table;
+		width: 100%;
+		padding: 23px 0;
+		border-top: 1px solid $default-border-color;
+		@include mkdfTransition(background-color .2s ease-out);
+
+		.mkdf-info-item-title{
+			display: table-cell;
+			width: 40%;
+			vertical-align: middle;
+			padding-left: 20px;
+		}
+
+		.mkdf-info-item-description{
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		&:last-child{
+			border-bottom: 1px solid $default-border-color;
+		}
+
+		&:hover{
+			background-color: #f9f9f9;
+		}
+	}
+}
+/* ==========================================================================
+   Info Items shortcode style - end
+   ========================================================================== */

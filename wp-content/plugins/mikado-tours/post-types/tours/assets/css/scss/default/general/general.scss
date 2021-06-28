@@ -1,0 +1,137 @@
+/* General styles
+========================================================================== */
+.mkdf-tours-price-holder {
+	color: $first-main-color;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.mkdf-tour-item-label {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	text-align: center;
+	white-space: nowrap;
+	z-index: 1;
+	box-sizing: border-box;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 400;
+	background-color: $first-main-color;
+	padding: 7px 44px;
+	@include mkdfTransform(translate(-50%, -50%));
+}
+
+.mkdf-tour-rating-rate {
+	vertical-align: middle;
+}
+
+.mkdf-tour-rating-label {
+	vertical-align: middle;
+}
+
+.mkdf-tours-price-with-discount {
+	.mkdf-tours-price-old.mkdf-tours-item-price{
+		font-size: 16px;
+		text-decoration: line-through;
+		margin-right: 5px;
+	}
+}
+
+.mkdf-boxed-widget {
+	padding: 30px 30px 40px;
+	background-color: #f9f9f9;
+}
+
+%booking-input-style {
+	position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 16px 24px 15px 43px;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 20px;
+	font-weight: 400;
+    color: #999999;
+    background-color: #fff;
+    border: 2px solid #eaeaea;
+    border-radius: 0;
+    outline: 0;
+    -webkit-appearance: none;
+	cursor: pointer;
+    box-sizing: border-box;
+    @include mkdfTransition(border-color 0.2s ease-in-out);
+
+    &:focus {
+        color: $default-heading-color;
+    }
+    
+    @include mkdfPlaceholder {
+        color: inherit;
+    }
+}
+
+.mkdf-tours-input-with-icon {
+	position: relative;
+	margin-bottom: 15px;
+
+	textarea,
+	select,
+	input[type='text'],
+	input[type='email'],
+	input[type='password'],
+	input[type='number']{
+	    @extend %booking-input-style;
+	}
+
+	textarea {
+	    display: block;
+	    padding: 15px 24px 72px 43px;
+	}
+
+    textarea + .mkdf-tours-input-icon {
+        @include mkdfTransform(none);
+        top: 15px;
+    }
+	
+	input[type=text].mkdf-tours-price-range-field {
+		background-color: transparent;
+		padding: 0;
+        border: none;
+	}
+
+	select {
+		-moz-appearance: none;
+	}
+}
+
+.mkdf-tours-input-icon {
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	width: auto;
+	font-size: 15px;
+	color: $first-main-color;
+	z-index: 1;
+	@include mkdfTransform(translateY(-50%));
+}
+
+.mkdf-tour-item-rating-stars-holder{
+	position: relative;
+	display: inline-block;
+
+	.mkdf-tour-reviews-star{
+		color: $first-main-color;
+	}
+
+	.mkdf-tour-item-rating-stars{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+}
+/* General styles end
+========================================================================== */

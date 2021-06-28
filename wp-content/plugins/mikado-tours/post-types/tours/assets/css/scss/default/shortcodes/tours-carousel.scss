@@ -1,0 +1,48 @@
+.mkdf-tours-carousel-holder {
+
+	.mkdf-has-label .owl-stage{
+		padding-top: 15px; //so label on items is visible
+	}
+
+	ul li {
+		list-style-type: none;
+	}
+
+	.mkdf-tours-gallery-item-content-holder {
+		z-index: 5;
+	}
+
+	.mkdf-tours-gallery-item-image {
+		img {
+			@include mkdfTransform(scale(1.005));
+			-webkit-transition: -webkit-transform .3s;
+			transition: transform .3s;
+			-webkit-filter: blur();
+			filter: blur();
+		}
+
+		&:after {
+			content: '';
+			@include mkdfAbsoluteHolderLayout();
+			opacity:0.5;
+			background-color: rgba(0,0,0, 0.4);
+			@include mkdfTransition(opacity .6s);
+		}
+
+		&:hover {
+			img {
+				@include mkdfTransform(scale(1.04));
+				-webkit-transition: -webkit-transform .6s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+				transition: transform .6s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+			}
+
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+
+	.mkdf-tours-row .owl-item .mkdf-tours-row-item{
+		width: 100%;
+	}
+}

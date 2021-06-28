@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Tabs shortcode style - begin
+   ========================================================================== */
+
+.mkdf-tabs {
+	@include mkdfRelativeHolderLayout();
+	
+	.mkdf-tabs-nav {
+		@include mkdfRelativeHolderLayout();
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		
+		li {
+			float: left;
+			margin: 0;
+			padding: 0;
+			
+			a {
+				position: relative;
+				display: inline-block;
+				vertical-align: middle;
+				box-sizing: border-box;
+				@include mkdfTransition(color .2s ease-out, background-color .2s ease-out, border-color .2s ease-out);
+			}
+		}
+	}
+	
+	.mkdf-tab-container {
+		@include mkdfRelativeHolderLayout();
+		
+		p {
+			margin: 0;
+		}
+	}
+	
+	&.mkdf-tabs-standard {
+		
+		.mkdf-tabs-nav {
+			
+			li {
+				
+				a {
+                    padding: 15px 28px;
+					line-height: 25px;
+					color: $default-heading-color;
+					font-weight: 600;
+					font-size: 12px;
+					letter-spacing: -0.005em;
+					text-transform: uppercase;
+					background-color: #f4f4f4;
+				}
+				
+				&.ui-state-active a,
+				&.ui-state-hover a {
+					color: #fff;
+					background-color: $first-main-color;
+				}
+			}
+		}
+		
+		.mkdf-tab-container {
+			margin: 25px 0 0;
+		}
+	}
+	
+	&.mkdf-tabs-boxed {
+		
+		.mkdf-tabs-nav {
+			
+			li {
+				margin: 0 12px 0 0;
+				
+				a {
+					color: #fff;
+					background-color: $default-heading-color;
+                    padding: 15px 28px;
+                    line-height: 25px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    letter-spacing: -0.005em;
+                    text-transform: uppercase;
+				}
+				
+				&.ui-state-active a,
+				&.ui-state-hover a {
+					color: #fff;
+					background-color: $first-main-color;
+				}
+				
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+		
+		.mkdf-tab-container {
+			margin: 25px 0 0;
+		}
+	}
+	
+	&.mkdf-tabs-simple {
+		
+		.mkdf-tabs-nav {
+			border-bottom: 1px solid $default-border-color;
+			
+			li {
+				margin: 0 30px 0 0;
+				
+				a {
+                    padding: 15px 0;
+                    line-height: 25px;
+                    color: $default-heading-color;
+                    font-weight: 600;
+                    font-size: 12px;
+                    letter-spacing: -0.005em;
+                    text-transform: uppercase;
+				}
+				
+				&.ui-state-active a,
+				&.ui-state-hover a {
+					color: $default-heading-color;
+				}
+				
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+		
+		.mkdf-tab-container {
+			padding: 31px 0;
+			border-bottom: 1px solid $default-border-color;
+		}
+	}
+	
+	&.mkdf-tabs-vertical {
+		display: table;
+		
+		.mkdf-tabs-nav {
+			display: table-cell;
+			vertical-align: top;
+			width: 150px;
+			height: 100%;
+			border-right: 1px solid $default-border-color;
+			box-sizing: border-box;
+			
+			li {
+				display: block;
+				float: none;
+				margin: 0 0 19px;
+				
+				a {
+                    line-height: 25px;
+                    color: $default-heading-color;
+                    font-weight: 600;
+                    font-size: 12px;
+                    letter-spacing: -0.005em;
+                    text-transform: uppercase;
+				}
+				
+				&.ui-state-active a,
+				&.ui-state-hover a {
+					color: $default-heading-color;
+				}
+				
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+		
+		.mkdf-tab-container {
+			display: table-cell;
+			vertical-align: top;
+			width: calc(100% - 150px);
+			height: 100%;
+			padding: 0 0 0 45px;
+			box-sizing: border-box;
+		}
+	}
+}
+/* ==========================================================================
+   Tabs shortcode style - end
+   ========================================================================== */

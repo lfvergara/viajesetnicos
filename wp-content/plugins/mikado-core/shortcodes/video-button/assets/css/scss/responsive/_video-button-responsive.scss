@@ -1,0 +1,19 @@
+.mkdf-video-button-holder {
+
+	@include phone-landscape{	
+
+		.mkdf-video-button-play-wrapper .mkdf-video-button-label{
+			display: none;
+		}
+	}
+
+	@include phone-portrait{
+		.mkdf-video-button-play{
+			font-size: 58px;
+		}
+
+		.mkdf-video-button-play-image .mkdf-video-button-play-inner{
+			max-width: 80px;
+		}
+	}
+}

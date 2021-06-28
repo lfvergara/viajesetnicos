@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Section Title shortcode styles - begin
+   ========================================================================== */
+
+.mkdf-section-title-holder {
+    @include mkdfRelativeHolderLayout();
+	box-sizing: border-box;
+	text-align: center;
+	
+    .mkdf-st-title {
+	    display: block;
+        margin: 0;
+    }
+
+    .mkdf-st-subtitle {
+        color: $first-main-color;
+        margin: 0 0 5px;
+    }
+    
+    .mkdf-st-text {
+	    display: block;
+        margin: 19px 0 0;
+    }
+}
+/* ==========================================================================
+   Section Title shortcode styles - end
+   ========================================================================== */
+
+

@@ -1,0 +1,33 @@
+.page-template-user-dashboard {
+    @include ipad-portrait{
+        .mkdf-membership-dashboard-nav-holder {
+            width: 100%;
+            float: none;
+
+            .mkdf-membership-dashboard-nav{
+                display: block;
+                li{
+                    display: block;
+                    a{
+                        padding: 15px 0;
+                        text-align: left;
+                        .mkdf-dash-icon {
+                            min-width: 50px;
+                            text-align: center;
+                            font-size: 25px;
+                            display: inline-block;
+                            padding-bottom: 0;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+
+        .mkdf-membership-dashboard-content-holder {
+            width: 100%;
+            float: none;
+            padding: 0;
+        }
+    }
+}

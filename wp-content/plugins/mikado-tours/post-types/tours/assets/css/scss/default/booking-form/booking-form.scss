@@ -1,0 +1,132 @@
+.mkdf-tours-booking-form-holder {
+	box-sizing: border-box;
+	
+	.mkdf-boxed-widget {
+		padding: 30px 32px 0;
+		margin: 0 0 28px;
+        background-size: cover;
+		
+		#mkdf-tour-booking-form {
+			@include mkdfRelativeHolderLayout();
+			padding: 0 0 28px;
+		}
+	}
+	
+	* {
+		box-sizing: border-box;
+	}
+
+	.mkdf-tour-booking-title {
+		margin-bottom: 25px;
+		text-align: center;
+        margin-top: 7px;
+	}
+
+	input[type=submit]:disabled {
+		cursor: not-allowed;
+		opacity: 1;
+	}
+
+	input[type=submit]{
+		width: 100%;
+		padding: 13px;
+	}
+
+	.mkdf-tours-check-availability {
+		@include mkdfButtonDefaultStyle();
+		color: $default-heading-color;
+		background-color: #fff;
+		border: 1px solid #fff;
+		text-align: center;
+		width: 100%;
+		margin-bottom: 15px;
+		padding: 13px;
+
+		&:hover {
+			@include mkdfButtonOutlineHoverColor();
+		}
+	}
+	
+	#booking-validation-messages-holder {
+		margin: 0 0 13px;
+	}
+
+	.mkdf-tour-booking-validation-list {
+		padding: 10px 15px;
+		box-sizing: border-box;
+
+		li {
+			padding: 10px 5px !important;
+			border-bottom: none !important;
+		}
+	}
+
+	.mkdf-tour-message-danger {
+		background-color: #ebebeb;
+		color: #e83f53;
+		border: 1px solid #f7bac1;
+	}
+
+	.mkdf-tour-message-success {
+		color: $first-main-color;
+		background-color: #fff;
+		border: 1px solid #ebebeb;
+	}
+}
+
+.mkdf-tours-my-bookings-list {
+	list-style-type: none;
+}
+
+.mkdf-tours-my-booking-item {
+	display: table;
+	width: 100%;
+	margin-bottom: 50px;
+
+	.mkdf-tours-booking-item-image-holder {
+		display: table-cell;
+		vertical-align: top;
+		width: 190px;
+		padding-right: 25px;
+
+		img {
+			display: inline-block;
+			vertical-align: middle;
+			width: 100%;
+		}
+	}
+
+	.mkdf-tours-info-items {
+		display: table-cell;
+		vertical-align: top;
+		padding-bottom: 34px;
+		border-bottom: 1px solid #ebebeb;
+
+		.mkdf-tours-booking-info-item {
+			margin-bottom: 5px;
+		}
+			
+		.mkdf-tours-booking-info-title{
+			display: inline-block;
+			margin: 0;
+		}
+		
+		.mkdf-membership-desc {
+			margin-top: 26px;
+			margin-bottom: 15px;
+			
+			.mkdf-tours-booking-info-title {
+				display: block;
+			}
+		}
+
+		.mkdf-tours-booking-price {
+			color: $first-main-color;
+		}
+	}
+
+	&:last-child .mkdf-tours-info-items {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+}

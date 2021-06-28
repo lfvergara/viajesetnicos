@@ -1,0 +1,54 @@
+.mkdf-advanced-link-section{
+    .mkdf-als-items-holder{
+        .mkdf-als-item-link-title{
+            @include ipad-landscape{
+                font-size: 30px;
+                padding: 0;
+            }
+        }
+    }
+
+    @include ipad-portrait{
+        .mkdf-als-items-holder{
+
+            .mkdf-als-item{
+                display: inline-table;
+                padding: 0 0 0 50px;
+                text-align: left;
+                width: 100%;
+
+                .mkdf-als-item-inner{
+                	display: table-cell;
+                	vertical-align: middle;
+                }
+
+                &:last-child{
+                    border-bottom-color: transparent;
+                }
+            }
+
+            .mkdf-als-item-link-text{
+                display: table-cell;
+                width: 100%;
+                vertical-align: middle;
+            }
+        }
+
+        .mkdf-als-title-holder{
+            display: none;
+        }
+    }
+
+    @include phone-landscape {
+
+        .mkdf-als-items-holder {
+            .mkdf-als-item{
+                padding: 0 0 0 40px;
+            }
+            .mkdf-als-item-link-subtitle {
+                margin: 10px 0;
+            }
+        }
+
+    }
+}

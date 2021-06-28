@@ -1,0 +1,3055 @@
+# Copyright (C) 2017 Mikado CPT
+# This file is distributed under the same license as the Mikado CPT package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mikado CPT 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mikado-core\n"
+"POT-Creation-Date: 2017-08-31 14:14:49+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: backup/functions.php:122 backup/functions.php:152 backup/functions.php:185
+msgid "Import field is empty"
+msgstr ""
+
+#: backup/functions.php:129
+msgid "Options are imported successfully"
+msgstr ""
+
+#: backup/functions.php:131 backup/functions.php:163 backup/functions.php:209
+msgid "Non valid authorization"
+msgstr ""
+
+#: backup/functions.php:136 backup/functions.php:168 backup/functions.php:214
+msgid "You don't have privileges for this operation"
+msgstr ""
+
+#: backup/functions.php:160 import/mkdf-import.php:95
+msgid "Custom sidebars imported successfully"
+msgstr ""
+
+#: backup/functions.php:206 import/mkdf-import.php:76
+msgid "Widgets imported successfully"
+msgstr ""
+
+#: import/class.wordpress-importer.php:143
+#: import/class.wordpress-importer.php:194
+#: import/class.wordpress-importer.php:198
+#: import/class.wordpress-importer.php:207
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: import/class.wordpress-importer.php:178
+msgid "All done."
+msgstr ""
+
+#: import/class.wordpress-importer.php:178
+msgid "Have fun!"
+msgstr ""
+
+#: import/class.wordpress-importer.php:179
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#: import/class.wordpress-importer.php:199
+msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
+msgstr ""
+
+#: import/class.wordpress-importer.php:215
+msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
+msgstr ""
+
+#: import/class.wordpress-importer.php:240
+msgid "Failed to import author %s. Their posts will be attributed to the current user."
+msgstr ""
+
+#: import/class.wordpress-importer.php:266
+msgid "Assign Authors"
+msgstr ""
+
+#: import/class.wordpress-importer.php:267
+msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
+msgstr ""
+
+#: import/class.wordpress-importer.php:269
+msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
+msgstr ""
+
+#: import/class.wordpress-importer.php:279
+msgid "Import Attachments"
+msgstr ""
+
+#: import/class.wordpress-importer.php:282
+msgid "Download and import file attachments"
+msgstr ""
+
+#: import/class.wordpress-importer.php:299
+msgid "Import author:"
+msgstr ""
+
+#: import/class.wordpress-importer.php:310
+msgid "or create new user with login name:"
+msgstr ""
+
+#: import/class.wordpress-importer.php:313
+msgid "as a new user:"
+msgstr ""
+
+#: import/class.wordpress-importer.php:321
+msgid "assign posts to an existing user:"
+msgstr ""
+
+#: import/class.wordpress-importer.php:323
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+#: import/class.wordpress-importer.php:324
+msgid "- Select -"
+msgstr ""
+
+#: import/class.wordpress-importer.php:374
+msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
+msgstr ""
+
+#: import/class.wordpress-importer.php:426
+msgid "Failed to import category %s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:470
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:520
+#: import/class.wordpress-importer.php:744
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:610
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:647
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr ""
+
+#: import/class.wordpress-importer.php:709
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr ""
+
+#: import/class.wordpress-importer.php:875
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#: import/class.wordpress-importer.php:882
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:945
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+#: import/class.wordpress-importer.php:958
+msgid "Invalid file type"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1002
+msgid "Remote server did not respond"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1008
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1015
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1020
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1026
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1127
+msgid "Import WordPress"
+msgstr ""
+
+#: import/class.wordpress-importer.php:1134
+msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files."
+msgstr ""
+
+#: import/class.wordpress-importer.php:1149
+msgid "Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site."
+msgstr ""
+
+#: import/class.wordpress-importer.php:1150
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#: import/mkdf-import.php:61
+msgid "An Error Occurred During Import"
+msgstr ""
+
+#: import/mkdf-import.php:64
+msgid "Content imported successfully"
+msgstr ""
+
+#: import/mkdf-import.php:101
+msgid "Options imported successfully"
+msgstr ""
+
+#: import/mkdf-import.php:219
+msgid "Mikado Options - Mikado Import"
+msgstr ""
+
+#: import/mkdf-import.php:220
+msgid "Import"
+msgstr ""
+
+#: import/parsers.php:42 import/parsers.php:78 import/parsers.php:86
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+#: import/parsers.php:43
+msgid "Details are shown above. The importer will now try again with a different parser..."
+msgstr ""
+
+#: import/parsers.php:90 import/parsers.php:95 import/parsers.php:285
+#: import/parsers.php:474
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+#: lib/helpers-functions.php:222
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:15
+#: shortcodes/separator/separator.php:48
+msgid "Position"
+msgstr ""
+
+#: lib/helpers-functions.php:223
+msgid "Facebook"
+msgstr ""
+
+#: lib/helpers-functions.php:224
+msgid "Twitter"
+msgstr ""
+
+#: lib/helpers-functions.php:225
+msgid "Linkedin"
+msgstr ""
+
+#: lib/helpers-functions.php:226
+msgid "Instagram"
+msgstr ""
+
+#: lib/helpers-functions.php:227
+msgid "Pinterest"
+msgstr ""
+
+#: lib/helpers-functions.php:228
+msgid "Tumbrl"
+msgstr ""
+
+#: lib/helpers-functions.php:229
+msgid "Google Plus"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:8
+msgid "Team Member Info"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:16
+msgid "The members's role within the team"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:23
+msgid "Birth date"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:24
+msgid "The members's birth date"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:31
+msgid "Email"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:32
+msgid "The members's email"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:39
+msgid "Phone"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:40
+msgid "The members's phone"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:47
+msgid "Address"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:48
+msgid "The members's addres"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:55
+msgid "Education"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:56
+msgid "The members's education"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:63
+msgid "Resume"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:64
+msgid "Upload members's resume"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:72
+msgid "Social Link "
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:82
+msgid "Icon "
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:97
+#: shortcodes/advanced-link-section/advanced-link-section.php:82
+#: shortcodes/banner/banner.php:90 shortcodes/button/button.php:71
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:99
+#: shortcodes/icon/icon.php:154
+#: shortcodes/icon-with-text/icon-with-text.php:232
+msgid "Link"
+msgstr ""
+
+#: post-types/team/admin/meta-boxes/team-meta-boxes.php:106
+#: shortcodes/banner/banner.php:95 shortcodes/icon/icon.php:167
+#: shortcodes/icon-with-text/icon-with-text.php:238
+msgid "Target"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:42
+msgid "Mikado Team List"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:44
+#: post-types/team/shortcodes/team-member.php:37
+#: post-types/team/shortcodes/team-slider.php:37
+#: post-types/testimonials/shortcodes/testimonials.php:32
+#: shortcodes/accordions/accordion-tab.php:27
+#: shortcodes/accordions/accordion.php:26
+#: shortcodes/advanced-link-section/advanced-link-section.php:23
+#: shortcodes/animation-holder/animation-holder.php:26
+#: shortcodes/banner/banner.php:25 shortcodes/button/button.php:25
+#: shortcodes/call-to-action/call-to-action.php:25
+#: shortcodes/clients-carousel/clients-carousel-item.php:25
+#: shortcodes/clients-carousel/clients-carousel.php:25
+#: shortcodes/countdown/countdown.php:25 shortcodes/counter/counter.php:25
+#: shortcodes/custom-font/custom-font.php:26
+#: shortcodes/elements-holder/elements-holder-item.php:27
+#: shortcodes/elements-holder/elements-holder.php:25
+#: shortcodes/expanded-gallery/expanded-gallery.php:26
+#: shortcodes/frame-slider/frame-slider.php:26
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:24
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:24
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:26
+#: shortcodes/full-screen-sections/full-screen-sections.php:25
+#: shortcodes/gallery-blocks/gallery-blocks.php:25
+#: shortcodes/google-map/google-map.php:24 shortcodes/icon/icon.php:24
+#: shortcodes/icon-list-item/icon-list-item.php:26
+#: shortcodes/icon-with-text/icon-with-text.php:26
+#: shortcodes/image-gallery/image-gallery.php:25
+#: shortcodes/image-with-text/image-with-text.php:25
+#: shortcodes/info-items/info-items.php:25
+#: shortcodes/item-showcase/item-showcase-item.php:27
+#: shortcodes/item-showcase/item-showcase.php:25
+#: shortcodes/pie-chart/pie-chart.php:26
+#: shortcodes/pricing-table/pricing-table-item.php:25
+#: shortcodes/pricing-table/pricing-table.php:26
+#: shortcodes/process/process-item.php:24 shortcodes/process/process.php:25
+#: shortcodes/progress-bar/progress-bar.php:25
+#: shortcodes/section-title/section-title.php:25
+#: shortcodes/separator/separator.php:24
+#: shortcodes/single-image/single-image.php:25
+#: shortcodes/social-share/social-share.php:39
+#: shortcodes/split-section/split-section.php:25
+#: shortcodes/stacked-images/stacked-images.php:25
+#: shortcodes/tabs/tabs-item.php:26 shortcodes/tabs/tabs.php:26
+#: shortcodes/text-marquee/text-marquee.php:26
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:25
+#: shortcodes/vertical-split-slider/vertical-split-slider-left-panel.php:27
+#: shortcodes/vertical-split-slider/vertical-split-slider-right-panel.php:27
+#: shortcodes/vertical-split-slider/vertical-split-slider.php:25
+#: shortcodes/video-button/video-button.php:25
+msgid "by MIKADO"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:51 shortcodes/banner/banner.php:38
+#: shortcodes/image-gallery/image-gallery.php:96
+#: shortcodes/pricing-table/pricing-table.php:34
+msgid "Number of Columns"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:53
+#: post-types/testimonials/shortcodes/testimonials.php:41
+#: shortcodes/accordions/accordion.php:60 shortcodes/button/button.php:52
+#: shortcodes/call-to-action/call-to-action.php:94
+#: shortcodes/countdown/countdown.php:40
+#: shortcodes/custom-font/custom-font.php:165
+#: shortcodes/elements-holder/elements-holder.php:72
+#: shortcodes/elements-holder/elements-holder.php:88
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:77
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:89
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:114
+#: shortcodes/icon/icon.php:124
+#: shortcodes/icon-with-text/icon-with-text.php:172
+#: shortcodes/section-title/section-title.php:40
+#: shortcodes/separator/separator.php:66
+#: shortcodes/split-section/split-section.php:115
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:51
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:62
+msgid "Default"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:54 shortcodes/banner/banner.php:40
+#: shortcodes/clients-carousel/clients-carousel.php:36
+#: shortcodes/image-gallery/image-gallery.php:119
+#: shortcodes/pricing-table/pricing-table.php:36
+msgid "One"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:55 shortcodes/banner/banner.php:41
+#: shortcodes/clients-carousel/clients-carousel.php:37
+#: shortcodes/image-gallery/image-gallery.php:98
+#: shortcodes/image-gallery/image-gallery.php:120
+#: shortcodes/pricing-table/pricing-table.php:37
+msgid "Two"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:56
+#: post-types/team/shortcodes/team-slider.php:46
+#: shortcodes/banner/banner.php:42
+#: shortcodes/clients-carousel/clients-carousel.php:38
+#: shortcodes/expanded-gallery/expanded-gallery.php:41
+#: shortcodes/image-gallery/image-gallery.php:99
+#: shortcodes/image-gallery/image-gallery.php:121
+#: shortcodes/pricing-table/pricing-table.php:38
+msgid "Three"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:57
+#: post-types/team/shortcodes/team-slider.php:47
+#: shortcodes/banner/banner.php:43
+#: shortcodes/clients-carousel/clients-carousel.php:39
+#: shortcodes/image-gallery/image-gallery.php:100
+#: shortcodes/image-gallery/image-gallery.php:122
+#: shortcodes/pricing-table/pricing-table.php:39
+msgid "Four"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:58
+#: post-types/team/shortcodes/team-slider.php:48
+#: shortcodes/clients-carousel/clients-carousel.php:40
+#: shortcodes/expanded-gallery/expanded-gallery.php:42
+#: shortcodes/image-gallery/image-gallery.php:101
+#: shortcodes/image-gallery/image-gallery.php:123
+#: shortcodes/pricing-table/pricing-table.php:40
+msgid "Five"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:60
+msgid "Default value is Three"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:65
+#: post-types/team/shortcodes/team-slider.php:56
+#: shortcodes/gallery-blocks/gallery-blocks.php:62
+#: shortcodes/image-gallery/image-gallery.php:110
+#: shortcodes/pricing-table/pricing-table.php:47
+msgid "Space Between Items"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:72
+#: post-types/team/shortcodes/team-slider.php:63
+msgid "Number of team members per page"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:73
+#: post-types/team/shortcodes/team-slider.php:64
+msgid "Set number of items for your team list. Enter -1 to show all."
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:79
+#: post-types/team/shortcodes/team-slider.php:70
+msgid "One-Category Team List"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:80
+#: post-types/team/shortcodes/team-slider.php:71
+#: post-types/testimonials/shortcodes/testimonials.php:55
+msgid "Enter one category slug (leave empty for showing all categories)"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:85
+#: post-types/team/shortcodes/team-slider.php:76
+msgid "Show Only Projects with Listed IDs"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:91
+#: post-types/team/shortcodes/team-slider.php:82
+msgid "Delimit ID numbers by comma (leave empty for all)"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:96
+#: post-types/team/shortcodes/team-slider.php:87
+msgid "Order By"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:103
+#: post-types/team/shortcodes/team-slider.php:94
+msgid "Order"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:110
+#: post-types/team/shortcodes/team-slider.php:101
+msgid "Team Member Layout"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:112
+#: post-types/team/shortcodes/team-member.php:46
+#: post-types/team/shortcodes/team-slider.php:103
+msgid "Info Bellow"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:113
+#: post-types/team/shortcodes/team-member.php:47
+#: post-types/team/shortcodes/team-slider.php:104
+msgid "Info on Hover"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:116
+#: post-types/team/shortcodes/team-list.php:128
+#: post-types/team/shortcodes/team-slider.php:107
+msgid "Content Layout"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:120
+msgid "Show Position"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:123
+#: shortcodes/advanced-link-section/advanced-link-section.php:40
+msgid "No"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:124
+#: shortcodes/advanced-link-section/advanced-link-section.php:39
+msgid "Yes"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:336
+#: post-types/team/shortcodes/team-list.php:364
+#: post-types/team/shortcodes/team-slider.php:176
+#: post-types/team/shortcodes/team-slider.php:204
+#: post-types/testimonials/shortcodes/testimonials.php:54
+#: post-types/testimonials/shortcodes/testimonials.php:220
+#: post-types/testimonials/shortcodes/testimonials.php:249
+msgid "Category"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:399
+#: post-types/team/shortcodes/team-list.php:430
+#: post-types/team/shortcodes/team-member.php:147
+#: post-types/team/shortcodes/team-member.php:178
+#: post-types/team/shortcodes/team-slider.php:239
+#: post-types/team/shortcodes/team-slider.php:270
+msgid "Id"
+msgstr ""
+
+#: post-types/team/shortcodes/team-list.php:399
+#: post-types/team/shortcodes/team-list.php:427
+#: post-types/team/shortcodes/team-member.php:147
+#: post-types/team/shortcodes/team-member.php:175
+#: post-types/team/shortcodes/team-slider.php:239
+#: post-types/team/shortcodes/team-slider.php:267
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:17
+#: shortcodes/accordions/accordion-tab.php:35 shortcodes/banner/banner.php:79
+#: shortcodes/counter/counter.php:70
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:61
+#: shortcodes/icon-list-item/icon-list-item.php:57
+#: shortcodes/icon-with-text/icon-with-text.php:185
+#: shortcodes/image-with-text/image-with-text.php:82
+#: shortcodes/info-items/info-items.php:32
+#: shortcodes/pie-chart/pie-chart.php:64
+#: shortcodes/pricing-table/pricing-table-item.php:43
+#: shortcodes/process/process-item.php:37
+#: shortcodes/progress-bar/progress-bar.php:42
+#: shortcodes/section-title/section-title.php:54
+#: shortcodes/split-section/split-section.php:51
+#: shortcodes/tabs/tabs-item.php:34
+msgid "Title"
+msgstr ""
+
+#: post-types/team/shortcodes/team-member.php:35
+#: post-types/team/team-register.php:92
+msgid "Mikado Team Member"
+msgstr ""
+
+#: post-types/team/shortcodes/team-member.php:44
+msgid "Team Layout"
+msgstr ""
+
+#: post-types/team/shortcodes/team-member.php:53
+msgid "Select Team Member"
+msgstr ""
+
+#: post-types/team/shortcodes/team-member.php:58
+msgid "If you left this field empty then project ID will be of the current page"
+msgstr ""
+
+#: post-types/team/shortcodes/team-slider.php:35
+msgid "Mikado Team Slider"
+msgstr ""
+
+#: post-types/team/shortcodes/team-slider.php:44
+msgid "Number of Columns in Row"
+msgstr ""
+
+#: post-types/team/shortcodes/team-slider.php:49
+#: shortcodes/clients-carousel/clients-carousel.php:41
+#: shortcodes/image-gallery/image-gallery.php:102
+#: shortcodes/image-gallery/image-gallery.php:124
+msgid "Six"
+msgstr ""
+
+#: post-types/team/shortcodes/team-slider.php:112
+#: post-types/testimonials/shortcodes/testimonials.php:90
+#: shortcodes/clients-carousel/clients-carousel.php:74
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:51
+#: shortcodes/image-gallery/image-gallery.php:177
+msgid "Enable Slider Navigation Arrows"
+msgstr ""
+
+#: post-types/team/shortcodes/team-slider.php:119
+#: post-types/testimonials/shortcodes/testimonials.php:98
+#: shortcodes/clients-carousel/clients-carousel.php:81
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:58
+#: shortcodes/image-gallery/image-gallery.php:186
+msgid "Enable Slider Pagination"
+msgstr ""
+
+#: post-types/team/shortcodes/templates/team-holder.php:21
+#: post-types/testimonials/shortcodes/testimonials.php:151
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: post-types/team/team-register.php:91
+msgid "Mikado Team"
+msgstr ""
+
+#: post-types/team/team-register.php:93
+msgid "New Team Member"
+msgstr ""
+
+#: post-types/team/team-register.php:94
+msgid "Add New Team Member"
+msgstr ""
+
+#: post-types/team/team-register.php:95
+msgid "Edit Team Member"
+msgstr ""
+
+#: post-types/team/team-register.php:121 post-types/team/team-register.php:131
+msgid "Team Categories"
+msgstr ""
+
+#: post-types/team/team-register.php:122
+msgid "Team Category"
+msgstr ""
+
+#: post-types/team/team-register.php:123
+msgid "Search Team Categories"
+msgstr ""
+
+#: post-types/team/team-register.php:124
+msgid "All Team Categories"
+msgstr ""
+
+#: post-types/team/team-register.php:125
+msgid "Parent Team Category"
+msgstr ""
+
+#: post-types/team/team-register.php:126
+msgid "Parent Team Category:"
+msgstr ""
+
+#: post-types/team/team-register.php:127
+msgid "Edit Team Category"
+msgstr ""
+
+#: post-types/team/team-register.php:128
+msgid "Update Team Category"
+msgstr ""
+
+#: post-types/team/team-register.php:129
+msgid "Add New Team Category"
+msgstr ""
+
+#: post-types/team/team-register.php:130
+msgid "New Team Category Name"
+msgstr ""
+
+#: post-types/team/templates/single/parts/content.php:2
+msgid "About"
+msgstr ""
+
+#: post-types/team/templates/single/parts/info.php:17
+msgid "Born on: "
+msgstr ""
+
+#: post-types/team/templates/single/parts/info.php:23
+msgid "Email: "
+msgstr ""
+
+#: post-types/team/templates/single/parts/info.php:29
+msgid "Phone: "
+msgstr ""
+
+#: post-types/team/templates/single/parts/info.php:35
+msgid "Lives in: "
+msgstr ""
+
+#: post-types/team/templates/single/parts/info.php:41
+msgid "Education: "
+msgstr ""
+
+#: post-types/team/templates/single/parts/info.php:47
+msgid "Download Resume"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:8
+#: post-types/testimonials/testimonials-register.php:52
+msgid "Testimonial"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:18
+msgid "Enter testimonial title"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:27
+#: shortcodes/button/button.php:63 shortcodes/counter/counter.php:97
+#: shortcodes/icon-with-text/icon-with-text.php:213
+#: shortcodes/image-with-text/image-with-text.php:107
+#: shortcodes/pie-chart/pie-chart.php:83 shortcodes/process/process-item.php:56
+#: shortcodes/section-title/section-title.php:115
+#: shortcodes/split-section/split-section.php:70
+#: shortcodes/split-section/split-section.php:104
+#: shortcodes/text-marquee/text-marquee.php:33
+msgid "Text"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:28
+msgid "Enter testimonial text"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:37
+msgid "Author"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:38
+msgid "Enter author name"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:47
+msgid "Author Position"
+msgstr ""
+
+#: post-types/testimonials/admin/meta-boxes/testimonials-meta-boxes.php:48
+msgid "Enter author job position"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:30
+#: post-types/testimonials/testimonials-register.php:50
+#: post-types/testimonials/testimonials-register.php:51
+msgid "Mikado Testimonials"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:39
+#: shortcodes/countdown/countdown.php:38
+msgid "Skin"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:42
+#: shortcodes/countdown/countdown.php:41
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:115
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:63
+msgid "Light"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:49
+msgid "Number of Testimonials"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:60
+#: shortcodes/clients-carousel/clients-carousel.php:48
+#: shortcodes/image-gallery/image-gallery.php:133
+msgid "Enable Slider Loop"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:63
+#: post-types/testimonials/shortcodes/testimonials.php:71
+#: post-types/testimonials/shortcodes/testimonials.php:78
+#: post-types/testimonials/shortcodes/testimonials.php:85
+#: post-types/testimonials/shortcodes/testimonials.php:93
+#: post-types/testimonials/shortcodes/testimonials.php:101
+#: shortcodes/image-gallery/image-gallery.php:128
+#: shortcodes/image-gallery/image-gallery.php:137
+#: shortcodes/image-gallery/image-gallery.php:146
+#: shortcodes/image-gallery/image-gallery.php:154
+#: shortcodes/image-gallery/image-gallery.php:162
+#: shortcodes/image-gallery/image-gallery.php:172
+#: shortcodes/image-gallery/image-gallery.php:181
+#: shortcodes/image-gallery/image-gallery.php:190
+msgid "Slider Settings"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:68
+#: shortcodes/clients-carousel/clients-carousel.php:55
+#: shortcodes/image-gallery/image-gallery.php:142
+msgid "Enable Slider Autoplay"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:76
+#: shortcodes/clients-carousel/clients-carousel.php:62
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:39
+#: shortcodes/image-gallery/image-gallery.php:151
+msgid "Slide Duration"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:77
+#: shortcodes/clients-carousel/clients-carousel.php:63
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:40
+#: shortcodes/image-gallery/image-gallery.php:152
+msgid "Default value is 5000 (ms)"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:83
+#: shortcodes/clients-carousel/clients-carousel.php:68
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:45
+#: shortcodes/image-gallery/image-gallery.php:159
+msgid "Slide Animation Duration"
+msgstr ""
+
+#: post-types/testimonials/shortcodes/testimonials.php:84
+#: shortcodes/clients-carousel/clients-carousel.php:69
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:46
+#: shortcodes/image-gallery/image-gallery.php:160
+msgid "Speed of slide animation in milliseconds. Default value is 600."
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:53
+msgid "New Testimonial"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:54
+msgid "Add New Testimonial"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:55
+msgid "Edit Testimonial"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:75
+#: post-types/testimonials/testimonials-register.php:85
+msgid "Testimonials Categories"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:76
+msgid "Testimonial Category"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:77
+msgid "Search Testimonials Categories"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:78
+msgid "All Testimonials Categories"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:79
+msgid "Parent Testimonial Category"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:80
+msgid "Parent Testimonial Category:"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:81
+msgid "Edit Testimonials Category"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:82
+msgid "Update Testimonials Category"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:83
+msgid "Add New Testimonials Category"
+msgstr ""
+
+#: post-types/testimonials/testimonials-register.php:84
+msgid "New Testimonials Category Name"
+msgstr ""
+
+#: shortcodes/accordions/accordion-tab.php:23
+msgid "Mikado Accordion Tab"
+msgstr ""
+
+#: shortcodes/accordions/accordion-tab.php:36
+msgid "Enter accordion section title"
+msgstr ""
+
+#: shortcodes/accordions/accordion-tab.php:41 shortcodes/counter/counter.php:75
+#: shortcodes/custom-font/custom-font.php:103
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:66
+#: shortcodes/icon-with-text/icon-with-text.php:190
+#: shortcodes/image-with-text/image-with-text.php:87
+#: shortcodes/info-items/info-items.php:37
+#: shortcodes/pie-chart/pie-chart.php:69 shortcodes/process/process-item.php:42
+#: shortcodes/progress-bar/progress-bar.php:47
+#: shortcodes/section-title/section-title.php:60
+#: shortcodes/split-section/split-section.php:56
+msgid "Title Tag"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:22
+msgid "Mikado Accordion"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:34 shortcodes/banner/banner.php:32
+#: shortcodes/button/button.php:33
+#: shortcodes/call-to-action/call-to-action.php:32
+#: shortcodes/countdown/countdown.php:32 shortcodes/counter/counter.php:32
+#: shortcodes/custom-font/custom-font.php:33
+#: shortcodes/elements-holder/elements-holder-item.php:35
+#: shortcodes/elements-holder/elements-holder.php:32
+#: shortcodes/expanded-gallery/expanded-gallery.php:33
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:32
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:33
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:34
+#: shortcodes/gallery-blocks/gallery-blocks.php:32 shortcodes/icon/icon.php:32
+#: shortcodes/icon-list-item/icon-list-item.php:32
+#: shortcodes/icon-with-text/icon-with-text.php:33
+#: shortcodes/image-gallery/image-gallery.php:32
+#: shortcodes/image-with-text/image-with-text.php:32
+#: shortcodes/pie-chart/pie-chart.php:32
+#: shortcodes/pricing-table/pricing-table-item.php:32
+#: shortcodes/process/process-item.php:31 shortcodes/process/process.php:33
+#: shortcodes/progress-bar/progress-bar.php:31
+#: shortcodes/section-title/section-title.php:32
+#: shortcodes/separator/separator.php:33
+#: shortcodes/stacked-images/stacked-images.php:31 shortcodes/tabs/tabs.php:33
+#: shortcodes/video-button/video-button.php:32
+msgid "Custom CSS Class"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:35 shortcodes/banner/banner.php:33
+#: shortcodes/button/button.php:34
+#: shortcodes/call-to-action/call-to-action.php:33
+#: shortcodes/countdown/countdown.php:33 shortcodes/counter/counter.php:33
+#: shortcodes/custom-font/custom-font.php:34
+#: shortcodes/elements-holder/elements-holder-item.php:36
+#: shortcodes/elements-holder/elements-holder.php:33
+#: shortcodes/expanded-gallery/expanded-gallery.php:34
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:33
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:34
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:35
+#: shortcodes/gallery-blocks/gallery-blocks.php:33 shortcodes/icon/icon.php:33
+#: shortcodes/icon-list-item/icon-list-item.php:33
+#: shortcodes/icon-with-text/icon-with-text.php:34
+#: shortcodes/image-gallery/image-gallery.php:33
+#: shortcodes/image-with-text/image-with-text.php:33
+#: shortcodes/pie-chart/pie-chart.php:33
+#: shortcodes/pricing-table/pricing-table-item.php:33
+#: shortcodes/process/process-item.php:32 shortcodes/process/process.php:34
+#: shortcodes/progress-bar/progress-bar.php:32
+#: shortcodes/section-title/section-title.php:33
+#: shortcodes/separator/separator.php:34
+#: shortcodes/stacked-images/stacked-images.php:32 shortcodes/tabs/tabs.php:34
+#: shortcodes/video-button/video-button.php:33
+msgid "Style particular content element differently - add a class name and refer to it in custom CSS"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:40 shortcodes/separator/separator.php:64
+msgid "Style"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:42
+msgid "Accordion"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:43
+msgid "Toggle"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:49
+#: shortcodes/call-to-action/call-to-action.php:38
+msgid "Layout"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:51 shortcodes/tabs/tabs.php:42
+msgid "Boxed"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:52 shortcodes/button/button.php:43
+#: shortcodes/call-to-action/call-to-action.php:41 shortcodes/tabs/tabs.php:43
+msgid "Simple"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:58
+msgid "Background Skin"
+msgstr ""
+
+#: shortcodes/accordions/accordion.php:61
+msgid "White"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:21
+msgid "Advanced Link Section"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:29
+#: shortcodes/elements-holder/elements-holder-item.php:46
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:38
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:45
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:38
+msgid "Background Image"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:31
+#: shortcodes/advanced-link-section/advanced-link-section.php:63
+#: shortcodes/banner/banner.php:57
+#: shortcodes/clients-carousel/clients-carousel-item.php:35
+#: shortcodes/clients-carousel/clients-carousel-item.php:41
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:44
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:50
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:56
+#: shortcodes/image-with-text/image-with-text.php:39
+#: shortcodes/single-image/single-image.php:33
+#: shortcodes/video-button/video-button.php:44
+msgid "Select image from media library"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:35
+msgid "Uncovering Effect"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:43
+#: shortcodes/advanced-link-section/advanced-link-section.php:51
+msgid "Behavior Options"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:47
+msgid "Uncovering Color"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:55
+msgid "Link Item"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:61
+msgid "Section Background Image"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:67
+msgid "Section Title"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:72
+msgid "Section Subtitle"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:77
+#: shortcodes/banner/banner.php:102
+msgid "Link Text"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:89
+msgid "Text Size (px)"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:91
+#: shortcodes/advanced-link-section/advanced-link-section.php:97
+#: shortcodes/button/button.php:87 shortcodes/button/button.php:93
+#: shortcodes/button/button.php:100 shortcodes/button/button.php:107
+#: shortcodes/button/button.php:114 shortcodes/button/button.php:121
+#: shortcodes/button/button.php:127 shortcodes/button/button.php:135
+#: shortcodes/button/button.php:149 shortcodes/button/button.php:157
+msgid "Design Options"
+msgstr ""
+
+#: shortcodes/advanced-link-section/advanced-link-section.php:95
+#: shortcodes/counter/counter.php:102
+#: shortcodes/icon-with-text/icon-with-text.php:218
+#: shortcodes/image-with-text/image-with-text.php:112
+#: shortcodes/pie-chart/pie-chart.php:88 shortcodes/process/process-item.php:61
+#: shortcodes/section-title/section-title.php:120
+#: shortcodes/split-section/split-section.php:83
+#: shortcodes/text-marquee/text-marquee.php:39
+msgid "Text Color"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:22
+msgid "Mikado Animation Holder"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:34
+#: shortcodes/elements-holder/elements-holder-item.php:77
+msgid "Animation Type"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:36
+#: shortcodes/elements-holder/elements-holder-item.php:80
+msgid "Element Grow In"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:37
+#: shortcodes/elements-holder/elements-holder-item.php:81
+msgid "Element Fade In Down"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:38
+#: shortcodes/elements-holder/elements-holder-item.php:82
+msgid "Element From Fade"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:39
+#: shortcodes/elements-holder/elements-holder-item.php:83
+msgid "Element From Left"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:40
+#: shortcodes/elements-holder/elements-holder-item.php:84
+msgid "Element From Right"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:41
+#: shortcodes/elements-holder/elements-holder-item.php:85
+msgid "Element From Top"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:42
+#: shortcodes/elements-holder/elements-holder-item.php:86
+msgid "Element From Bottom"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:43
+#: shortcodes/elements-holder/elements-holder-item.php:87
+msgid "Element Flip In"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:44
+#: shortcodes/elements-holder/elements-holder-item.php:88
+msgid "Element X Rotate"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:45
+#: shortcodes/elements-holder/elements-holder-item.php:89
+msgid "Element Z Rotate"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:46
+#: shortcodes/elements-holder/elements-holder-item.php:90
+msgid "Element Y Translate"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:47
+#: shortcodes/elements-holder/elements-holder-item.php:91
+msgid "Element Fade In X Rotate"
+msgstr ""
+
+#: shortcodes/animation-holder/animation-holder.php:54
+#: shortcodes/elements-holder/elements-holder-item.php:97
+msgid "Animation Delay (ms)"
+msgstr ""
+
+#: shortcodes/banner/banner.php:23
+msgid "Mikado Banner"
+msgstr ""
+
+#: shortcodes/banner/banner.php:49
+msgid "Single Banner"
+msgstr ""
+
+#: shortcodes/banner/banner.php:56
+#: shortcodes/clients-carousel/clients-carousel-item.php:34
+#: shortcodes/image-with-text/image-with-text.php:38
+#: shortcodes/item-showcase/item-showcase.php:33
+#: shortcodes/single-image/single-image.php:32
+#: shortcodes/split-section/split-section.php:31
+#: shortcodes/stacked-images/stacked-images.php:37
+msgid "Image"
+msgstr ""
+
+#: shortcodes/banner/banner.php:62
+#: shortcodes/clients-carousel/clients-carousel-item.php:40
+msgid "Hover Image"
+msgstr ""
+
+#: shortcodes/banner/banner.php:63
+msgid "Select image from media library to appear on hover over the main image"
+msgstr ""
+
+#: shortcodes/banner/banner.php:68
+msgid "Subtitle"
+msgstr ""
+
+#: shortcodes/banner/banner.php:73
+#: shortcodes/section-title/section-title.php:108
+msgid "Subtitle Color"
+msgstr ""
+
+#: shortcodes/banner/banner.php:84 shortcodes/counter/counter.php:83
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:74
+#: shortcodes/icon-list-item/icon-list-item.php:68
+#: shortcodes/icon-with-text/icon-with-text.php:199
+#: shortcodes/image-with-text/image-with-text.php:95
+#: shortcodes/pie-chart/pie-chart.php:77
+#: shortcodes/pricing-table/pricing-table-item.php:50
+#: shortcodes/process/process-item.php:50
+#: shortcodes/progress-bar/progress-bar.php:55
+#: shortcodes/section-title/section-title.php:69
+#: shortcodes/split-section/split-section.php:64
+msgid "Title Color"
+msgstr ""
+
+#: shortcodes/button/button.php:23
+msgid "Mikado Button"
+msgstr ""
+
+#: shortcodes/button/button.php:39 shortcodes/counter/counter.php:38
+#: shortcodes/icon/icon.php:58 shortcodes/icon-with-text/icon-with-text.php:39
+#: shortcodes/separator/separator.php:39
+#: shortcodes/social-share/social-share.php:45 shortcodes/tabs/tabs.php:39
+msgid "Type"
+msgstr ""
+
+#: shortcodes/button/button.php:41
+#: shortcodes/call-to-action/call-to-action.php:83
+#: shortcodes/pricing-table/pricing-table-item.php:112
+#: shortcodes/separator/separator.php:68
+#: shortcodes/split-section/split-section.php:102
+msgid "Solid"
+msgstr ""
+
+#: shortcodes/button/button.php:42
+#: shortcodes/call-to-action/call-to-action.php:84
+#: shortcodes/pricing-table/pricing-table-item.php:113
+#: shortcodes/split-section/split-section.php:103
+msgid "Outline"
+msgstr ""
+
+#: shortcodes/button/button.php:50 shortcodes/icon/icon.php:41
+msgid "Size"
+msgstr ""
+
+#: shortcodes/button/button.php:53
+#: shortcodes/call-to-action/call-to-action.php:95 shortcodes/icon/icon.php:44
+#: shortcodes/icon-with-text/icon-with-text.php:73
+#: shortcodes/split-section/split-section.php:116
+msgid "Small"
+msgstr ""
+
+#: shortcodes/button/button.php:54
+#: shortcodes/call-to-action/call-to-action.php:96 shortcodes/icon/icon.php:45
+#: shortcodes/icon-with-text/icon-with-text.php:71
+#: shortcodes/split-section/split-section.php:117
+msgid "Medium"
+msgstr ""
+
+#: shortcodes/button/button.php:55
+#: shortcodes/call-to-action/call-to-action.php:97 shortcodes/icon/icon.php:46
+#: shortcodes/icon-with-text/icon-with-text.php:74
+#: shortcodes/split-section/split-section.php:118
+msgid "Large"
+msgstr ""
+
+#: shortcodes/button/button.php:56 shortcodes/icon/icon.php:47
+#: shortcodes/split-section/split-section.php:119
+msgid "Huge"
+msgstr ""
+
+#: shortcodes/button/button.php:64
+#: shortcodes/call-to-action/call-to-action.php:67
+#: shortcodes/call-to-action/call-to-action.php:68
+#: shortcodes/pricing-table/pricing-table-item.php:97
+#: shortcodes/split-section/split-section.php:95
+msgid "Button Text"
+msgstr ""
+
+#: shortcodes/button/button.php:76
+msgid "Link Target"
+msgstr ""
+
+#: shortcodes/button/button.php:86 shortcodes/custom-font/custom-font.php:158
+#: shortcodes/separator/separator.php:59
+msgid "Color"
+msgstr ""
+
+#: shortcodes/button/button.php:92
+msgid "Hover Color"
+msgstr ""
+
+#: shortcodes/button/button.php:98
+#: shortcodes/elements-holder/elements-holder-item.php:41
+#: shortcodes/elements-holder/elements-holder.php:45
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:40
+#: shortcodes/icon/icon.php:99
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:33
+msgid "Background Color"
+msgstr ""
+
+#: shortcodes/button/button.php:105 shortcodes/icon/icon.php:116
+msgid "Hover Background Color"
+msgstr ""
+
+#: shortcodes/button/button.php:112 shortcodes/icon/icon.php:87
+msgid "Border Color"
+msgstr ""
+
+#: shortcodes/button/button.php:119 shortcodes/icon/icon.php:110
+msgid "Hover Border Color"
+msgstr ""
+
+#: shortcodes/button/button.php:126
+msgid "Font Size (px)"
+msgstr ""
+
+#: shortcodes/button/button.php:132 shortcodes/custom-font/custom-font.php:125
+#: shortcodes/text-marquee/text-marquee.php:54
+msgid "Font Weight"
+msgstr ""
+
+#: shortcodes/button/button.php:140 shortcodes/custom-font/custom-font.php:144
+#: shortcodes/text-marquee/text-marquee.php:73
+msgid "Text Transform"
+msgstr ""
+
+#: shortcodes/button/button.php:147 shortcodes/icon/icon.php:136
+msgid "Margin"
+msgstr ""
+
+#: shortcodes/button/button.php:148 shortcodes/custom-font/custom-font.php:177
+#: shortcodes/icon/icon.php:137
+msgid "Insert margin in format: top right bottom left (e.g. 10px 5px 10px 5px)"
+msgstr ""
+
+#: shortcodes/button/button.php:154
+msgid "Button Padding"
+msgstr ""
+
+#: shortcodes/button/button.php:155
+msgid "Insert padding in format: top right bottom left (e.g. 10px 5px 10px 5px)"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:23
+msgid "Mikado Call To Action"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:40 shortcodes/icon/icon.php:60
+#: shortcodes/icon-with-text/icon-with-text.php:60
+#: shortcodes/separator/separator.php:41
+msgid "Normal"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:48
+msgid "Set Content In Grid"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:55
+msgid "Content Elements Proportion"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:57
+msgid "80/20"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:58
+msgid "75/25"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:59
+msgid "66/33"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:60
+msgid "50/50"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:74
+msgid "Button Top Margin (px)"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:76
+#: shortcodes/call-to-action/call-to-action.php:87
+#: shortcodes/call-to-action/call-to-action.php:104
+#: shortcodes/call-to-action/call-to-action.php:110
+#: shortcodes/call-to-action/call-to-action.php:117
+#: shortcodes/call-to-action/call-to-action.php:123
+#: shortcodes/call-to-action/call-to-action.php:129
+#: shortcodes/call-to-action/call-to-action.php:136
+#: shortcodes/call-to-action/call-to-action.php:142
+#: shortcodes/call-to-action/call-to-action.php:148
+#: shortcodes/call-to-action/call-to-action.php:154
+#: shortcodes/split-section/split-section.php:108
+#: shortcodes/split-section/split-section.php:123
+#: shortcodes/split-section/split-section.php:130
+#: shortcodes/split-section/split-section.php:138
+#: shortcodes/split-section/split-section.php:146
+#: shortcodes/split-section/split-section.php:153
+#: shortcodes/split-section/split-section.php:160
+#: shortcodes/split-section/split-section.php:167
+#: shortcodes/split-section/split-section.php:174
+#: shortcodes/split-section/split-section.php:181
+#: shortcodes/split-section/split-section.php:188
+msgid "Button Style"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:81
+#: shortcodes/pricing-table/pricing-table-item.php:110
+#: shortcodes/split-section/split-section.php:100
+msgid "Button Type"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:92
+#: shortcodes/split-section/split-section.php:113
+msgid "Button Size"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:109
+#: shortcodes/pricing-table/pricing-table-item.php:104
+#: shortcodes/split-section/split-section.php:128
+msgid "Button Link"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:115
+#: shortcodes/split-section/split-section.php:135
+msgid "Button Link Target"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:122
+#: shortcodes/split-section/split-section.php:144
+msgid "Button Color"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:128
+#: shortcodes/split-section/split-section.php:151
+msgid "Button Hover Color"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:134
+#: shortcodes/split-section/split-section.php:158
+msgid "Button Background Color"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:141
+#: shortcodes/split-section/split-section.php:165
+msgid "Button Hover Background Color"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:147
+#: shortcodes/split-section/split-section.php:172
+msgid "Button Border Color"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:153
+#: shortcodes/split-section/split-section.php:179
+msgid "Button Hover Border Color"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:159
+#: shortcodes/pricing-table/pricing-table-item.php:121
+msgid "Content"
+msgstr ""
+
+#: shortcodes/call-to-action/call-to-action.php:160
+msgid "I am test text for Call to Action shortcode content"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel-item.php:23
+msgid "Mikado Clients Carousel Item"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel-item.php:46
+#: shortcodes/gallery-blocks/gallery-blocks.php:50
+#: shortcodes/image-gallery/functions.php:37
+#: shortcodes/image-gallery/image-gallery.php:57
+#: shortcodes/image-with-text/image-with-text.php:44
+#: shortcodes/single-image/single-image.php:38
+msgid "Image Size"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel-item.php:47
+#: shortcodes/gallery-blocks/gallery-blocks.php:45
+#: shortcodes/gallery-blocks/gallery-blocks.php:51
+#: shortcodes/image-gallery/image-gallery.php:58
+#: shortcodes/image-with-text/image-with-text.php:45
+#: shortcodes/single-image/single-image.php:39
+msgid "Enter image size. Example: thumbnail, medium, large, full or other sizes defined by current theme. Alternatively enter image size in pixels: 200x100 (Width x Height). Leave empty to use \"thumbnail\" size"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel-item.php:52
+#: shortcodes/image-with-text/image-with-text.php:69
+#: shortcodes/single-image/single-image.php:64
+msgid "Custom Link"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel-item.php:57
+#: shortcodes/expanded-gallery/expanded-gallery.php:61
+#: shortcodes/frame-slider/frame-slider.php:44
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:105
+#: shortcodes/image-gallery/image-gallery.php:89
+#: shortcodes/image-with-text/image-with-text.php:75
+#: shortcodes/single-image/single-image.php:70
+msgid "Custom Link Target"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel.php:23
+msgid "Mikado Clients Carousel"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel.php:34
+#: shortcodes/image-gallery/image-gallery.php:117
+msgid "Number Of Visible Items"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel.php:88
+msgid "Items Hover Animation"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel.php:90
+msgid "Switch Images"
+msgstr ""
+
+#: shortcodes/clients-carousel/clients-carousel.php:91
+msgid "Roll Over"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:23
+msgid "Mikado Countdown"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:47
+msgid "Year"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:62
+msgid "Month"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:64
+msgid "January"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:65
+msgid "February"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:66
+msgid "March"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:67
+msgid "April"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:68
+msgid "May"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:69
+msgid "June"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:70
+msgid "July"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:71
+msgid "August"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:72
+msgid "September"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:73
+msgid "October"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:74
+msgid "November"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:75
+msgid "December"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:83
+msgid "Day"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:123
+msgid "Hour"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:156
+msgid "Minute"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:225
+msgid "Month Label"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:230
+msgid "Day Label"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:235
+msgid "Hour Label"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:240
+msgid "Minute Label"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:245
+msgid "Second Label"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:250
+msgid "Digit Font Size (px)"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:255
+msgid "Label Font Size (px)"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:308
+msgid "Months"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:309
+msgid "Days"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:310
+msgid "Hours"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:311
+msgid "Minutes"
+msgstr ""
+
+#: shortcodes/countdown/countdown.php:312
+msgid "Seconds"
+msgstr ""
+
+#: shortcodes/counter/counter.php:23
+msgid "Mikado Counter"
+msgstr ""
+
+#: shortcodes/counter/counter.php:40
+msgid "Zero Counter"
+msgstr ""
+
+#: shortcodes/counter/counter.php:41
+msgid "Random Counter"
+msgstr ""
+
+#: shortcodes/counter/counter.php:48
+msgid "Digit"
+msgstr ""
+
+#: shortcodes/counter/counter.php:52
+msgid "Symbol"
+msgstr ""
+
+#: shortcodes/counter/counter.php:58
+msgid "Digit and Symbol Font Size (px)"
+msgstr ""
+
+#: shortcodes/counter/counter.php:64
+msgid "Digit and Symbol Color"
+msgstr ""
+
+#: shortcodes/counter/counter.php:89
+msgid "Title Font Weight"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:24
+msgid "Mikado Custom Font"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:39
+msgid "Title Text"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:44
+msgid "Enable Type Out Effect"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:45
+msgid "Adds a type out effect inside custom font content"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:51
+msgid "Position of Type Out Effect"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:52
+msgid "Enter the position of the word after which you would like to display type out effect (e.g. if you would like the type out effect after the 3rd word, you would enter \"3\")"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:58
+msgid "Typed Color"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:64
+msgid "Typed Ending Number 1"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:70
+msgid "Typed Ending Number 2"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:76
+msgid "Typed Ending Number 3"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:82
+msgid "Typed Ending Number 4"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:88
+#: shortcodes/section-title/section-title.php:76
+msgid "Position of Line Break"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:89
+msgid "Enter the positions of the words after which you would like to create a line break (e.g. if you would like the line break after the 3rd and 8th words, you would enter \"3,8\")"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:95
+#: shortcodes/section-title/section-title.php:84
+msgid "Disable Line Break for Smaller Screens"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:110
+msgid "Font Family"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:115
+#: shortcodes/custom-font/custom-font.php:182
+#: shortcodes/custom-font/custom-font.php:194
+#: shortcodes/custom-font/custom-font.php:206
+#: shortcodes/custom-font/custom-font.php:218
+#: shortcodes/text-marquee/text-marquee.php:44
+msgid "Font Size (px or em)"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:120
+#: shortcodes/custom-font/custom-font.php:188
+#: shortcodes/custom-font/custom-font.php:200
+#: shortcodes/custom-font/custom-font.php:212
+#: shortcodes/custom-font/custom-font.php:224
+#: shortcodes/text-marquee/text-marquee.php:49
+msgid "Line Height (px or em)"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:132
+#: shortcodes/text-marquee/text-marquee.php:61
+msgid "Font Style"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:139
+#: shortcodes/text-marquee/text-marquee.php:68
+msgid "Letter Spacing (px or em)"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:151
+msgid "Text Decoration"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:163
+msgid "Text Align"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:166
+#: shortcodes/elements-holder/elements-holder-item.php:59
+#: shortcodes/elements-holder/elements-holder.php:89
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:90
+#: shortcodes/item-showcase/item-showcase-item.php:36
+#: shortcodes/section-title/section-title.php:41
+#: shortcodes/separator/separator.php:51
+#: shortcodes/split-section/split-section.php:38
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:52
+msgid "Left"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:167
+#: shortcodes/elements-holder/elements-holder-item.php:61
+#: shortcodes/elements-holder/elements-holder.php:90
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:91
+#: shortcodes/section-title/section-title.php:42
+#: shortcodes/separator/separator.php:50
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:54
+msgid "Center"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:168
+#: shortcodes/elements-holder/elements-holder-item.php:60
+#: shortcodes/elements-holder/elements-holder.php:91
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:92
+#: shortcodes/item-showcase/item-showcase-item.php:37
+#: shortcodes/section-title/section-title.php:43
+#: shortcodes/separator/separator.php:52
+#: shortcodes/split-section/split-section.php:39
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:53
+msgid "Right"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:169
+msgid "Justify"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:176
+msgid "Margin (px or %)"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:183
+#: shortcodes/custom-font/custom-font.php:189
+msgid "Small Laptops"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:195
+#: shortcodes/custom-font/custom-font.php:201
+msgid "Tablets Landscape"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:207
+#: shortcodes/custom-font/custom-font.php:213
+msgid "Tablets Portrait"
+msgstr ""
+
+#: shortcodes/custom-font/custom-font.php:219
+#: shortcodes/custom-font/custom-font.php:225
+msgid "Mobiles"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:22
+msgid "Mikado Elements Holder Item"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:51
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:43
+msgid "Padding"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:52
+#: shortcodes/elements-holder/elements-holder-item.php:117
+#: shortcodes/elements-holder/elements-holder-item.php:124
+#: shortcodes/elements-holder/elements-holder-item.php:131
+msgid "Please insert padding in format 0px 10px 0px 10px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:57
+msgid "Horizontal Alignment"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:67
+msgid "Vertical Alignment"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:69
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:79
+msgid "Middle"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:70
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:78
+msgid "Top"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:71
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:80
+msgid "Bottom"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:79
+msgid "Default (No Animation)"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:102
+msgid "Padding on screen size between 1280px-1600px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:103
+#: shortcodes/elements-holder/elements-holder-item.php:110
+msgid "Please insert padding in format top right bottom left. For example 10px 0 10px 0"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:104
+#: shortcodes/elements-holder/elements-holder-item.php:111
+#: shortcodes/elements-holder/elements-holder-item.php:118
+#: shortcodes/elements-holder/elements-holder-item.php:125
+#: shortcodes/elements-holder/elements-holder-item.php:132
+msgid "Width & Responsiveness"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:109
+msgid "Padding on screen size between 1024px-1280px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:116
+msgid "Padding on screen size between 768px-1024px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:123
+msgid "Padding on screen size between 680px-768px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder-item.php:130
+msgid "Padding on screen size bellow 680px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:22
+msgid "Mikado Elements Holder"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:38
+msgid "Enable Holder Full Height"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:50
+msgid "Columns"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:52
+msgid "1 Column"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:53
+#: shortcodes/process/process.php:41
+msgid "2 Columns"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:54
+#: shortcodes/process/process.php:42
+msgid "3 Columns"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:55
+#: shortcodes/process/process.php:43
+msgid "4 Columns"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:56
+msgid "5 Columns"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:57
+msgid "6 Columns"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:64
+msgid "Items Float Left"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:70
+#: shortcodes/process/process.php:50
+msgid "Switch to One Column"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:73
+#: shortcodes/process/process.php:53
+#: shortcodes/split-section/split-section.php:196
+msgid "Below 1280px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:74
+#: shortcodes/process/process.php:54
+#: shortcodes/split-section/split-section.php:197
+msgid "Below 1024px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:75
+#: shortcodes/process/process.php:55
+#: shortcodes/split-section/split-section.php:198
+msgid "Below 768px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:76
+#: shortcodes/process/process.php:56
+#: shortcodes/split-section/split-section.php:199
+msgid "Below 680px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:77
+#: shortcodes/process/process.php:57
+#: shortcodes/split-section/split-section.php:200
+msgid "Below 480px"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:78
+#: shortcodes/split-section/split-section.php:195
+msgid "Never"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:80
+#: shortcodes/process/process.php:59
+msgid "Choose on which stage item will be in one column"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:86
+msgid "Choose Alignment In Responsive Mode"
+msgstr ""
+
+#: shortcodes/elements-holder/elements-holder.php:93
+msgid "Alignment When Items are in One Column"
+msgstr ""
+
+#: shortcodes/expanded-gallery/expanded-gallery.php:24
+msgid "Mikado Expanded Gallery"
+msgstr ""
+
+#: shortcodes/expanded-gallery/expanded-gallery.php:39
+msgid "Number of Images"
+msgstr ""
+
+#: shortcodes/expanded-gallery/expanded-gallery.php:49
+#: shortcodes/frame-slider/frame-slider.php:32
+#: shortcodes/gallery-blocks/gallery-blocks.php:38
+#: shortcodes/image-gallery/image-gallery.php:51
+msgid "Images"
+msgstr ""
+
+#: shortcodes/expanded-gallery/expanded-gallery.php:50
+msgid "Select images from media library. Images needs to be same size"
+msgstr ""
+
+#: shortcodes/expanded-gallery/expanded-gallery.php:55
+#: shortcodes/frame-slider/frame-slider.php:38
+#: shortcodes/image-gallery/image-gallery.php:82
+msgid "Custom Links"
+msgstr ""
+
+#: shortcodes/expanded-gallery/expanded-gallery.php:56
+#: shortcodes/frame-slider/frame-slider.php:39
+#: shortcodes/image-gallery/image-gallery.php:83
+msgid "Delimit links by comma"
+msgstr ""
+
+#: shortcodes/frame-slider/frame-slider.php:23
+msgid "Mikado Frame Slider"
+msgstr ""
+
+#: shortcodes/frame-slider/frame-slider.php:33
+#: shortcodes/image-gallery/image-gallery.php:52
+msgid "Select images from media library"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:22
+msgid "Mikado Full Screen Image Slider Item"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:43
+msgid "Content Image Top"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:49
+msgid "Content Image Left"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:55
+msgid "Content Image Right"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:80
+#: shortcodes/section-title/section-title.php:93
+msgid "Subitle"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:85
+msgid "Subitle Tag"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider-item.php:93
+msgid "Subitle Color"
+msgstr ""
+
+#: shortcodes/full-screen-image-slider/full-screen-image-slider.php:22
+msgid "Mikado Full Screen Image Slider"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:22
+msgid "Mikado Full Screen Sections Item"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:50
+msgid "Background Image Position"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:51
+msgid "Please insert position in format horizontal vertical position, example - center center"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:57
+msgid "Background Image Size"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:59
+msgid "Cover"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:60
+msgid "Contain"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:61
+msgid "Inherit"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:69
+msgid "Content Padding"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:70
+msgid "Please insert padding in format top right bottom left. You can use px or %"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:75
+msgid "Content Vertical Alignment"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:87
+msgid "Content Horizontal Alignment"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:100
+msgid "Set custom link around item"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:112
+msgid "Header and Navigation Skin"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:116
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:64
+msgid "Dark"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:119
+msgid "Choose a predefined header style for header elements and for full screen sections navigation/pagination"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:124
+msgid "Background Image for Laptops"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:125
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:131
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:137
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:143
+msgid "Responsiveness"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:130
+msgid "Background Image for Tablets - Landscape"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:136
+msgid "Background Image for Tablets - Portrait"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections-item.php:142
+msgid "Background Image for Mobiles"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections.php:22
+msgid "Mikado Full Screen Sections"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections.php:32
+msgid "Enable Continuous Scrolling"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections.php:33
+msgid "Defines whether scrolling down in the last section or should scroll down to the first one and if scrolling up in the first section should scroll up to the last one"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections.php:40
+msgid "Enable Navigation Arrows"
+msgstr ""
+
+#: shortcodes/full-screen-sections/full-screen-sections.php:47
+msgid "Enable Pagination Dots"
+msgstr ""
+
+#: shortcodes/gallery-blocks/gallery-blocks.php:23
+msgid "Mikado Gallery Blocks"
+msgstr ""
+
+#: shortcodes/gallery-blocks/gallery-blocks.php:39
+msgid "Select images from media library. The first image you upload will be set as the featured image if you set Featured Image Size."
+msgstr ""
+
+#: shortcodes/gallery-blocks/gallery-blocks.php:44
+msgid "Featured Image Size"
+msgstr ""
+
+#: shortcodes/gallery-blocks/gallery-blocks.php:56
+msgid "Enable Lightbox Functionality"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:22
+msgid "Mikado Google Map"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:31
+msgid "Address 1"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:36
+msgid "Address 2"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:42
+msgid "Address 3"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:48
+msgid "Address 4"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:54
+msgid "Address 5"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:60
+msgid "Predefined Map Style"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:62
+msgid "Enabling this option will set our predefined map style"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:67
+msgid "Custom Map Style"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:69
+msgid "Enabling this option will allow Map editing"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:75
+msgid "Color Overlay"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:76
+msgid "Choose a Map color overlay"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:82
+msgid "Saturation"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:83
+msgid "Choose a level of saturation (-100 = least saturated, 100 = most saturated)"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:89
+msgid "Lightness"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:90
+msgid "Choose a level of lightness (-100 = darkest, 100 = lightest)"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:96
+msgid "Pin"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:97
+msgid "Select a pin image to be used on Google Map"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:102
+msgid "Map Zoom"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:103
+msgid "Enter a zoom factor for Google Map (0 = whole worlds, 19 = individual buildings)"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:108
+msgid "Zoom Map on Mouse Wheel"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:110
+msgid "Enabling this option will allow users to zoom in on Map using mouse wheel"
+msgstr ""
+
+#: shortcodes/google-map/google-map.php:115
+msgid "Map Height"
+msgstr ""
+
+#: shortcodes/icon/icon.php:22
+msgid "Mikado Icon"
+msgstr ""
+
+#: shortcodes/icon/icon.php:43 shortcodes/icon-with-text/icon-with-text.php:72
+msgid "Tiny"
+msgstr ""
+
+#: shortcodes/icon/icon.php:53
+msgid "Custom Size (px)"
+msgstr ""
+
+#: shortcodes/icon/icon.php:61 shortcodes/icon-with-text/icon-with-text.php:61
+msgid "Circle"
+msgstr ""
+
+#: shortcodes/icon/icon.php:62 shortcodes/icon-with-text/icon-with-text.php:62
+msgid "Square"
+msgstr ""
+
+#: shortcodes/icon/icon.php:69
+msgid "Border Radius"
+msgstr ""
+
+#: shortcodes/icon/icon.php:70
+msgid "Please insert border radius(Rounded corners) in px. For example: 4 "
+msgstr ""
+
+#: shortcodes/icon/icon.php:76 shortcodes/icon-with-text/icon-with-text.php:88
+msgid "Shape Size (px)"
+msgstr ""
+
+#: shortcodes/icon/icon.php:82 shortcodes/icon-list-item/icon-list-item.php:52
+#: shortcodes/icon-with-text/icon-with-text.php:94
+msgid "Icon Color"
+msgstr ""
+
+#: shortcodes/icon/icon.php:93
+msgid "Border Width"
+msgstr ""
+
+#: shortcodes/icon/icon.php:105
+msgid "Hover Icon Color"
+msgstr ""
+
+#: shortcodes/icon/icon.php:121
+#: shortcodes/icon-with-text/icon-with-text.php:169
+msgid "Hover Type"
+msgstr ""
+
+#: shortcodes/icon/icon.php:125
+#: shortcodes/icon-with-text/icon-with-text.php:173
+msgid "Classic"
+msgstr ""
+
+#: shortcodes/icon/icon.php:142
+#: shortcodes/icon-with-text/icon-with-text.php:156
+msgid "Icon Animation"
+msgstr ""
+
+#: shortcodes/icon/icon.php:148
+#: shortcodes/icon-with-text/icon-with-text.php:163
+msgid "Icon Animation Delay (ms)"
+msgstr ""
+
+#: shortcodes/icon/icon.php:159
+msgid "Use Link as Anchor"
+msgstr ""
+
+#: shortcodes/icon/icon.php:161
+msgid "Check this box to use icon as anchor link (eg. #contact)"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:23
+msgid "Mikado Icon List Item"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:38
+msgid "Icon List Item Bottom Margin (px)"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:39
+msgid "Set bottom margin for your Icon List Item element. Default value is 8"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:47
+msgid "Icon Size (px)"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:62
+msgid "Title Size (px)"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:74
+msgid "Title Left Padding (px)"
+msgstr ""
+
+#: shortcodes/icon-list-item/icon-list-item.php:75
+msgid "Set left padding for your text element to adjust space between icon and text. Default value is 13"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:23
+msgid "Mikado Icon With Text"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:41
+msgid "Icon Left From Text"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:42
+msgid "Icon Left From Title"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:43
+msgid "Icon Top"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:53
+msgid "Custom Icon"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:58
+msgid "Icon Type"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:64
+#: shortcodes/icon-with-text/icon-with-text.php:77
+#: shortcodes/icon-with-text/icon-with-text.php:83
+#: shortcodes/icon-with-text/icon-with-text.php:89
+#: shortcodes/icon-with-text/icon-with-text.php:95
+#: shortcodes/icon-with-text/icon-with-text.php:101
+#: shortcodes/icon-with-text/icon-with-text.php:111
+#: shortcodes/icon-with-text/icon-with-text.php:121
+#: shortcodes/icon-with-text/icon-with-text.php:131
+#: shortcodes/icon-with-text/icon-with-text.php:141
+#: shortcodes/icon-with-text/icon-with-text.php:151
+#: shortcodes/icon-with-text/icon-with-text.php:158
+#: shortcodes/icon-with-text/icon-with-text.php:165
+#: shortcodes/icon-with-text/icon-with-text.php:180
+msgid "Icon Settings"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:69
+msgid "Icon Size"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:75
+msgid "Very Large"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:82
+msgid "Custom Icon Size (px)"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:100
+msgid "Icon Hover Color"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:106
+msgid "Icon Background Color"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:116
+msgid "Icon Hover Background Color"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:126
+msgid "Icon Border Color"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:136
+msgid "Icon Border Hover Color"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:146
+msgid "Border Width (px)"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:194
+#: shortcodes/icon-with-text/icon-with-text.php:201
+#: shortcodes/icon-with-text/icon-with-text.php:208
+#: shortcodes/icon-with-text/icon-with-text.php:220
+#: shortcodes/icon-with-text/icon-with-text.php:227
+#: shortcodes/icon-with-text/icon-with-text.php:248
+msgid "Text Settings"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:206
+#: shortcodes/image-with-text/image-with-text.php:101
+msgid "Title Top Margin (px)"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:225
+#: shortcodes/image-with-text/image-with-text.php:118
+#: shortcodes/process/process-item.php:67
+#: shortcodes/section-title/section-title.php:150
+msgid "Text Top Margin (px)"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:233
+msgid "Set link around icon and title"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:245
+msgid "Text Padding (px)"
+msgstr ""
+
+#: shortcodes/icon-with-text/icon-with-text.php:246
+msgid "Set left or top padding dependence of type for your text holder. Default value is 13 for left type and 25 for top icon with text type"
+msgstr ""
+
+#: shortcodes/image-gallery/functions.php:38
+msgid "Choose image size for Image Gallery shortcode item - Masonry layout"
+msgstr ""
+
+#: shortcodes/image-gallery/functions.php:42
+msgid "Default Size"
+msgstr ""
+
+#: shortcodes/image-gallery/functions.php:43
+msgid "Large Size"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:23
+msgid "Mikado Image Gallery"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:38
+msgid "Gallery Type"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:40
+msgid "Image Grid"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:41
+msgid "Masonry"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:42
+msgid "Slider"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:43
+msgid "Carousel"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:63
+#: shortcodes/image-with-text/image-with-text.php:50
+#: shortcodes/single-image/single-image.php:44
+msgid "Enable Image Shadow"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:70
+#: shortcodes/image-with-text/image-with-text.php:57
+#: shortcodes/single-image/single-image.php:51
+msgid "Image Behavior"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:72
+#: shortcodes/image-with-text/image-with-text.php:59
+#: shortcodes/single-image/single-image.php:53
+msgid "None"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:73
+#: shortcodes/image-with-text/image-with-text.php:60
+#: shortcodes/single-image/single-image.php:54
+msgid "Open Lightbox"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:74
+#: shortcodes/image-with-text/image-with-text.php:61
+#: shortcodes/single-image/single-image.php:55
+msgid "Open Custom Link"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:75
+#: shortcodes/image-with-text/image-with-text.php:62
+#: shortcodes/single-image/single-image.php:56
+msgid "Zoom"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:76
+#: shortcodes/image-with-text/image-with-text.php:63
+#: shortcodes/single-image/single-image.php:57
+msgid "Grayscale"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:167
+msgid "Enable Slider Padding"
+msgstr ""
+
+#: shortcodes/image-gallery/image-gallery.php:168
+msgid "Padding left and right on stage (can see neighbours)."
+msgstr ""
+
+#: shortcodes/image-with-text/image-with-text.php:23
+msgid "Mikado Image With Text"
+msgstr ""
+
+#: shortcodes/info-items/info-items.php:23
+msgid "Mikado Info Items"
+msgstr ""
+
+#: shortcodes/info-items/info-items.php:43
+msgid "Info Item"
+msgstr ""
+
+#: shortcodes/info-items/info-items.php:49
+#: shortcodes/item-showcase/item-showcase-item.php:45
+msgid "Item Title"
+msgstr ""
+
+#: shortcodes/info-items/info-items.php:54
+msgid "Item Description"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:22
+msgid "Mikado Item Showcase List Item"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:34
+msgid "Item Position"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:51
+msgid "Item Link"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:57
+msgid "Item Target"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:65
+msgid "Item Title Tag"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:73
+msgid "Item Title Color"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:79
+msgid "Item Text"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase-item.php:84
+msgid "Item Text Color"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase.php:23
+msgid "Mikado Item Showcase"
+msgstr ""
+
+#: shortcodes/item-showcase/item-showcase.php:38
+msgid "Image Top Offset"
+msgstr ""
+
+#: shortcodes/pie-chart/pie-chart.php:23
+msgid "Mikado Pie Chart"
+msgstr ""
+
+#: shortcodes/pie-chart/pie-chart.php:38
+#: shortcodes/progress-bar/progress-bar.php:37
+msgid "Percentage"
+msgstr ""
+
+#: shortcodes/pie-chart/pie-chart.php:43
+msgid "Percentage Color"
+msgstr ""
+
+#: shortcodes/pie-chart/pie-chart.php:49
+msgid "Pie Chart Active Color"
+msgstr ""
+
+#: shortcodes/pie-chart/pie-chart.php:54
+msgid "Pie Chart Inactive Color"
+msgstr ""
+
+#: shortcodes/pie-chart/pie-chart.php:59
+msgid "Pie Chart Size (px)"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:22
+msgid "Mikado Pricing Table Item"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:38
+#: shortcodes/split-section/split-section.php:46
+msgid "Content Background Color"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:44
+msgid "Basic Plan"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:56
+msgid "Title Bottom Border Color"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:62
+msgid "Price"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:67
+msgid "Price Color"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:73
+msgid "Currency"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:74
+msgid "Default mark is $"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:79
+msgid "Currency Color"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:85
+msgid "Price Period"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:86
+msgid "Default label is monthly"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:91
+msgid "Price Period Color"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table-item.php:98
+msgid "BUY NOW"
+msgstr ""
+
+#: shortcodes/pricing-table/pricing-table.php:22
+msgid "Mikado Pricing Table"
+msgstr ""
+
+#: shortcodes/process/process-item.php:22
+msgid "Mikado Process Item"
+msgstr ""
+
+#: shortcodes/process/process.php:22
+msgid "Mikado Process"
+msgstr ""
+
+#: shortcodes/process/process.php:39
+msgid "Number Of Columns"
+msgstr ""
+
+#: shortcodes/process/process.php:52
+msgid "Default None"
+msgstr ""
+
+#: shortcodes/progress-bar/progress-bar.php:22
+msgid "Mikado Progress Bar"
+msgstr ""
+
+#: shortcodes/progress-bar/progress-bar.php:61
+msgid "Active Color"
+msgstr ""
+
+#: shortcodes/progress-bar/progress-bar.php:66
+msgid "Inactive Color"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:23
+msgid "Mikado Section Title"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:38
+msgid "Horizontal Position"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:49
+msgid "Holder Side Padding (px or %)"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:64
+#: shortcodes/section-title/section-title.php:71
+#: shortcodes/section-title/section-title.php:79
+#: shortcodes/section-title/section-title.php:88
+#: shortcodes/section-title/section-title.php:103
+#: shortcodes/section-title/section-title.php:110
+msgid "Title Style"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:77
+msgid "Enter the position of the word after which you would like to create a line break (e.g. if you would like the line break after the 3rd word, you would enter \"3\")"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:99
+msgid "Subtitle Tag"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:122
+#: shortcodes/section-title/section-title.php:129
+#: shortcodes/section-title/section-title.php:136
+#: shortcodes/section-title/section-title.php:145
+#: shortcodes/section-title/section-title.php:152
+msgid "Text Style"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:127
+msgid "Text Font Size (px)"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:134
+msgid "Text Line Height (px)"
+msgstr ""
+
+#: shortcodes/section-title/section-title.php:141
+msgid "Text Font Weight"
+msgstr ""
+
+#: shortcodes/separator/separator.php:22
+msgid "Mikado Separator"
+msgstr ""
+
+#: shortcodes/separator/separator.php:42
+msgid "Full Width"
+msgstr ""
+
+#: shortcodes/separator/separator.php:67
+msgid "Dashed"
+msgstr ""
+
+#: shortcodes/separator/separator.php:69
+msgid "Dotted"
+msgstr ""
+
+#: shortcodes/separator/separator.php:76
+msgid "Width (px or %)"
+msgstr ""
+
+#: shortcodes/separator/separator.php:82
+msgid "Thickness (px)"
+msgstr ""
+
+#: shortcodes/separator/separator.php:87
+msgid "Top Margin (px or %)"
+msgstr ""
+
+#: shortcodes/separator/separator.php:92
+msgid "Bottom Margin (px or %)"
+msgstr ""
+
+#: shortcodes/single-image/single-image.php:23
+msgid "Mikado Single Image"
+msgstr ""
+
+#: shortcodes/single-image/single-image.php:58
+msgid "Moving on Hover"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:36
+msgid "Mikado Social Share"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:47
+msgid "List"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:48
+msgid "Dropdown"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:54
+msgid "Icons Type"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:56
+msgid "Font Awesome"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:57
+msgid "Font Elegant"
+msgstr ""
+
+#: shortcodes/social-share/social-share.php:63
+msgid "Social Share Title"
+msgstr ""
+
+#: shortcodes/social-share/templates/dropdown.php:3
+msgid "Share this"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:23
+msgid "Mikado Split Section"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:36
+msgid "Image Position"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:75
+msgid "Text Tag"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:89
+msgid "Text Top Margin (px or %)"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:186
+msgid "Button Top Margin (px or %)"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:193
+msgid "Responsive Breakpoint"
+msgstr ""
+
+#: shortcodes/split-section/split-section.php:202
+msgid "Choose on which stage you want to break image and text content to be one under other"
+msgstr ""
+
+#: shortcodes/stacked-images/stacked-images.php:23
+msgid "Mikado Stacked Images"
+msgstr ""
+
+#: shortcodes/stacked-images/stacked-images.php:42
+msgid "Stack Image"
+msgstr ""
+
+#: shortcodes/stacked-images/stacked-images.php:47
+msgid "Stack Image Position"
+msgstr ""
+
+#: shortcodes/stacked-images/stacked-images.php:49
+msgid "Left Offset"
+msgstr ""
+
+#: shortcodes/stacked-images/stacked-images.php:50
+msgid "Right Offset"
+msgstr ""
+
+#: shortcodes/tabs/tabs-item.php:22
+msgid "Mikado Tabs Item"
+msgstr ""
+
+#: shortcodes/tabs/tabs.php:22
+msgid "Mikado Tabs"
+msgstr ""
+
+#: shortcodes/tabs/tabs.php:41
+msgid "Standard"
+msgstr ""
+
+#: shortcodes/tabs/tabs.php:44
+msgid "Vertical"
+msgstr ""
+
+#: shortcodes/text-marquee/text-marquee.php:24
+msgid "Mikado Text Marquee"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:22
+msgid "Mikado Slide Content Item"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:44
+msgid "Insert padding in format: Top Right Bottom Left (e.g. 0px 0px 1px 0px)"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:49
+msgid "Content Alignment"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider-content-item.php:60
+msgid "Header/Bullets Style"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider-left-panel.php:22
+msgid "Mikado Left Sliding Panel"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider-right-panel.php:22
+msgid "Mikado Right Sliding Panel"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider.php:22
+msgid "Mikado Vertical Split Slider"
+msgstr ""
+
+#: shortcodes/vertical-split-slider/vertical-split-slider.php:32
+msgid "Enable Scrolling Animation"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:23
+msgid "Mikado Video Button"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:38
+msgid "Video Link"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:43
+msgid "Video Image"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:49
+msgid "Play Button Color"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:54
+msgid "Play Button Size (px)"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:59
+msgid "Play Button Custom Image"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:60
+#: shortcodes/video-button/video-button.php:66
+msgid "Select image from media library. If you use this field then play button color and button size options will not work"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:65
+msgid "Play Button Custom Hover Image"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:71
+msgid "Play Button Label"
+msgstr ""
+
+#: shortcodes/video-button/video-button.php:72
+msgid "Label that will be displayed under play button"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Mikado CPT"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Plugin that adds all post types needed by our theme"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Mikado Themes"
+msgstr ""

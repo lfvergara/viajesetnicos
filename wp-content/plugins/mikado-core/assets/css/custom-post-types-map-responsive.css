@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Global partials
+   ========================================================================== */
+/* Button mixins - start */
+/* Button mixins - end */
+/* ==========================================================================
+   Custom Post Types responsive styles
+   ========================================================================== */
+/* ==========================================================================
+   Team list shortcode responsive style - begin
+   ========================================================================== */
+@media only screen and (max-width: 1200px) {
+  .mkdf-team-list-holder.mkdf-tl-four-columns .mkdf-team {
+    width: 33.33333%;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 1025px) {
+  .mkdf-team-list-holder.mkdf-tl-four-columns .mkdf-team:nth-child(3n+1) {
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .mkdf-team-list-holder.mkdf-tl-five-columns .mkdf-team {
+    width: 33.33333%;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 1025px) {
+  .mkdf-team-list-holder.mkdf-tl-five-columns .mkdf-team:nth-child(3n+1) {
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .mkdf-team-list-holder.mkdf-tl-three-columns .mkdf-team {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 681px) {
+  .mkdf-team-list-holder.mkdf-tl-three-columns .mkdf-team:nth-child(2n+1) {
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .mkdf-team-list-holder.mkdf-tl-four-columns .mkdf-team {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 681px) {
+  .mkdf-team-list-holder.mkdf-tl-four-columns .mkdf-team:nth-child(2n+1) {
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .mkdf-team-list-holder.mkdf-tl-five-columns .mkdf-team {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 681px) {
+  .mkdf-team-list-holder.mkdf-tl-five-columns .mkdf-team:nth-child(2n+1) {
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .mkdf-team-list-holder .mkdf-tl-inner .mkdf-team {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Team list shortcode responsive style - end
+   ========================================================================== */
+/* ==========================================================================
+# Team responsive style - begin
+========================================================================== */
+@media only screen and (max-width: 1024px) {
+  .mkdf-team.info-bellow .mkdf-team-image {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mkdf-team.info-hover {
+    margin-bottom: 30px;
+  }
+}
+
+/* ==========================================================================
+# Team responsive style - end
+========================================================================== */
+/* ==========================================================================
+# Team slider responsive - begin
+	========================================================================== */
+@media only screen and (max-width: 680px) {
+  .mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-prev {
+    left: 0;
+  }
+  .mkdf-team-slider-holder .mkdf-owl-slider .owl-nav .owl-next {
+    right: 0;
+  }
+}
+
+/* ==========================================================================
+# Team slider responsive - end
+	========================================================================== */
+
+/*# sourceMappingURL=../../../../plugins/mikado-core/assets/css/custom-post-types-map-responsive.css.map */

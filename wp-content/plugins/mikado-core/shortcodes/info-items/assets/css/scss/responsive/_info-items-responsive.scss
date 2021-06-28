@@ -1,0 +1,18 @@
+.mkdf-info-items-holder{
+	
+	@include phone-landscape{
+		.mkdf-info-item-row{
+			display: block;
+
+			.mkdf-info-item-title{
+				display: block;
+				width: 100%;
+			}
+
+			.mkdf-info-item-description{
+				display: block;
+				padding-left: 20px;
+			}
+		}
+	}
+}

@@ -1,0 +1,94 @@
+.mkdf-team-single-holder {
+    @include mkdfRelativeHolderLayout();
+    margin-bottom: 100px;
+
+    .mkdf-ts-image-holder img{
+        display: block;
+    }
+	
+    .mkdf-name {
+        margin: 0 0 5px;
+    }
+
+    .mkdf-position {
+        display: inline-block;
+        vertical-align: middle;
+        color: #ababab;
+        margin: 0;
+
+        .mkdf-icon-shortcode {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 5px;
+
+            a, span, i {
+                color: #999;
+            }
+        }
+    }
+
+    .mkdf-team-single-content-title {
+        margin: 10px 0;
+    }
+
+    .mkdf-ts-info-row {
+	    padding: 10px 0;
+	    color: #ababab;
+	    font-size: 14px;
+
+        &:last-child{
+            border: 0;
+        }
+
+        .mkdf-ts-bio-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px 0 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .mkdf-ts-bio-info-title{
+            color: #333;
+            font-weight: 500;
+        }
+
+        .mkdf-ts-bio-info {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .mkdf-team-social{
+        margin-top: 20px;
+    }
+
+    .mkdf-icon-shortcode {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+
+        &:last-child{
+            margin: 0;
+        }
+
+        a{
+            color: #333;
+
+            &:hover{
+                color: $first-main-color;
+            }
+        }
+
+        span, i {
+            color: inherit;
+        }
+    }
+
+    .mkdf-team-single-content {
+	    @include mkdfRelativeHolderLayout();
+	    margin: 15px 0 0;
+    }
+}

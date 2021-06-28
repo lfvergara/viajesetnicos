@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Video Button shortcode start styles
+   ========================================================================== */
+
+.mkdf-video-button-holder {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+
+	@include keyframes(mkdfVideoBtnDodge) {
+		0%, 100% {
+			@include mkdfTransform(translate(-50%, -50%) scale(1));
+		}
+
+		40% {
+			@include mkdfTransform(translate(-50%, -50%) scale(.92));
+		}
+	}
+	
+	.mkdf-video-button-image {
+		@include mkdfRelativeHolderLayout();
+		
+		img {
+			display: block;
+		}
+	}
+	
+	.mkdf-video-button-play-wrapper,
+	.mkdf-video-button-play-image {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+		z-index: 1;
+        @include mkdfTransform(translate(-50%, -50%));
+
+		
+		.mkdf-video-button-play-inner {
+			position: relative;
+			display: block;
+			text-align: center;
+		}
+
+        .mkdf-video-button-label {
+            display: block;
+            font-size: 40px;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1em;
+            letter-spacing: -0.01em;
+            margin-top: 26px;
+            text-align: center;
+        }
+	}
+	
+	.mkdf-video-button-play {
+        display: block;
+		color: #fff;
+		font-size: 84px;
+        width: 1.38em;
+        height: 1.38em;
+        line-height: 1.38em;
+        background-color: $first-main-color;
+        border-radius: 100%;
+        margin: 0 auto;
+        @include mkdfTransition(background-color .3s);
+
+        &:hover {
+        	background-color: transparentize($first-main-color, .15);
+        }
+		
+		span {
+			display: block;
+			line-height: inherit;
+			
+			&:before {
+				display: block;
+				line-height: inherit;
+			}
+		}
+	}
+	
+	.mkdf-video-button-play-image {
+		will-change: transform;
+
+		&:hover {
+			@include mkdfAnimation(mkdfVideoBtnDodge .5s 1 ease);
+		}
+		
+		&.mkdf-vb-has-hover-image {
+			
+			&:hover {
+				
+				img {
+					
+					&:first-child {
+						opacity: 0;
+					}
+					
+					&:nth-child(2) {
+						opacity: 1;
+					}
+				}
+			}
+		}
+		
+		img {
+			display: block;
+			margin: 0 auto;
+			@include mkdfTransition(opacity .3s ease-in-out);
+			
+			&:first-child {
+				position: relative;
+				opacity: 1;
+			}
+			
+			&:nth-child(2) {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				opacity: 0;
+				@include mkdfTransform(translateX(-50%) translateZ(0));
+				
+				.rev_slider_wrapper & {
+					@include mkdfTransform(translateZ(0));
+				}
+			}
+		}
+	}
+}
+/* ==========================================================================
+   Video Button shortcode end styles
+   ========================================================================== */

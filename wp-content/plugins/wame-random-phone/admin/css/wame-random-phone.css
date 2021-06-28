@@ -1,0 +1,51 @@
+input[id^=whatsappme_phone] {
+  width: 15em;
+}
+
+br+.iti,
+br+input[id^=whatsappme_phone] {
+  margin-top: 5px;
+}
+
+#wame-random-phome-add {
+  margin-left: 5px;
+  border-radius: 50%;
+  vertical-align: text-top;
+  color: #0085ba;
+  cursor: pointer;
+  opacity: 1;
+}
+
+#wame-random-phome-add:hover,
+#wame-random-phome-add:focus {
+  color: #008ec2;
+}
+
+#wame-random-phome-add:active {
+  color: #0073aa;
+}
+
+@media (max-width: 782px) {
+  .form-table td input[id^=whatsappme_phone] {
+    display: inline-block;
+    width: 14em;
+  }
+
+  .iti {
+    width: 16em;
+  }
+
+  .form-table td .iti input[type=text] {
+    width: 100%;
+  }
+
+  #wame-random-phome-add {
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+  }
+
+  .whatsappme-metabox .iti {
+    width: 14em;
+  }
+}

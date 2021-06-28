@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Image With Text shortcode style - begin
+   ========================================================================== */
+
+.mkdf-image-with-text-holder {
+    @include mkdfRelativeHolderLayout();
+
+    .mkdf-iwt-link {
+    	@include mkdfAbsoluteHolderLayout();
+    	z-index: 100;
+    }
+	
+	&.mkdf-has-shadow {
+		
+		.mkdf-iwt-image {
+			box-shadow: 3px 4px 40px rgba(0, 0, 0, 0.15);
+		}
+	}
+	
+	.mkdf-iwt-image {
+		@include mkdfRelativeHolderLayout();
+		
+		a, img {
+			position: relative;
+			display: block;
+		}
+	}
+	
+	.mkdf-iwt-text-holder {
+		@include mkdfRelativeHolderLayout();
+	}
+	
+	.mkdf-iwt-title {
+		margin: 32px 0 0;
+	}
+	
+	.mkdf-iwt-text {
+		margin: 5px 0 0;
+	}
+	
+	/***** Custom Link Behavior Style - begin *****/
+	
+	&.mkdf-image-behavior-custom-link {
+		.mkdf-iwt-image:after {
+			@include mkdfAbsoluteHolderLayout();
+			content: '';
+			background-color: rgba($default-heading-color, .7);
+			opacity: 0;
+			@include mkdfTransition(opacity .6s);
+		}
+
+		.mkdf-iwt-text-holder {
+			position: absolute;
+			top: 0;
+			left: 0; 
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			opacity: 0;
+			@include mkdfTransition(opacity .6s);
+
+			.mkdf-iwt-title {
+				margin: 0;
+			}
+
+			.mkdf-iwt-text {
+				font-family: $additional-text-font;
+				font-weight: 700;
+				font-style: italic;
+				font-size: 20px;
+			}
+		}
+
+		&:hover {
+			.mkdf-iwt-image:after,
+			.mkdf-iwt-text-holder {
+				opacity: 1;
+			}
+		}
+	}
+	
+	/***** Custom Link Behavior Style - end *****/
+	
+	/***** Lightbox Behavior Style - begin *****/
+	
+	&.mkdf-image-behavior-lightbox {
+		
+		.mkdf-iwt-image {
+			
+			a {
+				
+				&:hover {
+					
+					&:after {
+						opacity: 1;
+					}
+				}
+				
+				&:after {
+					@include mkdfAbsoluteHolderLayout();
+					content: '';
+					background-color: rgba($default-heading-color, .7);
+					opacity: 0;
+					@include mkdfTransition(opacity .6s);
+				}
+			}
+		}
+	}
+	
+	/***** Lightbox Behavior Style - end *****/
+	
+	/***** Zoom Behavior Style - begin *****/
+	
+	&.mkdf-image-behavior-zoom {
+		
+		.mkdf-iwt-image {
+			overflow: hidden;
+			
+			.touch & {
+				cursor: pointer;
+			}
+			
+			&:hover {
+				
+				img {
+					@include mkdfTransform(scale(1.04));
+				}
+			}
+			
+			img {
+				-webkit-transition: -webkit-transform .3s ease-in-out;
+				-moz-transition: -moz-transform .3s ease-in-out;
+				transition: transform .3s ease-in-out;
+				@include mkdfTransform(scale(1));
+			}
+		}
+	}
+	
+	/***** Zoom Behavior Style - end *****/
+	
+	/***** Grayscale Behavior Style - begin *****/
+	
+	&.mkdf-image-behavior-grayscale {
+		
+		.mkdf-iwt-image {
+			overflow: hidden;
+			
+			.touch & {
+				cursor: pointer;
+			}
+			
+			&:hover {
+				
+				img {
+					-webkit-filter: grayscale(0);
+					filter: none;
+				}
+			}
+			
+			img {
+				filter: url('img/desaturate.svg#grayscale');
+				-webkit-filter: grayscale(100%);
+				-moz-filter: grayscale(100%);
+				filter: gray;
+				filter: grayscale(100%);
+				@include mkdfTransition(all .3s ease-in-out);
+			}
+		}
+	}
+	
+	/***** Grayscale Behavior Style - end *****/
+}
+/* ==========================================================================
+   Image With Text shortcode style - end
+   ========================================================================== */

@@ -1,0 +1,109 @@
+
+/* Gallery type styles
+   ========================================================================== */
+
+.mkdf-tours-gallery-item {
+	@include mkdfRelativeHolderLayout();
+	
+	.touch & {
+		cursor: pointer;
+	}
+
+	&.mkdf-tours-enable-overlay {
+		.mkdf-tours-gallery-item-image:after{
+			content:'';
+			position: absolute;
+			top:0;
+			left:0;
+			height: 100%;
+			width: 100%;
+			background-color: rgba(0, 0, 0, 0.2);
+			z-index: -1;
+			@include mkdfTransition(opacity 1s cubic-bezier(0.29, 0.22, 0.11, 1));
+		}
+	}
+	
+	.mkdf-tours-gallery-item-image-holder {
+		@include mkdfRelativeHolderLayout();
+	}
+	
+	.mkdf-tours-gallery-item-image {
+		@include mkdfRelativeHolderLayout();
+		overflow: hidden;
+		
+		img {
+			position: relative;
+			vertical-align: middle;
+			z-index: -5;
+		}
+	}
+	
+	.mkdf-tours-gallery-item-content-holder {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		padding: 15px 30px;
+		box-sizing: border-box;
+		@include mkdfTransition(all .3s cubic-bezier(0.29, 0.22, 0.11, 1.33));
+	}
+	
+	.mkdf-tours-gallery-item-content-inner {
+		@include mkdfRelativeHolderLayout();
+		overflow: hidden;
+	}
+	
+	.mkdf-tours-gallery-title-holder {
+		display: table;
+		width: 100%;
+		margin-bottom: 3px;
+		
+		.mkdf-tour-title {
+			display: table-cell;
+			vertical-align: top;
+			color: #fff;
+			margin: 0;
+		}
+		
+		.mkdf-tours-gallery-item-price-holder {
+			position: relative;
+			top: 1px;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: right;
+		}
+	}
+
+	.mkdf-tours-gallery-item-destination-holder{
+		color: $first-main-color;
+		margin: 0 0 12px;
+
+		a {
+			position: relative;
+			z-index: 20;
+		}
+	}
+
+	.mkdf-tour-item-label {
+		z-index: 30;
+	}
+	
+	.mkdf-tours-gallery-item-excerpt {
+		position: relative;
+		color: #fff;
+	}
+	
+	.mkdf-tours-gallery-item-excerpt-inner {
+		@include mkdfRelativeHolderLayout();
+		margin: 4px 0 22px;
+	}
+
+	.mkdf-tours-gallery-item-link {
+		@include mkdfAbsoluteHolderLayout();
+		z-index: 10;
+	}	
+}
+
+/* Gallery type styles end
+	========================================================================== */

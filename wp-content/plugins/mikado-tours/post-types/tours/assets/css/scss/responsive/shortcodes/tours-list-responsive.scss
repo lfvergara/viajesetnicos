@@ -1,0 +1,56 @@
+.mkdf-tours-filter-horizontal{
+
+	@include ipad-portrait {
+		.mkdf-tours-filter-col {
+			width: 50%;
+			padding: 5px 0;
+		}
+		.mkdf-tours-filters-fields-holder .mkdf-tours-filter-submit-field-holder {
+			width: 50%;
+			padding: 5px;
+			margin: 0 -5px;
+		}
+	}
+
+	@include phone-landscape {		
+		.mkdf-grid {
+			width: 100%;
+			padding: 30px 10px;
+		}
+	}
+
+	@include phone-portrait{
+		.mkdf-tours-filter-col{
+			width: 100%;
+			padding: 5px 10px;
+		}
+		.mkdf-tours-filters-fields-holder .mkdf-tours-filter-submit-field-holder{
+			width: 100%;
+			padding: 5px 15px;
+		}
+
+	}
+}
+
+.mkdf-tours-list-item{
+	@include phone-landscape{
+		.mkdf-tours-list-item-image-holder{
+			display: block;
+			width: 100%;
+			padding: 0;
+
+			a{
+				position: relative;
+			}
+
+			img{
+				display: block;
+			}
+		}
+
+		.mkdf-tours-list-item-content-holder{
+			display: block;
+			padding: 25px 0 0;
+		}
+	}
+}
