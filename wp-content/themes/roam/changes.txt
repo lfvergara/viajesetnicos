@@ -1,0 +1,17 @@
+1.2
+- Added WooCommerce 3.4.2 compatibility
+- Added compatibility with PHP 7.2
+- Updated Visual Composer to 5.4.7
+- Updated Revolution Slider to 5.4.7.4
+- Updated Envato Market plugin to 2.0.0
+
+1.1
+- Added WooCommerce 3.2.6 compatibility
+- Added Envato Market plugin as required
+- Added recommended plugins (WooCommerce and Contact Form 7)
+- Updated Visual Composer to 5.4.5
+- Updated Revolution Slider to 5.4.5.6
+- Updated Mikado Core to 1.0.1
+- Updated Mikado Membership to 1.0.1
+- Improved menu import functionality
+- Minor style improvements
