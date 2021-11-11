@@ -339,7 +339,7 @@ if(!function_exists('mkdf_tours_get_tour_price_grupo_html')) {
 	function mkdf_tours_get_tour_price_grupo_html($tour_id = null) {
 		$tour_id = empty($tour_id) ? get_the_ID() : $tour_id;
 
-		$price          = mkdf_tours_get_tour_price_grupo($tour_id);
+		$price          = mkdf_tours_get_tour_price($tour_id);
 		$discount_price = mkdf_tours_get_tour_discount_price($tour_id);
 
 		$holder_class = array('mkdf-tours-price-holder');
