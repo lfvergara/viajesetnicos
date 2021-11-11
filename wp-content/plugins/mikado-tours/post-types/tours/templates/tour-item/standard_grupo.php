@@ -59,7 +59,7 @@ if (!isset($display_label)){
 		<div class="mkdf-tours-standard-item-bottom-content">
 			<?php if(mkdf_tours_get_tour_duration()) : ?>
 				<div class="mkdf-tours-standard-item-bottom-item">
-					<?php echo mkdf_tours_get_tour_duration_html(); ?>
+					<b><?php echo mkdf_tours_get_tour_duration_html(); ?></b>
 				</div>
 			<?php endif; ?>
 
