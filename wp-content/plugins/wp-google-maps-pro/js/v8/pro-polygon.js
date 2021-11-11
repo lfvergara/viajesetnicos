@@ -310,8 +310,10 @@ jQuery(function($) {
 		//this.centroid = this.getCenterApprox();
 		
 		this.centroid = this.getCentroid();
-
+		
 		this.infoWindow.setPosition(this.centroid);
+
+		this.infoWindow.element.classList.add('ol-info-window-polygon');
 
 		if(this.map.settings.click_open_link == 1 && this.link && this.link.length){
 			if(WPGMZA.settings.wpgmza_settings_infowindow_links == "yes"){

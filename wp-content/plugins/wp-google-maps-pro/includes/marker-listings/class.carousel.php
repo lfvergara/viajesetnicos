@@ -78,8 +78,8 @@ class Carousel extends \WPGMZA\MarkerListing {
 		
 		if($this->hideDirectionsLink && $el = $item->querySelector('.wpgmza_marker_directions_link'))
 			$el->remove();
-		
-		if($this->hideImage && $el = $item->querySelector('.wpgmza_map_image'))
+
+		if($this->hideImage && $el = $item->querySelector('.wpgmza-gallery-container'))
 			$el->remove();
 	}
 	

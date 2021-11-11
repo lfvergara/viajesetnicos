@@ -45,8 +45,17 @@ class SettingsPage extends Page {
 			// NB: Prevent slashes accumulating in paths on Windows machines
 			$data			= array_map('stripslashes', $_POST);
 
-			// KSES to stop Authenticated XSS, and just generally to improve the safety of the stored data
-			$data 			= array_map('wp_kses_post', $data);
+			// Improved KSES cleanup to support the custom scripts, while still cleaning text inputs like the GDPR overrides
+			foreach($data as $key => $value){
+				if(is_string($value)){
+					if($key === "wpgmza_custom_css" || $key === "wpgmza_custom_js"){
+						// Skip custom scripts, they should not be KSES cleaned
+						continue;
+					}
+
+					$data[$key] = wp_kses_post($value);
+				}
+			}
 			
 			$this->document->populate($data);
 			

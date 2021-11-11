@@ -360,28 +360,32 @@ jQuery(function($) {
 	 * @return object
 	 */
 	WPGMZA.GoogleMap.prototype.getBounds = function() {
-		
-		var bounds = this.googleMap.getBounds();
-		var northEast = bounds.getNorthEast();
-		var southWest = bounds.getSouthWest();
-		
 		var nativeBounds = new WPGMZA.LatLngBounds({});
 		
-		nativeBounds.north = northEast.lat();
-		nativeBounds.south = southWest.lat();
-		nativeBounds.west = southWest.lng();
-		nativeBounds.east = northEast.lng();
-		
-		// Backward compatibility
-		nativeBounds.topLeft = {
-			lat: northEast.lat(),
-			lng: southWest.lng()
-		};
-		
-		nativeBounds.bottomRight = {
-			lat: southWest.lat(),
-			lng: northEast.lng()
-		};
+		try {
+			var bounds = this.googleMap.getBounds();
+			var northEast = bounds.getNorthEast();
+			var southWest = bounds.getSouthWest();
+			
+			
+			nativeBounds.north = northEast.lat();
+			nativeBounds.south = southWest.lat();
+			nativeBounds.west = southWest.lng();
+			nativeBounds.east = northEast.lng();
+			
+			// Backward compatibility
+			nativeBounds.topLeft = {
+				lat: northEast.lat(),
+				lng: southWest.lng()
+			};
+			
+			nativeBounds.bottomRight = {
+				lat: southWest.lat(),
+				lng: northEast.lng()
+			};
+		} catch (ex){
+			/* Just return a default, instead of throwing an error */
+		}
 		
 		return nativeBounds;
 	}

@@ -174,8 +174,8 @@ class RestAPI extends Factory
 		$data = preg_replace('/-/', '/', $data);
 		$data = preg_replace('/ /', '+', $data);
 		$data = base64_decode($data);
-		
-		
+
+
 		if(!function_exists('zlib_decode'))
 			throw new \Exception('Server does not support inflate');
 		
@@ -206,6 +206,7 @@ class RestAPI extends Factory
 			// TODO: Legacy markerIDs was a string, because this was historically more compact than POSTing an array. This can be altered, but the marker listing modules will have to be adjusted to cater for that
 			$request['markerIDs'] = implode(',', $markerIDs);
 		}
+
 		return $request;
 	}
 	

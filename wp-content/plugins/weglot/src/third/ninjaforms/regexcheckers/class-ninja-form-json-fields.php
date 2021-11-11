@@ -20,5 +20,5 @@ class Ninja_Form_Json_Fields {
 
 	const VAR_NUMBER = 1;
 
-	public static $KEYS = array( 'label', 'help_text', 'value' );
+	public static $KEYS = array( 'label', 'help_text' );
 }

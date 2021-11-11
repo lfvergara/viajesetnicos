@@ -36,16 +36,22 @@ jQuery(function($) {
 			this.directionStartMarker = WPGMZA.Marker.createInstance({
 				position: new WPGMZA.LatLng( this.directionLeg.start_location.lat(), this.directionLeg.start_location.lng() ),
 				icon: this.map.settings.directions_route_origin_icon ? this.map.settings.directions_route_origin_icon : "",
+				retina: this.map.settings.directions_origin_retina,
 				disableInfoWindow: true
 			});
+
+			this.directionStartMarker._icon.retina = this.directionStartMarker.retina;
 
 			this.map.addMarker(this.directionStartMarker);
 
 			this.directionEndMarker = WPGMZA.Marker.createInstance({
 				position: new WPGMZA.LatLng( this.directionLeg.end_location.lat(), this.directionLeg.end_location.lng() ),
 				icon: this.map.settings.directions_route_destination_icon ? this.map.settings.directions_route_destination_icon : "",
+				retina: this.map.settings.directions_destination_retina,
 				disableInfoWindow: true
 			});
+
+			this.directionEndMarker._icon.retina = this.directionEndMarker.retina;
 
 			this.map.addMarker(this.directionEndMarker);
 		}

@@ -26,7 +26,7 @@ class Option_Service_Weglot {
 	protected $slugs_cache = null;
 
 	protected $options_from_api = null;
-	protected $slugs_from_api   = null;
+	protected $slugs_from_api = null;
 
 	/**
 	 * @var array
@@ -85,17 +85,18 @@ class Option_Service_Weglot {
 	/**
 	 * Get options default
 	 *
-	 * @since 2.0
 	 * @return array
+	 * @since 2.0
 	 */
 	public function get_options_default() {
 		return $this->options_default;
 	}
 
 	/**
-	 * @since 3.0.0
 	 * @param string $api_key
+	 *
 	 * @return array
+	 * @since 3.0.0
 	 */
 	protected function get_options_from_cdn_with_api_key( $api_key ) {
 		if ( $this->options_cdn ) {
@@ -111,6 +112,7 @@ class Option_Service_Weglot {
 			$options = get_transient( 'weglot_cache_cdn', false );
 			if ( $options ) {
 				$this->options_cdn = $options;
+
 				return array(
 					'success' => true,
 					'result'  => $this->options_cdn,
@@ -150,10 +152,11 @@ class Option_Service_Weglot {
 	}
 
 	/**
-	 * @since 3.0.0
 	 * @param string $api_key
-	 * @param array  $destinations_languages
+	 * @param array $destinations_languages
+	 *
 	 * @return array
+	 * @since 3.0.0
 	 */
 	protected function get_slugs_from_cache_with_api_key( $api_key, $destinations_languages ) {
 		if ( $this->slugs_cache ) {
@@ -166,6 +169,7 @@ class Option_Service_Weglot {
 			$slugs = get_transient( 'weglot_slugs_cache', false );
 			if ( false !== $slugs ) {
 				$this->slugs_cache = $slugs;
+
 				return $this->slugs_cache;
 			}
 		}
@@ -181,9 +185,10 @@ class Option_Service_Weglot {
 	}
 
 	/**
-	 * @since 3.0.0
 	 * @param string $api_key
+	 *
 	 * @return array
+	 * @since 3.0.0
 	 */
 	public function get_options_from_api_with_api_key( $api_key ) {
 		if ( $this->options_from_api ) {
@@ -228,6 +233,7 @@ class Option_Service_Weglot {
 			}
 			$this->options_from_api = $options;
 			set_transient( 'weglot_cache_cdn', $options, apply_filters( 'weglot_get_options_from_cdn_cache_duration', 300 ) );
+
 			return array(
 				'success' => true,
 				'result'  => $options,
@@ -240,8 +246,9 @@ class Option_Service_Weglot {
 	}
 
 	/**
-	 * @param string                 $api_key
+	 * @param string $api_key
 	 * @param $destinations_languages
+	 *
 	 * @return array
 	 * @since 3.0.0
 	 */
@@ -280,6 +287,7 @@ class Option_Service_Weglot {
 
 		set_transient( 'weglot_slugs_cache', $slugs, apply_filters( 'weglot_get_slugs_cache_duration', 0 ) );
 		$this->slugs_from_api = $slugs;
+
 		return $slugs;
 	}
 
@@ -298,6 +306,7 @@ class Option_Service_Weglot {
 			if ( ! array_key_exists( 'custom_urls', $options_v2 ) || ! $options_v2['custom_urls'] ) {
 				$options_v2['custom_urls'] = array();
 			}
+
 			return $options_v2;
 		}
 
@@ -306,6 +315,7 @@ class Option_Service_Weglot {
 
 	/**
 	 * @param bool $compatibility
+	 *
 	 * @return string
 	 * @throws Exception
 	 * @since 3.0.0
@@ -318,11 +328,13 @@ class Option_Service_Weglot {
 		}
 
 		$options = $this->get_options_from_v2();
+
 		return apply_filters( 'weglot_get_api_key', $options['api_key'] );
 	}
 
 	/**
 	 * @param bool $compatibility
+	 *
 	 * @return bool
 	 * @throws Exception
 	 * @since 3.0.0
@@ -407,8 +419,8 @@ class Option_Service_Weglot {
 	}
 
 	/**
-	 * @since 3.0.0
 	 * @return string
+	 * @since 3.0.0
 	 */
 	public function get_api_key_private() {
 		return get_option( sprintf( '%s-%s', WEGLOT_SLUG, 'api_key_private' ) );
@@ -416,9 +428,10 @@ class Option_Service_Weglot {
 
 
 	/**
-	 * @since 3.0.0
 	 * @param array $options
+	 *
 	 * @return array
+	 * @since 3.0.0
 	 */
 	public function save_options_to_weglot( $options ) {
 
@@ -448,6 +461,7 @@ class Option_Service_Weglot {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return string|null
 	 * @throws Exception
 	 * @since 3.0.0
@@ -468,6 +482,7 @@ class Option_Service_Weglot {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return array|string
 	 * @throws Exception
 	 * @since 2.0
@@ -484,6 +499,7 @@ class Option_Service_Weglot {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return string|boolean|int
 	 * @throws Exception
 	 * @since 3.0.0
@@ -514,35 +530,46 @@ class Option_Service_Weglot {
 	public function get_exclude_blocks() {
 		$exclude_blocks = $this->get_option( 'exclude_blocks' );
 
-		// WordPress
+		if ( ! function_exists( 'is_plugin_active' ) ) {
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		// WordPress.
 		$exclude_blocks[] = '#wpadminbar';
 
-		// Weglot Switcher
+		// Weglot Switcher.
 		$exclude_blocks[] = '.menu-item-weglot';
-		$exclude_blocks[] = '.menu-item-weglot a';
 
-		// Material Icons
+		// Material Icons.
 		$exclude_blocks[] = '.material-icons';
 
-		// Font Awesome
+		// Font Awesome.
 		$exclude_blocks[] = '.fas';
 		$exclude_blocks[] = '.far';
 		$exclude_blocks[] = '.fad';
 
-		// Plugin Query Monitor
-		$exclude_blocks[] = '#query-monitor';
-		$exclude_blocks[] = '#query-monitor-main';
+		// Plugin Query Monitor.
+		if ( is_plugin_active( 'query-monitor/query-monitor.php' ) ) {
+			$exclude_blocks[] = '#query-monitor';
+			$exclude_blocks[] = '#query-monitor-main';
+		}
 
-		// Plugin Woocommerce
-		$exclude_blocks[] = '.mini-cart-counter';
-		$exclude_blocks[] = '.amount'; // Added to prevent prices to pass
-		$exclude_blocks[] = 'address';
+		// Plugin Woocommerce.
+		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+			$exclude_blocks[] = '.mini-cart-counter';
+			$exclude_blocks[] = '.amount'; // Added to prevent prices to pass.
+			$exclude_blocks[] = 'address';
+		}
 
-		// Plugin SecuPress
-		$exclude_blocks[] = '#secupress-donttranslate';
+		// Plugin SecuPress.
+		if ( is_plugin_active( 'secupress/secupress.php' ) ) {
+			$exclude_blocks[] = '#secupress-donttranslate';
+		}
 
-		// Plugin Gamipress
-		$exclude_blocks[] = '.gamipress-share-button';
+		// Plugin Gamipress.
+		if ( is_plugin_active( 'gamipress/gamipress.php' ) ) {
+			$exclude_blocks[] = '.gamipress-share-button';
+		}
 
 		return apply_filters( 'weglot_exclude_blocks', $exclude_blocks );
 	}
@@ -556,6 +583,7 @@ class Option_Service_Weglot {
 
 	public function get_destination_languages() {
 		$destination_languages = $this->get_option( 'destination_language' );
+
 		return apply_filters( 'weglot_destination_languages_full', $destination_languages );
 	}
 
@@ -598,6 +626,7 @@ class Option_Service_Weglot {
 		if ( ! weglot_get_translate_amp_translation() ) {
 			$exclude_urls[] = array( weglot_get_service( 'Amp_Service_Weglot' )->get_regex(), null );
 		}
+
 		return apply_filters( 'weglot_exclude_urls', $exclude_urls );
 	}
 
@@ -630,9 +659,10 @@ class Option_Service_Weglot {
 
 
 	/**
-	 * @since 2.0
 	 * @param array $options
+	 *
 	 * @return Option_Service_Weglot
+	 * @since 2.0
 	 */
 	public function set_options( $options ) {
 
@@ -646,8 +676,8 @@ class Option_Service_Weglot {
 	}
 
 	/**
-	 * @since 3.0.0
 	 * @return array|false
+	 * @since 3.0.0
 	 */
 	public function get_options_bdd_v3() {
 		return get_option( sprintf( '%s-%s', WEGLOT_SLUG, 'v3' ), $this->options_bdd_default );
@@ -656,7 +686,8 @@ class Option_Service_Weglot {
 	/**
 	 *
 	 * @param string $key
-	 * @param mixed  $value
+	 * @param mixed $value
+	 *
 	 * @return Option_Service_Weglot
 	 */
 	public function set_option_by_key( $key, $value ) {
@@ -666,10 +697,13 @@ class Option_Service_Weglot {
 		$options[ $key ] = $value;
 
 		$this->set_options( $options );
+
 		return $this;
 	}
+
 	/**
 	 * @param string $key
+	 *
 	 * @return mixed
 	 */
 	public function get_option_by_key_v3( $key ) {

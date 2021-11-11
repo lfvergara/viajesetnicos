@@ -59,9 +59,9 @@ class AdminMapDataTable extends DataTable
 			switch($name) {
 				case 'mark':
 				
-					$columns[$key] = "REPLACE(\"
-						<input type='checkbox' name='mark' data-map-id='$placeholder'/>
-					\", \"$placeholder\", id) AS mark";
+					$columns[$key] = "REPLACE('
+						<input type=\'checkbox\' name=\'mark\' data-map-id=\'$placeholder\'/>
+					', '$placeholder', id) AS mark";
 					
 					break;
 				

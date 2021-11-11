@@ -224,12 +224,19 @@ jQuery(function($) {
 				visible: false
 			};
 			
-			if(this.map.settings.upload_default_sl_marker && this.map.settings.upload_default_sl_marker.length)
+			if(this.map.settings.upload_default_sl_marker && this.map.settings.upload_default_sl_marker.length){
 				options.icon = this.map.settings.upload_default_sl_marker;
+
+				if(this.map.settings.upload_default_sl_marker_retina){
+					options.retina = true;
+				}
+			}
 			
 			this._marker = WPGMZA.Marker.createInstance(options);
 			this._marker.disableInfoWindow = true;
 			this._marker.isFilterable = false;
+
+			this._marker._icon.retina = this._marker.retina;
 			
 			if(this.map.settings.wpgmza_sl_animation == 1)
 				this._marker.setAnimation(WPGMZA.Marker.ANIMATION_BOUNCE);

@@ -15,6 +15,6 @@
 	"homepage": "https://github.com/weglot/weglot-php#readme",
 	"devDependencies": {},
 	"dependencies": {
-		"@weglot/languages": "^1.9.0"
+		"@weglot/languages": "latest"
 	}
 }

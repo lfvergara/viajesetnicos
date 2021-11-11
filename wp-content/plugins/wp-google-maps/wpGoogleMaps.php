@@ -3,7 +3,7 @@
 Plugin Name: WP Google Maps
 Plugin URI: https://www.wpgmaps.com
 Description: The easiest to use Google Maps plugin! Create custom Google Maps with high quality markers containing locations, descriptions, images and links. Add your customized map to your WordPress posts and/or pages quickly and easily with the supplied shortcode. No fuss.
-Version: 8.1.13
+Version: 8.1.18
 Author: WP Google Maps
 Author URI: https://www.wpgmaps.com
 Text Domain: wp-google-maps
@@ -12,6 +12,52 @@ Domain Path: /languages
 
 
 /*
+ * 8.1.18 - 2021-11-02
+ * Improved sanitization, validation and escaping. Improving user editable content management, trace calls, and temporary variables
+ * Improved sanitization, validation and escaping on legacy code base. Code largely unused but has been addressed for additional security
+ * Removed polygons labels settings placeholder when in OpenLayers engine, this is not supported by OpenLayers presently
+ * Removed legacy code which loaded internal version of CodeMirror
+ * Removed legacy code which allowed manual jQuery version to be loaded. This has been disabled for some time, however, code is now fully deprecated
+ * Deprecated some legacy functionality
+ * Updated stable tag to reflect version number correctly
+ *
+ * 8.1.17 - 2021-10-18
+ * Improved marker editor geocode usage to only geocode when an address has changed, or is being added for the first time. (Reduced API calls due to usage)
+ * Fixed issue where editing a marker which has already been position adusted would trigger a geocode on the original address, moving the marker back to the original placement
+ * Fixed issue where map preview would not load on some elementor pages (Preview view only)
+ * Fixed issue where RTL sites would misplace markers in OpenLayers
+ * Fixed issue where StreetView icon would not show on some websites (Theme dependent)
+ * Fixed issue where SQL quotation mark usage for actions on marker, map, and features (trait) would cause datatable failures 
+ * Removed uses of 'SQL_CALC_FOUND_ROWS' AND 'FOUND_ROWS' in queries to ensure MySQL 8.0.17 and above compatibility
+ *
+ * 8.1.16 - 2021-09-20
+ * Fixed issue where map editor would not initialize on some older WordPress versions 
+ * Fixed issue where admin bar scroll offset would sometimes be undefined
+ * Updated Real Cookie Banner integration, for improved stability
+ *
+ * 8.1.15 - 2021-09-01
+ * Fixed issue where special symbols would be overprocessed by the KSES sanitizer
+ * Fixed issue where Avada Alert icons would not show due to our icon libraries loading in post/page editor
+ * Fixed issue where modern store locator would not display correctly in OpenLayers 
+ * Remove Klokantech 3D tileserver as this does not appear to be supported (OpenLayers)
+ * Added MapTiler Streets, Outdoor, Pastel, Basic (OpenLayers)
+ * Added indicator for most tilesets that require an API key (OpenLayers)
+ * Added preinit event delegate
+ * Added global initMaps method
+ * Added global onScroll method
+ * Added core integration for Real Cookie Banner integration
+ * Updated it_IT translation file (Thanks to Alessio Cornale)
+ * Updated Stamen Watercolor tileset to point to HTTP host (OpenLayers)
+ * Updated OpenPtMap tileset to point to HTTP host (OpenLayers)
+ *
+ * 8.1.14 - 2021-07-28
+ * Fixed issue where custom scripts (CSS & JS) would be html_entities encoded by the wp_kses_post function, causing custom scripts to run unpredictably
+ * Fixed issue where uncaught exception would cause errors to show on the frontend, although it is gracefully handled
+ * Fixed issue where carousel time placeholder had an unclosed attribute
+ * Resized credit images to standard sizes (Reduction in file size)
+ * Resized interface images and changed color spaces (Reduction in file size) (Thanks to lowwebtech on GitHub)
+ * Tested up to WordPress 5.8 
+ *
  * 8.1.13 - 2021-06-15
  * Fixed issue where Authenticated Persistent XSS could be executed on any CRUD module. Uses wp_kses_post for cleanup. Applies to Markers, Polygons, Polylines and Shapes (Thanks to Visse) 
  * Fixed issue where Authenticated Persistent XSS could be executed on GDPR settings fields. This was resolved by adding wp_kses_post to all settings fields (Thanks to Visse) 

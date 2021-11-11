@@ -12,7 +12,7 @@ class MapEditPage extends Page
 		global $wpgmza_pro_version;
 		
 		if($map_id === null)
-			$map_id = $_REQUEST['map_id'];
+			$map_id = intval($_REQUEST['map_id']);
 
 
 
@@ -182,7 +182,7 @@ class MapEditPage extends Page
 		if (isset($_GET) && $_GET['action'] == 'create-map-page' && isset($_GET['map_id'])) {
 			
 			// NB: Suggest using $this->map->id, global functions should be dropped
-	    	$res = wpgmza_get_map_data($_GET['map_id']);
+	    	$res = wpgmza_get_map_data(intval($_GET['map_id']));
 	    	
 	        // Set the post ID to -1. This sets to no action at moment
 	        $post_id = -1;
@@ -219,7 +219,7 @@ class MapEditPage extends Page
 		                    'post_type'         =>   'page'
 		                )
 		            );
-		            echo '<script>window.location.href = "post.php?post='.$post_id.'&action=edit";</script>';
+		            echo '<script>window.location.href = "post.php?post='.intval($post_id).'&action=edit";</script>';
 		            return;
 				} else {
 				    $loop_posts->the_post();
@@ -238,7 +238,7 @@ class MapEditPage extends Page
 		                )
 		            );
 		            
-		            echo '<script>window.location.href = "post.php?post='.$post_id.'&action=edit";</script>';
+		            echo '<script>window.location.href = "post.php?post='.intval($post_id).'&action=edit";</script>';
 		            return;
 				}
 			} else {
@@ -328,7 +328,7 @@ class MapEditPage extends Page
 		$this->map->set($data);
 		
 		// Done! Redirect to the specified URL
-		wp_redirect($_POST['redirect_to']);
+		wp_redirect(strip_tags($_POST['redirect_to']));
 	}
 
 }

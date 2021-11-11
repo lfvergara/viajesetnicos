@@ -242,6 +242,10 @@ class ProStoreLocator extends StoreLocator
 		$document
 			->querySelectorAll("select.wpgmza-radius")
 			->setAttribute("id", "radiusSelect_{$this->map->id}");
+
+		$document
+			->querySelectorAll("label.wpgmza-radius")
+			->setAttribute("for", "radiusSelect_{$this->map->id}");
 			
 		// Wrap search button
 		$div = $document->createElement("div");

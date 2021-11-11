@@ -214,10 +214,8 @@ jQuery(function($) {
 	
 	WPGMZA.ModernMarkerListingMarkerView.prototype.onZoom = function(event)
 	{
-		var map = MYMAP[this.map_id].map;
-		
-		map.setCenter(this.focusedMarker.getPosition());
-		map.setZoom(14);
+		this.map.setCenter(this.marker.getPosition());
+		this.map.setZoom(14);
 	}
 	
 });

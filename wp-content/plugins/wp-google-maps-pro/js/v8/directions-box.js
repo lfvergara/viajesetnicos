@@ -286,6 +286,11 @@ jQuery(function($) {
 	
 	WPGMZA.DirectionsBox.prototype.getAjaxParameters = function()
 	{
+		/*
+		 * Unit system should be a new setting
+		 *
+		 * This will act as a typecast for now, but we should move away from this (Unit system not ported to OL)
+		*/
 		var request = {
 			origin: 					this.from,
 			destination:				this.to,
@@ -293,7 +298,8 @@ jQuery(function($) {
 			avoidHighways:				this.avoidHighways,
 			avoidTolls:					this.avoidTolls,
 			avoidFerries:				this.avoidFerries,
-			travelMode:					this.travelMode
+			travelMode:					this.travelMode,
+			unitSystem:  				this.map.settings.store_locator_distance
 		};
 		
 		var addresses = this.getWaypointAddresses();
@@ -648,8 +654,19 @@ jQuery(function($) {
 			}
 		}
 		
-		address = marker.address;
-		coords = marker.getPosition().toString();
+		if(marker){
+			address = marker.address;
+			coords = marker.getPosition().toString();
+		} else {
+			//Add support for non marker features that have direction links in the info-window
+			var arbLatLng = $(event.currentTarget).data('latlng');
+			if(arbLatLng){
+				coords = arbLatLng;
+				marker = {
+					address : coords
+				};
+			}
+		}
 		
 		if(map.directionsBox.openExternal)
 			window.open(map.directionsBox.getExternalURL({marker: marker}));

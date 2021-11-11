@@ -445,9 +445,9 @@ function wpgmaps_category_head() {
         if (isset($_POST['wpgmza_save_marker_category'])){
             
             
-            $wpgmaps_category_name = stripslashes($_POST['wpgmaps_marker_category_name']);
-            $wpgmaps_category_marker = esc_attr($_POST['upload_default_category_marker']);
-			$wpgmza_category_image = esc_attr($_POST['category_image']);
+            $wpgmaps_category_name = sanitize_text_field(stripslashes($_POST['wpgmaps_marker_category_name']));
+            $wpgmaps_category_marker = sanitize_text_field(esc_attr($_POST['upload_default_category_marker']));
+			$wpgmza_category_image = sanitize_text_field(esc_attr($_POST['category_image']));
 			
 			$wpgmaps_category_retina = (isset($_POST['retina']) ? 1 : 0);
 			
@@ -541,7 +541,7 @@ function wpgmaps_category_head() {
             global $wpgmza_tblname_categories;
             global $wpgmza_tblname_category_maps;
             $wpgmaps_cid = esc_attr($_POST['wpgmaps_marker_category_id']);
-            if ( !isset($_POST['wpgmaps_marker_category_name'] ) ) { $wpgmaps_category_name = "Unnamed category"; } else { $wpgmaps_category_name = esc_attr($_POST['wpgmaps_marker_category_name']); }
+            if ( !isset($_POST['wpgmaps_marker_category_name'] ) ) { $wpgmaps_category_name = "Unnamed category"; } else { $wpgmaps_category_name = esc_attr(sanitize_text_field($_POST['wpgmaps_marker_category_name'])); }
             
             if ( !isset($_POST['assigned_to_map'] ) ) { $_POST['assigned_to_map'][0] = __( "All", "wp-google-maps" ); }
 
@@ -549,8 +549,8 @@ function wpgmaps_category_head() {
 
             $cat_priority = isset( $_POST['wpgmaps_marker_category_priority'] ) ? intval( $_POST['wpgmaps_marker_category_priority'] ) : 0;
 
-            $wpgmaps_category_marker = esc_attr($_POST['upload_default_category_marker']);
-			$wpgmza_category_image = esc_attr($_POST['upload_default_category_marker']);
+            $wpgmaps_category_marker = sanitize_text_field(esc_attr($_POST['upload_default_category_marker']));
+			$wpgmza_category_image = sanitize_text_field(esc_attr($_POST['upload_default_category_marker']));
 			
 			$wpgmaps_category_retina = (isset($_POST['retina']) ? 1 : 0);
 			

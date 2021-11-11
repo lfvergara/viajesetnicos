@@ -103,7 +103,7 @@ jQuery(function($) {
 		 * @return {number} The scroll offset
 		 */
 		getScrollAnimationOffset: function() {
-			return (WPGMZA.settings.scroll_animation_offset || 0) + $("#wpadminbar").height();
+			return (WPGMZA.settings.scroll_animation_offset || 0) + ($("#wpadminbar").height() || 0);
 		},
 		
 		getScrollAnimationDuration: function() {
@@ -744,6 +744,34 @@ jQuery(function($) {
 				jQuery('body').find('.wpgmza-popup-notification').remove();
 			}, time);
 			
+		},
+
+		initMaps: function(){
+			$(document.body).find(".wpgmza_map:not(.wpgmza-initialized)").each(function(index, el) {
+				if(el.wpgmzaMap) {
+					console.warn("Element missing class wpgmza-initialized but does have wpgmzaMap property. No new instance will be created");
+					return;
+				}
+				
+				el.wpgmzaMap = WPGMZA.Map.createInstance(el);
+			});
+			
+			WPGMZA.Map.nextInitTimeoutID = setTimeout(WPGMZA.initMaps, 3000);
+		},
+
+		onScroll: function(){
+			$(".wpgmza_map").each(function(index, el) {
+				var isInView = WPGMZA.isElementInView(el);
+				if(!el.wpgmzaScrollIntoViewTriggerFlag){
+					if(isInView){
+						$(el).trigger("mapscrolledintoview.wpgmza");
+						el.wpgmzaScrollIntoViewTriggerFlag = true;
+					}
+				} else if(!isInView){
+					el.wpgmzaScrollIntoViewTriggerFlag = false;
+				}
+				
+			});
 		}
 		
 	};
@@ -775,8 +803,7 @@ jQuery(function($) {
 	}
 
 	
-	for(var key in WPGMZA_localized_data)
-	{
+	for(var key in WPGMZA_localized_data){
 		var value = WPGMZA_localized_data[key];
 		WPGMZA[key] = value;
 	}
@@ -785,134 +812,24 @@ jQuery(function($) {
 	
 	WPGMZA.settings.useLegacyGlobals = true;
 	
-	jQuery(function($) {
-		
-		$(window).trigger("ready.wpgmza");
-		
-		// Combined script warning
-		if($("script[src*='wp-google-maps.combined.js'], script[src*='wp-google-maps-pro.combined.js']").length)
-			console.warn("Minified script is out of date, using combined script instead.");
-		
-		// Check for multiple jQuery versions
-		var elements = $("script[src]").filter(function() {
-			return this.src.match(/(^|\/)jquery\.(min\.)?js(\?|$)/i);
-		});
+	$(document).on("fullscreenchange", function() {
+		wpgmzaisFullScreen = document.fullscreenElement ? true : false;
+	});
 
-		if(elements.length > 1)
-			console.warn("Multiple jQuery versions detected: ", elements);
-		
-		// Rest API
-		WPGMZA.restAPI	= WPGMZA.RestAPI.createInstance();
-		
-		if(WPGMZA.CloudAPI)
-			WPGMZA.cloudAPI	= WPGMZA.CloudAPI.createInstance();
-		
-	
-		$(document).on("fullscreenchange", function() {
-			
-			wpgmzaisFullScreen = document.fullscreenElement ? true : false;
-			
-		});
-
-		$('body').on('click',"#wpgmzaCloseChat", function(e) {
-			e.preventDefault();
-			$.ajax(WPGMZA.ajaxurl, {
-	    		method: 'POST',
-	    		data: {
-	    			action: 'wpgmza_hide_chat',
-	    			nonce: WPGMZA_localized_data.ajaxnonce
-	    		}	    		
-	    	});
-       		$('.wpgmza-chat-help').remove();
-
-			
-
-		});
-		
+	$('body').on('click',"#wpgmzaCloseChat", function(e) {
+		e.preventDefault();
+		$.ajax(WPGMZA.ajaxurl, {
+    		method: 'POST',
+    		data: {
+    			action: 'wpgmza_hide_chat',
+    			nonce: WPGMZA_localized_data.ajaxnonce
+    		}	    		
+    	});
+   		$('.wpgmza-chat-help').remove();
 	});
 	
-	$(document).ready(function(event) {
-		
-		// Array incorrectly extended warning
-		var test = [];
-		for(var key in test) {
-			console.warn("The Array object has been extended incorrectly by your theme or another plugin. This can cause issues with functionality.");
-			break;
-		}
-		
-		// Geolocation warnings
-		if(window.location.protocol != 'https:')
-		{
-			var warning = '<div class="notice notice-warning"><p>' + WPGMZA.localized_strings.unsecure_geolocation + "</p></div>";
-			
-			$(".wpgmza-geolocation-setting").first().after( $(warning) );
-		}
-		
-	});
 	
-	function onScroll(event)
-	{
-		
-		// Test if map is scrolled into view
-		$(".wpgmza_map").each(function(index, el) {
-			
-			var isInView = WPGMZA.isElementInView(el);
-			
-			if(!el.wpgmzaScrollIntoViewTriggerFlag)
-			{
-				if(isInView)
-				{
-					$(el).trigger("mapscrolledintoview.wpgmza");
-					el.wpgmzaScrollIntoViewTriggerFlag = true;
-				}
-			}
-			else if(!isInView)
-				el.wpgmzaScrollIntoViewTriggerFlag = false;
-			
-		});
-		
-	}
-	
-	$(window).on("scroll", onScroll);
-	$(document).ready(onScroll);
-	
-	$(function() {
-		
-		function initMaps()
-		{
-			$(document.body).find(".wpgmza_map:not(.wpgmza-initialized)").each(function(index, el) {
-				if(el.wpgmzaMap)
-				{
-					console.warn("Element missing class wpgmza-initialized but does have wpgmzaMap property. No new instance will be created");
-					return;
-				}
-				
-				el.wpgmzaMap = WPGMZA.Map.createInstance(el);
-			});
-			
-			WPGMZA.Map.nextInitTimeoutID = setTimeout(initMaps, 3000);
-		}
-		
-
-		if(WPGMZA.googleAPIStatus && WPGMZA.googleAPIStatus.code == "USER_CONSENT_NOT_GIVEN") {
-			if(jQuery('.wpgmza-gdpr-compliance').length <= 0){
-				$("#wpgmza_map, .wpgmza_map").each(function(index, el) {
-					$(el).append($(WPGMZA.api_consent_html));
-					$(el).css({height: "auto"});
-				});
-				
-				$("button.wpgmza-api-consent").on("click", function(event) {
-					Cookies.set("wpgmza-api-consent-given", true);
-					window.location.reload();
-				});
-			}
-			
-			return;
-		}
-
-		initMaps();
-		
-	});
+	$(window).on("scroll", WPGMZA.onScroll);
 	
 	$(document.body).on("click", "button.wpgmza-api-consent", function(event) {
 		Cookies.set("wpgmza-api-consent-given", true);
@@ -928,5 +845,76 @@ jQuery(function($) {
 		if(!event.altKey)
 			WPGMZA.altKeyDown = false;
 	});
-	
+
+	$(document.body).on('preinit.wpgmza', function(){
+		$(window).trigger("ready.wpgmza");
+		
+		// Combined script warning
+		if($("script[src*='wp-google-maps.combined.js'], script[src*='wp-google-maps-pro.combined.js']").length){
+			console.warn("Minified script is out of date, using combined script instead.");
+		}
+		
+		// Check for multiple jQuery versions
+		var elements = $("script[src]").filter(function() {
+			return this.src.match(/(^|\/)jquery\.(min\.)?js(\?|$)/i);
+		});
+
+		if(elements.length > 1){
+			console.warn("Multiple jQuery versions detected: ", elements);
+		}
+
+		// Array incorrectly extended warning
+		var test = [];
+		for(var key in test) {
+			console.warn("The Array object has been extended incorrectly by your theme or another plugin. This can cause issues with functionality.");
+			break;
+		}
+		
+		// Geolocation warnings
+		if(window.location.protocol != 'https:'){
+			var warning = '<div class="notice notice-warning"><p>' + WPGMZA.localized_strings.unsecure_geolocation + "</p></div>";
+			
+			$(".wpgmza-geolocation-setting").first().after( $(warning) );
+		}
+
+		if(WPGMZA.googleAPIStatus && WPGMZA.googleAPIStatus.code == "USER_CONSENT_NOT_GIVEN") {
+			if(jQuery('.wpgmza-gdpr-compliance').length <= 0){
+				/*$("#wpgmza_map, .wpgmza_map").each(function(index, el) {
+					$(el).append($(WPGMZA.api_consent_html));
+					$(el).css({height: "auto"});
+				});*/
+				
+				$("button.wpgmza-api-consent").on("click", function(event) {
+					Cookies.set("wpgmza-api-consent-given", true);
+					window.location.reload();
+				});
+			}
+			
+			return;
+		}
+	});
+
+	/**
+	 * We use to use the win-the-race approach with set timeouts
+	 * 
+	 * This caused immense issues with older versions of WP
+	 * 
+	 * Instead, we call an anon-func, which queues on the ready call, this controls the queue without the need for timeouts
+	 * 
+	 * While also maintaining the stack order, and the ability for consent plugins to stop ready calls early
+	*/
+	(function($){
+		$(function(){
+			WPGMZA.restAPI	= WPGMZA.RestAPI.createInstance();
+			if(WPGMZA.CloudAPI){
+				WPGMZA.cloudAPI	= WPGMZA.CloudAPI.createInstance();
+			}
+
+			$(document.body).trigger('preinit.wpgmza');
+			
+			WPGMZA.initMaps();
+			WPGMZA.onScroll();
+		});
+	})($);
+
 });

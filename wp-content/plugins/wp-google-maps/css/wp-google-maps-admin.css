@@ -2685,7 +2685,8 @@ textarea[name="wpgmza_custom_js"] {
 
 #slider-range-max,
 #zoom-on-marker-click-slider,
-#override-users-location-zoom-levels-slider
+#override-users-location-zoom-levels-slider,
+#zoom-on-marker-listing-click-slider
 {
   display: block;
   width: 50%;

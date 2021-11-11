@@ -46,8 +46,9 @@ jQuery(function($) {
 		if(WPGMZA.settings.carousel_lazyload)
 			options.lazyLoad = true;
 		
-		if(WPGMZA.settings.carouselAutoplay && !isNaN(WPGMZA.settings.carouselAutoplay))
+		if(WPGMZA.settings.carouselAutoplay && !isNaN(WPGMZA.settings.carouselAutoplay)){
 			options.autoplayTimeout = parseInt(WPGMZA.settings.carouselAutoplay);
+		}
 		
 		if(WPGMZA.settings.carousel_autoheight)
 			options.autoHeight = true;

@@ -77,7 +77,9 @@ class Cookie_Notice_Welcome_API {
 				}
 
 				// validate plan and payment method
-				$plan = in_array( $_POST['plan'], array( 'compliance_monthly', 'compliance_yearly' ), true ) ? $_POST['plan'] : false;
+				$plan = in_array( $_POST['plan'], array( 'monthly', 'yearly' ), true ) ? $_POST['plan'] : false;
+				$plan = ! empty( $plan ) ? 'compliance_' . $plan . '_notrial' : false;
+				
 				$method = in_array( $_POST['method'], array( 'credit_card', 'paypal' ), true ) ? $_POST['method'] : false;
 
 				// valid plan and payment method?
@@ -98,7 +100,7 @@ class Cookie_Notice_Welcome_API {
 						array(
 							'AppID'					=> $app_id,
 							'AdminID'				=> $admin_id, // remove later - AdminID from API response
-							'paymentMethodNonce'	=> esc_attr( $_POST['payment_nonce'] )
+							'paymentMethodNonce'	=> sanitize_text_field( $_POST['payment_nonce'] )
 						)
 					);
 					
@@ -108,8 +110,6 @@ class Cookie_Notice_Welcome_API {
 						$customer = $result;
 					}
 				}
-
-				// file_put_contents( plugin_dir_path( __FILE__ ) . "bt-customer.txt", print_r( $customer, true ) . PHP_EOL, FILE_APPEND );
 
 				// user created/received?
 				if ( empty( $customer->id ) ) {
@@ -127,83 +127,20 @@ class Cookie_Notice_Welcome_API {
 					)
 				);
 
-				// file_put_contents( plugin_dir_path( __FILE__ ) . "bt-subscription.txt", print_r( $subscription, true ) . PHP_EOL, FILE_APPEND );
-
 				// subscription assigned?
 				if ( ! empty( $subscription->error ) ) {
 					$response = $subscription->error;
 					break;
 				}
 
-				// get options
-				$app_config = get_transient( 'cookie_notice_app_config' );
-
-				// create quick config
-				$params = ! empty( $app_config ) && is_array( $app_config ) ? $app_config : array();
-
-				// cast to objects
-				foreach ( $params as $key => $array ) {
-					$object = new stdClass();
-
-					foreach ( $array as $subkey => $value ) {
-						$new_params[$key] = $object;
-						$new_params[$key]->{$subkey} = $value;	
-					}
-				}
-
-				$params = $new_params;
-				$params['AppID'] = $app_id;
-				// @todo When mutliple default languages are supported
-				$params['DefaultLanguage'] = 'en';
-
-				$response = $this->request( 'quick_config', $params );
-
-				if ( $response->status === 200 ) {
-					// notify publish app
-					$params = array( 
-						'AppID' => $app_id 
-					);
-
-					$response = $this->request( 'notify_app', $params );
-
-					if ( $response->status === 200 ) {
-						$response = true;
-						
-						// update app status
-						update_option( 'cookie_notice_status', 'active' );
-					} else {
-						// errors?
-						if ( ! empty( $response->error ) ) {
-							break;
-						}
-
-						// errors?
-						if ( ! empty( $response->message ) ) {
-							$response->error = $response->message;
-							break;
-						}
-					}
-				} else {
-					// errors?
-					if ( ! empty( $response->error ) ) {
-						$response->error = $response->error;
-						break;
-					}
-
-					// errors?
-					if ( ! empty( $response->message ) ) {
-						$response->error = $response->message;
-						break;
-					}
-				}
 				break;
 
 			case 'register':
 				$email = is_email( $_POST['email'] );
-				$pass = ! empty( $_POST['pass'] ) ? esc_attr( $_POST['pass'] ) : '';
-				$pass2 = ! empty( $_POST['pass2'] ) ? esc_attr( $_POST['pass2'] ) : '';
+				$pass = ! empty( $_POST['pass'] ) ? $_POST['pass'] : '';
+				$pass2 = ! empty( $_POST['pass2'] ) ? $_POST['pass2'] : '';
 				$terms = isset( $_POST['terms'] );
-				$language = ! empty( $_POST['language'] ) ? esc_attr( $_POST['language'] ) : 'en';
+				$language = ! empty( $_POST['language'] ) ? sanitize_text_field( $_POST['language'] ) : 'en';
 				
 				if ( ! $terms ) {
 					$response = array( 'error' => __( "Please accept the Terms of Service to proceed.", 'cookie-notice' ) );
@@ -215,7 +152,7 @@ class Cookie_Notice_Welcome_API {
 					break;
 				}
 				
-				if ( ! $pass ) {
+				if ( ! $pass || ! is_string( $pass ) ) {
 					$response = array( 'error' => __( 'Password is not allowed to be empty.', 'cookie-notice' ) );
 					break;
 				}
@@ -305,21 +242,95 @@ class Cookie_Notice_Welcome_API {
 				if ( empty( $response->data->AppID ) || empty( $response->data->SecretKey ) ) {
 					$response = array( 'error' => __( 'Unexpected error occurred. Please try again later.', 'cookie-notice' ) );
 					break;
+				} else {
+					$app_id = $response->data->AppID;
+					$secret_key = $response->data->SecretKey;
 				}
 				
 				// update options: app ID and secret key
-				Cookie_Notice()->options['general'] = wp_parse_args( array( 'app_id' => $response->data->AppID, 'app_key' => $response->data->SecretKey ), Cookie_Notice()->options['general'] );
+				Cookie_Notice()->options['general'] = wp_parse_args( array( 'app_id' => $app_id, 'app_key' => $secret_key ), Cookie_Notice()->options['general'] );
 
 				update_option( 'cookie_notice_options', Cookie_Notice()->options['general'] );
 				
-				// update app status
-				update_option( 'cookie_notice_status', 'pending' );
+				// purge cache
+				delete_transient( 'cookie_notice_compliance_cache' );
+				
+				// get options
+				// $app_config = get_transient( 'cookie_notice_app_config' );
+
+				// create quick config
+				$params = ! empty( $app_config ) && is_array( $app_config ) ? $app_config : array();
+
+				// cast to objects
+				if ( $params ) {
+					foreach ( $params as $key => $array ) {
+						$object = new stdClass();
+
+						foreach ( $array as $subkey => $value ) {
+							$new_params[$key] = $object;
+							$new_params[$key]->{$subkey} = $value;	
+						}
+					}
+					
+					$params = $new_params;
+				}
+
+				$params['AppID'] = $app_id;
+				// @todo When mutliple default languages are supported
+				$params['DefaultLanguage'] = 'en';
+
+				$response = $this->request( 'quick_config', $params );
+
+				if ( $response->status === 200 ) {
+					// notify publish app
+					$params = array( 
+						'AppID' => $app_id 
+					);
+
+					$response = $this->request( 'notify_app', $params );
+
+					if ( $response->status === 200 ) {
+						$response = true;
+						
+						// update app status
+						update_option( 'cookie_notice_status', 'active' );
+					} else {
+						// update app status
+						update_option( 'cookie_notice_status', 'pending' );
+					
+						// errors?
+						if ( ! empty( $response->error ) ) {
+							break;
+						}
+
+						// errors?
+						if ( ! empty( $response->message ) ) {
+							$response->error = $response->message;
+							break;
+						}
+					}
+				} else {
+					// update app status
+					update_option( 'cookie_notice_status', 'pending' );
+				
+					// errors?
+					if ( ! empty( $response->error ) ) {
+						$response->error = $response->error;
+						break;
+					}
+
+					// errors?
+					if ( ! empty( $response->message ) ) {
+						$response->error = $response->message;
+						break;
+					}
+				}
 				
 				break;
 
 			case 'login':
 				$email = is_email( $_POST['email'] );
-				$pass = ! empty( $_POST['pass'] ) ? esc_attr( $_POST['pass'] ) : '';
+				$pass = ! empty( $_POST['pass'] ) ? $_POST['pass'] : '';
 				
 				if ( ! $email ) {
 					$response = array( 'error' => __( 'Email is not allowed to be empty.', 'cookie-notice' ) );
@@ -402,6 +413,7 @@ class Cookie_Notice_Welcome_API {
 
 				// if no app, create one
 				if ( ! $app_exists ) {
+					
 					// create new app
 					$params = array(
 						'DomainName' => $site_title,
@@ -432,18 +444,63 @@ class Cookie_Notice_Welcome_API {
 				Cookie_Notice()->options['general'] = wp_parse_args( array( 'app_id' => $app_exists->AppID, 'app_key' => $app_exists->SecretKey ), Cookie_Notice()->options['general'] );
 
 				update_option( 'cookie_notice_options', Cookie_Notice()->options['general'] );
-				
-				// update app status
-				update_option( 'cookie_notice_status', 'pending' );
-				
-				// check if the app has an active subscription
-				if ( $app_exists->PaymentStatus === 'Active' ) {
-					$response = array( 'error' => sprintf( __( 'You have an active subscription for %s', 'cookie-notice' ), $site_url ) );
+
+				// purge cache
+				delete_transient( 'cookie_notice_compliance_cache' );
+
+				// create quick config
+				$params = array(
+					'AppID' => $app_exists->AppID,
+					'DefaultLanguage' => 'en'
+				);
+
+				$response = $this->request( 'quick_config', $params );
+
+				if ( $response->status === 200 ) {
+					// notify publish app
+					$params = array( 
+						'AppID' => $app_exists->AppID
+					);
+
+					$response = $this->request( 'notify_app', $params );
+
+					if ( $response->status === 200 ) {
+						$response = true;
+						
+						// update app status
+						update_option( 'cookie_notice_status', 'active' );
+					} else {
+						// update app status
+						update_option( 'cookie_notice_status', 'pending' );
 					
+						// errors?
+						if ( ! empty( $response->error ) ) {
+							break;
+						}
+
+						// errors?
+						if ( ! empty( $response->message ) ) {
+							$response->error = $response->message;
+							break;
+						}
+					}
+				} else {
 					// update app status
-					update_option( 'cookie_notice_status', 'active' );
-					break;
+					update_option( 'cookie_notice_status', 'pending' );
+				
+					// errors?
+					if ( ! empty( $response->error ) ) {
+						$response->error = $response->error;
+						break;
+					}
+
+					// errors?
+					if ( ! empty( $response->message ) ) {
+						$response->error = $response->message;
+						break;
+					}
 				}
+				
 				break;
 
 			case 'configure':
@@ -466,52 +523,122 @@ class Cookie_Notice_Welcome_API {
 					if ( isset( $_POST[$field] ) ) {
 						switch ( $field ) {
 							case 'cn_position':
-								$options['design']['position'] = esc_attr( $_POST[$field] );
+								// sanitize position
+								$position = sanitize_key( $_POST[$field] );
+
+								// valid position?
+								if ( in_array( $position, array( 'bottom', 'top', 'left', 'right', 'center' ), true ) )
+									$options['design']['position'] = $position;
+								else
+									$options['design']['position'] = 'bottom';
 								break;
+
 							case 'cn_color_primary':
-								$options['design']['primaryColor'] = esc_attr( $_POST[$field] );
+								// sanitize color
+								$color = sanitize_hex_color( $_POST[$field] );
+
+								// valid color?
+								if ( empty( $color ) )
+									$options['design']['primaryColor'] = '#20c19e';
+								else
+									$options['design']['primaryColor'] = $color;
 								break;
+
 							case 'cn_color_background':
-								$options['design']['bannerColor'] = esc_attr( $_POST[$field] );
+								// sanitize color
+								$color = sanitize_hex_color( $_POST[$field] );
+
+								// valid color?
+								if ( empty( $color ) )
+									$options['design']['bannerColor'] = '#ffffff';
+								else
+									$options['design']['bannerColor'] = $color;
 								break;
+
 							case 'cn_color_border':
-								$options['design']['borderColor'] = esc_attr( $_POST[$field] );
+								// sanitize color
+								$color = sanitize_hex_color( $_POST[$field] );
+
+								// valid color?
+								if ( empty( $color ) )
+									$options['design']['borderColor'] = '#5e6a74';
+								else
+									$options['design']['borderColor'] = $color;
 								break;
+
 							case 'cn_color_text':
-								$options['design']['textColor'] = esc_attr( $_POST[$field] );
+								// sanitize color
+								$color = sanitize_hex_color( $_POST[$field] );
+
+								// valid color?
+								if ( empty( $color ) )
+									$options['design']['textColor'] = '#434f58';
+								else
+									$options['design']['textColor'] = $color;
 								break;
+
 							case 'cn_color_heading':
-								$options['design']['headingColor'] = esc_attr( $_POST[$field] );
+								// sanitize color
+								$color = sanitize_hex_color( $_POST[$field] );
+
+								// valid color?
+								if ( empty( $color ) )
+									$options['design']['headingColor'] = '#434f58';
+								else
+									$options['design']['headingColor'] = $color;
 								break;
+
 							case 'cn_color_button_text':
-								$options['design']['btnTextColor'] = esc_attr( $_POST[$field] );
+								// sanitize color
+								$color = sanitize_hex_color( $_POST[$field] );
+
+								// valid color?
+								if ( empty( $color ) )
+									$options['design']['headingColor'] = '#ffffff';
+								else
+									$options['design']['headingColor'] = $color;
 								break;
+
 							case 'cn_laws':
-								$options['laws'] = array_map( 'esc_attr', $_POST[$field] );
 								$new_options = array();
 
-								foreach ( $options['laws'] as $law ) {
-									$new_options[$law] = true;
+								// any data?
+								if ( is_array( $_POST[$field] ) && ! empty( $_POST[$field] ) ) {
+									$options['laws'] = array_map( 'sanitize_text_field', $_POST[$field] );
+
+									foreach ( $options['laws'] as $law ) {
+										if ( in_array( $law, array( 'gdpr', 'ccpa' ), true ) )
+											$new_options[$law] = true;
+									}
 								}
 
 								$options['laws'] = $new_options;
 
 								// GDPR
-								if ( in_array( 'gdpr', $options['laws'] ) ) {
+								if ( array_key_exists( 'gdpr', $options['laws'] ) )
 									$options['config']['privacyPolicyLink'] = true;
-								} else {
+								else
 									$options['config']['privacyPolicyLink'] = false;
-								}
 
 								// CCPA
-								if ( in_array( 'ccpa', $options['laws'] ) ) {
+								if ( array_key_exists( 'ccpa', $options['laws'] ) )
 									$options['config']['dontSellLink'] = true;
-								} else {
+								else
 									$options['config']['dontSellLink'] = false;
-								}
 								break;
+
 							case 'cn_purposes':
-								$options['text']['bodyText'] = Cookie_Notice()->settings->cookie_messages[absint( $_POST[$field] )];
+								// sanitize purposes
+								$purposes = (int) $_POST[$field];
+
+								// get messages
+								$messages = Cookie_Notice()->settings->cookie_messages;
+
+								// valid purposes?
+								if ( array_key_exists( $purposes, $messages ) )
+									$options['text']['bodyText'] = $messages[$purposes];
+								else
+									$options['text']['bodyText'] = reset( $messages );
 								break;
 						}
 					}
@@ -531,7 +658,7 @@ class Cookie_Notice_Welcome_API {
 	}
 	
 	/**
-	 * Youzign API request.
+	 * API request.
 	 *
 	 * @param string  $action The requested action.
 	 * @param array   $_data   Parameters for the API action.
@@ -676,7 +803,7 @@ class Cookie_Notice_Welcome_API {
 				if ( is_object( $param ) )
 					$api_params[$key] = $param;
 				else
-					$api_params[$key] = esc_attr( $param );
+					$api_params[$key] = sanitize_text_field( $param );
 			}
 
 			if ( $json )
@@ -726,6 +853,8 @@ class Cookie_Notice_Welcome_API {
 			if ( ! empty( $response->error ) ) {
 				if ( $response->error == 'App is not puplised yet' )
 					$result = 'pending';
+				else
+					$result = '';
 			}
 		}
 		

@@ -125,6 +125,8 @@
     position: absolute;
     font-size: 12px;
 }
+
 .wpgmza-ol-modern-infowindow-container {
-    width: fit-content;
+    width: 100%;
+    pointer-events: painted;
 }

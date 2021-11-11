@@ -128,6 +128,8 @@ class WPGMapsImportExport{
 		global $wpgmza;
         global $WPGMZA_TABLE_NAME_CUSTOM_FIELDS;
         global $WPGMZA_TABLE_NAME_MARKERS_HAS_CUSTOM_FIELDS;
+		global $WPGMZA_TABLE_NAME_MARKERS_HAS_CATEGORIES;
+
         
         $fileName = $wpdb->prefix.'wpgmza.csv';
         
@@ -146,6 +148,8 @@ class WPGMapsImportExport{
 
         WPGMZA\CustomFields::install();
         $existing_custom_fields = $wpdb->get_results("SELECT `id`, `name` FROM $WPGMZA_TABLE_NAME_CUSTOM_FIELDS");
+
+		$marker_categories = $wpdb->get_results( "SELECT * FROM `$WPGMZA_TABLE_NAME_MARKERS_HAS_CATEGORIES`", ARRAY_A );
 
         $headerDisplayed = false;
         
@@ -189,6 +193,21 @@ class WPGMapsImportExport{
                     $data[] = $custom_field_data;
                 }
             }
+
+
+            if(isset($data['category'])){
+            	$categories = array();
+				foreach($marker_categories as $categoryIndex => $category){
+					if(!in_array($category['category_id'], $categories) && intval($data['id']) === intval($category['marker_id'])){
+						$categories[] = $category['category_id'];
+					}
+				}
+				
+				if(!empty($categories)){
+					$data['category'] = implode(', ', $categories);
+				}
+			}
+
 
             // Put the data into the stream
             fputcsv($fh, $data, ",", '"');

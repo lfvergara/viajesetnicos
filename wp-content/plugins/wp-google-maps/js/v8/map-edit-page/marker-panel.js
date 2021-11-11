@@ -170,7 +170,17 @@ jQuery(function($) {
 			}
 		}
 
-		if(this.adjustSubMode){
+		var addressUnchanged = false;
+		if(this.feature && this.feature.address && address){
+			if(typeof this.feature.address === 'string' && typeof address === 'string'){
+				if(this.feature.address.trim() === address.trim()){
+					/** Address was not changed by the edit, let's go ahead and skip geocoding on save */
+					addressUnchanged = true;
+				}
+			}
+		}
+
+		if(this.adjustSubMode || addressUnchanged){
 			// Trust the force!
 			WPGMZA.FeaturePanel.prototype.onSave.apply(self, arguments);
 		} else {

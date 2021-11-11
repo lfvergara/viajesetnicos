@@ -52,28 +52,29 @@ jQuery(function($) {
 		var lat = $(this).attr("data-destination-lat");
 		var lng = $(this).attr("data-destination-lng");
 		
-		if(!$(source).length)
+		if(!$(source).length){
+			alert(WPGMZA.localized_strings.no_picture_found);
 			throw new Error("Source element not found");
-		
-		if(!$(dest).length)
-			throw new Error("Destination element not found");
-		
-		if($(source).is("img"))
-		{
-			url = $(source).attr("src");
 		}
-		else
-		{
+		
+		if(!$(dest).length){
+			throw new Error("Destination element not found");
+		}
+		
+		if($(source).is("img")){
+			url = $(source).attr("src");
+		} else {
 			style = $(source).css("background-image");
 			
-			if(!(m = style.match(/url\(["'](.+)["'"]\)/)))
+			if(!(m = style.match(/url\(["'](.+)["'"]\)/))){
 				throw new Error("No background image found");
+			}
 			
 			url = m[1];
 		}
 		
 		if(!url || url.length == 0)
-			alert(WPGMZA.localised_strings.no_picture_found);
+			alert(WPGMZA.localized_strings.no_picture_found);
 		
 		WPGMZA.LatLng.fromJpeg(url, function(jpegLatLng) {
 			

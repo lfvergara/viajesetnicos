@@ -36,6 +36,12 @@ class LeadinRestApi {
 			\WP_REST_Server::READABLE,
 			array( $this, 'healthcheck_request' )
 		);
+
+		self::register_leadin_route(
+			'/oauth-token',
+			\WP_REST_Server::READABLE,
+			array( $this, 'oauth_token_request' )
+		);
 	}
 
 	/**
@@ -66,10 +72,10 @@ class LeadinRestApi {
 	 * @return \WP_REST_Response Response object to return from this endpoint.
 	 */
 	public function proxy_request( $request ) {
-		$api_path = $request->get_params()['path'];
+		$proxy_url = $request->get_params()['proxyUrl'];
 
 		try {
-			$proxy_request = HubSpotApiClient::authenticated_request( $api_path, $request->get_method(), $request->get_body() );
+			$proxy_request = HubSpotApiClient::authenticated_request( $proxy_url, $request->get_method(), $request->get_body() );
 		} catch ( \Exception $e ) {
 			return new \WP_REST_Response( json_decode( $e->getMessage() ), $e->getCode() );
 		}
@@ -99,4 +105,25 @@ class LeadinRestApi {
 		return current_user_can( AdminFilters::apply_view_plugin_menu_capability() );
 	}
 
+	/**
+	 * Make an API request to validate the HubSpot access token and return the scopes.
+	 */
+	public function oauth_token_request() {
+		$token    = OAuth::get_access_token();
+		$api_path = "/oauth/v1/access-tokens/$token";
+
+		try {
+			$request = HubSpotApiClient::authenticated_request( $api_path, 'GET' );
+		} catch ( \Exception $e ) {
+			return new \WP_REST_Response( json_decode( $e->getMessage() ), $e->getCode() );
+		}
+
+		$response_code = wp_remote_retrieve_response_code( $request );
+		$response_body = \json_decode( wp_remote_retrieve_body( $request ) );
+		$return_body   = array(
+			'scopes' => $response_body->scopes,
+		);
+
+		return new \WP_REST_Response( $return_body, $response_code );
+	}
 }

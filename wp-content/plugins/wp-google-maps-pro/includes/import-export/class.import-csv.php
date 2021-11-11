@@ -1128,6 +1128,7 @@ class ImportCSV extends Import {
 					'retina',
 					'type',
 					'did',
+					'sticky',
 					'other_data'
 				);
 				
@@ -1234,7 +1235,7 @@ class ImportCSV extends Import {
 					'link'          => isset( $this->header_map['link'], $polygon[ $this->header_map['link'] ] ) ? $polygon[ $this->header_map['link'] ] : '',
 					'ohfillcolor'   => isset( $this->header_map['ohfillcolor'], $polygon[ $this->header_map['ohfillcolor'] ] ) ? $polygon[ $this->header_map['ohfillcolor'] ] : '57FF78',
 					'ohlinecolor'   => isset( $this->header_map['ohlinecolor'], $polygon[ $this->header_map['ohlinecolor'] ] ) ? $polygon[ $this->header_map['ohlinecolor'] ] : '737373',
-					'ohopacity'     => isset( $this->header_map['opacity'], $polygon[ $this->header_map['opacity'] ] ) ? $polygon[ $this->header_map['opacity'] ] : 0.7,
+					'ohopacity'     => isset( $this->header_map['ohopacity'], $polygon[ $this->header_map['ohopacity'] ] ) ? $polygon[ $this->header_map['ohopacity'] ] : (isset( $this->header_map['opacity'], $polygon[ $this->header_map['opacity'] ] ) ? $polygon[ $this->header_map['opacity'] ] : 0.7),
 					'polyname'      => isset( $this->header_map['polyname'], $polygon[ $this->header_map['polyname'] ] ) ? $polygon[ $this->header_map['polyname'] ] : __( 'New Imported Polygon', 'wp-google-maps' ),
 				), array(
 					'%d',

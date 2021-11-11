@@ -30,8 +30,8 @@
 		<div class='wpgmza-review-nag'>
 			<?php
 			echo sprintf( __( '<h3>We need your love!</h3><p>If you are enjoying our plugin, please consider <a href="%1$s" target="_blank" class="button-border button-border__green">reviewing WP Google Maps</a>. It would mean the world to us! If you are experiencing issues with the plugin, please <a href="%2$s" target="_blank"  class="button-border button-border__green">contact us</a> and we will help you as soon as humanly possible!</p>', 'wp-google-maps' ),
-				'https://wordpress.org/support/view/plugin-reviews/wp-google-maps?filter=5',
-				'http://www.wpgmaps.com/contact-us/'
+				esc_url('https://wordpress.org/support/view/plugin-reviews/wp-google-maps?filter=5'),
+				esc_url('http://www.wpgmaps.com/contact-us/')
 			);
 			?>
 			

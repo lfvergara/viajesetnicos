@@ -1,1 +1,1 @@
-# wp-google-maps-version8
+# wp-google-maps-version-8.1

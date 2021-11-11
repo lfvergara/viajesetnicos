@@ -139,6 +139,28 @@ class MarkerListing extends AjaxTable
 		{
 			$lat = floatval($input_params['filteringParams']['center']['lat']) / 180 * 3.1415926;
 			$lng = floatval($input_params['filteringParams']['center']['lng']) / 180 * 3.1415926;
+
+
+			/**
+			 * Temporary sort by distance patch
+			 * 
+			 * Some PHP environments will return floatval as 3,141 instead of 3.141
+			 * 
+			 * This causes issues with sort by distance. We aren't exaclty sure why this happens at the moment, but this
+			 * temporary patch should hold while we look into a more robust solution in V9.0
+			 *
+			 * Confirmed patch on a few live installations which show the issue, meaning it's been field-tested
+			 *  
+			 * Date added: 2021-07-27
+			 * Author: Dylan Auty
+			*/
+			if(strpos($lat . "", ",") !== FALSE){
+				$lat = str_replace(",", ".", $lat . "");
+			}
+
+			if(strpos($lng . "", ",") !== FALSE){
+				$lng = str_replace(",", ".", $lng . "");
+			}
 			
 			$columns['distance'] = "
 				(

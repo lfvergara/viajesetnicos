@@ -84,6 +84,20 @@ jQuery(function($) {
 		var self = this;
 		
 		var map = WPGMZA.getMapByID(this.map_id);
+
+		/*
+		 * Temporary system to move DataTables back to page 1 before filter application
+		 *
+		 * We really should rework this into the core classes which manage filtering
+		 * 
+  		 * For now, this should hold up most of the time, but because it does not address the root cause, we can't rely on it permanently
+  		 *
+  		 * Added:2021-07-27
+  		*/
+  		if(map.markerListing && map.markerListing.dataTable && map.markerListing.dataTable.dataTable){
+  			map.markerListing.dataTable.dataTable.page(1).draw();
+  		}
+  		
 		map.markerFilter.update({}, this);
 	};
 	

@@ -197,22 +197,18 @@ class Client
     {
         try {
             if($method === 'GET') {
-                list($rawBody, $httpStatusCode, $httpHeader) = $this->getHttpClient()->request(
-                    $method,
-                    $this->makeAbsUrl($endpoint),
-                    array_merge( ['api_key' => $this->apiKey , ], $body),
-                    []
-                );
+                $urlParams = array_merge( ['api_key' => $this->apiKey , ], $body);
+                $body = [];
             }
             else {
-                list($rawBody, $httpStatusCode, $httpHeader) = $this->getHttpClient()->request(
-                    $method,
-                    $this->makeAbsUrl($endpoint),
-                    ['api_key' => $this->apiKey],
-                    $body
-                );
+                $urlParams = ['api_key' => $this->apiKey];
             }
-
+            list($rawBody, $httpStatusCode, $httpHeader) = $this->getHttpClient()->request(
+                $method,
+                $this->makeAbsUrl($endpoint),
+                $urlParams,
+                $body
+            );
             $array = json_decode($rawBody, true);
         } catch (\Exception $e) {
             throw new ApiError($e->getMessage(), $body);

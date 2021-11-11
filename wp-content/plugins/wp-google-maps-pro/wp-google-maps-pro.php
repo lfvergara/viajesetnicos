@@ -3,12 +3,77 @@
 Plugin Name: WP Google Maps - Pro Add-on
 Plugin URI: http://www.wpgmaps.com
 Description: This is the Pro add-on for WP Google Maps. The Pro add-on enables you to add descriptions, pictures, links and custom icons to your markers as well as allows you to download your markers to a CSV file for quick editing and re-upload them when complete.
-Version:  8.1.10
+Version:  8.1.15
 Author: WP Google Maps
 Author URI: http://www.wpgmaps.com
 */
 
 /*
+ * 8.1.15 - 2021-10-18
+ * Improved marker editor geocode usage to only geocode when an address has changed, or is being added for the first time. (Reduced API calls due to usage)
+ * Fixed issue where editing a marker which has already been position adusted would trigger a geocode on the original address, moving the marker back to the original placement
+ * Fixed issue where ACF marker importer would not respect the permalink structure for the relevant post
+ * Fixed issue where post meta driven map/marker would not show the 'address' correctly, and instead showed 'undefined'
+ * Fixed issue where editing a marker with the text view pre-opened would cause no data to be loaded
+ * Fixed issue where users with the 'visual editor' disabled in their profile would prevent the marker description editor from loading (tinyMCE) 
+ * Fixed issue where legacy store locator layouts 'radius' label would not have a 'for' label set accordingly
+ * Fixed issue where 'Extract address from picture' control would not provide feedback when no image has been added to gallery
+ *
+ * 8.1.14 - 2021-09-01
+ * Fixed issue where marker titles would store '&' symbols as '&amp;'
+ * Fixed issue where marker links would store '&' symbols as '&amp;'
+ * Fixed issue where modern plus infowindow would not restore pan state once closed (OpenLayers)
+ *
+ * 8.1.13 - 2021-07-28
+ * Fixed issue where Datatable sort with compressed paths would fail in some environments
+ * Fixed issue where modern directions result panel would be visible on smaller screens by default
+ * Fixed issue where marker listing pagination controls would not respect the push in map option
+ * Fixed issue where some environments would not be able to sort by distance due to floatval formatting issue
+ * Fixed issue where modern info-window would display incorrectly in OpenLayers engine
+ * Fixed issue where applying a custom field filter would not reset DataTable pagination to page one, which leads to 'no results' for pages above the currentPage * length (when applicable)
+ * Removed rogue development console.log 
+ * Added support for marker listing zoom override in the Marker Listing tab
+ * Tested up to WordPress 5.8 
+ *
+ * 8.1.12 - 2021-06-15
+ * Fixed issue where Authenticated Persistent XSS could be executed via the Custom Field Editor (Thanks to Visse) 
+ * Fixed issue where Authenticated Persistent XSS could be executed via the Category editor (Thanks to Visse) 
+ *
+ * 8.1.11 - 2021-06-03
+ * Fixed issue where the 'no markers found' alert would be shown when resetting the store locator with hide markers until a search is done option enabled
+ * Fixed issue with default interface style and modern store locator override category selection
+ * Fixed issue with backup list generation on some installations
+ * Fixed issue where polygon 'Get Directions' link would fail
+ * Fixed issue where category column would be empty for marker data CSV exports
+ * Fixed issue where hide image option was not being respected for carousel listings
+ * Fixed issue where modern info-windows would not close when close on map click was enabled
+ * Fixed issue where polygon click would cause polygon info-window to close in OpenLayers, when close on map click setting was enabled
+ * Fixed issue where the 'Show center point as an icon' image uploader would not activate for the Store Locator
+ * Fixed issue where directions box would not apply a default width on frontend if none is set
+ * Fixed issue where 'Directions Box Open by Default' setting would not be respected with compact/minimal user interfaces. Bear bones is the only option which ignores this entirely
+ * Fixed issue where modern 'show options' directions styles were applied to other layouts
+ * Fixed issue where the step selection in OpenLayers directions was not focusing, or firing as you would expect
+ * Fixed issue where OpenLayer Polygon info-windows would be misplaced based on a zoom level
+ * Fixed issue where modern directions panel would be too small on mobile devices
+ * Fixed issue where modern directions panel would add 15px padding to the left of the internal container
+ * Fixed issue where modern marker info-window (panel) focus button would not function as expected
+ * Fixed issue where opacity field in polygon CSV importer would not support legacy naming
+ * Fixed issue where the user location marker retina checkbox would not store correctly
+ * Fixed issue where the store locator center point marker retina checkbox would not store correctly
+ * Fixed issue where the directions origin and destination markers retina checkbox could not be disabled once enabled
+ * Fixed issue where store locator center point would not respect retina option on frontend
+ * Fixed issue where user location marker would not respect retina option on frontend
+ * Fixed issue where directions origin and destination markers would not respect retina option on frontend
+ * Fixed issue where update output would sometimes fail to unserialize data
+ * Fixed issue where directions step renderer would not respect store locator distance. This will likely become a new setting later.
+ * Added check to prune import logs when they exceed a specific file size (5mb)
+ * Removed PHP8 conditional lockouts, as we now support PHP
+ * Removed custom CSS localization, we don't need to do this in Pro. Now fully managed by basic
+ * Added additional output logging to the importer to provide better insight into failures and processing
+ * Added support for sticky column import when using CSV importer
+ * Added support for PHP8, this is a prelim pass but from tests works well. May be revisited in the future
+ * Added support for 'userCreated' VGM markers, specifically in the hide markers until search is done logic
+ *
  * 8.1.10 - 2021-03-08
  * Fixed issue where default user icon could not be uploaded, button unresponsive
  * Fixed issue where automatic backups system would try and backup ratings table, even when it is not available
@@ -2085,9 +2150,14 @@ if(version_compare($fromVersion, '8.1.0', '<')){ } else {
 
 	require_once(plugin_dir_path(__FILE__) . 'constants.php');
 
+    /*
+     * We are now PHP8 compatible, so we don't need t stop anything 
+    */
+    /*
 	if(version_compare(phpversion(), '8.0', '>=')){
 		return;
 	}
+    */
 	 
 	// Pro MUST load before Basic or the plugin will break. This will change in future versions as the initialization code is altered to use the appropriate hooks
 	function wpgmza_load_order_notice()

@@ -444,11 +444,11 @@ class AdvancedTable extends \WPGMZA\MarkerDataTable
 	protected function isListingOrderOverridden($input_params)
 	{
 		$useDefaultOrderBy = true;
-		
+			
 		if(isset($input_params['overrideListingOrderSettings']))
 		{
-			switch($input_params['overrideListingOrderSettings'])
-			{
+
+			switch($input_params['overrideListingOrderSettings']){
 				case "false":
 					// NB: Some PHP installations will evaluate string "false" as true in the cases below, account for this here by doing nothing.
 					break;
@@ -460,8 +460,14 @@ class AdvancedTable extends \WPGMZA\MarkerDataTable
 					$useDefaultOrderBy = false;
 					break;
 			}
+
+			if($useDefaultOrderBy && $input_params['overrideListingOrderSettings'] === true){
+				// For some reason compressed paths sometimes require a conditional, and the switch fails, no reason that explais it simple. 
+				// This is a temporary patch, this will be reworked in V9.0.0
+				$useDefaultOrderBy = false;
+			}
 		}
-		
+
 		return !$useDefaultOrderBy;
 	}
 	

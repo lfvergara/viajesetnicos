@@ -7,7 +7,7 @@ Author: Weglot Translate team
 Author URI: https://weglot.com/
 Text Domain: weglot
 Domain Path: /languages/
-Version: 3.3.6
+Version: 3.4
 */
 
 /**
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'WEGLOT_NAME', 'Weglot' );
 define( 'WEGLOT_SLUG', 'weglot-translate' );
 define( 'WEGLOT_OPTION_GROUP', 'group-weglot-translate' );
-define( 'WEGLOT_VERSION', '3.3.6' );
+define( 'WEGLOT_VERSION', '3.4' );
 define( 'WEGLOT_PHP_MIN', '5.6' );
 define( 'WEGLOT_BNAME', plugin_basename( __FILE__ ) );
 define( 'WEGLOT_DIR', __DIR__ );
@@ -208,7 +208,14 @@ register_activation_hook( __FILE__, 'weglot_plugin_activate' );
 register_deactivation_hook( __FILE__, 'weglot_plugin_deactivate' );
 register_uninstall_hook( __FILE__, 'weglot_plugin_uninstall' );
 
-add_action( 'plugins_loaded', 'weglot_plugin_loaded' );
+// Change priority to 7 if amp present
+$priority = 10;
+$dir_amp = plugin_dir_path( __DIR__ ) . 'amp';
+if ( file_exists( $dir_amp . '/amp.php' ) ) {
+	$priority = 7;
+}
+add_action( 'plugins_loaded', 'weglot_plugin_loaded' , $priority);
+
 
 // Add registration hooks if WP Rocket present
 $dir_wp_rocket = plugin_dir_path( __DIR__ ) . 'wp-rocket';

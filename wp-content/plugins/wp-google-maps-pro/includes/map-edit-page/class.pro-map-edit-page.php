@@ -109,22 +109,39 @@ class ProMapEditPage extends MapEditPage
 			$options = array(
 				'name' => $name
 			);
-			
-			if(!empty($map->{$name}))
-				$options['value'] = $map->{$name};
-			
 
-			
+			if(!empty($map->{$name})){
+				$options['value'] = $map->{$name};
+			}
+
+			if($name !== 'default_marker'){
+				$options['retina_name'] = $name . '_retina';
+
+				/*
+				 * This is not the solution I think we should be using. 
+				 *
+				 * Something is fundamentally wrong with the storage part of this, where it cannot parse out the value, but never the less,
+				 * this will do for now
+				*/
+				$retina_setting = $name . '_retina';
+				if(!empty($map->{$retina_setting})){
+					$existingValue = $options['value'];
+					$options['value'] = array(
+						'url' => $existingValue,
+						'retina' => true
+					);
+				}
+			}
+
 			
 
 			$picker = new MarkerIconPicker($options);
-			
-			
-			
 
 			$element->setAttribute("value", "on");
 			
 			$element->import($picker);
+
+
 		}
 		
 		// Marker library dialog
@@ -197,6 +214,32 @@ class ProMapEditPage extends MapEditPage
 
 		if(empty($_POST['enable_advanced_custom_fields_integration'])){
 			$_POST['enable_advanced_custom_fields_integration'] = 0;
+		}
+
+		/* 
+		 * Temp retina uncheck patch
+		 *
+		 * Fields:
+		 * - Store locator marker
+		 * - User location marker
+		 * - Directions markers
+		 *
+		 * We really need to standardize the marker icon storage, to avoid this in the future, something is just fundamentally wrong here
+		*/
+		if(empty($_POST['upload_default_sl_marker_retina'])){
+			$_POST['upload_default_sl_marker_retina'] = 0;
+		}
+
+		if(empty($_POST['upload_default_ul_marker_retina'])){
+			$_POST['upload_default_ul_marker_retina'] = 0;
+		}
+
+		if(empty($_POST['directions_origin_retina'])){
+			$_POST['directions_origin_retina'] = 0;
+		}
+
+		if(empty($_POST['directions_destination_retina'])){
+			$_POST['directions_destination_retina'] = 0;
 		}
 
 		// default icon retina support

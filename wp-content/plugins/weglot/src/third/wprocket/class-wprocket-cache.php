@@ -49,7 +49,11 @@ class Wprocket_Cache implements Hooks_Interface_Weglot {
 		}
 
 		if ( ! isset( $_COOKIE['weglot_wp_rocket_cache'] ) && $this->option_services->get_option( 'auto_redirect' ) ) {
-			setcookie( 'weglot_wp_rocket_cache', 'true' ); //phpcs:ignore
+			add_action( 'init', array( $this, 'set_weglot_wp_rocket_cache' ), 10, 1 );
 		}
+	}
+
+	public function set_weglot_wp_rocket_cache(){
+		setcookie( 'weglot_wp_rocket_cache', 'true' ); //phpcs:ignore
 	}
 }

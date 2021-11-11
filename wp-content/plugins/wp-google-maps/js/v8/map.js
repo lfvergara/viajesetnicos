@@ -22,8 +22,18 @@ jQuery(function($) {
 		
 		WPGMZA.EventDispatcher.call(this);
 		
-		if(!(element instanceof HTMLElement))
-			throw new Error("Argument must be a HTMLElement");
+		if(!(element instanceof HTMLElement)){
+			if(!window.elementor){
+				/**
+				 * Temporary Solution
+				 * 
+				 * If elementor is active, it won't be an HTML Element just yet, due to preview block loading
+				 * 
+				 * However, our timer initializer will load it later, so we just don't throw the error
+				*/
+				throw new Error("Argument must be a HTMLElement");
+			}
+		}
 		
 		// NB: This should be moved to a getID function or similar and offloaded to Pro. ID should be fixed to 1 in basic.
 		if(element.hasAttribute("data-map-id"))
@@ -1517,7 +1527,5 @@ jQuery(function($) {
 				
 			}, 1000);
 		}
-		
 	});
-	
 });

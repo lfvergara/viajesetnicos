@@ -155,7 +155,7 @@ jQuery(function($) {
 				var centerMarker = WPGMZA.Marker.createInstance({
 					lat : this.shortcodeAttributes.lat,
 					lng : this.shortcodeAttributes.lng,
-					address : this.shortcodeAttributes.lat + ", " + this.shortcodeAttributes.ng
+					address : this.shortcodeAttributes.lat + ", " + this.shortcodeAttributes.lng
 				});
 
 				this.addMarker(centerMarker);
@@ -517,13 +517,19 @@ jQuery(function($) {
 		if(icon && icon.length)
 			options.icon = icon;
 		
+		if(this.settings.upload_default_ul_marker_retina){
+			options.retina = true;
+		}
+
 		var marker = WPGMZA.Marker.createInstance(options);
-		
+
 		marker.isFilterable = false;
 		marker.setOptions({
 			zIndex: 999999
 		});
-		
+
+		marker._icon.retina = marker.retina;
+
 		WPGMZA.watchPosition(function(position) {
 			
 			marker.setPosition({
@@ -721,8 +727,13 @@ jQuery(function($) {
 		{	
 			if(event.target instanceof WPGMZA.Map)
 			{
-				if(this.lastInteractedMarker !== undefined && this.lastInteractedMarker.infoWindow)
+				if(this.lastInteractedMarker !== undefined && this.lastInteractedMarker.infoWindow){
 					this.lastInteractedMarker.infoWindow.close();	
+
+					if($(this.lastInteractedMarker.infoWindow.element).hasClass('wpgmza_modern_infowindow')){
+						$(this.lastInteractedMarker.infoWindow.element).remove();
+					}
+				}
 			}
 		}
 	}

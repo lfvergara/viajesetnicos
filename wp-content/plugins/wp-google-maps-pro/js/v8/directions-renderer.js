@@ -74,6 +74,8 @@ jQuery(function($) {
 			disableInfoWindow: true
 		});
 
+		this.directionStartMarker._icon.retina = this.directionStartMarker.retina;
+		
 		this.map.addMarker(this.directionStartMarker);
 
 		this.directionEndMarker = WPGMZA.Marker.createInstance({
@@ -82,6 +84,8 @@ jQuery(function($) {
 			retina: this.map.settings.directions_destination_retina,
 			disableInfoWindow: true
 		});
+
+		this.directionEndMarker._icon.retina = this.directionEndMarker.retina;
 
 		this.map.addMarker(this.directionEndMarker);
 	}

@@ -140,7 +140,7 @@ abstract class MarkerSource
 	public function importMarkers($map_id, $replace_map_data=false)
 	{
 		$data = $this->getIntegratedMarkers();
-		
+
 		if($replace_map_data)
 		{
 			$map = \WPGMZA\Map::createInstance($map_id);
@@ -167,7 +167,7 @@ abstract class MarkerSource
 				throw new \Exception('Cannot determine post ID from integrated marker data');
 			
 			$postId = MarkerSource::$cachedPostIDsByMetaID[$key];
-			$markers[$key]->link = get_post_permalink($postId);
+			$markers[$key]->link = get_permalink($postId);
 		}
 		
 		return $markers;

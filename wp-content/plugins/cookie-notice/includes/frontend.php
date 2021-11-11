@@ -17,6 +17,7 @@ class Cookie_Notice_Frontend {
 		add_action( 'init', array( $this, 'init' ) );
 
 		$this->widget_url = '//cdn.hu-manity.co/hu-banner.min.js';
+		$this->app_url = 'https://app.hu-manity.co';
 	}
 
 	/**
@@ -33,15 +34,14 @@ class Cookie_Notice_Frontend {
 		// whether to count robots
 		$this->is_bot = Cookie_Notice()->bot_detect->is_crawler();
 
+		global $pagenow;
+
 		// bail if in preview mode or it's a bot request
-		if ( ! $this->preview_mode && ! $this->is_bot ) {
+		if ( ! $this->preview_mode && ! $this->is_bot && ! ( is_admin() && $pagenow === 'widgets.php' && isset( $_GET['legacy-widget-preview'] ) ) ) {
 			// init cookie compliance
 			if ( Cookie_Notice()->get_status() === 'active' ) {
 				add_action( 'send_headers', array( $this, 'add_cors_http_header' ) );
 				add_action( 'wp_head', array( $this, 'wp_head_scripts' ), 0 );
-				add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_compliance_scripts' ) );
-				add_action( 'wp_ajax_cn_save_config', array( $this, 'ajax_save_config' ) );
-				add_action( 'wp_ajax_nopriv_cn_save_config', array( $this, 'ajax_save_config' ) );
 			// init cookie notice
 			} else {
 				// actions
@@ -61,7 +61,7 @@ class Cookie_Notice_Frontend {
 	 * Add CORS header for API requests and purge cache.
 	 */
 	public function add_cors_http_header() {
-		header( "Access-Control-Allow-Origin: https://app.hu-manity.co" );
+		header( "Access-Control-Allow-Origin: $this->app_url" );
 		header( 'Access-Control-Allow-Methods: GET' );
 	}
 
@@ -74,29 +74,16 @@ class Cookie_Notice_Frontend {
 		// get site language
 		$locale = get_locale();
 		$locale_code = explode( '_', $locale );
-		
+
 		// exceptions, norwegian
-		if ( in_array( $locale_code, array( 'nb', 'nn' ) ) ) {
+		if ( in_array( $locale_code, array( 'nb', 'nn' ) ) )
 			$locale_code = 'no';
-		}
-	
+
 		$options = array(
 			'appID' => Cookie_Notice()->options['general']['app_id'],
 			'currentLanguage'	=> $locale_code[0],
 			'blocking' => (bool) ( ! is_user_logged_in() ? Cookie_Notice()->options['general']['app_blocking'] : false )
 		);
-		
-		$cached_config = get_transient( 'cookie_notice_compliance_cache' );
-		
-		if ( ! empty( $cached_config ) && is_array( $cached_config ) ) {
-			$options = array_merge( $options, array(
-				'cache' => true,
-				'cacheType' => 'db',
-				'cacheData' => $cached_config
-			) );
-		}
-		
-		// print_r( $options ); exit;
 
 		echo '
 		<!-- Hu Banner -->
@@ -105,30 +92,7 @@ class Cookie_Notice_Frontend {
 		</script>
 		<script type="text/javascript" src="' . $this->widget_url . '"></script>';
 	}
-	
-	/**
-	 * Load compliance scripts and styles - frontend.
-	 */
-	public function wp_enqueue_compliance_scripts() {
-		wp_enqueue_script( 
-			'cookie-notice-compliance', 
-			plugins_url( '../js/front-compliance.js', __FILE__ ),
-			array(),
-			Cookie_Notice()->defaults['version'],
-			isset( Cookie_Notice()->options['general']['script_placement'] ) && Cookie_Notice()->options['general']['script_placement'] === 'footer'
-		);
-		
-		wp_localize_script(
-			'cookie-notice-compliance',
-			'cnComplianceArgs',
-			array(
-				'ajaxUrl'				=> admin_url( 'admin-ajax.php' ),
-				'nonce'					=> wp_create_nonce( 'cn_save_config' ),
-				'secure'				=> (int) is_ssl()
-			)
-		);
-	}
-	
+
 	/**
 	 * Cookie notice output.
 	 * 
@@ -187,23 +151,27 @@ class Cookie_Notice_Frontend {
 		else
 			$options['message_text'] = wp_kses_post( $options['message_text'] );
 
+		$options['revoke_message_text'] = wp_kses_post( $options['revoke_message_text'] );
+
+		// escape css classes
 		$options['css_class'] = esc_attr( $options['css_class'] );
+		$options['button_class'] = esc_attr( $options['button_class'] );
 
 		// message output
 		$output = '
-		<!-- Cookie Notice plugin v' . Cookie_Notice()->defaults['version'] . ' -->
-		<div id="cookie-notice" role="banner" class="cookie-notice-hidden cookie-revoke-hidden cn-position-' . $options['position'] . '" aria-label="' . $options['aria_label'] . '" style="background-color: rgba(' . implode( ',', Cookie_Notice()->hex2rgb( $options['colors']['bar'] ) ) . ',' . $options['colors']['bar_opacity'] * 0.01 . ');">'
-			. '<div class="cookie-notice-container" style="color: ' . $options['colors']['text'] . ';">'
+		<!-- Cookie Notice plugin v' . Cookie_Notice()->defaults['version'] . ' by Hu-manity.co https://hu-manity.co/ -->
+		<div id="cookie-notice" role="dialog" class="cookie-notice-hidden cookie-revoke-hidden cn-position-' . esc_attr( $options['position'] ) . '" aria-label="' . esc_attr( $options['aria_label'] ) . '" style="background-color: rgba(' . implode( ',', Cookie_Notice()->hex2rgb( $options['colors']['bar'] ) ) . ',' . ( (int) $options['colors']['bar_opacity'] ) * 0.01 . ');">'
+			. '<div class="cookie-notice-container" style="color: ' . esc_attr( $options['colors']['text'] ) . ';">'
 			. '<span id="cn-notice-text" class="cn-text-container">'. $options['message_text'] . '</span>'
-			. '<span id="cn-notice-buttons" class="cn-buttons-container"><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . $options['accept_text'] . '">' . $options['accept_text'] . '</a>'
-			. ( $options['refuse_opt'] === true ? '<a href="#" id="cn-refuse-cookie" data-cookie-set="refuse" class="cn-set-cookie ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . $options['refuse_text'] . '">' . $options['refuse_text'] . '</a>' : '' )
-			. ( $options['see_more'] === true && $options['link_position'] === 'banner' ? '<a href="' . ( $options['see_more_opt']['link_type'] === 'custom' ? $options['see_more_opt']['link'] : get_permalink( $options['see_more_opt']['id'] ) ) . '" target="' . $options['link_target'] . '" id="cn-more-info" class="cn-more-info ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . $options['see_more_opt']['text'] . '">' . $options['see_more_opt']['text'] . '</a>' : '' ) 
-			. '</span><a href="javascript:void(0);" id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" aria-label="' . $options['accept_text'] . '"></a>'
+			. '<span id="cn-notice-buttons" class="cn-buttons-container"><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['accept_text'] ) . '">' . esc_html( $options['accept_text'] ) . '</a>'
+			. ( $options['refuse_opt'] === true ? '<a href="#" id="cn-refuse-cookie" data-cookie-set="refuse" class="cn-set-cookie ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['refuse_text'] ) . '">' . esc_html( $options['refuse_text'] ) . '</a>' : '' )
+			. ( $options['see_more'] === true && $options['link_position'] === 'banner' ? '<a href="' . ( $options['see_more_opt']['link_type'] === 'custom' ? esc_url( $options['see_more_opt']['link'] ) : get_permalink( $options['see_more_opt']['id'] ) ) . '" target="' . esc_attr( $options['link_target'] ) . '" id="cn-more-info" class="cn-more-info ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['see_more_opt']['text'] ) . '">' . esc_html( $options['see_more_opt']['text'] ) . '</a>' : '' ) 
+			. '</span><a href="javascript:void(0);" id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" aria-label="' . esc_attr( $options['accept_text'] ) . '"></a>'
 			. '</div>
 			' . ( $options['refuse_opt'] === true && $options['revoke_cookies'] == true ? 
-			'<div class="cookie-revoke-container" style="color: ' . $options['colors']['text'] . ';">'
-			. ( ! empty( $options['revoke_message_text'] ) ? '<span id="cn-revoke-text" class="cn-text-container">'. $options['revoke_message_text'] . '</span>' : '' )
-			. '<span id="cn-revoke-buttons" class="cn-buttons-container"><a href="#" class="cn-revoke-cookie ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . $options['revoke_text'] . '">' . esc_html( $options['revoke_text'] ) . '</a></span>
+			'<div class="cookie-revoke-container" style="color: ' . esc_attr( $options['colors']['text'] ) . ';">'
+			. ( ! empty( $options['revoke_message_text'] ) ? '<span id="cn-revoke-text" class="cn-text-container">' . $options['revoke_message_text'] . '</span>' : '' )
+			. '<span id="cn-revoke-buttons" class="cn-buttons-container"><a href="#" class="cn-revoke-cookie ' . $options['button_class'] . ( $options['css_style'] !== 'none' ? ' ' . $options['css_style'] : '' ) . ( $options['css_class'] !== '' ? ' ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['revoke_text'] ) . '">' . esc_html( $options['revoke_text'] ) . '</a></span>
 			</div>' : '' ) . '
 		</div>
 		<!-- / Cookie Notice plugin -->';
@@ -310,31 +278,7 @@ class Cookie_Notice_Frontend {
 
 		return $classes;
 	}
-	
-	/**
-	 * Save compliance config caching.
-	 */
-	public function ajax_save_config() {
-		if ( Cookie_Notice()->get_status() !== 'active' )
-			return;
-		
-		if ( ! wp_verify_nonce( esc_attr( $_REQUEST['nonce'] ), 'cn_save_config' ) )
-			return;
-		
-		$json_data = ! empty( $_REQUEST['data'] ) ? esc_attr( $_REQUEST['data'] ) : false;
-		$config_data = array();
 
-		if ( ! empty( $json_data ) )
-			$config_data = json_decode( stripslashes( html_entity_decode( $json_data ) ), true );
-		
-		// save data
-		if ( $config_data && is_array( $config_data ) )
-			set_transient( 'cookie_notice_compliance_cache', $config_data, 24 * HOUR_IN_SECONDS );
-		
-		return true;
-		exit;
-	}
-	
 	/**
 	 * Purge config cache.
 	 */

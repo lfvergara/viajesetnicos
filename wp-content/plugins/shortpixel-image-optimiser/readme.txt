@@ -2,13 +2,13 @@
 Contributors: ShortPixel
 Tags: convert webp, optimize images, image optimization, resize, compressor, image, avif, compression, optimize, image optimiser, image compression, compress pdf, compress jpg, compress png, performance, photography, smush, scale, pictures
 Requires at least: 4.2.0
-Tested up to: 5.7
-Requires PHP: 5.3
-Stable tag: 4.22.2
+Tested up to: 5.8
+Requires PHP: 5.6
+Stable tag: 4.22.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Speed up your website & boost your SEO by compressing old & new images and PDFs. AVIF & WebP convert and optimize support.
+Speed up your website & boost your SEO by compressing old & new images and PDFs. Optimize and convert WebP & AVIF.
 
 == Description ==
 
@@ -313,6 +313,36 @@ Alternatively, you can use this filter in your theme's functions.php file:
 9. Check other optimized images status - themes or other plugins' images. (Media>Other Media)
 
 == Changelog ==
+
+= 4.22.6 =
+Release date October 11th, 2021
+* Fix: the plugin is now checking for the `UPLOADS` constant when building the paths on MultiSite installs;
+* Fix: in certain specific cases, a fatal error was triggered when the backup couldn't be restored;
+* Fix: if the automatic Media Library optimization is disabled, the plugin will also disable the front-end processing option;
+* Fix: removed inaccurate statistics from the bulk screen summary until the next major release;
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.5 =
+Release date August 31st, 2021
+* Fix: in some cases, the MIME type of other files than images were wrongly set to `image/jpg`;
+* Fix: when restoring from backup a PNG that was converted to JPG, the MIME type wasn't set back to `image/png`;
+* Fix: in case backup fails for any reason, the image in discussion will be skipped (so the original one won't get overwritten);
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.4 =
+Release date August 25th, 2021
+* Compat: Added a notification system for the cases when AVIF files cannot be delivered with the current server/host settings;
+* Compat: bumped the minimum supported PHP version to 5.6;
+* Language: 5 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.3 =
+Release date July 28th, 2021
+* Fix: Error when using WordPress 5.8 Widget editor;
+* Fix: Error when using WP-Offload and WebP image could not be detected;
+* Fix: PNG2JPG when using WP without date directory format would incorrectly add ./ to filename;
+* Fix: Unregistered retina files could throw off optimization;
+* Fix: Easy Watermark plugin changed its main file, so it couldn't be properly detected;
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
 
 = 4.22.2 =
 Release date May 12th, 2021

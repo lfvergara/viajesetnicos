@@ -32,16 +32,14 @@ class DirectionsBox extends DOMDocument
 		
 		$auto = !empty($map->overrides['directions_auto']) && $map->overrides['directions_auto'] == "true";
 		
-		$width = $map->dbox_width;
+		$width = !empty($map->dbox_width) ? $map->dbox_width : '50';
 		$width_type = empty($map->wpgmza_dbox_width_type) ? '%' : $map->wpgmza_dbox_width_type;
 		$element->setInlineStyle("width", "{$width}{$width_type}");
 		
 		$placement = $map->dbox;
 
-
-		if(empty($wpgmza->settings->user_interface_style) || $wpgmza->settings->user_interface_style == "legacy" || $wpgmza->settings->user_interface_style == "modern" || $wpgmza->settings->user_interface_style == "default")
-			switch($placement)
-			{
+		if(empty($wpgmza->settings->user_interface_style) || $wpgmza->settings->user_interface_style != "bear-bones"){
+			switch($placement){
 				case "1":
 					if($wpgmza->settings->user_interface_style == "modern"){
 						//Modern interface requires this as it is embedded in the map
@@ -80,6 +78,7 @@ class DirectionsBox extends DOMDocument
 					break;
 
 			}
+		}
 		
 		if($wpgmza->settings->engine == "open-layers")
 			$element->querySelector('option[value="transit"]')->remove();

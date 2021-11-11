@@ -9,22 +9,22 @@ trait AdminFeatureDatatable
 		$type			= $this->getFeatureType();
 		$id_placeholder	= '__5d5621cf7b6bb90bfb7bda85a0df7293';
 		
-		return apply_filters("wpgmza_admin_{$type}_datatable_action_buttons_sql", 'REPLACE(\'
-			<div class="wpgmza-action-buttons wpgmza-flex">
-				<a title="' . esc_attr('Edit this feature', 'wp-google-maps') . '"
-					class="wpgmza_edit_btn button"
-					data-edit-'.$type.'-id="'.$id_placeholder.'">
-					<i class="fa fa-edit"> </i>
+		return apply_filters("wpgmza_admin_{$type}_datatable_action_buttons_sql", "REPLACE('
+			<div class=\'wpgmza-action-buttons wpgmza-flex\'>
+				<a title=\'" . esc_attr('Edit this feature', 'wp-google-maps') . "\'
+					class=\'wpgmza_edit_btn button\'
+					data-edit-{$type}-id=\'{$id_placeholder}\'>
+					<i class=\'fa fa-edit\'> </i>
 				</a>
-				<a href="javascript: ;" title="'
+				<a href=\'javascript: ;\' title=\'"
 					. esc_attr( __('Delete this feature', 'wp-google-maps') ) . 
-					'" class="wpgmza_del_btn button" data-delete-'.$type.'-id="' . $id_placeholder . '">
-					<i class="fa fa-times"> </i>
+					"\' class=\'wpgmza_del_btn button\' data-delete-{$type}-id=\'{$id_placeholder}\'>
+					<i class=\'fa fa-times\'> </i>
 				</a>
 			</div>
-		\',
-		"' . $id_placeholder . '",
+		',
+		'{$id_placeholder}',
 			id
-		) AS `action`');
+		) AS `action`");
 	}
 }

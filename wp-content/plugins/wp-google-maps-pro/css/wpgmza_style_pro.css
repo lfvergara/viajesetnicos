@@ -1645,3 +1645,20 @@ ul.wpgmza_marker_list_class {
 .gm-ui-hover-effect:hover {
     box-shadow: none !important;
 }
+
+.wpgmza-modern-directions-box .wpgmaps_directions_outer_div.style-default{
+    padding-left: inherit;
+}
+
+@media screen and (max-width: 1000px){
+    .wpgmza-modern-directions-box {
+        width: 100% !important;
+        max-width: 100%;
+        left: -100%;
+    }       
+}
+
+
+.wpgmza-ol-modern-infowindow-container:empty {
+    height: 0;
+}

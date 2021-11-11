@@ -155,8 +155,8 @@
 {
 	position: absolute;
 	top: 0px;
-	left: 0px;
-	width: 100%;
+	left: 50%;
+	/*width: 100%;*/
 	max-width: 100% !important;
 	z-index: 99;
 }
@@ -181,4 +181,13 @@
 
 .ol-info-window-polygon {
     bottom: 0 !important;
+}
+
+.rtl .wpgmza_map * {
+    direction: ltr;
+}
+
+.rtl .wpgmza_map .wpgmza-infowindow,
+.rtl .wpgmza_map .wpgmza-infowindow  *{
+    direction: rtl;
 }

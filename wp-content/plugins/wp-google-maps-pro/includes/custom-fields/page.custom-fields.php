@@ -52,12 +52,38 @@ class CustomFieldsPage
 		{
 			$id 						= $_POST['ids'][$i];
 			$stack_order 				= $i;
-			$name 						= $_POST['names'][$i];
-			$icon						= $_POST['icons'][$i];
+			$name 						= sanitize_text_field($_POST['names'][$i]);
+			$icon						= sanitize_text_field($_POST['icons'][$i]);
 			$attributes					= stripslashes($_POST['attributes'][$i]);
-			$widget_type				= $_POST['widget_types'][$i];
+			$widget_type				= sanitize_text_field($_POST['widget_types'][$i]);
 			$display_in_infowindows		= isset($_POST['display_in_infowindows'][$id]) ? 1 : 0;
 			$display_in_marker_listings	= isset($_POST['display_in_marker_listings'][$id]) ? 1 : 0;
+
+			/*
+			 * Increases the complexity, but a needed step due to how we submit this data
+			*/ 
+			try{
+				$attributes = json_decode($attributes, true);
+				$cleanAttributes = array();
+				foreach($attributes as $aKey => $aValue){
+					$aKey = sanitize_text_field($aKey);
+					$aValue = sanitize_text_field($aValue);
+
+					$cleanAttributes[$aKey] = $aValue;
+				}
+
+				if(!empty($cleanAttributes)){
+					$attributes = $cleanAttributes;
+				} else {
+					$attributes = array("" => "");
+				}
+			} catch (\Exception $ex){
+				$attributes = array("" => "");
+			} catch (\Error $er){
+				$attributes = array("" => "");
+			}
+
+			$attributes = json_encode($attributes);
 
 			if(!json_decode($attributes))
 				throw new \Exception('Invalid attribute JSON');

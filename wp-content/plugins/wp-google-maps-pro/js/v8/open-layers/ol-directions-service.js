@@ -69,6 +69,15 @@ jQuery(function($) {
 				profile = "driving-car";
 				break;
 		}
+
+		/*
+		 * Cast local distance to Google Unit System
+		*/
+		if(request.unitSystem === WPGMZA.Distance.KILOMETERS){
+			translated.units = "km";
+		} else {
+			translated.units = "mi";
+		}
 		
 		url = "https://api.openrouteservice.org/v2/directions/" + profile;
 		

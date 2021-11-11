@@ -246,6 +246,25 @@ jQuery(function($) {
 			this.pagination = $(this.paginationElement).pagination(this.getPaginationOptions());
 			
 			$(this.element).after(this.paginationElement);
+
+			if(this.map.settings.wpgmza_push_in_map){
+				if(this.paginationElement && WPGMZA.settings.engine === "google-maps"){
+
+					$(this.paginationElement).css({
+						"zIndex" : "999"
+					});
+
+					var position = parseInt(this.map.settings.wpgmza_push_in_map_placement);
+
+					if(this.paginationElement.style){
+						this.map.googleMap.controls[position].push(this.paginationElement);
+					} else {
+						if(this.paginationElement[0]){
+							this.map.googleMap.controls[position].push(this.paginationElement[0]);
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -602,8 +621,8 @@ jQuery(function($) {
 				}, 500);
 			}
 		}
-		
-		if(this.map.settings.zoom_level_on_marker_listing_click){
+				
+		if(this.map.settings.zoom_level_on_marker_listing_override && this.map.settings.zoom_level_on_marker_listing_click){
 			zoomLevelOnClick = this.map.settings.zoom_level_on_marker_listing_click;
 		} else {
 			// Check for clusters

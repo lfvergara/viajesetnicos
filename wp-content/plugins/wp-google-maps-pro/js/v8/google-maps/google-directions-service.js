@@ -20,8 +20,17 @@ jQuery(function($) {
 	WPGMZA.GoogleDirectionsService.prototype.route = function(request, callback)
 	{
 		var self = this;
-		
+
 		request.travelMode = request.travelMode.toUpperCase();
+
+		/*
+		 * Cast local distance to Google Unit System
+		*/
+		if(request.unitSystem === WPGMZA.Distance.KILOMETERS){
+			request.unitSystem = google.maps.UnitSystem.METRIC;
+		} else {
+			request.unitSystem = google.maps.UnitSystem.IMPERIAL;
+		}
 		
 		this.googleDirectionsService.route(request, function(response) {
 			

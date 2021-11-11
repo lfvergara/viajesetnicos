@@ -15,8 +15,7 @@ namespace WPGMZA;
  *
  * @since 7.0.0
  */
-abstract class Import {
-
+abstract class Import { 
 	/**
 	 * Absolute path to file.
 	 *
@@ -389,6 +388,8 @@ abstract class Import {
 			$args['key'] = $api_key;
 			$args[$type] = rawurldecode($location);
 		}
+
+		$this->log("Request Token: " . $api_key);
 		
 		$url = add_query_arg($args, $endpoint);
 		
@@ -442,8 +443,15 @@ abstract class Import {
 					break;
 					
 				case "REQUEST_DENIED":
-					$this->log("Request denied");
-					throw new \Exception("Request denied - IP Restricted key may be required in the 'Alternative Import API Key' field found within the global settings");
+					$logMessage = "Request denied";
+					if(!empty($response->error_message)){
+						$logMessage .= " - " . $response->error_message;
+					} else {
+						$logMessage .= " - IP Restricted key may be required in the 'Alternative Import API Key' field found within the global settings";
+					}
+
+					$this->log($logMessage);
+					throw new \Exception($logMessage);
 					return false;
 					break;
 					

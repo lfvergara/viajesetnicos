@@ -153,7 +153,7 @@
 								_e("copy this into your post or page to display the map", "wp-google-maps");
 		
 								// NB: I recommend adding a unique ID or class to this link and using the DOM to set the href rather than mixing content with logic here. - Perry
-								echo ". ".__(sprintf("Or <a href='%s' target='BLANK'>click here to automatically create a Map Page now</a>.","admin.php?page=wp-google-maps-menu&amp;action=create-map-page&amp;map_id=".$_REQUEST['map_id']),"wp-google-maps");
+								echo ". ".__(sprintf("Or <a href='%s' target='BLANK'>click here to automatically create a Map Page now</a>.","admin.php?page=wp-google-maps-menu&amp;action=create-map-page&amp;map_id=".intval($_REQUEST['map_id'])),"wp-google-maps");
 
 								?>
 							</i>
@@ -1297,7 +1297,7 @@
 						</div>
 					</fieldset>
 					
-					<fieldset class="wpgmza-pro-feature">
+					<fieldset class="wpgmza-pro-feature" data-wpgmza-require-engine="google-maps">
 						<legend>
 							<?php
 							_e("Enable Polygon Labels", "wp-google-maps");
@@ -1864,6 +1864,42 @@
 							_e("Allow users to filter by category?", "wp-google-maps");
 							?>
 						</label>
+					</fieldset>
+
+					<fieldset class="wpgmza-pro-feature">
+						<legend>
+							<?php
+							_e("Override zoom level on listing click", "wp-google-maps");
+							?>
+						</legend>
+						
+						<div>
+							<div class='switch'>
+								<input type='checkbox' 
+									id='zoom_level_on_marker_listing_override' 
+									name='zoom_level_on_marker_listing_override' 
+									class='postform cmn-toggle cmn-toggle-round-flat wpgmza-pro-feature'>
+								<label for='zoom_level_on_marker_listing_override' 
+									data-on='<?php _e("Yes", "wp-google-maps"); ?>'
+									data-off='<?php _e("No", "wp-google-maps"); ?>'>
+								</label>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset 
+						class="wpgmza-zoom-on-marker-listing-click-zoom-level wpgmza-no-flex" 
+						id="zoom_level_on_marker_listing_click_level" 
+						style="display: none;">
+						<legend>
+							<?php
+							_e("Zoom Level", "wp-google-maps");
+							?>
+						</legend>
+
+						<input name="zoom_level_on_marker_listing_click" style="display: none;" type="text" id="zoom_level_on_marker_listing_click">
+						
+						 <div id="zoom-on-marker-listing-click-slider"></div> 
 					</fieldset>
 
 					

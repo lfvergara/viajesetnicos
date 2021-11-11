@@ -77,7 +77,7 @@ class WC_Filter_Urls_Weglot implements Hooks_Interface_Weglot {
 		 */
 		add_filter( 'woocommerce_get_cart_page_permalink', array( '\WeglotWP\Helpers\Helper_Filter_Url_Weglot', 'filter_url_lambda' ) );
 
-		add_filter( 'woocommerce_get_endpoint_url', array( $this, 'last_password_url_filter' ), 10, 4 );
+		add_filter( 'woocommerce_get_endpoint_url', array( $this, 'weglot_woocommerce_get_endpoint_url' ), 10, 4 );
 	}
 
 	/**
@@ -92,21 +92,25 @@ class WC_Filter_Urls_Weglot implements Hooks_Interface_Weglot {
 		return $url->getForLanguage( $this->request_url_services->get_current_language() );
 	}
 
-	public function last_password_url_filter( $url, $endpoint, $value, $permalink ) {
+	public function weglot_woocommerce_get_endpoint_url( $url, $endpoint, $value, $permalink ) {
 
-		if ( 'lost-password' === $endpoint ) {
+		if ( get_option( 'woocommerce_myaccount_lost_password_endpoint' ) === $endpoint ) {
 			$current_headers = headers_list();
 			foreach ( $current_headers as $header ) {
 				if ( strpos( $header, 'wp-resetpass' ) !== false ) {
 					preg_match( '#wp-resetpass-(.*?)=(.*?);#', $header, $matches_name );
 					preg_match( '#path=(.*?);#', $header, $matches_path );
 					if ( isset( $matches_name[0] ) && isset( $matches_path[0] ) && isset( $matches_path[1] ) ) {
-						$url = $this->request_url_services->create_url_object( $matches_path[1]  );
-						$translated_url = $url->getForLanguage( $this->request_url_services->get_current_language() );
+						$theUrl = $this->request_url_services->create_url_object( $matches_path[1]  );
+						$translated_url = $theUrl->getForLanguage( $this->request_url_services->get_current_language() );
 						setcookie( 'wp-resetpass-' . $matches_name[1], urldecode( $matches_name[2] ), 0, $translated_url, '', is_ssl(), true ); // phpcs:ignore
+						return $translated_url;
 					}
 				}
 			}
+
+			$current_url = $this->request_url_services->create_url_object( $url );
+			return $current_url->getForLanguage( $this->request_url_services->get_current_language() );
 		}
 		return $url;
 	}

@@ -797,6 +797,7 @@ function wpgmaps_tag_pro( $atts ) {
 		{
 			case "legacy":
 			case "modern":
+			case "default":
 				wp_enqueue_style('wpgmza_legacy_modern_pro_style', plugin_dir_url(__FILE__) . 'css/styles/legacy-modern.css', $wpgmza_pro_version);
 				break;
 		}
@@ -810,9 +811,14 @@ function wpgmaps_tag_pro( $atts ) {
 
     $wpgmza_main_settings = get_option("WPGMZA_OTHER_SETTINGS");
     if (isset($wpgmza_main_settings['wpgmza_custom_css']) && $wpgmza_main_settings['wpgmza_custom_css'] != "") { 
+    	/**
+    	 *  Removed from pro, fully managed by basic, this causes duplicated CSS
+    	*/
 		// TODO: Slashes should be stripped on input really, however please bear in mind removing this call may break CSS for existing users. A version check is in order here
+		/*
 		$style = html_entity_decode(stripslashes($wpgmza_main_settings['wpgmza_custom_css']));
         wp_add_inline_style( 'wpgmaps-style-pro', $style );
+        */
     }
 
     global $wpgmza_short_code_array;
@@ -1683,8 +1689,15 @@ function wpgmaps_check_for_plugin_update($checked_data) {
 	$raw_response = wp_remote_post($wpgmaps_api_url, $request_string);
 	
 	if (isset($raw_response)) {
-		if (!is_wp_error($raw_response) && ($raw_response['response']['code'] == 200)){
-			$response = unserialize($raw_response['body']);
+		$response = false;
+		if (!is_wp_error($raw_response) && !empty($raw_response['body']) && ($raw_response['response']['code'] == 200)){
+			try{
+				$response = @unserialize($raw_response['body']);
+			} catch (Exception $e){
+
+			} catch (Error $er){
+				
+			}
 			
 			/* 
 			 * This shouldn't be dumping even in dev mode
@@ -1941,7 +1954,13 @@ function wpgmaps_get_import_logs(){
 	$importLogPath = plugin_dir_path(__FILE__) . 'includes/import-export/import.log';
 	if(file_exists($importLogPath)){
 		try{
-			return file_get_contents($importLogPath);
+			$fileSizeLimit = 5242880; // Around 5MB
+			if(filesize($importLogPath) > $fileSizeLimit){
+				// File has gotten excessively large, destory the file now
+				unlink($importLogPath);
+			} else {
+				return file_get_contents($importLogPath);
+			}
 		} catch (Exception $ex){
 
 		} catch (Error $er){

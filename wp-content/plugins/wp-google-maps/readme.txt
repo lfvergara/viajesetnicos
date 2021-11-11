@@ -1,14 +1,14 @@
 === WP Google Maps ===
 Contributors: WPGMaps, NickDuncan, CodeCabin_, DylanAuty
 Donate link: https://www.wpgmaps.com
-Tags: google maps, maps, map, map markers, google map, google maps plugin, wp google maps, wp google map, map plugin, store locator, google map plugin, map widget, open layers,
+Tags: google maps, maps, map, map markers, google map, google maps plugin, wp google maps, wp google map, map plugin, store locator, google map plugin, map widget, open layers, elementor map
 Requires at least: 3.5
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 5.3
-Stable tag: trunk
+Stable tag: 8.1.18
 License: GPLv2
 
-The easiest to use Google maps plugin! Create a custom Google map or Store Locator with high quality markers containing categories, descriptions, images and links.
+The easiest to use Google maps plugin! Create a custom Google map, store locator or map widget with high quality markers containing categories, descriptions, images and links.
 
 == Description ==
 
@@ -18,6 +18,8 @@ Add a customized Google map or Store Locator to your WordPress posts and/or page
 
 While the free version of WP Google Maps allows you to create a Google map with as many markers as you like, the Pro version allows you to do so much more! 
 
+Create Elementor Maps, map blocks and map widgets easily with our WP Google Maps Elementor map block integration, straight out the box!
+
 The [WP Google Maps Pro Version](https://www.wpgmaps.com/purchase-professional-version/) version allows you create custom Google maps with high quality markers containing locations, descriptions, images, categories, links and directions. 
 
 = Lite Version (Free) =
@@ -26,6 +28,7 @@ The [WP Google Maps Pro Version](https://www.wpgmaps.com/purchase-professional-v
 * Super easy to use, no coding required!
 * Create as many map markers as you need by simply typing in the address
 * Responsive maps
+* Elementor Map block
 * Edit your map markers with the click of a button
 * 9 popular map themes to choose from
 * Create or add your own map theme
@@ -196,6 +199,12 @@ To add your map to your widgets area, simply go to Appearance->Widgets and drag 
 
 == Upgrade Notice ==
 
+= 8.1.18 =
+Please update to 8.1.18 or above to ensure you are using the latest security enhancements.
+
+= 8.1.16 =
+Please update to 8.1.16 or above to ensure plugin stability.
+
 = 8.1.13 =
 Please update to 8.1.13 or above to ensure you are using the latest security enhancements.
 
@@ -215,6 +224,50 @@ Please update to 7.11.18 or above to ensure you are using the latest security en
 Please update your WP Google Maps version to 6.3.15 to ensure you are using the latest security enhancements.
 
 == Changelog ==
+
+= 8.1.18 - 2021-11-02 =
+* Improved sanitization, validation and escaping. Improving user editable content management, trace calls, and temporary variables
+* Improved sanitization, validation and escaping on legacy code base. Code largely unused but has been addressed for additional security
+* Removed polygons labels settings placeholder when in OpenLayers engine, this is not supported by OpenLayers presently
+* Removed legacy code which loaded internal version of CodeMirror
+* Removed legacy code which allowed manual jQuery version to be loaded. This has been disabled for some time, however, code is now fully deprecated
+* Deprecated some legacy functionality
+* Updated stable tag to reflect version number correctly
+
+= 8.1.17 - 2021-10-13 =
+* Improved marker editor geocode usage to only geocode when an address has changed, or is being added for the first time. (Reduced API calls due to usage)
+* Fixed issue where editing a marker which has already been position adusted would trigger a geocode on the original address, moving the marker back to the original placement
+* Fixed issue where map preview would not load on some elementor pages (Preview view only)
+* Fixed issue where RTL sites would misplace markers in OpenLayers
+* Fixed issue where StreetView icon would not show on some websites (Theme dependent)
+* Fixed issue where SQL quotation mark usage for actions on marker, map, and features (trait) would cause datatable failures 
+* Removed uses of 'SQL_CALC_FOUND_ROWS' AND 'FOUND_ROWS' in queries to ensure MySQL 8.0.17 and above compatibility
+
+= 8.1.16 - 2021-09-20 =
+* Fixed issue where map editor would not initialize on some older WordPress versions
+* Fixed issue where admin bar scroll offset would sometimes be undefined
+* Updated Real Cookie Banner integration, for improved stability
+
+= 8.1.15 - 2021-09-01 =
+* Fixed issue where Avada Alert icons would not show due to our icon libraries loading in post/page editor
+* Remove Klokantech 3D tileserver as this does not appear to be supported (OpenLayers)
+* Added MapTiler Streets, Outdoor, Pastel, Basic (OpenLayers)
+* Added indicator for most tilesets that require an API key (OpenLayers)
+* Added preinit event delegate
+* Added global initMaps method
+* Added global onScroll method
+* Added core integration for Real Cookie Banner integration
+* Updated it_IT translation file (Thanks to Alessio Cornale)
+* Updated Stamen Watercolor tileset to point to HTTP host (OpenLayers)
+* Updated OpenPtMap tileset to point to HTTP host (OpenLayers)
+
+= 8.1.14 - 2021-07-28 =
+* Fixed issue where custom scripts (CSS & JS) would be html_entities encoded by the wp_kses_post function, causing custom scripts to run unpredictably
+* Fixed issue where uncaught exception would cause errors to show on the frontend, although it is gracefully handled
+* Fixed issue where carousel time placeholder had an unclosed attribute
+* Resized credit images to standard sizes (Reduction in file size)
+* Resized interface images and changed color spaces (Reduction in file size) (Thanks to lowwebtech on GitHub)
+* Tested up to WordPress 5.8 
 
 = 8.1.13 - 2021-06-15 =
 * Fixed issue where Authenticated Persistent XSS could be executed on any CRUD module. Uses wp_kses_post for cleanup. Applies to Markers, Polygons, Polylines and Shapes (Thanks to Visse) 
@@ -1658,26 +1711,6 @@ Please update your WP Google Maps version to 6.3.15 to ensure you are using the 
 
 
 For more, please view the WP Google Maps site
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -125,16 +125,22 @@ jQuery(function($) {
 		this.directionStartMarker = WPGMZA.Marker.createInstance({
 			position: points[0],
 			icon: this.map.settings.directions_route_origin_icon,
+			retina: this.map.settings.directions_origin_retina,
 			disableInfoWindow: true
 		});
+
+		this.directionStartMarker._icon.retina = this.directionStartMarker.retina;
 
 		this.map.addMarker(this.directionStartMarker);
 
 		this.directionEndMarker = WPGMZA.Marker.createInstance({
 			position: points[points.length - 1],
 			icon: this.map.settings.directions_route_destination_icon,
+			retina: this.map.settings.directions_destination_retina,
 			disableInfoWindow: true
 		});
+
+		this.directionEndMarker._icon.retina = this.directionEndMarker.retina;
 
 		this.map.addMarker(this.directionEndMarker);
 
@@ -184,21 +190,31 @@ jQuery(function($) {
 		
 		for(var i = startIndex; i <= endIndex; i++)
 		{
-			var vertex = this.polyline.points[i];
+			var vertex = this.polyline.polydata[i];
 			
 			points.push(vertex);
 			bounds.extend(vertex);
 		}
+
+		var settings = {
+			strokeColor: "#ff0000",
+			strokeWeight: 4,
+			strokeOpacity: 0.8
+		};
+
+		if(this.map.settings.directions_route_stroke_weight){
+		 	settings.linethickness = this.map.settings.directions_route_stroke_weight;
+		}
+
+		if(this.map.settings.directions_route_stroke_opacity){
+		 	settings.opacity = this.map.settings.directions_route_stroke_opacity;
+		}
 		
 		var polyline = WPGMZA.Polyline.createInstance({
-			points: points,
-			settings: {
-				strokeColor: "#ff0000",
-				strokeWeight: 4,
-				strokeOpacity: 0.8
-			}
+			polydata: points,
+			settings: settings
 		});
-		
+
 		this.stepHighlightPolyline = polyline;
 		
 		this.map.addPolyline(this.stepHighlightPolyline);

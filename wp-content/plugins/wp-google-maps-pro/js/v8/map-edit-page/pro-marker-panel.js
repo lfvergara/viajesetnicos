@@ -66,10 +66,25 @@ jQuery(function($){
 			switch(name)
 			{
 				case "description":
-					if(tinyMCE.get("wpgmza-description-editor"))
-						tinyMCE.get("wpgmza-description-editor").setContent(data.description);
-					else
+					if(tinyMCE.get("wpgmza-description-editor")){
+						var tinyMCEInstance = tinyMCE.get("wpgmza-description-editor");
+
+						var tinyMCEModeToggled = false;
+						if(tinyMCEInstance.isHidden()){
+							/* The editor is in text mode, swap back before inserting data */
+							tinyMCEInstance.show();
+							tinyMCEModeToggled = true;
+						}
+
+						tinyMCEInstance.setContent(data.description);
+
+						if(tinyMCEModeToggled){
+							/* The editor is in text mode, swap back before inserting data */
+							tinyMCEInstance.hide();
+						}
+					} else {
 						$("#wpgmza-description-editor").val(data.description);
+					}
 					break;
 				
 				case "icon":
@@ -123,7 +138,6 @@ jQuery(function($){
 		if(tinyMCE.get("wpgmza-description-editor")) {
 			data.description = tinyMCE.get("wpgmza-description-editor").getContent();
 		} else {
-			console.log("HEY");
 			data.description = $("#wpgmza-description-editor").val();
 		}
 		
@@ -144,8 +158,18 @@ jQuery(function($){
 		}
 		
 		this.showPreloader(true);
+
+		var addressUnchanged = false;
+		if(this.feature && this.feature.address && address){
+			if(typeof this.feature.address === 'string' && typeof address === 'string'){
+				if(this.feature.address.trim() === address.trim()){
+					/** Address was not changed by the edit, let's go ahead and skip geocoding on save */
+					addressUnchanged = true;
+				}
+			}
+		}
 		
-		if(this.adjustSubMode){
+		if(this.adjustSubMode || addressUnchanged){
 			// Trust the force!
 			WPGMZA.FeaturePanel.prototype.onSave.apply(self, arguments);
 		} else {

@@ -29,7 +29,7 @@ class MapsEngineDialog
 		
 		$settings = get_option('WPGMZA_OTHER_SETTINGS');
 		
-		$settings['wpgmza_maps_engine'] = $_POST['engine'];
+		$settings['wpgmza_maps_engine'] = sanitize_text_field($_POST['engine']);
 		$settings['wpgmza_maps_engine_dialog_done'] = true;
 		
 		update_option('WPGMZA_OTHER_SETTINGS', $settings);

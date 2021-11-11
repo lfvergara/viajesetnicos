@@ -48,29 +48,29 @@ class AdminMarkerDataTable extends MarkerDataTable
 	{
 		$id_placeholder = AdminMarkerDataTable::ID_PLACEHOLDER;
 		
-		return apply_filters('wpgmza_admin_marker_datatable_action_buttons_sql', 'REPLACE(\'
-				<div class="wpgmza-action-buttons wpgmza-flex">
-					<a title="Edit this marker" class="wpgmza_edit_btn button" data-edit-marker-id="' . $id_placeholder . '">
-						<i class="fa fa-edit"> </i>
+		return apply_filters('wpgmza_admin_marker_datatable_action_buttons_sql', "REPLACE('
+				<div class=\'wpgmza-action-buttons wpgmza-flex\'>
+					<a title=\'Edit this marker\' class=\'wpgmza_edit_btn button\' data-edit-marker-id=\'{$id_placeholder}\'>
+						<i class=\'fa fa-edit\'> </i>
 					</a>
-					<a title="' . esc_attr( __('Edit this marker location', 'wp-google-maps') ) . '" data-adjust-marker-id="' . $id_placeholder . '" class="wpgmza_edit_btn button">
-						<i class="fa fa-map-marker"> </i>
+					<a title=\'" . esc_attr( __('Edit this marker location', 'wp-google-maps') ) . "\' data-adjust-marker-id=\'{$id_placeholder}\' class=\'wpgmza_edit_btn button\'>
+						<i class=\'fa fa-map-marker\'> </i>
 					</a>
-					<a title="Center on marker" class="wpgmza_center_btn button" data-center-marker-id="' . $id_placeholder . '">
-					<i class="fa fa-eye"> </i>
+					<a title=\'Center on marker\' class=\'wpgmza_center_btn button\' data-center-marker-id=\'{$id_placeholder}\'>
+					<i class=\'fa fa-eye\'> </i>
 					</a>
-					<a href="javascript: ;" title="'
+					<a href=\'javascript: ;\' title=\'"
 						. esc_attr( __('Delete this marker', 'wp-google-maps') ) . 
-						'" class="wpgmza_del_btn button" data-delete-marker-id="' . $id_placeholder . '">
-						<i class="fa fa-times"> </i>
+						"\' class=\'wpgmza_del_btn button\' data-delete-marker-id=\'{$id_placeholder}\'>
+						<i class=\'fa fa-times\'> </i>
 					</a>
 				</div>
 				
-				\',
-				"' . $id_placeholder . '",
+				',
+				'{$id_placeholder}',
 				id
 			) AS `action`
-		');
+		");
 	}
 	
 	protected function filterColumns(&$columns, $input_params)
@@ -98,7 +98,7 @@ class AdminMarkerDataTable extends MarkerDataTable
 					break;
 				
 				case 'sticky':
-					$columns[$key] = '(CASE WHEN sticky = 1 THEN "&#x2714;" ELSE "" END) AS sticky';
+					$columns[$key] = '(CASE WHEN sticky = 1 THEN \'&#x2714;\' ELSE \'\' END) AS sticky';
 					break;
 			}
 		}

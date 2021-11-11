@@ -590,19 +590,19 @@ class ScriptLoader
 			switch($_GET['action'])
 			{
 				case "add_poly":
-					wpgmaps_b_admin_add_poly_javascript($_GET['map_id']);
+					wpgmaps_b_admin_add_poly_javascript(intval($_GET['map_id']));
 					break;
 					
 				case "edit_poly":
-					wpgmaps_b_admin_edit_poly_javascript($_GET['map_id'], $_GET['poly_id']);
+					wpgmaps_b_admin_edit_poly_javascript(intval($_GET['map_id']), intval($_GET['poly_id']));
 					break;
 					
 				case "add_polyline":
-					wpgmaps_b_admin_add_polyline_javascript($_GET['map_id']);
+					wpgmaps_b_admin_add_polyline_javascript(intval($_GET['map_id']));
 					break;
 				
 				case "edit_polyline":
-					wpgmaps_b_admin_edit_polyline_javascript($_GET['map_id'], $_GET['poly_id']);
+					wpgmaps_b_admin_edit_polyline_javascript(intval($_GET['map_id']), intval($_GET['poly_id']));
 					break;
 				
 				default:
@@ -723,6 +723,15 @@ class ScriptLoader
 					break;
 				
 			default:
+				/* Don't load in the post/page editor, for systems like Fusion/Avada */
+				if(is_admin()){
+					if(!empty($_GET['post']) && !empty($_GET['action'])){
+						if($_GET['action'] === 'edit'){
+							break;	
+						}
+					}
+				}
+
 				wp_enqueue_style('fontawesome', plugin_dir_url(__DIR__) . 'css/font-awesome.min.css');
 				break;
 		}

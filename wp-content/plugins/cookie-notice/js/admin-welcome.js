@@ -44,13 +44,13 @@
 
 				if ( typeof braintree !== 'undefined' ) {
 					return $.ajax( {
-						url: cnArgs.ajaxURL,
+						url: cnWelcomeArgs.ajaxURL,
 						type: 'POST',
 						dataType: 'html',
 						data: {
 							action: 'cn_api_request',
 							request: 'get_bt_init_token',
-							nonce: cnArgs.nonce
+							nonce: cnWelcomeArgs.nonce
 						}
 					} );
 				} else
@@ -60,7 +60,7 @@
 		}
 
 		var btInitPaymentMethod = function( type ) {
-			console.log( 'btInitPaymentMethod' );
+			// console.log( 'btInitPaymentMethod' );
 
 			if ( btClient !== false ) {
 				if ( type === 'credit_card' && btCreditCardsInitialized === false ) {
@@ -77,7 +77,8 @@
 		}
 
 		var btCreditCardsInit = function( clientInstance ) {
-			console.log( 'btCreditCardsInit' );
+			// console.log( 'btCreditCardsInit' );
+			
 			return braintree.hostedFields.create( {
 				client: clientInstance,
 				styles: {
@@ -111,7 +112,8 @@
 		}
 
 		var btHostedFieldsInstance = function( hostedFieldsInstance ) {
-			console.log( 'btHostedFieldsInstance' );
+			// console.log( 'btHostedFieldsInstance' );
+			
 			btCreditCardsInitialized = true;
 
 			var form = $( 'form.cn-form[data-action="payment"]' );
@@ -142,7 +144,7 @@
 
 				if ( invalidForm ) {
 					setTimeout( function() {
-						cnDisplayError( cnArgs.invalidFields, form );
+						cnDisplayError( cnWelcomeArgs.invalidFields, form );
 
 						// spin the spinner, if exists
 						if ( form.find( '.cn-spinner' ).length )
@@ -154,14 +156,14 @@
 
 				hostedFieldsInstance.tokenize( function( err, payload ) {
 					if ( err ) {
-						cnDisplayError( cnArgs.error );
+						cnDisplayError( cnWelcomeArgs.error );
 
 						return false;
 					} else {
 						form.addClass( 'cn-payment-in-progress' );
 						form.find( 'input[name="payment_nonce"]' ).val( payload.nonce );
 
-						$( document ).find( '.cn-screen-button[data-screen="4"]' ).trigger( 'click' );
+						$( '#cn_submit_paid' ).find( '.cn-screen-button[data-screen="4"]' ).trigger( 'click' );
 					}
 				} );
 
@@ -170,14 +172,16 @@
 		}
 
 		var btPaypalCheckoutInit = function( clientInstance ) {
-			console.log( 'btPaypalCheckoutInit' );
+			// console.log( 'btPaypalCheckoutInit' );
+			
 			return braintree.paypalCheckout.create( {
 				client: clientInstance
 			} );
 		}
 
 		var btPaypalCheckoutSDK = function( paypalCheckoutInstance ) {
-			console.log( 'btPaypalCheckoutSDK' );
+			// console.log( 'btPaypalCheckoutSDK' );
+			
 			return paypalCheckoutInstance.loadPayPalSDK( {
 				vault: true,
 				intent: 'tokenize'
@@ -185,13 +189,15 @@
 		}
 
 		var btPaypalCheckoutInstance = function( paypalCheckoutInstance ) {
-			console.log( 'btPaypalCheckoutInstance' );
+			// console.log( 'btPaypalCheckoutInstance' );
+			
 			var form = $( 'form.cn-form[data-action="payment"]' );
 
 			return paypal.Buttons( {
 				fundingSource: paypal.FUNDING.PAYPAL,
 				createBillingAgreement: function() {
-					console.log( 'createBillingAgreement' );
+					// console.log( 'createBillingAgreement' );
+					
 					form.addClass( 'cn-form-disabled' );
 
 					return paypalCheckoutInstance.createPayment( {
@@ -201,39 +207,46 @@
 					} );
 				},
 				onApprove: function( data, actions ) {
-					console.log( 'onApprove' );
+					// console.log( 'onApprove' );
+					
 					return paypalCheckoutInstance.tokenizePayment( data ).then( function( payload ) {
 						form.addClass( 'cn-payment-in-progress' );
 						form.find( 'input[name="payment_nonce"]' ).val( payload.nonce );
-
-						$( document ).find( '.cn-screen-button[data-screen="4"]' ).trigger( 'click' );
+						
+						// console.log( 'onApprove inside' );
+						// console.log( $( '#cn_submit_paid' ).find( '.cn-screen-button[data-screen="4"]' ) );
+						
+						$( '#cn_submit_paid' ).find( '.cn-screen-button[data-screen="4"]' ).trigger( 'click' );
 					} );
 				},
 				onCancel: function( data ) {
-					console.log( 'onCancel' );
+					// console.log( 'onCancel' );
+					
 					form.removeClass( 'cn-form-disabled' );
 				},
 				onError: function( err ) {
-					console.log( 'onError' );
+					// console.log( 'onError' );
+					
 					form.removeClass( 'cn-form-disabled' );
 				}
 			} ).render( '#cn_paypal_button' );
 		}
 
 		var btPaypalCheckoutButton = function() {
-			console.log( 'btPaypalCheckoutButton' );
+			// console.log( 'btPaypalCheckoutButton' );
+			
 			btPayPalInitialized = true;
 
 			$( 'form.cn-form[data-action="payment"]' ).removeClass( 'cn-form-disabled' );
 		}
 
 		var btGatewayFail = function( error ) {
-			console.log( 'btGatewayFail' );
+			// console.log( 'btGatewayFail' );
 
 			if ( typeof error !== 'undefined' )
 				console.log( error );
 
-			cnDisplayError( cnArgs.error );
+			cnDisplayError( cnWelcomeArgs.error );
 		}
 
 		var cnDisplayError = function( message, form ) {
@@ -251,7 +264,7 @@
 			// continue with screen loading
 			var requestData = {
 				action: 'cn_welcome_screen',
-				nonce: cnArgs.nonce
+				nonce: cnWelcomeArgs.nonce
 			};
 
 			if ( $.inArray( screen, steps ) != -1 ) {
@@ -269,7 +282,7 @@
 			$( container ).addClass( 'cn-loading' );
 
 			$.ajax( {
-				url: cnArgs.ajaxURL,
+				url: cnWelcomeArgs.ajaxURL,
 				type: 'POST',
 				dataType: 'html',
 				data: requestData
@@ -295,7 +308,7 @@
 			var formResult = null;
 			var formData = {
 				action: 'cn_api_request',
-				nonce: cnArgs.nonce
+				nonce: cnWelcomeArgs.nonce
 			};
 
 			// clear feedback
@@ -319,7 +332,7 @@
 			} );
 
 			formResult = $.ajax( {
-				url: cnArgs.ajaxURL,
+				url: cnWelcomeArgs.ajaxURL,
 				type: 'POST',
 				dataType: 'json',
 				data: formData
@@ -333,60 +346,111 @@
 			var form = $( e.target ).closest( 'form' );
 			var result = false;
 
-			// payment?
-			if ( form.data( 'action' ) === 'payment' && form.find( 'input[name="payment_nonce"]' ).val() === '' )
-				return true;
-			else
-				e.preventDefault();
-
 			// spin the spinner, if exists
 			if ( $( e.target ).find( '.cn-spinner' ).length )
 				$( e.target ).find( '.cn-spinner' ).addClass( 'spin' );
 
-			// get form and process it if exists
-			if ( form.length === 1 ) {
-				result = cnWelcomeForm( form );
+			// no form?
+			if ( form.length === 0 )
+				return cnWelcomeScreen( e );
 
-				result.done( function( response ) {
-					// error
-					if ( response.hasOwnProperty( 'error' ) ) {
-						cnDisplayError( response.error, $( form[0] ) );
-					// message
-					} else if ( response.hasOwnProperty( 'message' ) ) {
-						cnDisplayError( response.message, $( form[0] ) );
-					// all good
-					} else {
-						// register complete, go to billing
-						if ( form.data( 'action' ) === 'register' || form.data( 'action' ) === 'login' ) {
+			var formData = {};
+			var formDataset = $( form[0] ).data();
+			var formAction = formDataset.hasOwnProperty( 'action' ) ? formDataset.action : '';
+
+			// get form data
+			$( form[0] ).serializeArray().map( function( x ) {
+				// exception for checkboxes
+				if ( x.name === 'cn_laws' ) {
+					var arrayVal = typeof formData[x.name] !== 'undefined' ? formData[x.name] : [];
+					
+					arrayVal.push( x.value );
+					
+					formData[x.name] = arrayVal;
+				} else {
+					formData[x.name] = x.value;
+				}
+			} );
+
+			// console.log( form[0] );
+			// console.log( formData );
+			// console.log( formAction );
+
+			// payment?
+			if ( formAction === 'payment' ) {
+				if ( formData.plan !== 'free' ) {
+					// only credit cards
+					if ( $( form[0] ).find( 'input[name="payment_nonce"]' ).val() === '' ) {
+						form.trigger( 'submit' );
+
+						return false;
+					}
+				} else {
+					// load screen
+					cnWelcomeScreen( e );
+
+					return false;
+				}
+			} else
+				e.preventDefault();
+
+			// get form and process it
+			result = cnWelcomeForm( form );
+
+			result.done( function( response ) {
+				// error
+				if ( response.hasOwnProperty( 'error' ) ) {
+					cnDisplayError( response.error, $( form[0] ) );
+
+					return false;
+				// message
+				} else if ( response.hasOwnProperty( 'message' ) ) {
+					cnDisplayError( response.message, $( form[0] ) );
+
+					return false;
+				// all good
+				} else {
+					switch ( formAction ) {
+						// logged in, go to success or billing
+						case 'login' :
+						// register complete, go to success or billing
+						case 'register' :
+							var accountPlan = formData.hasOwnProperty( 'plan' ) ? formData.plan : 'free';
+
+							// trigger payment
 							var accordionItem = $( form[0] ).closest( '.cn-accordion-item' );
 
 							// collapse account
 							$( accordionItem ).addClass( 'cn-collapsed cn-disabled' );
 
 							// show billing
-							$( accordionItem ).next().removeClass( 'cn-disabled' );
+							$( accordionItem ).next().removeClass( 'cn-disabled' ).removeClass( 'cn-collapsed' );
 							$( accordionItem ).find( 'form' ).removeClass( 'cn-form-disabled' );
 
 							// init braintree after payment screen is loaded via AJAX
 							btInit();
-						}
 
-						cnWelcomeScreen( e );
+							break;
+
+						case 'configure' :
+						default :
+							// load screen
+							cnWelcomeScreen( e );
+							break;
 					}
-				} );
+				}
+			} );
 
-				result.always( function( response ) {
-					if ( $( e.target ).find( '.cn-spinner' ).length )
-						$( e.target ).find( '.cn-spinner' ).removeClass( 'spin' );
+			result.always( function( response ) {
+				if ( $( e.target ).find( '.cn-spinner' ).length )
+					$( e.target ).find( '.cn-spinner' ).removeClass( 'spin' );
 
-					// after invalid payment?
-					if ( form.data( 'action' ) === 'payment' ) {
-						form.removeClass( 'cn-payment-in-progress' );
-						form.find( 'input[name="payment_nonce"]' ).val( '' );
-					}
-				} );
-			} else
-				result = cnWelcomeScreen( e );
+				// after invalid payment?
+				if ( formAction === 'payment' ) {
+					$( form[0] ).removeClass( 'cn-payment-in-progress' );
+					$( form[0] ).find( 'input[name="payment_nonce"]' ).val( '' );
+				}
+			} );
 
 			return result;
 		} );
@@ -500,9 +564,61 @@
 
 			frame.contentWindow.postMessage( { call: 'color_button_text', value: val } );
 		} );
+		
+		// plan selection
+		$( document ).on( 'change', 'input[name="plan"]', function() {
+			var availablePlans = [ 'free', 'monthly', 'yearly' ];
+			
+			var input = $( this ),
+				inputVal = input.val();
+				
+			inputVal = availablePlans.indexOf( inputVal ) != -1 ? inputVal : 'free';
+			
+			if ( inputVal === 'free' ) {
+				$( '#cn_submit_free' ).removeClass( 'cn-hidden' );
+				$( '#cn_submit_paid' ).addClass( 'cn-hidden' );
+			} else {
+				$( '#cn_submit_free' ).addClass( 'cn-hidden' );
+				$( '#cn_submit_paid' ).removeClass( 'cn-hidden' );
+			}
+
+			$( document ).find( '.cn-pricing-item input[value="' + inputVal + '"' ).prop('checked', true);
+		} );
+		
+		// highlight form
+		$( document ).on( 'click', 'input[name="cn_pricing_plan"]', function() {
+			$( '.cn-accordion .cn-accordion-item:first-child:not(.cn-collapsed)' ).focus();
+		} );
+		
+		// select plan
+		$( document ).on( 'change', 'input[name="cn_pricing_plan"]', function() {
+			var availablePlans = [ 'free', 'monthly', 'yearly' ];
+			
+			var input = $( this ),
+				inputVal = input.val();
+				
+			inputVal = availablePlans.indexOf( inputVal ) != -1 ? inputVal : 'free';
+			
+			if ( inputVal === 'free' ) {
+				$( '#cn_submit_free' ).removeClass( 'cn-hidden' );
+				$( '#cn_submit_paid' ).addClass( 'cn-hidden' );
+			} else {
+				$( '#cn_submit_free' ).addClass( 'cn-hidden' );
+				$( '#cn_submit_paid' ).removeClass( 'cn-hidden' );
+			}
+
+			$( document ).find( '#cn_field_plan_' + inputVal ).prop('checked', true);
+			
+			
+		} );
 
 		// color picker
 		initSpectrum();
+		
+		// init welcome modal
+		if ( cnWelcomeArgs.initModal == true )
+			initModal();
+
 	} );
 
 	$( document ).on( 'ajaxComplete', function() {
@@ -518,5 +634,167 @@
 			showAlpha: false
 		} );
 	}
+	
+	function initModal() {
+		var progressbar,
+			timerId,
+			modal = $( "#cn-modal-trigger" );
+		
+		if ( modal ) {
+			
+			$( "#cn-modal-trigger" ).modaal( {
+				content_source: cnWelcomeArgs.ajaxURL + '?action=cn_welcome_screen' + '&nonce=' + cnWelcomeArgs.nonce + '&screen=1',
+				type: 'ajax',
+				width: 1600,
+				custom_class: 'cn-modal',
+				// is_locked: true
+				ajax_success: function() {
+					progressbar = $( document ).find( '.cn-progressbar' );
+
+					if ( progressbar ) {
+						timerId = initProgressBar(  progressbar );
+					}
+				},
+				before_close: function() {
+					clearInterval( timerId );
+
+					var currentStep = $( '.cn-welcome-wrap' );
+					
+					// reload if on success screen
+					if ( currentStep.length > 0 ) {
+						if ( $( currentStep[0] ).hasClass( 'cn-welcome-step-4' ) === true )
+							window.location.reload( true );
+					}
+				},
+				after_close: function() {
+					progressbar = $( document ).find( '.cn-progressbar' );
+
+					$( progressbar ).progressbar( "destroy" );
+				}
+			} );
+
+			$( modal ).trigger( 'click' );
+		
+			$( document ).on( 'click', '.cn-skip-button', function( e ) {
+				$( '#modaal-close' ).trigger( 'click' );
+			} );
+		}
+	}
+	
+	function initProgressBar( progressbar ) {
+		var progressbarObj,
+			progressLabel = $( document ).find( '.cn-progress-label' ),
+			complianceResults = $( document ).find( '.cn-compliance-results' ),
+			currentProgress = 0,
+			timerId;
+		
+		if ( progressbar ) {
+			
+			$( document ).on( 'click', '.cn-screen-button', function( e ) {
+				e.preventDefault();
+
+				// console.log( e );
+
+				clearInterval( timerId );
+			} );
+			
+			$( progressbar ).progressbar( {
+				value: 5,
+				max: 100,
+				create: function ( event, ui ) {
+					// console.log( event );
+
+					timerId = setInterval( function() {
+						// increment progress bar
+						currentProgress += 5;
+
+						// console.log( currentProgress );
+
+						// update progressbar
+						progressbar.progressbar( 'value', currentProgress );
+
+						var lastItem = $( complianceResults ).find( 'div:visible' ).last(),
+							lastItemText = $( lastItem ).find( '.cn-compliance-status' ).text();
+
+						$( lastItem ).find( '.cn-compliance-status' ).text( lastItemText + ' .' );
+
+						switch ( currentProgress ) {
+							case 25:
+								$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-passed' ).text( cnWelcomeArgs.statusPassed );
+
+								$( lastItem ).next().slideDown( 200 );
+								break;
+							case 50:
+								if ( cnWelcomeArgs.complianceStatus === 'active' ) {
+									$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-passed' ).text( cnWelcomeArgs.statusPassed );
+								} else {
+									$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-failed' ).text( cnWelcomeArgs.statusFailed );
+								}
+
+								$( lastItem ).next().slideDown( 200 );
+								break;
+							case 75:
+								if ( cnWelcomeArgs.complianceStatus === 'active' ) {
+									$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-passed' ).text( cnWelcomeArgs.statusPassed );
+								} else {
+									$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-failed' ).text( cnWelcomeArgs.statusFailed );
+								}
+
+								$( lastItem ).next().slideDown( 200 );
+								break;
+							case 100:
+								if ( cnWelcomeArgs.complianceStatus === 'active' ) {
+									$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-passed' ).text( cnWelcomeArgs.statusPassed );
+								} else {
+									$( lastItem ).find( '.cn-compliance-status' ).addClass( 'cn-failed' ).text( cnWelcomeArgs.statusFailed );
+								}
+								break;
+						}
+
+						// complete
+						if ( currentProgress >= 100 ) {
+							clearInterval( timerId );
+						}
+					}, 300 );
+				},
+				change: function ( event, ui ) {
+					// console.log( event );
+
+					progressLabel.text( progressbar.progressbar( 'value' ) + '%' );
+				},
+				complete: function ( event, ui ) {
+					// console.log( event );
+
+					setTimeout( function () {
+						if ( cnWelcomeArgs.complianceStatus )
+							$( '.cn-compliance-check' ).find( '.cn-compliance-feedback' ).html( '<p class="cn-message">' + cnWelcomeArgs.compliancePassed + '</p>' ).removeClass( 'cn-hidden' );
+						else
+							$( '.cn-compliance-check' ).find( '.cn-compliance-feedback' ).html( '<p class="cn-error">' + cnWelcomeArgs.complianceFailed + '</p>' ).removeClass( 'cn-hidden' );
+					}, 500 );
+
+					// $( progressbar ).progressbar( "destroy" );
+				}
+			} );
+			
+			progressbarObj = $( progressbar ).progressbar( "instance" );
+			
+			return timerId;
+		}
+	}
+	
+	$( document ).on( 'click', '.cn-run-upgrade, .cn-run-welcome', function( e ) {
+		e.preventDefault();
+		
+		// console.log( e );
+		
+		// modal
+		initModal();
+	} );
+	
+	$( document ).on( 'click', '.cn-sign-up', function( e ) {
+		e.preventDefault();
+		
+		$( '.cn-screen-button' ).trigger( 'click' );
+	} );
 
 } )( jQuery );

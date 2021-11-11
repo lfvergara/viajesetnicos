@@ -70,7 +70,7 @@ class Backup {
 
 	public function getBackupFiles(){
 		$backupDir = $this->getStorageDir();
-		$files = list_files($backupDir);
+		$files = \list_files($backupDir);
 
 		if(!empty($files)){
 			$backups = array();

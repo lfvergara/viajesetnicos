@@ -119,6 +119,9 @@ class Translate_Service_Weglot {
 	 * @see weglot_init / ob_start
 	 */
 	public function weglot_treat_page( $content ) {
+		if ( empty( $content ) ) {
+			return $content;
+		}
 		$this->set_original_language( $this->language_services->get_original_language() );
 		$this->set_current_language( $this->request_url_services->get_current_language() ); // Need to reset
 
@@ -146,6 +149,16 @@ class Translate_Service_Weglot {
 					$translated_content = apply_filters( 'weglot_json_treat_page', $translated_content );
 					return $translated_content;
 				case 'html':
+					//if status code = 404 and /404 are in exlude url we don't translate content
+					if(http_response_code() == 404){
+						$excluded_urls = $this->option_services->get_exclude_urls();
+						foreach ($excluded_urls as $url){
+							if(in_array('^/404$', $url)){
+								return $this->weglot_render_dom( $content, $canonical );
+							}
+						}
+					}
+
 					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, [] , $canonical );
 					$translated_content = apply_filters( 'weglot_html_treat_page', $translated_content );
 					return $this->weglot_render_dom( $translated_content, $canonical );

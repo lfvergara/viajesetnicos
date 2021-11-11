@@ -9,7 +9,7 @@ jQuery(function($) {
 		var self = this;
 		
 		WPGMZA.EventDispatcher.apply(this, arguments);
-		
+
 		this.isLoaded	= false;
 		
 		this.url		= "";

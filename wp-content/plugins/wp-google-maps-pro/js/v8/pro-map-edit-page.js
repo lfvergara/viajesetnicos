@@ -21,6 +21,9 @@ jQuery(function($) {
 
 		this.userIconPicker = new WPGMZA.MarkerIconPicker( $("#wpgmza_show_user_location_conditional .wpgmza-marker-icon-picker") );
 
+		this.storeLocatorIconPicker = new WPGMZA.MarkerIconPicker( $("#wpgmza_store_locator_bounce_conditional .wpgmza-marker-icon-picker") );
+
+
 		$("input[name='store_locator_search_area']").on("input", function(event) {
 			self.onStoreLocatorSearchAreaChanged(event);
 		});
@@ -83,6 +86,29 @@ jQuery(function($) {
 	        }
 	    });
 
+	    if($('#zoom_level_on_marker_listing_override').prop('checked')){
+	        $('#zoom_level_on_marker_listing_click_level').fadeIn();
+	    }else{
+	        $('#zoom_level_on_marker_listing_click_level').fadeOut();
+	    }
+
+	    $('#zoom_level_on_marker_listing_override').on('change', function(){
+	        if($(this).prop('checked')){
+	            $('#zoom_level_on_marker_listing_click_level').fadeIn();
+	        }else{
+	            $('#zoom_level_on_marker_listing_click_level').fadeOut();
+	        }
+	    });
+
+	    $('#zoom-on-marker-listing-click-slider').slider({
+			range: "max",
+			min: 1,
+			max: 21,
+			value: $("input[name='zoom_level_on_marker_listing_click']").val(),
+			slide: function(event, ui){
+				$("input[name='zoom_level_on_marker_listing_click']").val(ui.value);
+			}
+		});
 	    
 
 	    if($('#wpgmza_override_users_location_zoom_level').prop('checked')){

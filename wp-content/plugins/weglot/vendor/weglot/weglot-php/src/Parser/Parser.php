@@ -417,7 +417,7 @@ class Parser {
         }
 
         if (strpos($this->getConfigProvider()->getUrl(), '/404') !== false) {
-            $translate = new CdnTranslate($translate, $this->client);
+            $translate = new CdnTranslate($translate, $this->client); //TODO: use CDNTranslate once working better.
         }
         else {
             $translate = new Translate($translate, $this->client);

@@ -18,9 +18,14 @@ class ThemePanel extends DOMDocument
 		wp_enqueue_style('owl-carousel',				$base . 'lib/owl.carousel.css', array(), $wpgmza->getBasicVersion());
 		wp_enqueue_style('owl-carousel_theme',			$base . 'lib/owl.theme.css', array(), $wpgmza->getBasicVersion());
 		
-		wp_enqueue_script('codemirror',					$base . 'lib/codemirror.js', array(), $wpgmza->getBasicVersion());
-		wp_enqueue_style('codemirror',					$base . 'lib/codemirror.css', array(), $wpgmza->getBasicVersion());
-		wp_enqueue_script('codemirror-javascript',		$base . 'lib/mode/javascript.js', array(), $wpgmza->getBasicVersion());
+		
+		/* 
+		 * Deprecating code mirror enqueue, we don't actually use this with V8
+		 * 
+		 * This will be reintroduced with V9, but we will need to use the included version from WordPress core 
+		 * 
+		 * Since 8.1.18, code removed, comment left as placeholder  
+		*/
 		
 		if($map)
 			$this->populate($map);
