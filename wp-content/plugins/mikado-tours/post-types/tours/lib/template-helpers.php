@@ -328,7 +328,7 @@ if(!function_exists('mkdf_tours_get_tour_price_html')) {
 	}
 }
 
-if(!function_exists('mkdf_tours_get_tour_price_html')) {
+if(!function_exists('mkdf_tours_get_tour_price_grupo_html')) {
 	/**
 	 * Generates html part for tour price.
 	 *
