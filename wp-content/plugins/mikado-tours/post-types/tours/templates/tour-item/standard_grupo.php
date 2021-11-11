@@ -35,7 +35,7 @@ if (!isset($display_label)){
 
 	<div class="mkdf-tours-standard-item-content-holder">
 		<div class="mkdf-tours-standard-item-content-inner" <?php mkdf_tours_inline_style($content_style);?>>
-			<span class="mkdf-tours-standard-item-price-holder" style="width: 100%; text-align: right; margin-bottom: 2%;">
+			<span class="mkdf-tours-standard-item-price-holder" style="width: 100%; text-align: right !important; margin-bottom: 2%;">
 				<?php echo mkdf_tours_get_tour_price_grupo_html(); ?>
 			</span>
 			<div class="mkdf-tours-standard-item-title-price-holder">
