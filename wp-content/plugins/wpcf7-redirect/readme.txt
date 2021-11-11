@@ -1,9 +1,9 @@
 === Redirection for Contact Form 7 ===
 Tags: contact form 7 redirect, contact form 7 thank you page, redirect cf7, redirect contact form 7, contact form 7 success page, cf7 redirect, registration form, mailchimp, login form, conditional redirect, cms integration, conversions, save leads, paypal
 Contributors: yuvalsabar, regevlio
-Requires at least: 5.1.0
-Tested up to: 5.7
-Stable tag: 2.3.5
+Requires at least: 5.2.0
+Tested up to: 5.8
+Stable tag: 2.3.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,9 +27,6 @@ Simply go to your form settings, choose the "Redirect Settings" tab and set the 
 * Add Honeypot to minimize spam
 * Save form submissions to your database
 
-== New and Exciting ==
-Cooperation with a world leading web accessibility solution - you can try it for free and make your website accessible to people with disabilities.
-
 == Our Extensions ==
 * **[Extension]** Conditional logic for each action
 * **[Extension]** Integrate your forms with your Salesforce CRM
@@ -46,6 +43,7 @@ Cooperation with a world leading web accessibility solution - you can try it for
 * **[Extension]** Send submissions to API POST/GET to remote servers
 * **[Extension]** PayPal Integration
 * **[Extension]** Stripe Integration
+* **[Extension]** Create and send PDF 
 
 > Note: some features are availible only as an extension. Which means you need Redirection for Contact Form 7 Pro to unlock those features. You can [get Redirection for Contact Form 7 Pro here](https://redirection-for-contact-form7.com/product/wpcf7r-actions-bundle/)!
 
@@ -78,10 +76,16 @@ No. One of the reasons we developed this plugin, is because on_send_ok is now de
 
 == Changelog ==
 
+= 2.3.6 =
+* Fix missing definition for stripe integration extension
+* Fix notice message on WP-CLI (HTTP_HOST);
+* Security updates
+* Ui fixes on extensions list
+
 = 2.3.5 =
-* Fixed preview of checkbox fields on leads list
-* Fixed nonce issues on extensions page
-* Fixed send file to API [{fieldname}-filename] [{fieldname}-base_64_file] [{fieldname}-path]
+* Fix preview of checkbox fields on leads list
+* Fix nonce issues on extensions page
+* Fix send file to api [{fieldname}-filename] [{fieldname}-base_64_file] [{fieldname}-path]
 
 = 2.3.4 =
 * Security updates

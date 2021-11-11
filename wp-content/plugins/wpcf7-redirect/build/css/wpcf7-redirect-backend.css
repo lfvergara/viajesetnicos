@@ -851,17 +851,18 @@ div#wpcf7r_leads .field-wrap label {
   display: block;
 }
 
-#steps-panel .check-column,
-#extensions-panel .check-column,
-#leads-panel .check-column,
-#redirect-panel .check-column {
+#steps-panel .cf7r-check-column,
+#extensions-panel .cf7r-check-column,
+#leads-panel .cf7r-check-column,
+#redirect-panel .cf7r-check-column {
   padding: 10px;
+  width: 45px;
 }
 
-#steps-panel .check-column .handle,
-#extensions-panel .check-column .handle,
-#leads-panel .check-column .handle,
-#redirect-panel .check-column .handle {
+#steps-panel .cf7r-check-column .handle,
+#extensions-panel .cf7r-check-column .handle,
+#leads-panel .cf7r-check-column .handle,
+#redirect-panel .cf7r-check-column .handle {
   cursor: pointer;
 }
 

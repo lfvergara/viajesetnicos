@@ -57,18 +57,18 @@ function wpcf7_validate_nonce() {
  */
 function wpcf7_redirect_get_all_extensions_list() {
 	$defaults = array(
-		'special-offer'            => array(
-			'name'         => 'accessibie-plugin',
-			'title'        => __( 'Website Accessibility', 'wpcf7-redirect' ),
-			'description'  => __( 'Get an immediate and accurate answer to whether or not your site is compliant with web accessibility legislation for free!', 'wpcf7-redirect' ),
-			'icon'         => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/accessibe-full-logo.svg',
-			'external_url' => admin_url( '/admin.php?page=' . qs_get_plugin_display_name() ),
-			'btn_text'     => __( 'Scan for Problems!', 'wpcf7-redirect' ),
-			'type'         => 'affiliate',
-			'target'       => '',
-			'badge'        => __( 'New', 'wpcf7-redirect' ),
-			'classname'    => '',
-		),
+		// 'special-offer'            => array(
+		// 	'name'         => 'accessibie-plugin',
+		// 	'title'        => __( 'Website Accessibility', 'wpcf7-redirect' ),
+		// 	'description'  => __( 'Get an immediate and accurate answer to whether or not your site is compliant with web accessibility legislation for free!', 'wpcf7-redirect' ),
+		// 	'icon'         => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/accessibe-full-logo.svg',
+		// 	'external_url' => admin_url( '/admin.php?page=' . qs_get_plugin_display_name() ),
+		// 	'btn_text'     => __( 'Scan for Problems!', 'wpcf7-redirect' ),
+		// 	'type'         => 'affiliate',
+		// 	'target'       => '',
+		// 	'badge'        => __( 'New', 'wpcf7-redirect' ),
+		// 	'classname'    => '',
+		// ),
 		'wpcf7r-conditional-logic' => array(
 			'name'        => 'wpcf7r-conditional-logic',
 			'filename'    => 'class-wpcf7r-conditions.php',
@@ -79,7 +79,7 @@ function wpcf7_redirect_get_all_extensions_list() {
 		),
 		'wpcf7r-create-pdf'        => array(
 			'name'        => 'wpcf7r-create-pdf',
-			'filename'    => 'class-wpcf7r-action-create-pdf',
+			'filename'    => 'class-wpcf7r-create-pdf',
 			'title'       => __( 'Create PDF', 'wpcf7-redirect' ),
 			'description' => __( 'Easily create and send PDF files generated automaticaly.', 'wpcf7-redirect' ),
 			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/pdf-icon.png',
@@ -95,7 +95,7 @@ function wpcf7_redirect_get_all_extensions_list() {
 		),
 		'wpcf7r-stripe'            => array(
 			'name'        => 'wpcf7r-stripe',
-			'filename'    => 'class-wpcf7r-action-stripe.php',
+			'filename'    => 'class-wpcf7r-stripe.php',
 			'title'       => __( 'Stripe Integration', 'wpcf7-redirect' ),
 			'description' => __( 'Collect payments with your Contact Form 7 form. Setup product details and custom stripe fields.', 'wpcf7-redirect' ),
 			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/stripe.png',

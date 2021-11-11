@@ -48,26 +48,30 @@ class Ext_Accessibe extends WPCF7R_Action {
 	 * Initiate admin scripts
 	 */
 	public function admin_init() {
-		if ( isset( $_GET['page'] ) && qs_get_plugin_display_name() === $_GET['page'] ) {
-			$response = $this->acctivate_acccesbe_menu();
-		}
-		if ( isset( $_REQUEST['start-free-trial'] ) && qs_get_plugin_display_name() === $_REQUEST['start-free-trial'] ) {
-			$response = $this->mark_scan_completed();
-		}
-		if ( isset( $_POST['activate-accesibe'] ) && $_POST['activate-accesibe'] ) {
-			$response = $this->activate();
-			if ( is_wp_error( $response ) ) {
-				WPCF7r_Utils::add_admin_notice( 'alert', $response->get_error_message() );
-			} else {
-				WPCF7r_Utils::add_admin_notice( 'notice', __( 'Successfully activated' ) );
+
+		if( current_user_can( 'wpcf7_edit_contact_form' ) ){
+			if ( isset( $_GET['page'] ) && qs_get_plugin_display_name() === $_GET['page'] ) {
+				$response = $this->acctivate_acccesbe_menu();
+			}
+			if ( isset( $_REQUEST['start-free-trial'] ) && qs_get_plugin_display_name() === $_REQUEST['start-free-trial'] ) {
+				$response = $this->mark_scan_completed();
+			}
+			if ( isset( $_POST['activate-accesibe'] ) && $_POST['activate-accesibe'] ) {
+				$response = $this->activate();
+				if ( is_wp_error( $response ) ) {
+					WPCF7r_Utils::add_admin_notice( 'alert', $response->get_error_message() );
+				} else {
+					WPCF7r_Utils::add_admin_notice( 'notice', __( 'Successfully activated' ) );
+				}
+			}
+			if ( isset( $_GET['deactivate'] ) && qs_get_plugin_display_name() === $_GET['deactivate'] ) {
+				$this->deactivate();
+			}
+			if ( isset( $_REQUEST['save_ext_settings'] ) && qs_get_plugin_display_name() === $_REQUEST['save_ext_settings'] ) {
+				$this->save();
 			}
 		}
-		if ( isset( $_GET['deactivate'] ) && qs_get_plugin_display_name() === $_GET['deactivate'] ) {
-			$this->deactivate();
-		}
-		if ( isset( $_REQUEST['save_ext_settings'] ) && qs_get_plugin_display_name() === $_REQUEST['save_ext_settings'] ) {
-			$this->save();
-		}
+
 		$this->init();
 	}
 

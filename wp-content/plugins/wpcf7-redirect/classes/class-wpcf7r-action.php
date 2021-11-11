@@ -20,7 +20,7 @@ class WPCF7R_Action {
 	 *
 	 * @param string $post [description]
 	 */
-	public function __construct( $post = '' ) {
+	public function __construct( $post = null ) {
 		$this->priority = 2;
 
 		if ( $post ) {
@@ -607,7 +607,7 @@ class WPCF7R_Action {
 		do_action( 'before_wpcf7r_action_row', $this );
 		?>
 		<tr class="drag primary <?php echo $this->get_action_status() ? 'active' : 'non-active'; ?>" data-actionid="<?php echo $this->get_id(); ?>" id="post-<?php echo $this->get_id(); ?>">
-			<td class="manage-column check-column ">
+			<td class="manage-column cf7r-check-column ">
 				<span class="num"><?php echo $this->get_menu_order(); ?></span>
 			</td>
 			<td class="manage-column column-title column-primary sortable desc">
@@ -639,7 +639,7 @@ class WPCF7R_Action {
 			<td class="manage-column column-primary sortable desc edit column-status">
 				<a href="#" aria-label="<?php _e( 'Edit', 'wpcf7-redirect' ); ?>"><?php echo $this->get_action_status_label(); ?></a>
 			</td>
-			<td class="manage-column check-column">
+			<td class="manage-column cf7r-check-column">
 				<input type="hidden" name="post[]" value="<?php echo $this->get_id(); ?>">
 				<span class="dashicons dashicons-menu handle"></span>
 			</td>

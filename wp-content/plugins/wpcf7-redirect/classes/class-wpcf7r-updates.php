@@ -37,7 +37,7 @@ class Wpcf7r_Updates {
 
 		$this->activation_id = WPCF7r_Utils::get_activation_id();
 		$this->serial        = WPCF7r_Utils::get_serial_key();
-		$this->domain        = $_SERVER['HTTP_HOST'];
+		$this->domain        = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (string)parse_url(get_option('siteurl'), PHP_URL_HOST);
 		// define the alternative API for updating checking
 		add_filter( 'pre_set_site_transient_update_plugins', array( &$this, 'check_update' ) );
 

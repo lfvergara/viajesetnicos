@@ -243,11 +243,7 @@ class WPCF7r_Settings {
 					<form method="post">
 						<br/>
 						<input type="submit" value="Check For Updates" class="button-primary" name="extensions-updates-check"/>
-						<br/><br/>
-						<lable>
-							<input type="checkbox" checked="checked" name="update-banner" value="1">
-							<?php _e( 'Get available deals and sales (no spam of any kind).' ); ?>
-						</label>
+						<br/>
 					</form>
 				</div>
 				<div class="postbox extensions-list-wrap">
@@ -269,9 +265,6 @@ class WPCF7r_Settings {
 							<input type="button" name="migrate_again" value="<?php _e( 'Migrate Again from Old Settings', 'wpcf7-redirect' ); ?>" class="migrate_again button button-secondary" />
 							<input type="button" name="reset_all" value="<?php _e( 'Reset all Settings - BE CAREFUL! this will delete all Redirection for Contact Form 7 data.', 'wpcf7-redirect' ); ?>" class="cf7-redirect-reset button button-secondary" />
 
-							<h3><?php _e( 'Recreate from Debug', 'wpcf7-redirect' ); ?></h3>
-							<textarea id="debug-info" style="width:100%;"></textarea>
-							<button class="reacreate-from-debug button button-primary"><?php _e( 'Recreate From Debug', 'wpcf7-redirect' ); ?></button>
 						<?php endif; ?>
 					</div>
 				</div>

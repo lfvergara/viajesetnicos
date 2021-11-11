@@ -210,7 +210,6 @@ var wpcf7_redirect_admin;
 			this.notice_dismiss_selector = '.wpcf7r-notice .notice-dismiss';
 			this.mail_tags_toggle = '.mail-tags-title';
 			this.validate_salesforce_app_details = '.wpcf7-redirect-validate_connection-fields';
-			this.debug_import_button_selector = '.reacreate-from-debug';
 			this.debug_send_button_selector = '.send-debug-info'
 
 		}

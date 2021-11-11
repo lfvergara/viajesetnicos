@@ -22,7 +22,7 @@ $actions = $this->get_actions( $rule_id );
 		<table class="wp-list-table widefat fixed striped pages" data-wrapid="<?php echo $rule_id; ?>">
 			<thead>
 				<tr>
-					<th class="manage-column check-column">
+					<th class="manage-column cf7r-check-column">
 						<a href="#"><?php _e( 'No.', 'wpcf7-redirect' ); ?></a>
 					</th>
 					<th class="manage-column column-title column-primary sortable desc">
@@ -34,7 +34,7 @@ $actions = $this->get_actions( $rule_id );
 					<th class="manage-column column-primary sortable desc">
 						<a href="#"><?php _e( 'Active', 'wpcf7-redirect' ); ?></a>
 					</th>
-					<th class="manage-column check-column">
+					<th class="manage-column cf7r-check-column">
 					</th>
 				</tr>
 			</thead>
