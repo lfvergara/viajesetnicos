@@ -40,7 +40,7 @@ if (!isset($display_label)){
 					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 				</<?php echo esc_attr($title_tag);?>>
 				<span class="mkdf-tours-standard-item-price-holder">
-					<?php echo mkdf_tours_get_tour_price_html(); ?>
+					<?php echo mkdf_tours_get_tour_price_grupo_html(); ?>
 				</span>
 			</div>
 	
