@@ -43,6 +43,7 @@ class ToursList implements ShortcodeInterface {
 						'param_name'  => 'tour_type',
 						'value'       => array(
 							esc_html__('Standard', 'mkdf-tours') => 'standard',
+							esc_html__('Standard Grupo', 'mkdf-tours') => 'standard_grupo',
 							esc_html__('Dharma', 'mkdf-tours') => 'dharma',
 							esc_html__('Dharma FWhite', 'mkdf-tours') => 'dharma_fwhite',
 							esc_html__('Gallery', 'mkdf-tours')  => 'gallery',
