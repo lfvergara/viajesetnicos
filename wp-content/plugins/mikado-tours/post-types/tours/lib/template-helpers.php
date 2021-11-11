@@ -310,18 +310,17 @@ if(!function_exists('mkdf_tours_get_tour_price_html')) {
 		}
 
 		ob_start(); ?>
-		<!--
-		<span class="<?php //echo esc_attr(implode(' ', $holder_class)); ?>">
-			<?php //if($price) : ?>
-				<span class="mkdf-tours-item-price <?php //echo esc_attr($price_on_discount_class);?>"><?php //echo esc_html($price); ?></span>
-			<?php //endif; ?>
-			<?php //if($discount_price) : ?>
+		
+		<span class="<?php echo esc_attr(implode(' ', $holder_class)); ?>">
+			<?php if($price) : ?>
+				<span class="mkdf-tours-item-price <?php echo esc_attr($price_on_discount_class);?>"><?php echo esc_html($price); ?></span>
+			<?php endif; ?>
+			<?php if($discount_price) : ?>
 				<span class="mkdf-tours-item-discount-price mkdf-tours-item-price">
-					<?php //echo esc_html($discount_price); ?>
+					<?php echo esc_html($discount_price); ?>
 				</span>
-			<?php //endif; ?>
+			<?php endif; ?>
 		</span>
-		-->
 		<?php
 
 		return apply_filters('mkdf_tours_get_tour_price_html', ob_get_clean(), $price, $discount_price);
