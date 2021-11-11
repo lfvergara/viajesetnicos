@@ -34,15 +34,15 @@ if (!isset($display_label)){
 	<?php endif; ?>
 
 	<div class="mkdf-tours-standard-item-content-holder">
-		<div class="mkdf-tours-standard-item-title-price-holder" style="width: 100%;">
-			<<?php echo esc_attr($title_tag);?> class="mkdf-tour-title">
-				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-			</<?php echo esc_attr($title_tag);?>>
-			<span class="mkdf-tours-standard-item-price-holder">
-				<?php echo mkdf_tours_get_tour_price_grupo_html(); ?>
-			</span>
-		</div>
 		<div class="mkdf-tours-standard-item-content-inner" <?php mkdf_tours_inline_style($content_style);?>>
+			<div class="mkdf-tours-standard-item-title-price-holder">
+				<span class="mkdf-tours-standard-item-price-holder" style="width: 100%;">
+					<?php echo mkdf_tours_get_tour_price_grupo_html(); ?>
+				</span>
+				<<?php echo esc_attr($title_tag);?> class="mkdf-tour-title">
+					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+				</<?php echo esc_attr($title_tag);?>>
+			</div>
 	
 			<?php if(mkdf_tours_get_tour_rating()) : ?>
 				<div class="mkdf-tours-standard-item-rating">
