@@ -3,12 +3,16 @@
 Plugin Name: WP Google Maps - Pro Add-on
 Plugin URI: http://www.wpgmaps.com
 Description: This is the Pro add-on for WP Google Maps. The Pro add-on enables you to add descriptions, pictures, links and custom icons to your markers as well as allows you to download your markers to a CSV file for quick editing and re-upload them when complete.
-Version:  8.1.15
+Version:  8.1.16
 Author: WP Google Maps
 Author URI: http://www.wpgmaps.com
 */
 
 /*
+ * 8.1.16 - 2021-11-02
+ * Fixed issue where VGM approve button would not show in the map editor
+ * Fixed issue where some stylesheets would have a double slash on the css path (//css)
+ *
  * 8.1.15 - 2021-10-18
  * Improved marker editor geocode usage to only geocode when an address has changed, or is being added for the first time. (Reduced API calls due to usage)
  * Fixed issue where editing a marker which has already been position adusted would trigger a geocode on the original address, moving the marker back to the original placement

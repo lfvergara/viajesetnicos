@@ -46,26 +46,26 @@ class ProMap extends Map
 		if(!empty($wpgmza->settings['wpgmza_settings_carousel_markerlist_theme']) && empty($wpgmza->settings['wpgmza_do_not_enqueue_owl_carousel_themes'])){
 			switch ($wpgmza->settings['wpgmza_settings_carousel_markerlist_theme']) {
 				case 'sun':
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_sun.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_sun.css', array(),  $wpgmza->getProVersion());
 					break;
 				case 'earth':
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_earth.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_earth.css', array(),  $wpgmza->getProVersion());
 					break;
 				case 'monotone':
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_monotone.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_monotone.css', array(),  $wpgmza->getProVersion());
 					break;
 				case 'pinkpurple':
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_pinkpurple.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_pinkpurple.css', array(),  $wpgmza->getProVersion());
 					break;
 				case 'white':
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_white.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_white.css', array(),  $wpgmza->getProVersion());
 					break;
 				case 'black':
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_black.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_black.css', array(),  $wpgmza->getProVersion());
 					break;				
 				case 'sky':
 				default:
-					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'/css/carousel_sky.css', array(),  $wpgmza->getProVersion());
+					wp_enqueue_style('owl_carousel_style_theme_select', WPGMZA_PRO_DIR_URL .'css/carousel_sky.css', array(),  $wpgmza->getProVersion());
 					break;
 			}
 		}

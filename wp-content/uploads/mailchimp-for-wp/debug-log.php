@@ -684,3 +684,210 @@ GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/44618e242eda69852
 Response: 
 401 Unauthorized
 {"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"19faee60-00c0-ec5d-8efa-12d48c93078f"}
+[2021-11-12 14:09:13] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/9b944c2322342fb5a3a22197b1513565
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"b488fde0-76ae-f31a-b66f-37c913958832"}
+[2021-11-12 21:15:32] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/e580f215397326ca4dd76990de8cc9ff
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"55bc5bc9-20db-0353-ca45-40b815aa3920"}
+[2021-11-12 21:15:38] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/e580f215397326ca4dd76990de8cc9ff
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"41062471-dbfc-39be-68ef-07ef169a9a04"}
+[2021-11-12 21:57:12] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/6681603323da1d9cceffd084afc6273f
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"75fba4eb-ef32-8298-4dde-3f1e82b8ffd6"}
+[2021-11-12 21:57:25] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/6681603323da1d9cceffd084afc6273f
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"5ae6fbb0-3015-8675-da4e-f7ac15fc36fa"}
+[2021-11-14 09:45:05] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/4d36149c71503c8b3d0df7837786fd83
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"d0eb8a48-36d2-5944-473f-e6a18de61a7b"}
+[2021-11-14 09:45:15] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/4d36149c71503c8b3d0df7837786fd83
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"49f44b0b-1f9c-5f33-ea61-a63825bdb2b6"}
+[2021-11-14 09:45:29] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/f2b678bffe2715ddfdba1e0ffaa36a75
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"86ec044d-379e-d51c-8e27-9cf7e4232b4e"}
+[2021-11-14 17:14:19] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/9b944c2322342fb5a3a22197b1513565
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"2af67f04-b3ba-3be8-d6c9-54291f1e093c"}
+[2021-11-15 16:37:23] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/08454fe8f2b217861d3086743d2ba562
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"c61fc089-3dc9-392d-18ce-f070ed62adf2"}
+[2021-11-18 01:59:01] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/ec9c5a56f19333897fa5c70dce021ebb
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"258b3074-33ab-eeb5-6931-93e20116d7c6"}
+[2021-11-18 01:59:46] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/ec9c5a56f19333897fa5c70dce021ebb
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"be9f62a1-9f30-4618-3a18-f11eaaf59376"}
+[2021-11-18 21:47:55] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/10bf068e0c7364a617a5bce26416b63d
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"52bbd23d-d61a-4968-0dea-b0ad24816761"}
+[2021-11-18 21:48:15] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/10bf068e0c7364a617a5bce26416b63d
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"bf49ea64-933a-586b-4a95-82776a379a70"}
+[2021-11-18 21:58:31] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/9b944c2322342fb5a3a22197b1513565
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"351c2dd4-e9d7-5e20-63f8-d2f96110e189"}
+[2021-11-20 04:47:15] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/9b944c2322342fb5a3a22197b1513565
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"7e31c493-bf66-56e7-42b6-8be0e5aaef4f"}
+[2021-11-20 15:16:05] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/9b944c2322342fb5a3a22197b1513565
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"6b24b734-c350-8d6b-9858-c24d886d2b6e"}
+[2021-11-24 17:41:01] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/11b93fc9efdbdadf54767c0b5f0556b9
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"4ba1f8f9-80f5-92b0-9685-537e50c45252"}
+[2021-11-24 17:41:17] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/11b93fc9efdbdadf54767c0b5f0556b9
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"1d989a28-5656-a76d-069c-0c7a2ec4683f"}
+[2021-11-24 17:41:39] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/b7b45b2e30c7a3993674b11ce473d39a
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"74d0ce2f-812c-e2ba-ea87-6e208b7742a1"}
+[2021-11-24 17:42:16] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/b7b45b2e30c7a3993674b11ce473d39a
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"ebbef3ff-17df-ba1f-2742-c0778ed8e9a8"}
+[2021-11-24 23:26:22] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/11e9232810362c6338d07a437fcfc9ab
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"8f377ef7-138e-b125-be20-d9706a63a61c"}
+[2021-11-25 13:01:02] ERROR: Form 8187 > Mailchimp API error: 401 Unauthorized. API Key Invalid. API key has been disabled
+
+Request: 
+GET https://us4.api.mailchimp.com/3.0/lists/655b507e87/members/9b944c2322342fb5a3a22197b1513565
+
+
+Response: 
+401 Unauthorized
+{"type":"https://mailchimp.com/developer/marketing/docs/errors/","title":"API Key Invalid","status":401,"detail":"API key has been disabled","instance":"2aa8a397-bcac-f699-729e-022a8c1e90fb"}

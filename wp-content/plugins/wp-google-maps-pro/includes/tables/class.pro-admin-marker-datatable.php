@@ -17,14 +17,15 @@ class ProAdminMarkerDataTable extends AdminMarkerDataTable
 
 		if(!empty($wpgmza_ugm_version))
 		{
-			if(!preg_match('/REPLACE\((.+\')/msi', $string, $m, PREG_OFFSET_CAPTURE))
+			if(!preg_match('/REPLACE\((.+\t\'),/msi', $string, $m, PREG_OFFSET_CAPTURE))
 				return $string;
-			
+
 			$inside = $m[1][0];
 			$inside_original_length = strlen($inside);
 			$inside_position = $m[1][1];
 			
-			if(!preg_match('/<a.+?class="wpgmza_del_btn/', $inside, $m, PREG_OFFSET_CAPTURE))
+
+			if(!preg_match("/<a.+?class=\\\'wpgmza_del_btn/", $inside, $m, PREG_OFFSET_CAPTURE))
 				return $string;
 			
 			$button_insert_position = $m[0][1];
@@ -44,7 +45,7 @@ class ProAdminMarkerDataTable extends AdminMarkerDataTable
 				ELSE '' END,
 				
 			'$after)";
-			
+
 			$result = substr_replace($string, $replacement, $inside_position, $inside_original_length);
 			
 			return $result;

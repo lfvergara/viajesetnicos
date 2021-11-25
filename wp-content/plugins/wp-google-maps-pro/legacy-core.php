@@ -631,14 +631,14 @@ function wpgmaps_tag_pro( $atts ) {
 
     	/* Enqueue Modern Styles */
 
-    	wp_enqueue_style("wpgmza_modern_base", plugin_dir_url(__FILE__) . "/css/wpgmza_style_pro_modern_base.css", array(), $wpgmza_pro_version );
+    	wp_enqueue_style("wpgmza_modern_base", plugin_dir_url(__FILE__) . "css/wpgmza_style_pro_modern_base.css", array(), $wpgmza_pro_version );
 
     	switch($infoWindowType){
     		case 2: //Modern Plus
-    			wp_enqueue_style("wpgmza_modern_plus", plugin_dir_url(__FILE__) . "/css/wpgmza_style_pro_modern_plus.css");
+    			wp_enqueue_style("wpgmza_modern_plus", plugin_dir_url(__FILE__) . "css/wpgmza_style_pro_modern_plus.css");
     			break;
     		case 3: //Circular
-				wp_enqueue_style("wpgmza_modern_circular", plugin_dir_url(__FILE__) . "/css/wpgmza_style_pro_modern_circular.css");
+				wp_enqueue_style("wpgmza_modern_circular", plugin_dir_url(__FILE__) . "css/wpgmza_style_pro_modern_circular.css");
     			break;
     	}
 
@@ -1326,28 +1326,28 @@ function wpgmaps_user_javascript_pro($atts = false) {
 		wp_enqueue_style( 'owl_carousel_style_theme' );*/
 		
 		if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'sky') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_sky.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_sky.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'sun') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_sun.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_sun.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'earth') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_earth.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_earth.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'monotone') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_monotone.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_monotone.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'pinkpurple') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_pinkpurple.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_pinkpurple.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'white') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_white.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_white.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else if (isset($wpgmza_settings['wpgmza_settings_carousel_markerlist_theme']) && $wpgmza_settings['wpgmza_settings_carousel_markerlist_theme'] == 'black') { 
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_black.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_black.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		} else {
-			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'/css/carousel_sky.css', array(), $wpgmza_pro_version);
+			wp_register_style('owl_carousel_style_theme_select', plugin_dir_url(__FILE__) .'css/carousel_sky.css', array(), $wpgmza_pro_version);
 			wp_enqueue_style( 'owl_carousel_style_theme_select' );
 		}
 		
