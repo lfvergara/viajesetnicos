@@ -28,7 +28,7 @@
 								<option value="Costa Rica"><?php esc_html_e('Costa Rica', 'mkdf-tours'); ?></option>
 								<option value="Etiopía"><?php esc_html_e('Etiopía', 'mkdf-tours'); ?></option>
 								<option value="Egipto"><?php esc_html_e('Egipto', 'mkdf-tours'); ?></option>
-								<option value="Guinea-Bissau"><?php esc_html_e('Guinea-Bissau', 'mkdf-tours'); ?></option>
+								<option value="Guinea-Bissau"><?php esc_html_e('Guinea Bissau', 'mkdf-tours'); ?></option>
 								<option value="Groenlandia"><?php esc_html_e('Groenlandia', 'mkdf-tours'); ?></option>
 								<option value="Guatemala"><?php esc_html_e('Guatemala', 'mkdf-tours'); ?></option>
 								<option value="India"><?php esc_html_e('India', 'mkdf-tours'); ?></option>
