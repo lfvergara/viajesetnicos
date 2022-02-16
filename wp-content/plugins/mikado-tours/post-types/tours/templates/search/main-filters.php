@@ -73,7 +73,7 @@
 						<?php //foreach($months as $month_value => $month_label) : ?>
 							<?php //$selected = $month_value === (int) $chosen_month ? 'selected' : ''; ?>
 
-							<option <?php //echo esc_attr($selected); ?> value="<?php echo esc_attr($month_value); ?>"><?php echo esc_html($month_label); ?></option>
+							<option <?php //echo esc_attr($selected); ?> value="<?php //echo esc_attr($month_value); ?>"><?php //echo esc_html($month_label); ?></option>
 						<?php //endforeach; ?>
 						<option value=""><?php //esc_html_e('Cualquiera'); ?></option>
 					</select>
