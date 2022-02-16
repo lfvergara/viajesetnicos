@@ -38,7 +38,7 @@
 								<option value="Panamá"><?php esc_html_e('Panamá', 'mkdf-tours'); ?></option>
 								<option value="Papúa Nueva Guinea"><?php esc_html_e('Papúa Nueva Guinea', 'mkdf-tours'); ?></option>
 								<option value="Senegal"><?php esc_html_e('Senegal', 'mkdf-tours'); ?></option>
-								<option value="Turquía"><?php esc_html_e('Turquía', 'mkdf-tours'); ?></option>
+								<option value="Turquia"><?php esc_html_e('Turquía', 'mkdf-tours'); ?></option>
 								<option value="Vietnam"><?php esc_html_e('Vietnam', 'mkdf-tours'); ?></option>
 								<option value=""><?php esc_html_e('Cualquiera'); ?></option>
 							</select>
