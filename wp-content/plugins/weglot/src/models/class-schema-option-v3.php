@@ -106,6 +106,9 @@ class Schema_Option_V3 {
 			'flag_css'                => 'flag_css',
 			'menu_switcher'           => 'menu_switcher',
 			'active_wc_reload'        => 'active_wc_reload',
+			'versions'                 => 'versions',
+			'slugTranslation'         => 'versions.slugTranslation',
+			'translation'             => 'versions.translation',
 		);
 
 		return $schema;

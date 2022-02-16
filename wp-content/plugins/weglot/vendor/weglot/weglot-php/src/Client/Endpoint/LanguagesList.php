@@ -47,8 +47,10 @@ class LanguagesList extends Endpoint
         }, $data);
 
         foreach ($data as $language) {
-            $factory = new LanguagesFactory($language);
-            $languageCollection->addOne($factory->handle());
+            if($language['internal_code'] != 'fc'){
+                $factory = new LanguagesFactory($language);
+                $languageCollection->addOne($factory->handle());
+            }
         }
 
         return $languageCollection;

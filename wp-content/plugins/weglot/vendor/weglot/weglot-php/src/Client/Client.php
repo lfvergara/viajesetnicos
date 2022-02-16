@@ -32,6 +32,13 @@ class Client
     protected $apiKey;
 
     /**
+     * Weglot settings file Version
+     *
+     * @var string
+     */
+    protected $version;
+
+    /**
      * Options for client
      *
      * @var array
@@ -58,12 +65,14 @@ class Client
     /**
      * Client constructor.
      * @param string    $apiKey     your Weglot API key
+     * @param string    $version    your settings file version
      * @param int       $translationEngine
      * @param array     $options    an array of options, currently only "host" is implemented
      */
-    public function __construct($apiKey, $translationEngine, $options = [])
+    public function __construct($apiKey, $version = '1', $translationEngine, $options = [])
     {
         $this->apiKey = $apiKey;
+        $this->version = $version;
         $this->profile = new Profile($apiKey, $translationEngine);
 
         $this
@@ -197,11 +206,11 @@ class Client
     {
         try {
             if($method === 'GET') {
-                $urlParams = array_merge( ['api_key' => $this->apiKey , ], $body);
+                $urlParams = array_merge( ['api_key' => $this->apiKey, 'v' => $this->version], $body);
                 $body = [];
             }
             else {
-                $urlParams = ['api_key' => $this->apiKey];
+                $urlParams = ['api_key' => $this->apiKey, 'v' => $this->version];
             }
             list($rawBody, $httpStatusCode, $httpHeader) = $this->getHttpClient()->request(
                 $method,

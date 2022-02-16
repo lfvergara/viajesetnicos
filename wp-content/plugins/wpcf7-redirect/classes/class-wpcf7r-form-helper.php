@@ -321,7 +321,7 @@ class WPCF7r_Form_Helper {
 
 		wp_register_style( 'wpcf7-redirect-script-frontend', $this->build_css_url . 'wpcf7-redirect-frontend.min.css', '1.1' );
 		wp_enqueue_style( 'wpcf7-redirect-script-frontend' );
-		wp_register_script( 'wpcf7-redirect-script', $this->build_js_url . 'wpcf7-redirect-frontend-script.js', array( 'jquery' ), '1.1', true );
+		wp_register_script( 'wpcf7-redirect-script', $this->build_js_url . 'wpcf7r-fe.js', array( 'jquery' ), '1.1', true );
 		wp_enqueue_script( 'wpcf7-redirect-script' );
 		wp_localize_script( 'wpcf7-redirect-script', 'wpcf7r', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
@@ -441,11 +441,6 @@ class WPCF7r_Form_Helper {
 			$panels['redirect-panel'] = array(
 				'title'    => __( 'Actions', 'wpcf7-redirect' ),
 				'callback' => array( $this, 'create_panel_inputs' ),
-			);
-
-			$panels['extensions-panel'] = array(
-				'title'    => __( 'Extensions', 'wpcf7-redirect' ),
-				'callback' => array( $this, 'extensions_manager' ),
 			);
 
 			if ( is_wpcf7r_debug() ) {

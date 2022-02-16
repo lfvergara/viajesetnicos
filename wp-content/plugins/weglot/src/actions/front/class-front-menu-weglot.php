@@ -61,8 +61,9 @@ class Front_Menu_Weglot implements Hooks_Interface_Weglot {
 			return;
 		}
 
+
 		add_filter( 'wp_get_nav_menu_items', array( $this, 'weglot_wp_get_nav_menu_items' ), 20 );
-		add_filter( 'nav_menu_link_attributes', array( $this, 'add_nav_menu_link_attributes' ), 10, 2 );
+		add_filter( 'nav_menu_link_attributes', array( $this, 'add_nav_menu_link_attributes_atts' ), 10, 3 );
 		add_filter( 'wp_nav_menu_objects', array( $this, 'wp_nav_menu_objects' ) );
 	}
 
@@ -72,18 +73,8 @@ class Front_Menu_Weglot implements Hooks_Interface_Weglot {
 	 * @return array
 	 */
 	public function weglot_wp_get_nav_menu_items( $items ) {
-		if ( ! $this->request_url_services->is_eligible_url() ) {
-			foreach ( $items as $key => $item ) {
-				if ( 'weglot-switcher' !== $item->post_name ) {
-					continue;
-				}
-				unset( $items[ $key ] );
-			}
 
-			return $items;
-		}
-
-		// Prevent customizer
+		// Prevent customizer.
 		if ( doing_action( 'customize_register' ) ) {
 			return $items;
 		}
@@ -138,7 +129,7 @@ class Front_Menu_Weglot implements Hooks_Interface_Weglot {
 					continue;
 				}
 
-				$link_button = $this->request_url_services->get_weglot_url()->getForLanguage( $language );
+				$link_button = $this->request_url_services->get_weglot_url()->getForLanguage( $language, true );
 				if ( ! $link_button ) {
 					continue;
 				}
@@ -153,15 +144,15 @@ class Front_Menu_Weglot implements Hooks_Interface_Weglot {
 					$add_classes[] = $language->getInternalCode();
 				}
 
-				if ( $language === $this->language_services->get_original_language() &&
-					strpos( $link_button, 'no_lredirect' ) === false && // If not exist
-					( is_home() || is_front_page() )
-					&& $this->option_services->get_option( 'auto_redirect' )
-				) { // Only for homepage
+
+
+				if ( $this->option_services->get_option( 'auto_redirect' )
+				) {
+					$isOrig = $language === $this->language_services->get_original_language() ? "true":"false";
 					if( strpos($link_button, '?') !== false ) {
-						$link_button = str_replace('?' , '?no_lredirect=true&' , $link_button);
+						$link_button = str_replace('?' , "?wg-choose-original=$isOrig&" , $link_button);
 					} else {
-						$link_button .= '?no_lredirect=true';
+						$link_button .= "?wg-choose-original=$isOrig";
 					}
 				}
 
@@ -249,22 +240,16 @@ class Front_Menu_Weglot implements Hooks_Interface_Weglot {
 	/**
 	 * @since 2.0
 	 * @version 2.4.0
-	 * @see nav_menu_link_attributes
+	 * @see nav_menu_link_attributes_atts
 	 * @param array $attrs
 	 * @param object $item
 	 * @return array
 	 */
-	public function add_nav_menu_link_attributes( $attrs, $item ) {
+	public function add_nav_menu_link_attributes_atts( $attrs, $item, $args ) {
 		$str = 'weglot-switcher';
 		if ( strpos( $item->post_name, $str ) !== false ) {
-			if ( ! $this->request_url_services->is_eligible_url() ) {
-				$attrs['style'] = 'display:none';
-				return $attrs;
-			}
-
 			$attrs['data-wg-notranslate'] = 'true';
 		}
-
 		return $attrs;
 	}
 }

@@ -221,6 +221,9 @@ class WPCF7R_Html {
 			case 'text':
 				$template = WPCF7_PRO_REDIRECT_FIELDS_PATH . 'field-text.php';
 				break;
+			case 'tel':
+				$template = WPCF7_PRO_REDIRECT_FIELDS_PATH . 'field-tel.php';
+				break;
 			case 'download':
 				$template = WPCF7_PRO_REDIRECT_FIELDS_PATH . 'field-download.php';
 				break;

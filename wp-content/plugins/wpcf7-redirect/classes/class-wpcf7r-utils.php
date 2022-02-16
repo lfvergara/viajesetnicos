@@ -712,6 +712,8 @@ class WPCF7r_Utils {
 			'json_encode'   => array( 'WPCF7r_Utils', 'func_json_encode' ),
 			'esc_html'      => array( 'WPCF7r_Utils', 'func_esc_html' ),
 			'esc_attr'      => array( 'WPCF7r_Utils', 'func_esc_attr' ),
+			'file_path'		=> array( 'WPCF7r_Utils', 'func_file_path' ),
+			'base64_file'	=> array( 'WPCF7r_Utils', 'func_base64_file' ),
 		);
 
 		if ( 'checkbox' === $field_type || 'checkbox*' === $field_type || 'all' === $field_type ) {
@@ -759,7 +761,7 @@ class WPCF7r_Utils {
 		 *
 		 * @param $value
 		 */
-	public function func_esc_html( $value ) {
+	public static function func_esc_html( $value ) {
 		return apply_filters( 'func_esc_html', esc_html( $value ), $value );
 	}
 
@@ -773,11 +775,30 @@ class WPCF7r_Utils {
 	}
 
 	/**
+	 * Return the file path
+	 *
+	 * @return void
+	 */
+	public static function func_file_path($value){
+		return apply_filters( 'func_file_path', $value );
+	}
+
+	/**
+	 * Return base64 encoded file
+	 *
+	 * @return void
+	 */
+	public static function func_base64_file( $value ){
+		$file = file_get_contents($value);
+		
+		return apply_filters( 'func_base64_file', base64_encode($file) );
+	}
+	/**
 	 * Json Encode callback
 	 *
 	 * @param $value
 	 */
-	public function func_json_encode( $value ) {
+	public static function func_json_encode( $value ) {
 		return apply_filters( 'func_json_encode', wp_json_encode( $value ), $value );
 	}
 	/**

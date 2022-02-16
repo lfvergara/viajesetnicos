@@ -14,6 +14,8 @@ abstract class Helper_API {
 
 	const API_BASE         = 'https://api.weglot.com';
 	const API_BASE_STAGING = 'https://api.weglot.dev';
+	const API_CDN_BASE         = 'https://cdn-api-weglot.com';
+	const API_CDN_BASE_STAGING = 'https://cdn-api-weglot.dev';
 	const CDN_BASE         = 'https://cdn.weglot.com/projects-settings/';
 
 	/**

@@ -37,9 +37,7 @@ class Widget_Selector_Weglot extends \WP_Widget {
 	public function widget( $args, $instance ) {
 		/** @var Request_Url_Service_Weglot $request_url_service */
 		$request_url_service = weglot_get_service( 'Request_Url_Service_Weglot' );
-		if ( ! $request_url_service->is_eligible_url() ) {
-			return;
-		}
+
 		$title = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$title = apply_filters( 'widget_title', $title );
 

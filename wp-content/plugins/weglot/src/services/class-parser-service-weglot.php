@@ -49,6 +49,7 @@ class Parser_Service_Weglot {
 	 */
 	public function get_client() {
 		$api_key            = $this->option_services->get_api_key( true );
+		$version            = $this->option_services->get_version();
 		$translation_engine = $this->option_services->get_translation_engine();
 		if ( ! $translation_engine || empty( $translation_engine ) ) {
 			$translation_engine = 2;
@@ -56,6 +57,7 @@ class Parser_Service_Weglot {
 
 		$client = new Client(
 			$api_key,
+			$version,
 			$translation_engine,
 			array(
 				'host' => Helper_API::get_api_url(),
@@ -73,9 +75,10 @@ class Parser_Service_Weglot {
 	 * @version 2.2.2
 	 */
 	public function get_parser() {
-		$exclude_blocks = $this->option_services->get_exclude_blocks();
 
-		$config = apply_filters( 'weglot_parser_config_provider', new ServerConfigProvider() );
+		$exclude_blocks   = $this->option_services->get_exclude_blocks();
+		$custom_switchers = $this->option_services->get_switchers_editor_button();
+		$config           = apply_filters( 'weglot_parser_config_provider', new ServerConfigProvider() );
 		if ( ! ( $config instanceof ConfigProviderInterface ) ) {
 			$config = new ServerConfigProvider();
 		}
@@ -85,7 +88,8 @@ class Parser_Service_Weglot {
 		}
 
 		$client = $this->get_client();
-		$parser = new Parser( $client, $config, $exclude_blocks );
+		$parser = new Parser( $client, $config, $exclude_blocks, $custom_switchers );
+
 		$parser->getDomCheckerProvider()->addCheckers( $this->dom_checkers_services->get_dom_checkers() );
 		$parser->getRegexCheckerProvider()->addCheckers( $this->regex_checkers_services->get_regex_checkers() );
 		$ignored_nodes = apply_filters( 'weglot_get_parser_ignored_nodes', $parser->getIgnoredNodesFormatter()->getIgnoredNodes() );

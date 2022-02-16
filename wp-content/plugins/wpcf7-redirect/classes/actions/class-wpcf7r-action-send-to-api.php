@@ -21,6 +21,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 		$this->functions = $args['tags_functions'];
 		$this->headers   = $args['api_headers'];
 		$this->headers   = array_filter( $this->headers );
+		$this->files     = $args['files'];
 
 		$tags_map    = $args['tags'];
 		$record_type = $args['record_type'];
@@ -41,10 +42,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 		$this->post = $wpcf7;
 		$this->clear_error_log( $this->post->id() );
 
-		$submission_url = $submission->get_meta( 'url' );
-
 		//always save last call results for debugging
-
 		$record        = $this->get_record( $submission, $tags_map, $record_type, $template );
 		$record['url'] = $base_url;
 
@@ -122,7 +120,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 
 							foreach ( $this->defaults[ $form_key ] as $key => $sub_value ) {
 								if ( isset( $this->functions[ $key ] ) && $this->functions[ $key ] ) {
-									$sub_value = $this->run_function( $this->functions[ $key ], $sub_value );
+									$sub_value = $this->run_function( $this->functions[ $key ], $sub_value , $key);
 								}
 
 								if ( $sub_value ) {
@@ -145,7 +143,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 					//dont call the function again on arrays (checkvoxes)
 
 					if ( ! is_array( $this->functions[ $form_key ] ) ) {
-						$value = $this->run_function( $this->functions[ $form_key ], $value );
+						$value = $this->run_function( $this->functions[ $form_key ], $value , $form_key );
 					}
 				}
 
@@ -243,7 +241,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 				$field_value = $record['fields'][ $api_key ];
 
 				if ( $function && $field_value ) {
-					$record['fields'][ $api_key ] = $this->run_function( $function, $field_value );
+					$record['fields'][ $api_key ] = $this->run_function( $function, $field_value , $api_key );
 				}
 			}
 		}
@@ -257,7 +255,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 	 * @param $function
 	 * @param $field_value
 	 */
-	public function run_function( $function, $field_value ) {
+	public function run_function( $function, $field_value , $key ) {
 
 		$function = WPCF7r_Utils::get_available_text_functions( $function, 'all' );
 
@@ -265,12 +263,28 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 			$class  = $function[0];
 			$method = $function[1];
 
-			return call_user_func( array( $class, $method ), $field_value );
+			$file_path = $this->get_file_path($key);
+			
+			if( $file_path ){
+				$field_value = $file_path;
+			}
+			//check if this is a file
+
+			return call_user_func( array( $class, $method ), $field_value , $key );
 		}
 
 		return $field_value;
 	}
 
+	private function get_file_path($key){
+		if( $this->files ){
+			foreach( $this->files as $file_key => $files ){
+				if( $key == $file_key ){
+					return reset($files);
+				}
+			}
+		}
+	}
 	/**
 	 * Send the lead using wp_remote
 	 *
@@ -365,7 +379,7 @@ class WPCF7R_Action_Send_To_Api extends WPCF7R_Action {
 			$args = apply_filters( 'qs_cf7_api_get_args', $args );
 			$url  = apply_filters( 'qs_cf7_api_post_url', $url );
 			$url  = $this->replace_tags( $url );
-
+			
 			$result = wp_remote_request( $url, $args );
 		}
 

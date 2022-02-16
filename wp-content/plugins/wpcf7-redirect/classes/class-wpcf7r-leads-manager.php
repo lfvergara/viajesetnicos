@@ -349,7 +349,7 @@ class WPCF7R_Leads_Manager {
 	/**
 	 * Insert new lead
 	 */
-	public static function insert_lead( $cf7_form_id, $args, $files = array(), $lead_type, $action_id ) {
+	public static function insert_lead( $cf7_form_id, $args, $files = array(), $lead_type = "", $action_id = "" ) {
 		$args['cf7_form']      = $cf7_form_id;
 		$args['cf7_action_id'] = $action_id;
 

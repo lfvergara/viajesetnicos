@@ -3,7 +3,7 @@ Tags: contact form 7 redirect, contact form 7 thank you page, redirect cf7, redi
 Contributors: yuvalsabar, regevlio
 Requires at least: 5.2.0
 Tested up to: 5.8
-Stable tag: 2.3.6
+Stable tag: 2.4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,7 @@ Simply go to your form settings, choose the "Redirect Settings" tab and set the 
 
 == Our Extensions ==
 * **[Extension]** Conditional logic for each action
+* **[Extension]** Send SMS messages with twilio
 * **[Extension]** Integrate your forms with your Salesforce CRM
 * **[Extension]** Integrate your forms with your Hubspot CRM
 * **[Extension]** Frontend Publishing - Allow your visitors to submit post types
@@ -75,6 +76,18 @@ No. One of the reasons we developed this plugin, is because on_send_ok is now de
 5. Extensions tab
 
 == Changelog ==
+
+= 2.4.0 =
+* Fixed PHP8 notice messages
+* Added Support for base64 files on api calls
+* Updated front end script name because of avast false positive notice
+* Fix close popup
+* Bumped plugin version to 2.4.0
+
+= 2.3.7 =
+* Added Tel field template file
+* Added support for twilio sms extension
+* Added freemius support for plugin extensions
 
 = 2.3.6 =
 * Fix missing definition for stripe integration extension

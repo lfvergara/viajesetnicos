@@ -164,11 +164,13 @@ class Request_Url_Service_Weglot {
 
 	/**
 	 * Returns true if the URL is translated in at least one language
+	 *
 	 * @since 2.0
 	 * @param string $url
+	 * @param bool   $even_excluded
 	 * @return boolean
 	 */
-	public function is_eligible_url( $url = null ) {
+	public function is_eligible_url( $url = null, $even_excluded = false ) {
 
 		if ( ! $url ) {
 			$weglot_url = $this->get_weglot_url();
@@ -176,10 +178,13 @@ class Request_Url_Service_Weglot {
 			$weglot_url = $this->create_url_object( $url );
 		}
 
-		if ( empty( $weglot_url->availableInLanguages() ) ) {
+		if ( empty( $weglot_url->availableInLanguages( $even_excluded ) ) ) {
 			return apply_filters( 'weglot_is_eligible_url', false, $weglot_url );
+		} elseif ( ! $weglot_url->isTranslableInLanguage( $this->get_weglot_url()->getCurrentLanguage(), $even_excluded ) ) {
+			return apply_filters( 'weglot_is_eligible_url', false, $weglot_url );
+		} else {
+			return apply_filters( 'weglot_is_eligible_url', true, $weglot_url );
 		}
-		return apply_filters( 'weglot_is_eligible_url', true, $url );
 	}
 
 	/**
@@ -190,7 +195,7 @@ class Request_Url_Service_Weglot {
 
 	public function url_to_relative( $url ) {
 		if ( ( substr( $url, 0, 7 ) === 'http://' ) || ( substr( $url, 0, 8 ) === 'https://' ) ) {
-			// the current link is an "absolute" URL - parse it to get just the path
+			// the current link is an "absolute" URL - parse it to get just the path.
 			$parsed   = wp_parse_url( $url );
 			$path     = isset( $parsed['path'] ) ? $parsed['path'] : '';
 			$query    = isset( $parsed['query'] ) ? '?' . $parsed['query'] : '';

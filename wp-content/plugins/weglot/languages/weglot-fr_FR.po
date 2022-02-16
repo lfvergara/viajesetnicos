@@ -322,7 +322,7 @@ msgid ""
 "On the Business plan, you can choose 3 languages. If you need more, "
 "please %1$supgrade your plan%2$s."
 msgstr ""
-"Avec le plan Business, vous pouvez choisir cinq langues. Si vous avez besoin "
+"Avec le plan Business, vous pouvez choisir trois langues. Si vous avez besoin "
 "de plus, veuillez %1$smettre à niveau votre plan%2$s."
 
 #: templates/admin/pages/tabs/settings.php:162

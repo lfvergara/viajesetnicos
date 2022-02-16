@@ -76,7 +76,6 @@ class WC_Filter_Urls_Weglot implements Hooks_Interface_Weglot {
 		 * @since 2.6.0
 		 */
 		add_filter( 'woocommerce_get_cart_page_permalink', array( '\WeglotWP\Helpers\Helper_Filter_Url_Weglot', 'filter_url_lambda' ) );
-
 		add_filter( 'woocommerce_get_endpoint_url', array( $this, 'weglot_woocommerce_get_endpoint_url' ), 10, 4 );
 	}
 

@@ -73,7 +73,7 @@ class Search_Weglot implements Hooks_Interface_Weglot {
 	 * @return void
 	 */
 	public function pre_get_posts_translate( $query ) {
-		if ( ! $query->is_search() || ! $query->is_main_query() ) {
+		if ( ! $query->is_search() ) {
 			return;
 		}
 

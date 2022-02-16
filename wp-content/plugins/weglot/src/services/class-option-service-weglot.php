@@ -28,6 +28,8 @@ class Option_Service_Weglot {
 	protected $options_from_api = null;
 	protected $slugs_from_api = null;
 
+	const NO_OPTIONS = 'OPTIONS_NOT_FOUND';
+
 	/**
 	 * @var array
 	 */
@@ -52,6 +54,9 @@ class Option_Service_Weglot {
 				'flag_type'   => Helper_Flag_Type::RECTANGLE_MAT,
 				'custom_css'  => '',
 			),
+			'switchers'       => array(
+
+			),
 			'rtl_ltr_style'    => '',
 			'active_wc_reload' => true,
 			'flag_css'         => '',
@@ -59,6 +64,7 @@ class Option_Service_Weglot {
 		'allowed'                 => true,
 		'has_first_settings'      => true,
 		'show_box_first_settings' => false,
+		'version'                 => 1,
 	);
 
 	/**
@@ -99,6 +105,9 @@ class Option_Service_Weglot {
 	 * @since 3.0.0
 	 */
 	protected function get_options_from_cdn_with_api_key( $api_key ) {
+		if ( $this->options_cdn === self::NO_OPTIONS ) {
+			return array( 'success' => false );
+		}
 		if ( $this->options_cdn ) {
 			return array(
 				'success' => true,
@@ -112,6 +121,9 @@ class Option_Service_Weglot {
 			$options = get_transient( 'weglot_cache_cdn', false );
 			if ( $options ) {
 				$this->options_cdn = $options;
+				if ( $this->options_cdn === self::NO_OPTIONS ) {
+					return array( 'success' => false );
+				}
 
 				return array(
 					'success' => true,
@@ -134,10 +146,16 @@ class Option_Service_Weglot {
 			if ( is_wp_error( $response ) ) {
 				$response = $this->get_options_from_api_with_api_key( $this->get_api_key_private() );
 				$body     = $response['result'];
-			} else {
+			} elseif ( wp_remote_retrieve_response_code( $response ) === 403 ) {
+				set_transient( 'weglot_cache_cdn', self::NO_OPTIONS, 0 );
+				$this->options_cdn = self::NO_OPTIONS;
+				return array( 'success' => false );
+			}
+			else {
 				$body = json_decode( $response['body'], true );
 				set_transient( 'weglot_cache_cdn', $body, apply_filters( 'weglot_get_options_from_cdn_cache_duration', 300 ) );
 			}
+
 			$this->options_cdn = $body;
 
 			return array(
@@ -300,6 +318,7 @@ class Option_Service_Weglot {
 		$options_v2 = get_option( WEGLOT_SLUG );
 
 		if ( $options_v2 ) {
+
 			if ( array_key_exists( 'api_key', $options_v2 ) ) {
 				$options_v2['api_key_private'] = $options_v2['api_key'];
 			}
@@ -330,6 +349,20 @@ class Option_Service_Weglot {
 		$options = $this->get_options_from_v2();
 
 		return apply_filters( 'weglot_get_api_key', $options['api_key'] );
+	}
+
+	/**
+	 *
+	 * @return string
+	 * @throws Exception
+	 * @since 3.0.0
+	 */
+	public function get_version() {
+		$options = $this->get_options();
+		if ( ! isset( $options['versions']['translation'] ) ) {
+			return apply_filters( 'weglot_get_version', 1 );
+		}
+		return apply_filters( 'weglot_get_version', $options['versions']['translation'] );
 	}
 
 	/**
@@ -371,6 +404,11 @@ class Option_Service_Weglot {
 				return $this->get_options_from_v2();
 			}
 		}
+
+		if( ! array_key_exists('result', $response)) {
+			return $this->get_options_from_v2();
+		}
+
 		$options = $response['result'];
 		if ( $api_key_private ) {
 			$options['api_key_private'] = $api_key_private;
@@ -393,7 +431,7 @@ class Option_Service_Weglot {
 				$slugs = $this->get_slugs_from_cache_with_api_key( $api_key_private, $destinations_languages );
 			}
 		}
-		if ( isset( $slugs ) ) {
+		if ( isset( $slugs ) && is_array( $slugs ) ) {
 			$options['custom_urls'] = $this->array_merge_recursive_ex( $options['custom_urls'], $slugs );
 		}
 
@@ -523,6 +561,45 @@ class Option_Service_Weglot {
 	}
 
 	/**
+	 *
+	 * Returns the array "switchers" from the custom_settings or an empty array
+	 *
+	 * @return array|boolean|int
+	 * @since 3.0.0
+	 */
+	public function get_switchers_editor_button() {
+		$options = $this->get_options();
+		if (
+			array_key_exists( 'custom_settings', $options ) &&
+			is_array( $options['custom_settings'] ) &&
+			! empty( $options['custom_settings']['switchers'] )
+		) {
+			return $options['custom_settings']['switchers'];
+		}
+		return array();
+	}
+
+	/**
+	 * @param string $key
+	 * @param array $switcher
+	 *
+	 * @return string|boolean|int
+	 * @throws Exception
+	 * @since 3.0.0
+	 */
+	public function get_switcher_editor_option( $key, $switcher ) {
+
+		if ( ! empty( $switcher ) ) {
+			if (
+			array_key_exists( $key, $switcher )
+			) {
+				return $switcher[ $key ];
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * @return array
 	 * @throws Exception
 	 * @since 2.0
@@ -538,7 +615,7 @@ class Option_Service_Weglot {
 		$exclude_blocks[] = '#wpadminbar';
 
 		// Weglot Switcher.
-		$exclude_blocks[] = '.menu-item-weglot';
+		$exclude_blocks[] = '.menu-item-weglot a';
 
 		// Material Icons.
 		$exclude_blocks[] = '.material-icons';
@@ -714,5 +791,22 @@ class Option_Service_Weglot {
 		}
 
 		return $options[ $key ];
+	}
+
+	/**
+	 * @return string
+	 * @throws Exception
+	 * @since 2.0
+	 */
+	public function get_switcher_editor_css() {
+		$switcher_editor_css = '';
+		if(!empty($this->get_switchers_editor_button())){
+			foreach ($this->get_switchers_editor_button() as $switcher){
+				if(!empty($switcher['style']['custom_css'])){
+					$switcher_editor_css .= $switcher['style']['custom_css'];
+				}
+			}
+		}
+		return $switcher_editor_css;
 	}
 }

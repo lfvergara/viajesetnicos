@@ -185,13 +185,17 @@ class Url
 
     /**
      * @param LanguageEntry $language
+     * @param bool $getExclusion
      * @return bool|string
      */
-    public function getForLanguage($language)
+    public function getForLanguage($language, $evenExcluded = false)
     {
         $urls = $this->getAllUrls();
-        foreach ($urls as $url) {
-            if($url['language'] === $language) {
+        foreach ( $urls as $url ) {
+            if ( $url['language'] === $language ) {
+                if(!$evenExcluded && $url['excluded']){
+                    return false;
+                }
                 return $url['url'];
             }
         }
@@ -202,11 +206,12 @@ class Url
      * Check if we need to translate given URL
      *
      * @param LanguageEntry $language
+     * @param bool $evenExcluded
      * @return bool
      */
-    public function isTranslableInLanguage( $language )
+    public function isTranslableInLanguage( $language, $evenExcluded = false )
     {
-        if($this->getForLanguage($language)) {
+        if($this->getForLanguage($language, $evenExcluded)) {
             return true;
         }
         return false;
@@ -215,14 +220,14 @@ class Url
     /**
      * Check if we need to translate given URL
      *
-     * @param LanguageEntry $language
+     * @param bool $evenExcluded
      * @return bool
      */
-    public function availableInLanguages()
+    public function availableInLanguages($evenExcluded)
     {
         $availableLanguage = [];
         foreach ($this->destinationLanguages as $destinationLanguage) {
-            if($this->getForLanguage($destinationLanguage)) {
+            if($this->getForLanguage($destinationLanguage, $evenExcluded)) {
                 $availableLanguage[] = $destinationLanguage;
             }
         }
@@ -348,19 +353,27 @@ class Url
                 $originalURL .= '#'. $this->getFragment();
             }
 
-            $urls[] = array( 'language' => $this->originalLanguage, 'url' => $originalURL);
-            foreach ($this->destinationLanguages as $language) {
+            $urls[] = array( 'language' => $this->originalLanguage, 'url' => $originalURL, 'excluded' => false);
 
+            foreach ($this->destinationLanguages as $language) {
+                $isExcluded = false;
                 foreach ($this->excludedUrls as $excludedUrl) {
+
                     if( $excludedUrl[1] === null || ( is_array($excludedUrl[1]) && in_array($language, $excludedUrl[1]) ) ) {
+
                         if (strpos($excludedUrl[0], '?!') !== false) { // Si la regex contient un negative lookahead, alors on check le match entre le path et la regex
-                            if( preg_match('#' . $excludedUrl[0] . '#', $this->getPath()) != 0)
-                                continue 2;
+                            if( preg_match('#' . $excludedUrl[0] . '#', $this->getPath()) != 0) {
+                                $isExcluded = true;
+                                break;
+                            }
                         }
                         else { //Sinon on check le match entre le path et le rtrim(path)
                             if( preg_match('#' . $excludedUrl[0] . '#', $this->getPath()) != 0
-                                || preg_match('#' . $excludedUrl[0] . '#',  rtrim($this->getPath() , "/")) != 0 )
-                                continue 2;
+                                || preg_match('#' . $excludedUrl[0] . '#',  rtrim($this->getPath() , "/")) != 0 ) {
+                                $isExcluded = true;
+                                break;
+                            }
+
                         }
                     }
                 }
@@ -387,7 +400,7 @@ class Url
                 if (!is_null($this->getFragment())) {
                     $url .= '#'. $this->getFragment();
                 }
-                $urls[] = array( 'language' => $language, 'url' => $url);
+                $urls[] = array( 'language' => $language, 'url' => $url, 'excluded' => $isExcluded );
             }
 
             $this->allUrls = $urls;

@@ -851,6 +851,13 @@ div#wpcf7r_leads .field-wrap label {
   display: block;
 }
 
+#steps-panel .wpcf7r-info,
+#extensions-panel .wpcf7r-info,
+#leads-panel .wpcf7r-info,
+#redirect-panel .wpcf7r-info {
+  margin-bottom: 15px;
+}
+
 #steps-panel .cf7r-check-column,
 #extensions-panel .cf7r-check-column,
 #leads-panel .cf7r-check-column,

@@ -41,10 +41,6 @@ class Shortcode_Weglot {
 	 * @return string
 	 */
 	public function weglot_switcher_callback() {
-		if ( ! $this->request_url_services->is_eligible_url() ) {
-			return '';
-		}
-
 		return $this->button_services->get_html( 'weglot-shortcode' ); //phpcs:ignore
 	}
 }

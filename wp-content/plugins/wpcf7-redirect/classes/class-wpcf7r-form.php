@@ -343,7 +343,7 @@ class WPCF7R_Form {
 	public function save_actions( $actions ) {
 		foreach ( $actions as $post_id => $action_fields ) {
 			$action = WPCF7R_Action::get_action( $post_id );
-			if ( $action ) {
+			if ( $action && ! is_wp_error($action) ) {
 				$action->delete_all_fields();
 				foreach ( $action_fields as $action_field_key => $action_field_value ) {
 					update_post_meta( $post_id, $action_field_key, $action_field_value );

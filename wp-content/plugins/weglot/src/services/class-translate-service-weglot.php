@@ -66,8 +66,8 @@ class Translate_Service_Weglot {
 
 
 	/**
-	 * @since 2.3.0
 	 * @return void
+	 * @since 2.3.0
 	 */
 	public function weglot_translate() {
 		ob_start( array( $this, 'weglot_treat_page' ) );
@@ -75,26 +75,31 @@ class Translate_Service_Weglot {
 
 	/**
 	 * @param LanguageEntry $current_language
+	 *
 	 * @return Translate_Service_Weglot
 	 * @since 2.3.0
 	 */
 	public function set_current_language( $current_language ) {
 		$this->current_language = $current_language->getInternalCode();
+
 		return $this;
 	}
 
 	/**
 	 * @param LanguageEntry $original_language
+	 *
 	 * @return Translate_Service_Weglot
 	 * @since 2.3.0
 	 */
 	public function set_original_language( $original_language ) {
 		$this->original_language = $original_language->getInternalCode();
+
 		return $this;
 	}
 
 	/**
 	 * @param string $content
+	 *
 	 * @return string
 	 */
 	public function get_canonical_url_from_content( $content ) {
@@ -112,7 +117,40 @@ class Translate_Service_Weglot {
 	}
 
 	/**
+	 * @return boolean
+	 */
+	public function check_ajax_exclusion_before_treat() {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			if ( ! $this->request_url_services->create_url_object( wp_get_referer() )->getForLanguage( $this->request_url_services->get_current_language(), false ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function check_404_exclusion_before_treat() {
+
+		if ( http_response_code() == 404 ) {
+			$excluded_urls = $this->option_services->get_exclude_urls();
+			foreach ( $excluded_urls as $url ) {
+				if ( in_array( '^/404$', $url ) ) {
+					return true;
+				}
+			}
+
+			return false;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * @param string $content
+	 *
 	 * @return string
 	 * @throws \Exception
 	 * @since 2.3.0
@@ -123,7 +161,7 @@ class Translate_Service_Weglot {
 			return $content;
 		}
 		$this->set_original_language( $this->language_services->get_original_language() );
-		$this->set_current_language( $this->request_url_services->get_current_language() ); // Need to reset
+		$this->set_current_language( $this->request_url_services->get_current_language() ); // Need to reset.
 
 		// Choose type translate.
 		$type = ( Helper_Json_Inline_Weglot::is_json( $content ) ) ? 'json' : 'html';
@@ -134,7 +172,12 @@ class Translate_Service_Weglot {
 		$canonical = $this->get_canonical_url_from_content( $content );
 
 		// No need to translate but prepare new dom with button.
-		if ( $this->current_language === $this->original_language || ! $active_translation ) {
+		if (
+			$this->current_language === $this->original_language
+			|| ! $active_translation
+			|| $this->check_404_exclusion_before_treat()
+			|| $this->check_ajax_exclusion_before_treat()
+			|| ! $this->request_url_services->get_weglot_url()->getForLanguage( $this->request_url_services->get_current_language(), false ) ) {
 			return $this->weglot_render_dom( $content, $canonical );
 		}
 
@@ -143,27 +186,19 @@ class Translate_Service_Weglot {
 		try {
 			switch ( $type ) {
 				case 'json':
-					$extraKeys          = apply_filters( 'weglot_add_json_keys', array() );
-					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, $extraKeys );
+					$extra_keys         = apply_filters( 'weglot_add_json_keys', array() );
+					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, $extra_keys );
 					$translated_content = wp_json_encode( $this->replace_url_services->replace_link_in_json( json_decode( $translated_content, true ) ) );
-					$translated_content = apply_filters( 'weglot_json_treat_page', $translated_content );
-					return $translated_content;
-				case 'html':
-					//if status code = 404 and /404 are in exlude url we don't translate content
-					if(http_response_code() == 404){
-						$excluded_urls = $this->option_services->get_exclude_urls();
-						foreach ($excluded_urls as $url){
-							if(in_array('^/404$', $url)){
-								return $this->weglot_render_dom( $content, $canonical );
-							}
-						}
-					}
 
-					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, [] , $canonical );
+					return apply_filters( 'weglot_json_treat_page', $translated_content );
+				case 'html':
+					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, array(), $canonical );
 					$translated_content = apply_filters( 'weglot_html_treat_page', $translated_content );
+
 					return $this->weglot_render_dom( $translated_content, $canonical );
 				default:
 					$name_filter = sprintf( 'weglot_%s_treat_page', $type );
+
 					return apply_filters( $name_filter, $content, $parser, $this->original_language, $this->current_language );
 
 			}
@@ -175,6 +210,7 @@ class Translate_Service_Weglot {
 				nocache_headers();
 				$content .= '<!--Weglot error API : ' . $this->remove_comments( $e->getMessage() ) . '-->';
 			}
+
 			return $content;
 		} catch ( \Exception $e ) {
 			if ( 'json' !== $type ) {
@@ -184,6 +220,7 @@ class Translate_Service_Weglot {
 				nocache_headers();
 				$content .= '<!--Weglot error : ' . $this->remove_comments( $e->getMessage() ) . '-->';
 			}
+
 			return $content;
 		}
 	}
@@ -192,9 +229,10 @@ class Translate_Service_Weglot {
 	/**
 	 * Remove comments from HTML.
 	 *
-	 * @since 2.3.0
 	 * @param string $html the HTML string.
+	 *
 	 * @return string
+	 * @since 2.3.0
 	 */
 	private function remove_comments( $html ) {
 		return preg_replace( '/<!--(.*)-->/Uis', '', $html );
@@ -204,9 +242,11 @@ class Translate_Service_Weglot {
 	/**
 	 * Replace links and add switcher on the final HTML.
 	 *
-	 * @since 2.3.0
 	 * @param string $dom the final translated HTML.
+	 * @param string $canonical the canonical link.
+	 *
 	 * @return string
+	 * @since 2.3.0
 	 */
 	public function weglot_render_dom( $dom, $canonical = '' ) {
 		$dom = $this->generate_switcher_service->generate_switcher_from_dom( $dom );
@@ -218,11 +258,18 @@ class Translate_Service_Weglot {
 
 		// Remove hreflangs if non canonical page.
 		if ( '' !== $canonical ) {
+			$canonical   = urldecode( $canonical );
 			$current_url = $this->request_url_services->get_weglot_url();
 			if ( $current_url->getForLanguage( $this->language_services->get_original_language() ) !== $canonical ) {
 				$dom = preg_replace( '/<link rel="alternate" href=(\"|\')([^\s\>]+?)(\"|\') hreflang=(\"|\')([^\s\>]+?)(\"|\')\/>/', '', $dom );
 			}
+
+			// update canonical if page excluded page.
+			if ( ! $current_url->getForLanguage( $this->request_url_services->get_current_language(), false ) ) {
+				$dom = preg_replace( '/<link rel="canonical"(.*?)?href=(\"|\')([^\s\>]+?)(\"|\')/', '<link rel="canonical" href="' . $current_url->getForLanguage( $this->language_services->get_original_language() ) . '"', $dom );
+			}
 		}
+
 		return apply_filters( 'weglot_render_dom', $dom );
 	}
 }

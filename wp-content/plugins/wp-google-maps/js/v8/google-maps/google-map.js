@@ -130,6 +130,7 @@ jQuery(function($) {
 	WPGMZA.GoogleMap.prototype.loadGoogleMap = function()
 	{
 		var self = this;
+
 		var options = this.settings.toGoogleMapsOptions();
 		
 		this.googleMap = new google.maps.Map(this.engineElement, options);

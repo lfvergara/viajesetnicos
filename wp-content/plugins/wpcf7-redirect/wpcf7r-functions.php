@@ -57,18 +57,6 @@ function wpcf7_validate_nonce() {
  */
 function wpcf7_redirect_get_all_extensions_list() {
 	$defaults = array(
-		// 'special-offer'            => array(
-		// 	'name'         => 'accessibie-plugin',
-		// 	'title'        => __( 'Website Accessibility', 'wpcf7-redirect' ),
-		// 	'description'  => __( 'Get an immediate and accurate answer to whether or not your site is compliant with web accessibility legislation for free!', 'wpcf7-redirect' ),
-		// 	'icon'         => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/accessibe-full-logo.svg',
-		// 	'external_url' => admin_url( '/admin.php?page=' . qs_get_plugin_display_name() ),
-		// 	'btn_text'     => __( 'Scan for Problems!', 'wpcf7-redirect' ),
-		// 	'type'         => 'affiliate',
-		// 	'target'       => '',
-		// 	'badge'        => __( 'New', 'wpcf7-redirect' ),
-		// 	'classname'    => '',
-		// ),
 		'wpcf7r-conditional-logic' => array(
 			'name'        => 'wpcf7r-conditional-logic',
 			'filename'    => 'class-wpcf7r-conditions.php',
@@ -172,6 +160,14 @@ function wpcf7_redirect_get_all_extensions_list() {
 			'description' => __( 'Send your leads to hubspot.', 'wpcf7-redirect' ),
 			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/hubspot.png',
 			'classname'   => 'WPCF7R_Action_Hubspot',
+		),
+		'wpcf7r-hubspot'  => array(
+			'name'        => 'wpcf7r-twlio',
+			'filename'    => 'class-wpcf7r-action-twilio.php',
+			'title'       => __( 'Send sms with twlio', 'wpcf7-redirect' ),
+			'description' => __( 'Send sms to yourself or your users with twlio.', 'wpcf7-redirect' ),
+			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/twilio-icon.png',
+			'classname'   => 'WPCF7R_Action_TwilioSms',
 		),
 		'wpcf7r-actions-bundle'    => array(
 			'name'        => 'wpcf7r-actions-bundle',

@@ -2,7 +2,7 @@
 Contributors: remyb92, gmulti, wysija, wpr0ck, glx77
 Tags: translate, multilingual, language, translation, localization, multilingual SEO, languages, translator, website translation, multilanguage, international, traduction
 Requires at least: 4.5
-Tested up to: 5.8
+Tested up to: 5.9
 Requires PHP: 5.6
 Stable tag: 3.4
 License: GPLv2 or later
@@ -82,6 +82,8 @@ This is why it’s important to think of ways to cater for more languages: multi
 
 But how about the cost and headache to set up a proper multilingual website? This is where Weglot can make it easy: with a simple way to unlock multilingual capabilities swiftly, your website can go from targeted towards a single language to multilingual in an easy, affordable manner!
 
+Please note that Weglot is using Cloudfront CDN to display flags images to speed up performance around the world.
+The use of this CDN and of Weglot service is subject to Weglot [terms of service](https://weglot.com/terms/)
 
 == Installation ==
 
@@ -208,14 +210,16 @@ See changelog for upgrade changes.
 
 == Changelog ==
 
-= 3.4 (15/09/2021) =
-* Add: All 404 pages are excluded from translation if you exclude /404 in the Weglot dashboard
-* Improved performance: Files for multilingual compatibility with other plugins are only called when necessary
-* Bugfix: Autoswitch feature now works with custom languages
-* Bugfix: Password reset link in translated emails now works
-* Bugfix: WooCommerce emails are now translated when using custom languages
-* Bugfix: Fixed warning in 404 styles.css.map
-* Bugfix: Autoswitch doesn't redirect when visitor comes from an external link from now on
+= 3.5 (07/12/2021) =
+
+* Add: Autoswitch work on all page not only on homepage
+* Add: Exclude url doesn't generate redirection
+* Add: Add switcher from switcher editor
+* Add: Call API from cdn to translate
+* Add: Limited call API for deactivate account
+* Bugfix: Problem with gform and multisite
+* Bugfix: Fix hreflang generation with Cyrillic url
+* Bugfix: Weglot search option now works even if we're not on a main_query
 
 = Older versions =
 

@@ -54,6 +54,7 @@ class Replace_Url_Service_Weglot {
 	 * @return string
 	 */
 	public function replace_link_in_dom( $dom ) {
+
 		$data = Helper_Replace_Url_Weglot::get_replace_modify_link();
 
 		foreach ( $data as $key => $value ) {
@@ -61,15 +62,35 @@ class Replace_Url_Service_Weglot {
 		}
 
 		$current_language = $this->request_url_services->get_current_language();
+		$current_url      = $this->request_url_services->get_weglot_url();
 
-		if ( $current_language->getExternalCode() !== $current_language->getInternalCode() ) {
-			$dom = preg_replace( '/<html (.*?)?lang=(\"|\')(\S*)(\"|\')/', '<html $1lang=$2' . $current_language->getExternalCode() . '$4 weglot-lang=$2' . $current_language->getInternalCode() . '$4', $dom );
+		if ( $current_url->getForLanguage( $current_language, false ) ) {
+			if ( $current_language->getExternalCode() !== $current_language->getInternalCode() ) {
+				$dom = preg_replace(
+					'/<html (.*?)?lang=(\"|\')(\S*)(\"|\')/',
+					'<html $1lang=$2' . $current_language->getExternalCode() . '$4 weglot-lang=$2' . $current_language->getInternalCode() . '$4',
+					$dom
+				);
+			} else {
+				$dom = preg_replace(
+					'/<html (.*?)?lang=(\"|\')(\S*)(\"|\')/',
+					'<html $1lang=$2' . $current_language->getExternalCode() . '$4',
+					$dom
+				);
+			}
+
+			$dom = preg_replace(
+				'/property="og:locale" content=(\"|\')(\S*)(\"|\')/',
+				'property="og:locale" content=$1' . $current_language->getExternalCode() . '$3',
+				$dom
+			);
 		} else {
-			$dom = preg_replace( '/<html (.*?)?lang=(\"|\')(\S*)(\"|\')/', '<html $1lang=$2' . $current_language->getExternalCode() . '$4', $dom );
+			$dom = preg_replace(
+				'/<html (.*?)?lang=(\"|\')(\S*)(\"|\')/',
+				'<html $1lang=$2$3$4 data-excluded-page="true"',
+				$dom
+			);
 		}
-
-		$dom = preg_replace( '/property="og:locale" content=(\"|\')(\S*)(\"|\')/', 'property="og:locale" content=$1' . $current_language->getExternalCode() . '$3', $dom );
-
 		return apply_filters( 'weglot_replace_link', $dom );
 	}
 
@@ -176,7 +197,6 @@ class Replace_Url_Service_Weglot {
 			&& strpos( $current_url, $admin_url ) === false
 			&& strpos( $current_url, 'wp-login' ) === false
 			&& ! $this->is_link_a_file( $current_url )
-			&& $this->request_url_services->is_eligible_url( $current_url )
 			&& strpos( $sometags, 'data-wg-notranslate' ) === false
 			&& strpos( $sometags2, 'data-wg-notranslate' ) === false
 		);

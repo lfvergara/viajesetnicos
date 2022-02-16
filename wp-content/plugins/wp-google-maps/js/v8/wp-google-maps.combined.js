@@ -755,10 +755,14 @@ jQuery(function($) {
 					return;
 				}
 				
-				el.wpgmzaMap = WPGMZA.Map.createInstance(el);
+				try {
+					el.wpgmzaMap = WPGMZA.Map.createInstance(el);
+				} catch (ex){
+					console.warn('Map initalization: ' + ex);
+				}
 			});
 			
-			WPGMZA.Map.nextInitTimeoutID = setTimeout(WPGMZA.initMaps, 3000);
+				WPGMZA.Map.nextInitTimeoutID = setTimeout(WPGMZA.initMaps, 3000);
 		},
 
 		onScroll: function(){
@@ -4003,7 +4007,7 @@ jQuery(function($) {
 				return coord;
 			return parseFloat( String(coord).replace(/[\(\)\s]/, "") );
 		}
-		
+
 		var latLng = new google.maps.LatLng(
 			formatCoord(latLngCoords[0]),
 			formatCoord(latLngCoords[1])
@@ -10346,6 +10350,7 @@ jQuery(function($) {
 	WPGMZA.GoogleMap.prototype.loadGoogleMap = function()
 	{
 		var self = this;
+
 		var options = this.settings.toGoogleMapsOptions();
 		
 		this.googleMap = new google.maps.Map(this.engineElement, options);

@@ -210,7 +210,8 @@ var wpcf7_redirect_admin;
 			this.notice_dismiss_selector = '.wpcf7r-notice .notice-dismiss';
 			this.mail_tags_toggle = '.mail-tags-title';
 			this.validate_salesforce_app_details = '.wpcf7-redirect-validate_connection-fields';
-			this.debug_send_button_selector = '.send-debug-info'
+			this.debug_send_button_selector = '.send-debug-info';
+			this.close_popup_button_selector = '.wpcfr-close-popup';
 
 		}
 
@@ -274,7 +275,6 @@ var wpcf7_redirect_admin;
 				} else {
 					$imgContainer.find('img').remove();
 				}
-
 
 				$imgIdInput.val('');
 			});
@@ -456,9 +456,17 @@ var wpcf7_redirect_admin;
 			$(document.body).on('click', this.debug_send_button_selector, this.send_debug_info.bind(this));
 			//duplicate action
 			$(document.body).on('click', this.dupicate_action_selector, this.duplicate_action.bind(this));
-
+			//close general admin popups
+			$(document.body).on('click' , this.close_popup_button_selector, this.close_popup.bind(this));
 		}
 
+		/**
+		 * close open popups
+		 * @param {*} e 
+		 */
+		this.close_popup = function(e){
+			$('.wpcfr-popup-wrap').remove();
+		}
 		/**
 		 * show or hide mail tags section
 		 * @param {event} e
@@ -696,7 +704,7 @@ var wpcf7_redirect_admin;
 				return false;
 			}
 			if ('purchase' === $action_selector.find(':selected').data('action')) {
-				window.open(action_type);
+				tb_show('purchase',action_type);
 			} else {
 				this.show_loader($clicked_button.parents('.actions-list'));
 				params = {

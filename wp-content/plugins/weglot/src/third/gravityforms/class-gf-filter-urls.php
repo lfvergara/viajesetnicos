@@ -55,7 +55,11 @@ class GF_Filter_Urls implements Hooks_Interface_Weglot {
 			return $data;
 		}
 
-		$data['redirect'] = Helper_Filter_Url_Weglot::filter_url_lambda( $data['redirect'] );
+		#todo change logic in multisite context
+		if(!is_multisite()){
+			$data['redirect'] = Helper_Filter_Url_Weglot::filter_url_lambda( $data['redirect'] );
+		}
+
 		return $data;
 
 	}

@@ -753,10 +753,14 @@ jQuery(function($) {
 					return;
 				}
 				
-				el.wpgmzaMap = WPGMZA.Map.createInstance(el);
+				try {
+					el.wpgmzaMap = WPGMZA.Map.createInstance(el);
+				} catch (ex){
+					console.warn('Map initalization: ' + ex);
+				}
 			});
 			
-			WPGMZA.Map.nextInitTimeoutID = setTimeout(WPGMZA.initMaps, 3000);
+				WPGMZA.Map.nextInitTimeoutID = setTimeout(WPGMZA.initMaps, 3000);
 		},
 
 		onScroll: function(){

@@ -28,6 +28,7 @@ use Google\Site_Kit\Core\Permissions\Permissions;
 use Google\Site_Kit\Core\REST_API\Exception\Invalid_Datapoint_Exception;
 use Google\Site_Kit\Core\Assets\Script;
 use Google\Site_Kit\Core\REST_API\Data_Request;
+use Google\Site_Kit\Core\Util\Feature_Flags;
 use Google\Site_Kit\Core\Util\Google_URL_Matcher_Trait;
 use Google\Site_Kit\Core\Util\Google_URL_Normalizer;
 use Google\Site_Kit\Modules\Search_Console\Settings;
@@ -54,6 +55,11 @@ final class Search_Console extends Module
 	use Module_With_Screen_Trait, Module_With_Scopes_Trait, Module_With_Settings_Trait, Google_URL_Matcher_Trait, Module_With_Assets_Trait, Module_With_Owner_Trait;
 
 	/**
+	 * Module slug name.
+	 */
+	const MODULE_SLUG = 'search-console';
+
+	/**
 	 * Registers functionality through WordPress hooks.
 	 *
 	 * @since 1.0.0
@@ -61,7 +67,9 @@ final class Search_Console extends Module
 	public function register() {
 		$this->register_scopes_hook();
 
-		$this->register_screen_hook();
+		if ( ! Feature_Flags::enabled( 'unifiedDashboard' ) ) {
+			$this->register_screen_hook();
+		}
 
 		// Detect and store Search Console property when receiving token for the first time.
 		add_action(
@@ -154,7 +162,10 @@ final class Search_Console extends Module
 	protected function get_datapoint_definitions() {
 		return array(
 			'GET:matched-sites'   => array( 'service' => 'searchconsole' ),
-			'GET:searchanalytics' => array( 'service' => 'searchconsole' ),
+			'GET:searchanalytics' => array(
+				'service'   => 'searchconsole',
+				'shareable' => Feature_Flags::enabled( 'dashboardSharing' ),
+			),
 			'POST:site'           => array( 'service' => 'searchconsole' ),
 			'GET:sites'           => array( 'service' => 'searchconsole' ),
 		);
@@ -474,12 +485,11 @@ final class Search_Console extends Module
 	 */
 	protected function setup_info() {
 		return array(
-			'slug'         => 'search-console',
-			'name'         => _x( 'Search Console', 'Service name', 'google-site-kit' ),
-			'description'  => __( 'Google Search Console and helps you understand how Google views your site and optimize its performance in search results.', 'google-site-kit' ),
-			'order'        => 1,
-			'homepage'     => __( 'https://search.google.com/search-console', 'google-site-kit' ),
-			'force_active' => true,
+			'slug'        => 'search-console',
+			'name'        => _x( 'Search Console', 'Service name', 'google-site-kit' ),
+			'description' => __( 'Google Search Console and helps you understand how Google views your site and optimize its performance in search results.', 'google-site-kit' ),
+			'order'       => 1,
+			'homepage'    => __( 'https://search.google.com/search-console', 'google-site-kit' ),
 		);
 	}
 
@@ -550,4 +560,14 @@ final class Search_Console extends Module
 		);
 	}
 
+	/**
+	 * Returns TRUE to indicate that this module should be always active.
+	 *
+	 * @since 1.49.0
+	 *
+	 * @return bool Returns `true` indicating that this module should be activated all the time.
+	 */
+	public static function is_force_active() {
+		return true;
+	}
 }

@@ -114,6 +114,8 @@ class Redirect_Service_Weglot {
 	 */
 	public function get_best_available_language( $navigator_languages, $available_languages ) {
 
+		// We add the original in the list of available languages.
+		$available_languages[] = $this->language_services->get_original_language()->getExternalCode();
 		if ( ! empty( $navigator_languages ) ) {
 			$destination_languages_external = array_map( 'strtolower', $available_languages );
 			foreach ( $navigator_languages as $navigator_language ) {
@@ -150,13 +152,6 @@ class Redirect_Service_Weglot {
 	 */
 	public function auto_redirect() {
 
-		// prevent redirect if referer not come from extern
-		if ( ( isset( $_SERVER['HTTP_REFERER'] ) && ! empty( $_SERVER['HTTP_REFERER'] ) && isset($_SERVER['HTTP_HOST']) && !empty($_SERVER['HTTP_HOST']) ) ) { //phpcs:ignore
-			if ( strtolower( wp_parse_url( $_SERVER['HTTP_REFERER'], PHP_URL_HOST ) ) == strtolower( $_SERVER['HTTP_HOST'] ) ) { //phpcs:ignore
-				return;
-			}
-		}
-
 		if ( ! isset( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) && ! isset( $_SERVER['HTTP_CF_IPCOUNTRY'] ) ) { //phpcs:ignore
 			return;
 		}
@@ -167,10 +162,9 @@ class Redirect_Service_Weglot {
 		$best_external_language         = $this->get_best_available_language( $navigator_languages, $destination_languages_external );
 		$best_language                  = $this->language_services->get_language_from_external( $best_external_language );
 
-
 		// Redirect using the best language.
-		if ( isset( $best_language ) && $this->language_services->get_original_language() === $this->request_url_services->get_current_language() ) {
-			$url_auto_redirect = apply_filters( 'weglot_url_auto_redirect', $this->request_url_services->get_weglot_url()->getForLanguage( $best_language ) );
+		if ( isset( $best_language ) && $best_language !== $this->language_services->get_original_language() && $this->language_services->get_original_language() === $this->request_url_services->get_current_language() ) {
+			$url_auto_redirect = apply_filters( 'weglot_url_auto_redirect', $this->request_url_services->get_weglot_url()->getForLanguage( $best_language, true ) );
 			header( "Location: $url_auto_redirect", true, 302 );
 			exit();
 		}
@@ -178,11 +172,10 @@ class Redirect_Service_Weglot {
 		// If there is no best language, we redirect using the auto switch fallback if there is one in the options.
 		if ( ! isset( $best_language ) &&
 			! in_array( $this->language_services->get_original_language()->getExternalCode(), $navigator_languages ) &&
-			$this->language_services->get_original_language() === $this->request_url_services->get_current_language() &&
 			$this->option_services->get_option( 'autoswitch_fallback' ) !== null
 		) {
 			$fallback_language = $this->language_services->get_language_from_internal( $this->option_services->get_option( 'autoswitch_fallback' ) );
-			$url_auto_redirect = apply_filters( 'weglot_url_auto_redirect', $this->request_url_services->get_weglot_url()->getForLanguage( $fallback_language ) );
+			$url_auto_redirect = apply_filters( 'weglot_url_auto_redirect', $this->request_url_services->get_weglot_url()->getForLanguage( $fallback_language, true ) );
 			header( "Location: $url_auto_redirect", true, 302 );
 			exit();
 		}
@@ -194,19 +187,30 @@ class Redirect_Service_Weglot {
 	 *
 	 */
 	public function verify_no_redirect() {
-		if ( strpos( $this->request_url_services->get_weglot_url()->getUrl(), '?no_lredirect=true' ) === false ) {
-			return;
-		}
+		if ( isset ( $_GET["wg-choose-original"] ) ) { //phpcs:ignore
+			$wg_choose_original = $_GET["wg-choose-original"]; //phpcs:ignore
+			if ( 'true' === $wg_choose_original ) {
+				setcookie( "WG_CHOOSE_ORIGINAL", true, time() + 86400 * 2, '/' ); //phpcs:ignore
+			} elseif ( 'false' === $wg_choose_original ) {
+				setcookie( "WG_CHOOSE_ORIGINAL", null, - 1, '/' ); //phpcs:ignore
+			} else {
+				return;
+			}
+			if ( isset( $_SERVER['REQUEST_URI'] ) ) { // phpcs:ignore
 
-		$this->no_redirect = true;
-		if ( isset( $_SERVER['REQUEST_URI'] ) ) { // phpcs:ignore
-			$_SERVER['REQUEST_URI'] = str_replace( '?no_lredirect=true', '?', str_replace(
-				'?no_lredirect=true&',
-				'?',
-				$_SERVER['REQUEST_URI'] //phpcs:ignore
-			) );
-
-			$this->request_url_services->init_weglot_url(); //We reset the URL as we removed the parameter from URL
+				$_SERVER['REQUEST_URI'] = str_replace(
+					"?wg-choose-original=$wg_choose_original",
+					'',
+					str_replace(
+						"?wg-choose-original=$wg_choose_original&",
+						'?',
+						$_SERVER['REQUEST_URI'] //phpcs:ignore
+					)
+				);
+				$this->request_url_services->init_weglot_url(); // We reset the URL as we removed the parameter from URL.
+				header( 'Location:' . $this->request_url_services->get_weglot_url()->getUrl(), true, 302 );
+				exit();
+			}
 		}
 	}
 }

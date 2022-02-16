@@ -46,13 +46,21 @@ class Button_Service_Weglot {
 	}
 
 	/**
+	 * @param array $switcher
+	 *
+	 * @return string
 	 * @since 2.3.0
 	 * @version 3.0.0
-	 * @return string
 	 */
-	public function get_flag_class() {
-		$type_flags = $this->option_services->get_option_button( 'type_flags' );
-		$with_flags = $this->option_services->get_option_button( 'with_flags' );
+	public function get_flag_class( $switcher = [] ) {
+
+		if ( ! empty( $switcher['style'] ) ) {
+			$type_flags = $this->option_services->get_switcher_editor_option( 'flag_type', $switcher['style'] );
+			$with_flags = $this->option_services->get_switcher_editor_option( 'with_flags', $switcher['style']);
+		} else {
+			$type_flags = $this->option_services->get_option_button( 'type_flags' );
+			$with_flags = $this->option_services->get_option_button( 'with_flags' );
+		}
 
 		$flag_class = $with_flags ? 'weglot-flags ' : '';
 		$type_flags = Helper_Flag_Type::get_flag_number_with_type( $type_flags );
@@ -64,49 +72,66 @@ class Button_Service_Weglot {
 	}
 
 	/**
-	 * @since 2.3.0
-	 * @version 3.0.0
 	 * @param LanguageEntry $language_entry
+	 * @param array $switcher
+	 *
 	 * @return string
+	 * @version 3.0.0
+	 * @since 2.3.0
 	 */
-	public function get_name_with_language_entry( $language_entry ) {
-		if ( $this->option_services->get_option_button( 'with_name' ) ) {
-			$name = ( $this->option_services->get_option( 'is_fullname' ) ) ? $language_entry->getLocalName() : strtoupper( $language_entry->getExternalCode() );
+	public function get_name_with_language_entry( $language_entry, array $switcher = [] ) {
+
+		if ( ! empty( $switcher['style'] ) ) {
+			$with_name = $this->option_services->get_switcher_editor_option( 'with_name', $switcher['style'] );
+			if ( $with_name ) {
+				$name = ( $this->option_services->get_switcher_editor_option( 'full_name', $switcher['style'] ) ) ? $language_entry->getLocalName() : strtoupper( $language_entry->getExternalCode() );
+			} else {
+				$name = '';
+				remove_filter( 'the_title', 'twenty_twenty_one_post_title' );
+			}
 		} else {
-			$name = '';
-			remove_filter( 'the_title', 'twenty_twenty_one_post_title' );
+			$with_name = $this->option_services->get_option_button( 'with_name' );
+			if ( $with_name ) {
+				$name = ( $this->option_services->get_option( 'is_fullname' ) ) ? $language_entry->getLocalName() : strtoupper( $language_entry->getExternalCode() );
+			} else {
+				$name = '';
+				remove_filter( 'the_title', 'twenty_twenty_one_post_title' );
+			}
 		}
 
 		return apply_filters( 'weglot_get_name_with_language_entry', $name, $language_entry );
 	}
 
 	/**
+	 * @param array $switcher
+	 *
+	 * @return string
 	 * @since 2.3.0
 	 * @version 3.0.0
-	 * @return string
 	 */
-	public function get_class_dropdown() {
-		$is_dropdown = $this->option_services->get_option_button( 'is_dropdown' );
-		$class       = $is_dropdown ? 'weglot-dropdown ' : 'weglot-inline ';
+	public function get_class_dropdown( $switcher = [] ) {
+		if ( ! empty( $switcher['style'] ) ) {
+			$is_dropdown = $this->option_services->get_switcher_editor_option( 'is_dropdown', $switcher['style'] );
+		} else {
+			$is_dropdown = $this->option_services->get_option_button( 'is_dropdown' );
+		}
+		$class = $is_dropdown ? 'weglot-dropdown ' : 'weglot-inline ';
 
 		return apply_filters( 'weglot_get_class_dropdown', $class );
 	}
 
 
-
 	/**
 	 * Get html button switcher
 	 *
-	 * @since 2.0
-	 * @version 2.3.1
-	 * @return string
 	 * @param string $add_class
+	 * @param array $switcher
+	 *
+	 * @return string
+	 * @version 2.3.1
+	 * @since 2.0
 	 */
-	public function get_html( $add_class = '' ) {
-
-		if ( apply_filters( 'weglot_view_button_html', ! $this->request_url_services->is_eligible_url() ) ) {
-			return '';
-		}
+	public function get_html( $add_class = '', $switcher = [] ) {
 
 		$weglot_url       = $this->request_url_services->get_weglot_url();
 		$amp_regex        = $this->amp_services->get_regex( true );
@@ -116,15 +141,15 @@ class Button_Service_Weglot {
 			$add_class .= ' weglot-invert';
 		}
 
-		$flag_class  = $this->get_flag_class();
-		$class_aside = $this->get_class_dropdown();
+		$flag_class  = $this->get_flag_class( $switcher );
+		$class_aside = $this->get_class_dropdown( $switcher );
 
-		$button_html  = sprintf( '<!--Weglot %s-->', WEGLOT_VERSION );
+		$button_html = sprintf( '<!--Weglot %s-->', WEGLOT_VERSION );
 		$button_html .= sprintf( '<aside data-wg-notranslate class="country-selector %s">', $class_aside . $add_class );
 
-		$name = $this->get_name_with_language_entry( $current_language );
+		$name = $this->get_name_with_language_entry( $current_language, $switcher );
 
-		$uniq_id      = 'wg' . uniqid( strtotime( 'now' ) ) . wp_rand( 1, 1000 );
+		$uniq_id     = 'wg' . uniqid( strtotime( 'now' ) ) . wp_rand( 1, 1000 );
 		$button_html .= sprintf( '<input id="%s" class="weglot_choice" type="checkbox" name="menu"/><label for="%s" class="wgcurrent wg-li weglot-lang weglot-language %s" data-code-language="%s" data-name-language="%s"><span class="wglanguage-name">%s</span></label>', esc_attr( $uniq_id ), esc_attr( $uniq_id ), esc_attr( $flag_class . $current_language->getInternalCode() ), esc_attr( $current_language->getInternalCode() ), esc_html( $name ), esc_html( $name ) );
 
 		$button_html .= '<ul>';
@@ -135,23 +160,17 @@ class Button_Service_Weglot {
 				continue;
 			}
 
-			$link_button = $this->request_url_services->get_weglot_url()->getForLanguage( $language );
-			if ( ! $link_button ) {
-				continue;
-			}
+			$link_button = $this->request_url_services->get_weglot_url()->getForLanguage( $language, true );
 
 			$button_html .= sprintf( '<li class="wg-li weglot-lang weglot-language %s" data-code-language="%s">', $flag_class . $language->getInternalCode(), $language->getInternalCode() );
-			$name         = $this->get_name_with_language_entry( $language );
+			$name         = $this->get_name_with_language_entry( $language, $switcher );
 
-			if ( $language === $this->language_services->get_original_language() &&
-				strpos( $link_button, 'no_lredirect' ) === false && // If not exist
-				( is_home() || is_front_page() )
-				&& $this->option_services->get_option( 'auto_redirect' )
-			) { // Only for homepage
-				if( strpos($link_button, '?') !== false ) {
-					$link_button = str_replace('?' , '?no_lredirect=true' , $link_button);
+			if ( $this->option_services->get_option( 'auto_redirect' ) ) {
+				$is_orig = $language === $this->language_services->get_original_language() ? 'true' : 'false';
+				if ( strpos( $link_button, '?' ) !== false ) {
+					$link_button = str_replace( '?', "?wg-choose-original=$is_orig&", $link_button );
 				} else {
-					$link_button .= '?no_lredirect=true';
+					$link_button .= "?wg-choose-original=$is_orig";
 				}
 			}
 
@@ -170,4 +189,5 @@ class Button_Service_Weglot {
 
 		return apply_filters( 'weglot_button_html', $button_html, $add_class );
 	}
+
 }

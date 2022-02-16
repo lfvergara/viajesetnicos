@@ -24,10 +24,11 @@ abstract class Helper_Filter_Url_Weglot {
 	public static function filter_url_lambda( $url ) {
 		$request_url_service = weglot_get_request_url_service();
 		$replaced_url        = $request_url_service->create_url_object( $url )->getForLanguage( $request_url_service->get_current_language() );
-		if($replaced_url)
+		if ( $replaced_url ) {
 			return $replaced_url;
-		else
+		} else {
 			return $url;
+		}
 	}
 
 	/**

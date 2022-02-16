@@ -84,6 +84,7 @@ class Options_Weglot implements Hooks_Interface_Weglot {
 
 		$tab = $_GET[ 'tab' ]; //phpcs:ignore
 		$options = $_POST[ WEGLOT_SLUG ]; //phpcs:ignore
+
 		$options_bdd = $this->option_services->get_options_bdd_v3();
 
 		switch ( $tab ) {
@@ -92,7 +93,7 @@ class Options_Weglot implements Hooks_Interface_Weglot {
 				$options            = $this->sanitize_options_settings( $options, $has_first_settings );
 				$response           = $this->option_services->save_options_to_weglot( $options, $has_first_settings );
 
-				if ( $response['success'] && is_array($response['result']) ) {
+				if ( $response['success'] && is_array( $response['result'] ) ) {
 					delete_transient( 'weglot_cache_cdn' );
 
 					$api_key_private = $this->option_services->get_api_key_private();
@@ -119,14 +120,14 @@ class Options_Weglot implements Hooks_Interface_Weglot {
 					update_option( sprintf( '%s-%s', WEGLOT_SLUG, 'api_key_private' ), $options['api_key_private'] );
 					update_option( sprintf( '%s-%s', WEGLOT_SLUG, 'api_key' ), $response['result']['api_key'] );
 
-					//get menu options
+					// get menu options.
 					$options_menu = $this->option_services->get_option( 'menu_switcher' );
-					if(!empty($options_menu)){
-						foreach ($options_menu as $key => $menu){
-							if($options['custom_settings']['button_style']['is_dropdown'] ==  true){
-								$options_menu[$key]['dropdown'] = 1;
-							}else{
-								$options_menu[$key]['dropdown'] = 0;
+					if ( ! empty( $options_menu ) ) {
+						foreach ( $options_menu as $key => $menu ) {
+							if ( $options['custom_settings']['button_style']['is_dropdown'] ) {
+								$options_menu[ $key ]['dropdown'] = 1;
+							} else {
+								$options_menu[ $key ]['dropdown'] = 0;
 							}
 						}
 					}
@@ -174,10 +175,11 @@ class Options_Weglot implements Hooks_Interface_Weglot {
 	public function sanitize_options_settings( $options, $has_first_settings = false ) {
 		$user_info = $this->user_api_services->get_user_info( $options['api_key_private'] );
 		$plans     = $this->user_api_services->get_plans();
+		$switchers = $this->option_services->get_switchers_editor_button();
 
-		// Limit language
+		// Limit language.
 		$limit = 30;
-		if(isset($user_info['languages_limit'])){
+		if ( isset( $user_info['languages_limit'] ) ) {
 			$limit = $user_info['languages_limit'];
 		}
 		$options['languages'] = array_splice( $options['languages'], 0, $limit );
@@ -212,12 +214,14 @@ class Options_Weglot implements Hooks_Interface_Weglot {
 			array_walk_recursive(
 				$options['excluded_blocks'],
 				function ( &$element ) {
-					//We remove unwanted backslashes
+					// We remove unwanted backslashes.
 					$element = stripslashes( $element );
 				}
 			);
 		}
-
+		foreach ( $switchers as $switcher ) {
+			$options['custom_settings']['switchers'][] = $switcher;
+		}
 		return $options;
 	}
 }

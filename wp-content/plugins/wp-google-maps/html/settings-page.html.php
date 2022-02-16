@@ -554,11 +554,11 @@
 			
 				<label>
 					<input type="radio" name="wpgmza_iw_type" value="0" class="wpgmza-pro-feature"/>
-					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_hide'>
 						<div class="wpgmza-card wpgmza-card-border__hover">
 							<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_1.png'; ?>"
 								title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-								class="iw_custom_click_hide wpgmza_mlist_selection"
+								class="wpgmza_mlist_selection"
 								/>
 							<span class='wpgmza-infowindow-style__name'>
 								<?php
@@ -571,11 +571,11 @@
 				
 				<label>
 					<input type="radio" name="wpgmza_iw_type" value="1" class="wpgmza-pro-feature"/>
-					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_show'>
 						<div class="wpgmza-card wpgmza-card-border__hover">
 							<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_2.png'; ?>"
 								title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-								class="iw_custom_click_hide wpgmza_mlist_selection"
+								class="wpgmza_mlist_selection"
 								/>
 							<span class='wpgmza-infowindow-style__name'>
 								<?php
@@ -588,11 +588,11 @@
 				
 				<label>
 					<input type="radio" name="wpgmza_iw_type" value="2" class="wpgmza-pro-feature"/>
-					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_show'>
 						<div class="wpgmza-card wpgmza-card-border__hover">
 							<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_3.png'; ?>"
 								title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-								class="iw_custom_click_hide wpgmza_mlist_selection"
+								class="wpgmza_mlist_selection"
 								/>
 							<span class='wpgmza-infowindow-style__name'>
 								<?php
@@ -605,11 +605,11 @@
 				
 				<label>
 					<input type="radio" name="wpgmza_iw_type" value="3" class="wpgmza-pro-feature"/>
-					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_show'>
 						<div class="wpgmza-card wpgmza-card-border__hover">
 							<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_4.png'; ?>"
 								title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-								class="iw_custom_click_hide wpgmza_mlist_selection"
+								class="wpgmza_mlist_selection"
 								/>
 							<span class='wpgmza-infowindow-style__name'>
 								<?php
@@ -623,11 +623,11 @@
 				
 				<label>
 					<input type="radio" name="wpgmza_iw_type" value="-1" class="wpgmza-pro-feature"/>
-					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+					<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_hide'>
 						<div class="wpgmza-card wpgmza-card-border__hover">
 							<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_inherit.png'; ?>"
 								title="<?php esc_attr_e('No Global Setting', 'wp-google-maps'); ?>"
-								class="iw_custom_click_hide wpgmza_mlist_selection"
+								class="wpgmza_mlist_selection"
 								/>
 				
 							<span class='wpgmza-infowindow-style__name'>
@@ -1150,7 +1150,7 @@
 					<small>
 						<?php
 						_e("This API key can be obtained from 
-						the <a href='https://console.developers.google.com' target='_BLANK'>Google Developers Console</a>. Our <a href='http://www.wpgmaps.com/documentation/creating-a-google-maps-api-key/' target='_BLANK'>documentation</a> provides a full guide on how to obtain this.", "wp-google-maps");
+						the <a href='https://wpgmaps.com/google-maps-developer-console/' target='_BLANK'>Google Developers Console</a>. Our <a href='http://www.wpgmaps.com/documentation/creating-a-google-maps-api-key/' target='_BLANK'>documentation</a> provides a full guide on how to obtain this.", "wp-google-maps");
 						?>
 					</small>
 				</p>

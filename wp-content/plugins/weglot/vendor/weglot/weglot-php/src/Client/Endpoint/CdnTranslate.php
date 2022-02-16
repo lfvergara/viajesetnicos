@@ -17,7 +17,7 @@ use Weglot\Client\Factory\Translate as TranslateFactory;
  */
 class CdnTranslate extends Endpoint
 {
-    const METHOD = 'GET';
+    const METHOD = 'POST';
     const ENDPOINT = '/translate';
 
     /**
@@ -35,7 +35,7 @@ class CdnTranslate extends Endpoint
         $this->setTranslateEntry($translateEntry);
         $currentHost = $client->getOptions()['host'];
         if($currentHost) {
-            $cdnHost = str_replace('https://api.weglot.' , 'https://cdn-api.weglot.' , $currentHost);
+            $cdnHost = str_replace('https://api.weglot.' , 'https://cdn-api-weglot.' , $currentHost);
             $client->setOptions(array('host' => $cdnHost ));
         }
         parent::__construct($client);
@@ -70,26 +70,16 @@ class CdnTranslate extends Endpoint
      */
     public function handle()
     {
-        $beforeRequest = [];
         $asArray = $this->translateEntry->jsonSerialize();
-
-        $w = $t = "[";
-        foreach ($asArray['words'] as $word) {
-            $w .= json_encode($word['w']) . ",";
-            $t .= json_encode($word['t']) . ",";
-        }
-        $asArray['w'] = trim($w,",") . "]";
-        $asArray['t'] = trim($t, ",") . "]";
-        unset($asArray['words']);
-
-        $asArray['v'] = 0; // REPLACE with version when it's released.
-
-        if (!empty($asArray['w'])) {
+        if (!empty($asArray['words'])) {
             list($rawBody, $httpStatusCode) = $this->request($asArray, false);
             if ($httpStatusCode !== 200) {
                 throw new ApiError($rawBody, $asArray);
             }
             $response = json_decode($rawBody, true);
+        }
+        else {
+            throw new ApiError("Empty words passed", $asArray);
         }
 
         $factory = new TranslateFactory($response);

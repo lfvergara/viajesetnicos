@@ -1398,11 +1398,11 @@
 						
 							<label>
 								<input type="radio" name="wpgmza_iw_type" value="0" class="wpgmza-pro-feature"/>
-								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_hide'>
 									<div class="wpgmza-card wpgmza-card-border__hover">
 										<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_1.png'; ?>"
 											title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-											class="iw_custom_click_hide wpgmza_mlist_selection"
+											class="wpgmza_mlist_selection"
 											/>
 										<span class='wpgmza-infowindow-style__name'>
 											<?php
@@ -1415,11 +1415,11 @@
 							
 							<label>
 								<input type="radio" name="wpgmza_iw_type" value="1" class="wpgmza-pro-feature"/>
-								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_show'>
 									<div class="wpgmza-card wpgmza-card-border__hover">
 										<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_2.png'; ?>"
 											title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-											class="iw_custom_click_hide wpgmza_mlist_selection"
+											class="wpgmza_mlist_selection"
 											/>
 										<span class='wpgmza-infowindow-style__name'>
 											<?php
@@ -1432,11 +1432,11 @@
 							
 							<label>
 								<input type="radio" name="wpgmza_iw_type" value="2" class="wpgmza-pro-feature"/>
-								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_show'>
 									<div class="wpgmza-card wpgmza-card-border__hover">
 										<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_3.png'; ?>"
 											title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-											class="iw_custom_click_hide wpgmza_mlist_selection"
+											class="wpgmza_mlist_selection"
 											/>
 										<span class='wpgmza-infowindow-style__name'>
 											<?php
@@ -1449,11 +1449,11 @@
 							
 							<label>
 								<input type="radio" name="wpgmza_iw_type" value="3" class="wpgmza-pro-feature"/>
-								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_show'>
 									<div class="wpgmza-card wpgmza-card-border__hover">
 										<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_4.png'; ?>"
 											title="<?php esc_attr_e('Default', 'wp-google-maps'); ?>"
-											class="iw_custom_click_hide wpgmza_mlist_selection"
+											class="wpgmza_mlist_selection"
 											/>
 										<span class='wpgmza-infowindow-style__name'>
 											<?php
@@ -1468,11 +1468,11 @@
 							
 							<label>
 								<input type="radio" name="wpgmza_iw_type" value="-1" class="wpgmza-pro-feature"/>
-								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item'>
+								<div class='wpgmza-flex-item wpgmza-infowindow-picker__item iw_custom_click_hide'>
 									<div class="wpgmza-card wpgmza-card-border__hover">
 										<img src="<?php echo WPGMZA_PLUGIN_DIR_URL . '/images/marker_iw_type_inherit.png'; ?>"
 											title="<?php esc_attr_e('Inherit Global Setting', 'wp-google-maps'); ?>"
-											class="iw_custom_click_hide wpgmza_mlist_selection"
+											class="wpgmza_mlist_selection"
 											/>
 										<span class='wpgmza-infowindow-style__name'>
 											<?php
@@ -1494,7 +1494,7 @@
 						
 						<ul>
 							<li>
-								<input id="iw_primary_color" name="iw_primary_color" type="text" class="color"/>
+								<input id="iw_primary_color" name="iw_primary_color" type="color" class="color"/>
 								<label for="iw_primary_color">
 									<?php
 									_e('Primary Color', 'wp-google-maps');
@@ -1502,7 +1502,7 @@
 								</label>
 							</li>
 							<li>
-								<input id="iw_accent_color" name="iw_accent_color" type="text" class="color"/>
+								<input id="iw_accent_color" name="iw_accent_color" type="color" class="color"/>
 								<label for="iw_accent_color">
 									<?php
 									_e('Accent Color', 'wp-google-maps');
@@ -1510,7 +1510,7 @@
 								</label>
 							</li>
 							<li>
-								<input id="iw_text_color" name="iw_text_color" type="text" class="color"/>
+								<input id="iw_text_color" name="iw_text_color" type="color" class="color"/>
 								<label for="iw_text_color">
 									<?php
 									_e('Text Color', 'wp-google-maps');

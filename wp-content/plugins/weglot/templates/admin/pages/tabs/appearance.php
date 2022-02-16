@@ -40,17 +40,22 @@ $options_available = [
 	'flag_css' => [
 		'key'         => 'flag_css',
 	],
+	'switcher_editor'  => [
+		'key'         => 'switcher_editor',
+		'label'       => __( 'Custom position?', 'weglot' ),
+		'description' => __( 'You can place the button anywhere in your site using our switcher editor in your Weglot Dashboard', 'weglot' ),
+	],
 ];
-
-
 
 ?>
 <style id="weglot-css-flag-css"></style>
 <style id="weglot-css-inline"></style>
+<?php if ( empty( $this->option_services->get_switchers_editor_button() ) ) { ?>
 <h3>
 	<?php echo esc_html__( 'Language button design', 'weglot' ) . ' ' . esc_html__( '(Optional)', 'weglot' ); ?>
 </h3>
 <hr />
+
 <table class="form-table">
 	<tbody>
 		<tr valign="top">
@@ -273,7 +278,7 @@ $options_available = [
 		</tr>
 	</tbody>
 </table>
-
+<?php } ?>
 
 <h3>
 	<?php echo esc_html_e( 'Language button position', 'weglot' ) . ' ' . esc_html__( '(Optional)', 'weglot' ); ?>
@@ -309,6 +314,7 @@ $options_available = [
 			</td>
 		</tr>
 	<?php endif; ?>
+
 	<tr valign="top">
 		<th scope="row"><?php esc_html_e( 'In menu?', 'weglot' ); ?></th>
 		<td>
@@ -331,6 +337,21 @@ $options_available = [
 		<th scope="row"><?php esc_html_e( 'In the source code?', 'weglot' ); ?></th>
 		<td>
 			<?php esc_html_e( 'You can add the code &lt;div id=&quot;weglot_here&quot;&gt;&lt;/div&gt; wherever you want in the source code of your HTML page. The button will appear at this place.', 'weglot' ); ?>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<th scope="row" class="titledesc">
+			<label for="<?php echo esc_attr( $options_available['switcher_editor']['key'] ); ?>">
+				<?php echo esc_html( $options_available['switcher_editor']['label'] ); ?>
+			</label>
+			<p class="sub-label"><?php echo esc_html( $options_available['switcher_editor']['description'] ); ?></p>
+		</th>
+		<td class="forminp forminp-text">
+			<a 	class="btn btn-soft"
+				href="https://dashboard.weglot.com/settings/language-switcher/editor?url=<?php echo esc_url( get_home_url() ); ?>" target="_blank"><span
+					class="dashicons dashicons-admin-generic"></span> <?php esc_html_e( 'Use switcher editor', 'weglot' ); ?>
+			</a>
 		</td>
 	</tr>
 </table>

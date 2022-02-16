@@ -37,7 +37,9 @@ class Href_Lang_Service_Weglot {
 		$urls = $this->request_url_services->get_weglot_url()->getAllUrls();
 
 		foreach ( $urls as $url ) {
-			$render .= '<link rel="alternate" href="' . esc_url( $url['url'] ) . '" hreflang="' . $url['language']->getExternalCode() . '"/>' . "\n";
+			if ( ! $url['excluded'] ) {
+				$render .= '<link rel="alternate" href="' . esc_url( $url['url'] ) . '" hreflang="' . $url['language']->getExternalCode() . '"/>' . "\n";
+			}
 		}
 
 		return apply_filters( 'weglot_href_lang', $render );

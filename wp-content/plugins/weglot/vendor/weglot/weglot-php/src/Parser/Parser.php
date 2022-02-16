@@ -8,6 +8,7 @@ use Weglot\Client\Api\WordEntry;
 use Weglot\Client\Endpoint\CdnTranslate;
 use Weglot\Parser\Check\Regex\JsonChecker;
 use Weglot\Parser\Check\RegexCheckerProvider;
+use Weglot\Parser\Formatter\CustomSwitchersFormatter;
 use Weglot\Parser\Formatter\JsonFormatter;
 use Weglot\Util\SourceType;
 use Weglot\Util\Text;
@@ -57,6 +58,11 @@ class Parser {
     protected $excludeBlocks;
 
     /**
+     * @var array
+     */
+    protected $customSwitchers;
+
+    /**
      * @var string
      */
     protected $languageFrom;
@@ -92,12 +98,14 @@ class Parser {
      * @param Client $client
      * @param ConfigProviderInterface $config
      * @param array $excludeBlocks
+     * @param array $customSwitchers
      */
-    public function __construct( Client $client, ConfigProviderInterface $config, array $excludeBlocks = [] ) {
+    public function __construct( Client $client, ConfigProviderInterface $config, array $excludeBlocks = [], array $customSwitchers = [] ) {
         $this
             ->setClient( $client )
             ->setConfigProvider( $config )
             ->setExcludeBlocks( $excludeBlocks )
+            ->setCustomSwitchers( $customSwitchers )
             ->setWords( new WordCollection() )
             ->setDomCheckerProvider( new DomCheckerProvider( $this, $client->getProfile()->getTranslationEngine() ) )
             ->setRegexCheckerProvider( new RegexCheckerProvider( $this ) )
@@ -138,6 +146,24 @@ class Parser {
      */
     public function getExcludeBlocks() {
         return $this->excludeBlocks;
+    }
+
+    /**
+     * @param array $customSwitchers
+     *
+     * @return $this
+     */
+    public function setCustomSwitchers( array $customSwitchers ) {
+        $this->customSwitchers = $customSwitchers;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomSwitchers() {
+        return $this->customSwitchers;
     }
 
     /**
@@ -358,6 +384,12 @@ class Parser {
             $dom           = $excludeBlocks->getDom();
         }
 
+        // custom switchers
+        if ( ! empty( $this->customSwitchers ) ) {
+            $customSwitchers = new CustomSwitchersFormatter( $dom, $this->customSwitchers );
+            $dom           = $customSwitchers->getDom();
+        }
+
         // checkers
         list( $nodes, $regexes ) = $this->checkers( $dom, $source );
 
@@ -416,12 +448,7 @@ class Parser {
             die( $e->getMessage() );
         }
 
-        if (strpos($this->getConfigProvider()->getUrl(), '/404') !== false) {
-            $translate = new CdnTranslate($translate, $this->client); //TODO: use CDNTranslate once working better.
-        }
-        else {
-            $translate = new Translate($translate, $this->client);
-        }
+        $translate = new CdnTranslate($translate, $this->client);
         return $translate->handle();
     }
 

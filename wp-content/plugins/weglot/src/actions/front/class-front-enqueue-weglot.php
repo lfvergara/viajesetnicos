@@ -66,5 +66,6 @@ class Front_Enqueue_Weglot implements Hooks_Interface_Weglot {
 
 		wp_add_inline_style( 'weglot-css', $this->option_services->get_flag_css() );
 		wp_add_inline_style( 'weglot-css', $this->option_services->get_css_custom_inline() );
+		wp_add_inline_style( 'weglot-css', $this->option_services->get_switcher_editor_css() );
 	}
 }

@@ -49,6 +49,10 @@ class Cookie_Notice_Welcome_API {
 
 		if ( ! $request )
 			return false;
+		
+		// get site language
+		$locale = get_locale();
+		$locale_code = explode( '_', $locale );
 
 		// get app token data
 		$data_token = get_transient( 'cookie_notice_app_token' );
@@ -256,7 +260,7 @@ class Cookie_Notice_Welcome_API {
 				delete_transient( 'cookie_notice_compliance_cache' );
 				
 				// get options
-				// $app_config = get_transient( 'cookie_notice_app_config' );
+				$app_config = get_transient( 'cookie_notice_app_config' );
 
 				// create quick config
 				$params = ! empty( $app_config ) && is_array( $app_config ) ? $app_config : array();
@@ -278,6 +282,7 @@ class Cookie_Notice_Welcome_API {
 				$params['AppID'] = $app_id;
 				// @todo When mutliple default languages are supported
 				$params['DefaultLanguage'] = 'en';
+				// $params['CurrentLanguage'] = $locale_code[0];
 
 				$response = $this->request( 'quick_config', $params );
 
@@ -451,13 +456,14 @@ class Cookie_Notice_Welcome_API {
 				// create quick config
 				$params = array(
 					'AppID' => $app_exists->AppID,
-					'DefaultLanguage' => 'en'
+					'DefaultLanguage' => 'en',
+					// 'CurrentLanguage' => $locale_code[0]
 				);
 
 				$response = $this->request( 'quick_config', $params );
 
 				if ( $response->status === 200 ) {
-					// notify publish app
+					// @todo notify publish app
 					$params = array( 
 						'AppID' => $app_exists->AppID
 					);
@@ -513,134 +519,145 @@ class Cookie_Notice_Welcome_API {
 					'cn_color_heading',
 					'cn_color_button_text',
 					'cn_laws',
-					'cn_purposes'
+					'cn_naming',
+					'cn_privacy_paper',
+					'cn_privacy_contact',
 				);
 				
 				$options = array();
 				
 				// loop through potential config form fields
 				foreach ( $fields as $field ) {
-					if ( isset( $_POST[$field] ) ) {
-						switch ( $field ) {
-							case 'cn_position':
-								// sanitize position
-								$position = sanitize_key( $_POST[$field] );
+					switch ( $field ) {
+						case 'cn_position':
+							// sanitize position
+							$position = isset( $_POST[$field] ) ? sanitize_key( $_POST[$field] ) : '';
 
-								// valid position?
-								if ( in_array( $position, array( 'bottom', 'top', 'left', 'right', 'center' ), true ) )
-									$options['design']['position'] = $position;
-								else
-									$options['design']['position'] = 'bottom';
-								break;
+							// valid position?
+							if ( in_array( $position, array( 'bottom', 'top', 'left', 'right', 'center' ), true ) )
+								$options['design']['position'] = $position;
+							break;
 
-							case 'cn_color_primary':
-								// sanitize color
-								$color = sanitize_hex_color( $_POST[$field] );
+						case 'cn_color_primary':
+							// sanitize color
+							$color = isset( $_POST[$field] ) ? sanitize_hex_color( $_POST[$field] ) : '';
 
-								// valid color?
-								if ( empty( $color ) )
-									$options['design']['primaryColor'] = '#20c19e';
-								else
-									$options['design']['primaryColor'] = $color;
-								break;
+							// valid color?
+							if ( empty( $color ) )
+								$options['design']['primaryColor'] = '#20c19e';
+							break;
 
-							case 'cn_color_background':
-								// sanitize color
-								$color = sanitize_hex_color( $_POST[$field] );
+						case 'cn_color_background':
+							// sanitize color
+							$color = isset( $_POST[$field] ) ? sanitize_hex_color( $_POST[$field] ) : '';
 
-								// valid color?
-								if ( empty( $color ) )
-									$options['design']['bannerColor'] = '#ffffff';
-								else
-									$options['design']['bannerColor'] = $color;
-								break;
+							// valid color?
+							if ( empty( $color ) )
+								$options['design']['bannerColor'] = '#ffffff';
+							break;
 
-							case 'cn_color_border':
-								// sanitize color
-								$color = sanitize_hex_color( $_POST[$field] );
+						case 'cn_color_border':
+							// sanitize color
+							$color = isset( $_POST[$field] ) ? sanitize_hex_color( $_POST[$field] ) : '';
 
-								// valid color?
-								if ( empty( $color ) )
-									$options['design']['borderColor'] = '#5e6a74';
-								else
-									$options['design']['borderColor'] = $color;
-								break;
+							// valid color?
+							if ( empty( $color ) )
+								$options['design']['borderColor'] = '#5e6a74';
+							break;
 
-							case 'cn_color_text':
-								// sanitize color
-								$color = sanitize_hex_color( $_POST[$field] );
+						case 'cn_color_text':
+							// sanitize color
+							$color = isset( $_POST[$field] ) ? sanitize_hex_color( $_POST[$field] ) : '';
 
-								// valid color?
-								if ( empty( $color ) )
-									$options['design']['textColor'] = '#434f58';
-								else
-									$options['design']['textColor'] = $color;
-								break;
+							// valid color?
+							if ( empty( $color ) )
+								$options['design']['textColor'] = '#434f58';
+							break;
 
-							case 'cn_color_heading':
-								// sanitize color
-								$color = sanitize_hex_color( $_POST[$field] );
+						case 'cn_color_heading':
+							// sanitize color
+							$color = isset( $_POST[$field] ) ? sanitize_hex_color( $_POST[$field] ) : '';
 
-								// valid color?
-								if ( empty( $color ) )
-									$options['design']['headingColor'] = '#434f58';
-								else
-									$options['design']['headingColor'] = $color;
-								break;
+							// valid color?
+							if ( empty( $color ) )
+								$options['design']['headingColor'] = '#434f58';
+							break;
 
-							case 'cn_color_button_text':
-								// sanitize color
-								$color = sanitize_hex_color( $_POST[$field] );
+						case 'cn_color_button_text':
+							// sanitize color
+							$color = isset( $_POST[$field] ) ? sanitize_hex_color( $_POST[$field] ) : '';
 
-								// valid color?
-								if ( empty( $color ) )
-									$options['design']['headingColor'] = '#ffffff';
-								else
-									$options['design']['headingColor'] = $color;
-								break;
+							// valid color?
+							if ( empty( $color ) )
+								$options['design']['btnTextColor'] = '#ffffff';
+							break;
 
-							case 'cn_laws':
-								$new_options = array();
+						case 'cn_laws':
+							$new_options = array();
 
-								// any data?
-								if ( is_array( $_POST[$field] ) && ! empty( $_POST[$field] ) ) {
-									$options['laws'] = array_map( 'sanitize_text_field', $_POST[$field] );
+							// any data?
+							if ( is_array( $_POST[$field] ) && ! empty( $_POST[$field] ) ) {
+								$options['laws'] = array_map( 'sanitize_text_field', $_POST[$field] );
 
-									foreach ( $options['laws'] as $law ) {
-										if ( in_array( $law, array( 'gdpr', 'ccpa' ), true ) )
-											$new_options[$law] = true;
-									}
+								foreach ( $options['laws'] as $law ) {
+									if ( in_array( $law, array( 'gdpr', 'ccpa' ), true ) )
+										$new_options[$law] = true;
 								}
+							}
 
-								$options['laws'] = $new_options;
+							$options['laws'] = $new_options;
 
-								// GDPR
-								if ( array_key_exists( 'gdpr', $options['laws'] ) )
-									$options['config']['privacyPolicyLink'] = true;
-								else
-									$options['config']['privacyPolicyLink'] = false;
+							// GDPR
+							if ( array_key_exists( 'gdpr', $options['laws'] ) )
+								$options['config']['privacyPolicyLink'] = true;
+							else
+								$options['config']['privacyPolicyLink'] = false;
 
-								// CCPA
-								if ( array_key_exists( 'ccpa', $options['laws'] ) )
-									$options['config']['dontSellLink'] = true;
-								else
-									$options['config']['dontSellLink'] = false;
-								break;
+							// CCPA
+							if ( array_key_exists( 'ccpa', $options['laws'] ) )
+								$options['config']['dontSellLink'] = true;
+							else
+								$options['config']['dontSellLink'] = false;
+							break;
 
-							case 'cn_purposes':
-								// sanitize purposes
-								$purposes = (int) $_POST[$field];
+						case 'cn_naming':
+							$naming = isset( $_POST[$field] ) ? (int) $_POST[$field] : 1;
+							$naming = in_array( $naming, array( 1, 2, 3 ) ) ? $naming : 1;
 
-								// get messages
-								$messages = Cookie_Notice()->settings->cookie_messages;
+							// English only for now
+							$level_names = array(
+								1 => array(
+									1 => 'Silver',
+									2 => 'Gold',
+									3 => 'Platinum'
+								),
+								2 => array(
+									1 => 'Private',
+									2 => 'Balanced',
+									3 => 'Personalized'
+								),
+								3 => array(
+									1 => 'Reject All',
+									2 => 'Accept Some',
+									3 => 'Accept All'
+								)
+							);
 
-								// valid purposes?
-								if ( array_key_exists( $purposes, $messages ) )
-									$options['text']['bodyText'] = $messages[$purposes];
-								else
-									$options['text']['bodyText'] = reset( $messages );
-								break;
-						}
+							$options['text'] = array(
+								'levelNameText_1' => $level_names[$naming][1],
+								'levelNameText_2' => $level_names[$naming][2],
+								'levelNameText_3' => $level_names[$naming][3]
+							);
+
+							break;
+
+						case 'cn_privacy_paper':
+							$options['config']['privacyPaper'] = false; // isset( $_POST[$field] );
+							break;
+
+						case 'cn_privacy_contact':
+							$options['config']['privacyContact'] = false;// isset( $_POST[$field] );
+							break;
 					}
 				}
 				

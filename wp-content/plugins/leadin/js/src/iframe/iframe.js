@@ -6,9 +6,11 @@ import {
 } from '../constants/leadinConfig';
 
 function getIframeHeight() {
-  const sideMenuHeight = document.getElementById('adminmenuwrap').offsetHeight;
-  const adminBarHeight =
-    document.getElementById('wpadminbar').offsetHeight || 0;
+  const adminMenuWrap = document.getElementById('adminmenuwrap');
+  const sideMenuHeight = adminMenuWrap ? adminMenuWrap.offsetHeight : 0;
+  const adminBar = document.getElementById('wpadminbar');
+  const adminBarHeight = (adminBar && adminBar.offsetHeight) || 0;
+
   if (window.innerHeight < sideMenuHeight) {
     return sideMenuHeight;
   } else {
@@ -37,6 +39,10 @@ function createIframeElement(iframeSrc) {
   iframe.id = 'leadin-iframe';
   iframe.src = iframeSrc;
   iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+  iframe.setAttribute(
+    'sandbox',
+    'allow-scripts allow-forms allow-popups allow-top-navigation allow-same-origin'
+  );
   iframe.style.minHeight = `${getIframeHeight()}px`;
   addIframeResizeEvent(iframe);
   return iframe;

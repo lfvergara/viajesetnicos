@@ -78,7 +78,7 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 	 * @since 2.0
 	 */
 	public function hooks() {
-		if ( Helper_Is_Admin::is_wp_admin() ) {
+		if ( Helper_Is_Admin::is_wp_admin() || 'wp-login.php' === $GLOBALS['pagenow'] ) {
 			return;
 		}
 
@@ -156,18 +156,12 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 			}
 		}
 
-		// URL not eligible.
-		if ( ! $this->request_url_services->is_eligible_url() ) {
-			return;
-		}
-
 		$active_translation = apply_filters( 'weglot_active_translation_before_process', true );
 
 		if ( ! $active_translation ) {
 			return;
 		}
 
-		$this->redirect_services->verify_no_redirect();
 		$this->check_need_to_redirect();
 
 		do_action( 'weglot_init_before_translate_page' );
@@ -183,6 +177,7 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 		}
 
 		$file = apply_filters( 'weglot_debug_file', WEGLOT_DIR . '/content.html' );
+
 
 		if ( defined( 'WEGLOT_DEBUG' ) && WEGLOT_DEBUG && file_exists( $file ) ) {
 			$this->translate_services->set_original_language( $this->language_services->get_original_language() );
@@ -200,11 +195,15 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 	 * @since 2.0
 	 */
 	public function check_need_to_redirect() {
+		$only_home = apply_filters('weglot_autoredirect_only_home' , false);
 		if (
 			! wp_doing_ajax() && // no ajax.
-			$this->request_url_services->get_weglot_url()->getPath() === '/' && // front_page.
-			! $this->redirect_services->get_no_redirect() && // No force redirect.
-			! Server::detectBot( $_SERVER ) !== BotType::OTHER && //phpcs:ignore
+			! is_rest() &&
+			! Helper_Is_Admin::is_wp_admin() &&
+			$this->language_services->get_original_language() === $this->request_url_services->get_current_language() &&
+			! isset( $_COOKIE['WG_CHOOSE_ORIGINAL'] ) && // No force redirect.
+			Server::detectBot( $_SERVER ) === BotType::HUMAN && //phpcs:ignore
+			( !$only_home || ( $only_home && $this->request_url_services->get_weglot_url()->getPath() === '/' ) ) &&  // front_page.
 			$this->option_services->get_option( 'auto_redirect' ) // have option redirect.
 		) {
 			$this->redirect_services->auto_redirect();
@@ -222,15 +221,11 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 		// We initialize the URL here for the first time, the current language might be wrong in case of ajax with the language in a referer because at this time wp_doing_ajax is always false.
 		$this->current_language = $this->request_url_services->get_current_language();
 
+		// If the URL has a GET parameter wg-choose-original we need to set / unset the cookie and redirect.
+		$this->redirect_services->verify_no_redirect();
+
 		if ( $original_language === $this->current_language ) {
 			return;
-		}
-
-		// If we are not in the original language, but the URL is not available in the current language, we redirect to original.
-		if ( ! $this->request_url_services->get_weglot_url()->getForLanguage( $this->current_language )
-			&& ! strpos( $this->request_url_services->get_weglot_url()->getForLanguage( $this->language_services->get_original_language() ), 'wp-comments-post.php' ) !== false ) {
-			wp_redirect( $this->request_url_services->get_weglot_url()->getForLanguage( $this->language_services->get_original_language() ), 301 );
-			exit;
 		}
 
 		// //If we receive a not translated slug we return a 301. For example if we have /fr/products but should have /fr/produits we should redirect to /fr/produits.
