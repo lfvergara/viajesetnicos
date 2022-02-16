@@ -45,7 +45,7 @@
 						<option value="Costa Rica"><?php esc_html_e('Costa Rica', 'mkdf-tours'); ?></option>
 						<option value="Egipto"><?php esc_html_e('Egipto', 'mkdf-tours'); ?></option>
 						<option value="Etiopía"><?php esc_html_e('Etiopía', 'mkdf-tours'); ?></option>
-						<option value="Guinea-Bissau"><?php esc_html_e('Guinea Bissau', 'mkdf-tours'); ?></option>
+						<option value="Guinea Bissau"><?php esc_html_e('Guinea Bissau', 'mkdf-tours'); ?></option>
 						<option value="Groenlandia"><?php esc_html_e('Groenlandia', 'mkdf-tours'); ?></option>
 						<option value="Guatemala"><?php esc_html_e('Guatemala', 'mkdf-tours'); ?></option>
 						<option value="India"><?php esc_html_e('India', 'mkdf-tours'); ?></option>
@@ -55,6 +55,7 @@
 						<option value="Panamá"><?php esc_html_e('Panamá', 'mkdf-tours'); ?></option>
 						<option value="Papúa Nueva Guinea"><?php esc_html_e('Papúa Nueva Guinea', 'mkdf-tours'); ?></option>
 						<option value="Senegal"><?php esc_html_e('Senegal', 'mkdf-tours'); ?></option>
+						<option value="Turquía"><?php esc_html_e('Turquía', 'mkdf-tours'); ?></option>
 						<option value="Vietnam"><?php esc_html_e('Vietnam', 'mkdf-tours'); ?></option>
 						<option value=""><?php esc_html_e('Cualquiera'); ?></option>
 					</select>
