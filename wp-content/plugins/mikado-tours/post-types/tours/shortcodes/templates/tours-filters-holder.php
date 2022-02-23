@@ -34,6 +34,7 @@
 								<option value="India"><?php esc_html_e('India', 'mkdf-tours'); ?></option>
 								<option value="Irán"><?php esc_html_e('Irán', 'mkdf-tours'); ?></option>
 								<option value="Kirguistán"><?php esc_html_e('Kirguistán', 'mkdf-tours'); ?></option>
+								<option value="Mauritania"><?php esc_html_e('Mauritania', 'mkdf-tours'); ?></option>
 								<option value="Myanmar"><?php esc_html_e('Myanmar', 'mkdf-tours'); ?></option>
 								<option value="Panamá"><?php esc_html_e('Panamá', 'mkdf-tours'); ?></option>
 								<option value="Papúa Nueva Guinea"><?php esc_html_e('Papúa Nueva Guinea', 'mkdf-tours'); ?></option>
