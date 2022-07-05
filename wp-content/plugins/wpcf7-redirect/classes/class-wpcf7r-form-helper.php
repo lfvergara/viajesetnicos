@@ -355,17 +355,6 @@ class WPCF7r_Form_Helper {
 	}
 
 	/**
-	 * Check if the current admin page is accesibe plugin page.
-	 *
-	 * @return boolean
-	 */
-	public function is_accesibe_page() {
-		$screen = get_current_screen();
-
-		return 'toplevel_page_' . qs_get_plugin_display_name() === $screen->base;
-	}
-
-	/**
 	 * Check if the current page is the contact form edit screen
 	 */
 	public function is_wpcf7_edit() {
@@ -384,14 +373,9 @@ class WPCF7r_Form_Helper {
 	 */
 	public function enqueue_backend() {
 
-		if ( $this->is_wpcf7_edit() || $this->is_wpcf7_settings_page() || $this->is_wpcf7_lead_page() || $this->is_accesibe_page() ) {
+		if ( $this->is_wpcf7_edit() || $this->is_wpcf7_settings_page() || $this->is_wpcf7_lead_page() ) {
 
 			wp_enqueue_style( 'admin-build', $this->build_css_url . 'wpcf7-redirect-backend.css', array(), WPCF7_PRO_REDIRECT_PLUGIN_VERSION );
-
-			// wp_enqueue_script( 'jquery-validation', 'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js', array(), WPCF7_PRO_REDIRECT_PLUGIN_VERSION, true );
-			// wp_enqueue_script( 'admin-dev-select2', $this->assets_js_url . 'select2.js', array(), WPCF7_PRO_REDIRECT_PLUGIN_VERSION, true );
-			// wp_enqueue_script( 'admin-dev-validation-js', $this->assets_js_url . 'wpcf7-redirect-validation.js', array(), WPCF7_PRO_REDIRECT_PLUGIN_VERSION, true );
-			// wp_enqueue_script( 'admin-dev-js', $this->assets_js_url . 'wpcf7-redirect-backend-script.js', array(), WPCF7_PRO_REDIRECT_PLUGIN_VERSION, true );
 
 			wp_enqueue_script( 'admin-build-js', $this->build_js_url . 'wpcf7-redirect-backend-script.js', array(), WPCF7_PRO_REDIRECT_PLUGIN_VERSION, true );
 			wp_enqueue_script(

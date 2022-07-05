@@ -203,6 +203,37 @@ class Url
     }
 
     /**
+     * @param LanguageEntry $language
+     * @param string $option
+     * @param bool $getExclusion
+     * @return bool|string
+     */
+    public function getExcludeOption($language, $option)
+    {
+        $urls = $this->getAllUrls();
+        foreach ( $urls as $url ) {
+            if ( $url['language'] === $language ) {
+                switch ($option) {
+                    case 'language_button_displayed':
+                        if( $url[$option] ){
+                            return true;
+                        }
+                        break;
+                    case "exclusion_behavior":
+                        if( $url[$option] == "REDIRECT"){
+                            return true;
+                        }elseif($url[$option] == "NOT_TRANSLATED"){
+                            return false;
+                        }
+                        break;
+                }
+
+            }
+        }
+        return false;
+    }
+
+    /**
      * Check if we need to translate given URL
      *
      * @param LanguageEntry $language
@@ -330,6 +361,34 @@ class Url
     }
 
     /**
+     * Returns advance excluded option button displayed
+     *
+     * @param array $excludedUrl
+     * @return bool
+     */
+    public function exclusionBehavior($excludedUrl){
+        $exclusionBehavior = "NOT_TRANSLATED";
+        if(isset($excludedUrl[2])){
+            $exclusionBehavior = $excludedUrl[2];
+        }
+        return $exclusionBehavior;
+    }
+
+    /**
+     * Returns advance excluded option button displayed
+     *
+     * @param array $excludedUrl
+     * @return bool
+     */
+    public function languageButtonDisplayed($excludedUrl){
+        $languageButtonDisplayed = true;
+        if(isset($excludedUrl[3]) && $excludedUrl[3] === false){
+            $languageButtonDisplayed = false;
+        }
+        return $languageButtonDisplayed;
+    }
+
+    /**
      * Returns array with all possible URL for current Request
      *
      * @return array
@@ -353,10 +412,24 @@ class Url
                 $originalURL .= '#'. $this->getFragment();
             }
 
-            $urls[] = array( 'language' => $this->originalLanguage, 'url' => $originalURL, 'excluded' => false);
+            $languageButtonDisplayed = true;
+            $exclusionBehavior = "NOT_TRANSLATED";
+
+
+            foreach ($this->excludedUrls as $excludedUrl) {
+                if( preg_match('#' . $excludedUrl[0] . '#', $this->getPath()) != 0
+                    || preg_match('#' . $excludedUrl[0] . '#',  rtrim($this->getPath() , "/")) != 0) {
+                    $exclusionBehavior = $this->exclusionBehavior($excludedUrl);
+                    $languageButtonDisplayed = $this->languageButtonDisplayed( $excludedUrl );
+                }
+            }
+
+            $urls[] = array( 'language' => $this->originalLanguage, 'url' => $originalURL, 'excluded' => false, 'exclusion_behavior' => $exclusionBehavior, 'language_button_displayed' => $languageButtonDisplayed);
 
             foreach ($this->destinationLanguages as $language) {
                 $isExcluded = false;
+                $languageButtonDisplayed = true;
+                $exclusionBehavior = "NOT_TRANSLATED";
                 foreach ($this->excludedUrls as $excludedUrl) {
 
                     if( $excludedUrl[1] === null || ( is_array($excludedUrl[1]) && in_array($language, $excludedUrl[1]) ) ) {
@@ -364,6 +437,8 @@ class Url
                         if (strpos($excludedUrl[0], '?!') !== false) { // Si la regex contient un negative lookahead, alors on check le match entre le path et la regex
                             if( preg_match('#' . $excludedUrl[0] . '#', $this->getPath()) != 0) {
                                 $isExcluded = true;
+                                $exclusionBehavior = $this->exclusionBehavior($excludedUrl);
+                                $languageButtonDisplayed = $this->languageButtonDisplayed( $excludedUrl );
                                 break;
                             }
                         }
@@ -371,6 +446,8 @@ class Url
                             if( preg_match('#' . $excludedUrl[0] . '#', $this->getPath()) != 0
                                 || preg_match('#' . $excludedUrl[0] . '#',  rtrim($this->getPath() , "/")) != 0 ) {
                                 $isExcluded = true;
+                                $exclusionBehavior = $this->exclusionBehavior($excludedUrl);
+                                $languageButtonDisplayed = $this->languageButtonDisplayed($excludedUrl);
                                 break;
                             }
 
@@ -400,7 +477,7 @@ class Url
                 if (!is_null($this->getFragment())) {
                     $url .= '#'. $this->getFragment();
                 }
-                $urls[] = array( 'language' => $language, 'url' => $url, 'excluded' => $isExcluded );
+                $urls[] = array( 'language' => $language, 'url' => $url, 'excluded' => $isExcluded, 'exclusion_behavior' => $exclusionBehavior, 'language_button_displayed' => $languageButtonDisplayed );
             }
 
             $this->allUrls = $urls;

@@ -38,7 +38,7 @@ class Href_Lang_Service_Weglot {
 
 		foreach ( $urls as $url ) {
 			if ( ! $url['excluded'] ) {
-				$render .= '<link rel="alternate" href="' . esc_url( $url['url'] ) . '" hreflang="' . $url['language']->getExternalCode() . '"/>' . "\n";
+				$render .= '<link rel="alternate" href="' . strtok( esc_url( $url['url'] ), '?' ) . '" hreflang="' . $url['language']->getExternalCode() . '"/>' . "\n";
 			}
 		}
 

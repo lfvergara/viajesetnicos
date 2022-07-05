@@ -22,6 +22,7 @@
 
       var iti = intlTelInput($phone.get(0), {
         hiddenInput: $phone.data('name') || 'joinchat[telephone]',
+        separateDialCode: true,
         initialCountry: 'auto',
         preferredCountries: [country_code || ''],
         geoIpLookup: function (callback) {
@@ -49,7 +50,7 @@
         });
       }
 
-      $phone.on('input', function () {
+      $phone.on('input countrychange', function () {
         var $this = $(this);
         var iti = intlTelInputGlobals.getInstance(this);
 
@@ -82,7 +83,7 @@
 
       // Toggle WhatsApp web option
       $('#joinchat_mobile_only').on('change', function () {
-        $('#joinchat_whatsapp_web').closest('tr').toggleClass('joinchat-hidden', this.checked);
+        $('#joinchat_whatsapp_web, #joinchat_qr').closest('tr').toggleClass('joinchat-hidden', this.checked);
       }).trigger('change');
 
       // Toggle badge option
@@ -109,6 +110,11 @@
         .on('input', textarea_autoheight)
         .each(textarea_autoheight);
 
+      // Show title when placeholder
+      $('#joinchat_form').find('.autofill')
+        .on('change', function () { this.title = this.value == '' ? joinchat_admin.example : ''; })
+        .on('dblclick', function () { if (this.value == '') { this.value = this.placeholder; this.title = ''; } })
+        .trigger('change');
 
       // Visibility view inheritance
       var $tab_visibility = $('#joinchat_tab_visibility');
@@ -197,11 +203,16 @@
       $('#joinchat_header_custom').on('click', function () {
         $(this).prev().find('input').prop('checked', true);
       });
+
+      // Toggle Woo Product Button text
+      $('#joinchat_woo_btn_position').on('change', function () {
+        $('#joinchat_woo_btn_text').closest('tr').toggleClass('joinchat-hidden', $(this).val() == 'none');
+      }).trigger('change');
     }
 
-    if ($('.joinchat-metabox').length === 1) {
+    if ($('.joinchat-metabox').length) {
       // Texarea auto height
-      $('textarea', '.joinchat-metabox').on('focus input', textarea_autoheight).each(textarea_autoheight);
+      $('.joinchat-metabox textarea').on('focus input', textarea_autoheight).each(textarea_autoheight);
     }
   });
 })(jQuery);

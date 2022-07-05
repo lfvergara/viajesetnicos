@@ -21,6 +21,8 @@ class Schema_Option_V3 {
 			'api_key_private'         => 'api_key_private',
 			'allowed'                 => 'allowed',
 			'original_language'       => 'language_from',
+			'language_from_custom_flag'       => 'language_from_custom_flag',
+			'language_from_custom_name'       => 'language_from_custom_name',
 			'translation_engine'      => 'translation_engine',
 			'destination_language'    => (object) array(
 				'path' => 'languages',

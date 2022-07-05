@@ -102,6 +102,12 @@ class Language_Service_Weglot {
 
 		$this->languages       = $this->get_languages_available( [ 'sort' => true ] );
 		$destination_languages = $this->option_services->get_destination_languages();
+		$original_language = $this->get_original_language();
+
+		if ( ! empty( $this->get_original_language_name_custom() ) ) {
+			$this->languages = $this->add_language( $original_language->getInternalCode(), $original_language->getExternalCode(), $this->get_original_language_name_custom(), $this->get_original_language_name_custom() );
+		}
+
 		foreach ( $destination_languages as $d ) {
 			if ( $d['custom_name'] ) {
 				$this->languages = $this->add_language( $d['language_to'], $d['custom_code'], $d['custom_name'], $d['custom_name'] );
@@ -174,6 +180,14 @@ class Language_Service_Weglot {
 	public function get_original_language() {
 		$original_language_code = $this->option_services->get_option( 'original_language' );
 		return $this->get_language_from_internal( $original_language_code );
+	}
+
+	/**
+	 * Get original language as language entry
+	 * @return LanguageEntry
+	 */
+	public function get_original_language_name_custom() {
+		return $this->option_services->get_option( 'language_from_custom_name' );
 	}
 
 	/**

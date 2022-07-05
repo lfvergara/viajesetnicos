@@ -2,8 +2,8 @@
 Tags: contact form 7 redirect, contact form 7 thank you page, redirect cf7, redirect contact form 7, contact form 7 success page, cf7 redirect, registration form, mailchimp, login form, conditional redirect, cms integration, conversions, save leads, paypal
 Contributors: yuvalsabar, regevlio
 Requires at least: 5.2.0
-Tested up to: 5.8
-Stable tag: 2.4.0
+Tested up to: 5.9
+Stable tag: 2.6.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,6 +26,8 @@ Simply go to your form settings, choose the "Redirect Settings" tab and set the 
 * Pass fields from the form as URL query parameters
 * Add Honeypot to minimize spam
 * Save form submissions to your database
+* NEW: GDPR create erase personal data request
+* NEW: GDPR create export personal data request
 
 == Our Extensions ==
 * **[Extension]** Conditional logic for each action
@@ -45,6 +47,7 @@ Simply go to your form settings, choose the "Redirect Settings" tab and set the 
 * **[Extension]** PayPal Integration
 * **[Extension]** Stripe Integration
 * **[Extension]** Create and send PDF 
+* **[Extension]** Send Slack Message 
 
 > Note: some features are availible only as an extension. Which means you need Redirection for Contact Form 7 Pro to unlock those features. You can [get Redirection for Contact Form 7 Pro here](https://redirection-for-contact-form7.com/product/wpcf7r-actions-bundle/)!
 
@@ -76,6 +79,16 @@ No. One of the reasons we developed this plugin, is because on_send_ok is now de
 5. Extensions tab
 
 == Changelog ==
+
+= 2.6.0 =
+* Added new free action - erase data request
+* Fixed PHP8 notice messages
+* Completely removed accessiBe addon
+* Added compatability for slack message extension
+
+= 2.5.0 =
+* Fixed PHP8 notice messages
+* Update freemius SDK (security patch)
 
 = 2.4.0 =
 * Fixed PHP8 notice messages

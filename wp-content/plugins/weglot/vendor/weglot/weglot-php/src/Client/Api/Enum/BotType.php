@@ -18,4 +18,5 @@ abstract class BotType
     const YAHOO = 4;
     const BAIDU = 5;
     const YANDEX = 6;
+    const WGVE = 7;
 }

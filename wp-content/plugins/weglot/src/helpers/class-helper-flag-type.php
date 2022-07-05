@@ -78,7 +78,7 @@ class Helper_Flag_Type {
 	 *
 	 * @return string
 	 */
-	public static function get_new_flags( $is_admin = false) {
+	public static function get_new_flags( $is_admin = false ) {
 		$options         = get_transient( 'weglot_cache_cdn', false );
 		$custom_flag_css = '';
 
@@ -87,18 +87,17 @@ class Helper_Flag_Type {
 				$custom_flag_css .= self::get_custom_flag_for_one_language( $options['language_from'], $options['language_from_custom_flag'], $flag_number );
 			}
 
-			if(isset($options['languages']) && !empty($options['languages'])){
+			if ( isset( $options['languages'] ) && ! empty( $options['languages'] ) ) {
 				foreach ( $options['languages'] as $item ) {
 					if ( ! empty( $item['custom_flag'] ) ) {
 						$custom_flag_css .= self::get_custom_flag_for_one_language( $item['language_to'], $item['custom_flag'], $flag_number );
 					}
 				}
 			}
-
 		}
 
 
-		if($is_admin == true){
+		if ( $is_admin == true ) {
 			$custom_flag_css .= '.flag-style-openclose,#custom_flag_tips{display:none !important}';
 		}
 
@@ -109,13 +108,21 @@ class Helper_Flag_Type {
 		return $custom_flag_css;
 	}
 
+	/**
+	 * @param string $language_code
+	 * @param string $flag_code
+	 * @param int $flag_number
+	 *
+	 * @return string
+	 */
 	public static function get_custom_flag_for_one_language( $language_code, $flag_code, $flag_number ) {
 		$flag_type = self::get_flag_type_with_number( $flag_number );
-		if ( strlen( $flag_code ) < 5 ) {
+		if ( strlen( $flag_code ) <= 5 ) {
 			$flag_url = "https://cdn.weglot.com/flags/{$flag_type}/{$flag_code}.svg";
 		} else {
 			$flag_url = $flag_code;
 		}
+
 		return ".weglot-flags.flag-{$flag_number}.{$language_code}>a:before," .
 				".weglot-flags.flag-{$flag_number}.{$language_code}>span:before {" .
 				"background-image: url({$flag_url}); }";

@@ -195,7 +195,8 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 	 * @since 2.0
 	 */
 	public function check_need_to_redirect() {
-		$only_home = apply_filters('weglot_autoredirect_only_home' , false);
+
+		$only_home = apply_filters( 'weglot_autoredirect_only_home', false );
 		if (
 			! wp_doing_ajax() && // no ajax.
 			! is_rest() &&
@@ -203,7 +204,8 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 			$this->language_services->get_original_language() === $this->request_url_services->get_current_language() &&
 			! isset( $_COOKIE['WG_CHOOSE_ORIGINAL'] ) && // No force redirect.
 			Server::detectBot( $_SERVER ) === BotType::HUMAN && //phpcs:ignore
-			( !$only_home || ( $only_home && $this->request_url_services->get_weglot_url()->getPath() === '/' ) ) &&  // front_page.
+			! Server::detectBotVe( $_SERVER ) && //phpcs:ignore
+			( ! $only_home || ( $only_home && $this->request_url_services->get_weglot_url()->getPath() === '/' ) ) && // front_page.
 			$this->option_services->get_option( 'auto_redirect' ) // have option redirect.
 		) {
 			$this->redirect_services->auto_redirect();
@@ -228,7 +230,17 @@ class Translate_Page_Weglot implements Hooks_Interface_Weglot {
 			return;
 		}
 
-		// //If we receive a not translated slug we return a 301. For example if we have /fr/products but should have /fr/produits we should redirect to /fr/produits.
+		// If we are not in the original language, but the URL is not available in the current language, and the option redirect is true,  we redirect to original.
+		$redirect = $this->request_url_services->get_weglot_url()->getExcludeOption( $this->current_language, 'exclusion_behavior' );
+
+		if ( $redirect ) {
+			if ( ! $this->request_url_services->get_weglot_url()->getForLanguage( $this->current_language ) && ! strpos( $this->request_url_services->get_weglot_url()->getForLanguage( $this->language_services->get_original_language() ), 'wp-comments-post.php' ) !== false ) {
+				wp_redirect( $this->request_url_services->get_weglot_url()->getForLanguage( $this->language_services->get_original_language() ), 301 );
+				exit;
+			}
+		}
+
+		// If we receive a not translated slug we return a 301. For example if we have /fr/products but should have /fr/produits we should redirect to /fr/produits.
 		if ( $this->request_url_services->get_weglot_url()->getRedirect() !== null ) {
 			$redirect_to = $this->request_url_services->get_weglot_url()->getRedirect();
 			wp_redirect( '/' . $this->current_language->getExternalCode() . $redirect_to, 301 );

@@ -211,7 +211,10 @@
 								if ( is_null( $addon->info ) ) {
 									$addon->info = new stdClass();
 								}
-								if ( ! isset( $addon->info->banner_url ) ) {
+								if ( ! isset( $addon->info->card_banner_url ) ) {
+									$addon->info->card_banner_url = '//dashboard.freemius.com/assets/img/marketing/blueprint-300x100.jpg';
+								}
+                                if ( ! isset( $addon->info->banner_url ) ) {
 									$addon->info->banner_url = '//dashboard.freemius.com/assets/img/marketing/blueprint-300x100.jpg';
 								}
 								if ( ! isset( $addon->info->short_description ) ) {
@@ -220,7 +223,9 @@
 							?>
 							<div class="fs-inner">
 								<ul>
-									<li class="fs-card-banner"><?php
+									<li class="fs-card-banner">
+                                        <img src="<?php echo $addon->info->banner_url ?>" />
+                                        <?php
                                         if ( $is_plugin_active || $is_addon_installed ) {
                                             echo sprintf(
                                                 '<span class="fs-badge fs-installed-addon-badge">%s</span>',
@@ -230,9 +235,7 @@
                                                 )
                                             );
                                         }
-                                        ?>
-                                        <img src="<?php echo $addon->info->banner_url ?>" alt="" />
-                                    </li>
+                                        ?></li>
 									<!-- <li class="fs-tag"></li> -->
 									<li class="fs-title"><?php echo $addon->title ?></li>
 									<li class="fs-offer">

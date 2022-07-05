@@ -4176,6 +4176,13 @@ jQuery(function($) {
 		this.polylines = [];
 		this.circles = [];
 		this.rectangles = [];
+
+		// GDPR
+		if(WPGMZA.googleAPIStatus && WPGMZA.googleAPIStatus.code == "USER_CONSENT_NOT_GIVEN") {
+			$(element).append($(WPGMZA.api_consent_html));
+			$(element).css({height: "auto"});
+			return;
+		}
 		
 		this.loadSettings(options);
 		
@@ -4198,13 +4205,6 @@ jQuery(function($) {
 		
 		// Init marker filter
 		this.markerFilter = WPGMZA.MarkerFilter.createInstance(this);
-		
-		// GDPR
-		
-		if(WPGMZA.googleAPIStatus && WPGMZA.googleAPIStatus.code == "USER_CONSENT_NOT_GIVEN") {
-			$(element).append($(WPGMZA.api_consent_html));
-			$(element).css({height: "auto"});
-		}
 		
 		// Initialisation
 		this.on("init", function(event) {
@@ -4519,7 +4519,7 @@ jQuery(function($) {
 				filter.offset = offset;
 				filter.limit = limit;
 				
-				data = this.getRESTParameters({
+				data = self.getRESTParameters({
 					filter: JSON.stringify(filter)
 				});
 				
@@ -12958,11 +12958,29 @@ jQuery(function($) {
 						if(ajaxRequest !== false){
 			                ajaxRequest.abort();
 			            }
+
+			            var domain = window.location.hostname;
+			            if(domain === 'localhost'){
+			            	try{
+			            		var paths = window.location.pathname.match(/\/(.*?)\//);
+			            		if(paths && paths.length >= 2 && paths[1]){
+			            			var path = paths[1];
+			            			domain += "-" + path
+			            		}
+			            	} catch (ex){
+			            		/* Leave it alone */
+			            	}
+			            }
+
 			            var wpgmza_api_url = '';
 			            if (!wpgmza_apikey) {
-			            	wpgmza_api_url = "https://wpgmaps.us-3.evennode.com/api/v1/autocomplete?s="+currentSearch+"&d="+window.location.hostname+"&hash="+WPGMZA_localized_data.siteHash
+			            	wpgmza_api_url = "https://wpgmaps.us-3.evennode.com/api/v1/autocomplete?s="+currentSearch+"&d="+domain+"&hash="+WPGMZA_localized_data.siteHash
 			            } else {
-			            	wpgmza_api_url = "https://wpgmaps.us-3.evennode.com/api/v1/autocomplete?s="+currentSearch+"&d="+window.location.hostname+"&hash="+WPGMZA_localized_data.siteHash+"&k="+wpgmza_apikey
+			            	wpgmza_api_url = "https://wpgmaps.us-3.evennode.com/api/v1/autocomplete?s="+currentSearch+"&d="+domain+"&hash="+WPGMZA_localized_data.siteHash+"&k="+wpgmza_apikey
+			            }
+
+			            if(WPGMZA && WPGMZA.settings && WPGMZA.settings.engine){
+			            	wpgmza_api_url += "&engine=" + WPGMZA.settings.engine;
 			            }
 
 			            // set a timer of how fast the person types in seconds to only continue with this if it runs out

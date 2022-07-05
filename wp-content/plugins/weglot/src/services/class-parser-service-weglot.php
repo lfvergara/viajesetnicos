@@ -57,8 +57,8 @@ class Parser_Service_Weglot {
 
 		$client = new Client(
 			$api_key,
-			$version,
 			$translation_engine,
+			$version,
 			array(
 				'host' => Helper_API::get_api_url(),
 			)

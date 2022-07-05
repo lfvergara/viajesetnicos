@@ -165,10 +165,12 @@ class Translate_Service_Weglot {
 
 		// Choose type translate.
 		$type = ( Helper_Json_Inline_Weglot::is_json( $content ) ) ? 'json' : 'html';
+		if ( 'json' !== $type ) {
+			$type = ( Helper_Json_Inline_Weglot::is_xml( $content ) ) ? 'xml' : 'html';
+		}
+
 		$type = apply_filters( 'weglot_type_treat_page', $type );
-
 		$active_translation = apply_filters( 'weglot_active_translation', true );
-
 		$canonical = $this->get_canonical_url_from_content( $content );
 
 		// No need to translate but prepare new dom with button.
@@ -191,6 +193,11 @@ class Translate_Service_Weglot {
 					$translated_content = wp_json_encode( $this->replace_url_services->replace_link_in_json( json_decode( $translated_content, true ) ) );
 
 					return apply_filters( 'weglot_json_treat_page', $translated_content );
+				case 'xml':
+					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, array(), $canonical );
+					$translated_content = apply_filters( 'weglot_html_treat_page', $translated_content );
+
+					return apply_filters( 'weglot_xml_treat_page', $translated_content );
 				case 'html':
 					$translated_content = $parser->translate( $content, $this->original_language, $this->current_language, array(), $canonical );
 					$translated_content = apply_filters( 'weglot_html_treat_page', $translated_content );
@@ -260,13 +267,13 @@ class Translate_Service_Weglot {
 		if ( '' !== $canonical ) {
 			$canonical   = urldecode( $canonical );
 			$current_url = $this->request_url_services->get_weglot_url();
-			if ( $current_url->getForLanguage( $this->language_services->get_original_language() ) !== $canonical ) {
+			if ( $current_url->getPath() !== $this->request_url_services->create_url_object( $canonical )->getPath() ) {
 				$dom = preg_replace( '/<link rel="alternate" href=(\"|\')([^\s\>]+?)(\"|\') hreflang=(\"|\')([^\s\>]+?)(\"|\')\/>/', '', $dom );
 			}
 
 			// update canonical if page excluded page.
 			if ( ! $current_url->getForLanguage( $this->request_url_services->get_current_language(), false ) ) {
-				$dom = preg_replace( '/<link rel="canonical"(.*?)?href=(\"|\')([^\s\>]+?)(\"|\')/', '<link rel="canonical" href="' . $current_url->getForLanguage( $this->language_services->get_original_language() ) . '"', $dom );
+				$dom = preg_replace( '/<link rel="canonical"(.*?)?href=(\"|\')([^\s\>]+?)(\"|\')/', '<link rel="canonical" href="' . esc_url ( $current_url->getForLanguage( $this->language_services->get_original_language() )  ) . '"', $dom );
 			}
 		}
 

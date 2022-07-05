@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8a0ce8d7cbb4a77b2d322bc47f4e2b8a3b274e3d',
+    'reference' => 'e1a847c386e4423a9703db41f896109885744db7',
     'name' => 'weglot/translate-wordpress',
   ),
   'versions' => 
@@ -55,12 +55,12 @@ private static $installed = array (
     ),
     'weglot/simplehtmldom' => 
     array (
-      'pretty_version' => '0.6',
-      'version' => '0.6.0.0',
+      'pretty_version' => '0.7',
+      'version' => '0.7.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd84e80a2b8d2ecf81784356467aab70e8b37b117',
+      'reference' => '020aac0f37d5cf1ebfde62aa67cb2a6cc3914f41',
     ),
     'weglot/translate-wordpress' => 
     array (
@@ -69,7 +69,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8a0ce8d7cbb4a77b2d322bc47f4e2b8a3b274e3d',
+      'reference' => 'e1a847c386e4423a9703db41f896109885744db7',
     ),
     'weglot/translation-definitions' => 
     array (
@@ -82,12 +82,12 @@ private static $installed = array (
     ),
     'weglot/weglot-php' => 
     array (
-      'pretty_version' => '1.3',
-      'version' => '1.3.0.0',
+      'pretty_version' => '1.3.4',
+      'version' => '1.3.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e2b5413fbf38380167867f085bc24a1796c94fd5',
+      'reference' => '38d07fee3b3cf2d2bd3a64be5460ea255d57eabd',
     ),
   ),
 );

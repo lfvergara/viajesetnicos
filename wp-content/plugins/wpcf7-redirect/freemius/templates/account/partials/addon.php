@@ -1,4 +1,9 @@
 <?php
+
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+
     /**
      * @var array    $VARS
      * @var Freemius $fs
@@ -14,7 +19,7 @@
 
     $addon_info         = $VARS['addon_info'];
     $is_addon_activated = $fs->is_addon_activated( $addon_id );
-    $is_addon_connected = isset( $addon_info['is_connected'] ) ? $addon_info['is_connected'] : '';
+    $is_addon_connected = $addon_info['is_connected'];
     $is_addon_installed = $VARS['is_addon_installed'];
 
     $fs_addon = ( $is_addon_connected && $is_addon_installed ) ?
@@ -145,7 +150,7 @@
 } ?>>
     <td>
         <!-- Title -->
-        <?php echo isset($addon_info['title']) ? $addon_info['title'] : '' ?>
+        <?php echo $addon_info['title'] ?>
     </td>
     <?php if ( $is_addon_connected ) : ?>
         <!-- ID -->

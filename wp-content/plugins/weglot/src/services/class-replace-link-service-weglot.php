@@ -49,11 +49,12 @@ class Replace_Link_Service_Weglot {
 	 * @return string
 	 */
 	public function replace_url( $url, $language ) {
-		$replaced_url =  $this->request_url_services->create_url_object( $url )->getForLanguage( $language, true );
-		if($replaced_url)
+		$replaced_url = apply_filters( 'weglot_replace_url', $this->request_url_services->create_url_object( $url )->getForLanguage( $language, true ), $url, $language );
+		if ( $replaced_url ) {
 			return $replaced_url;
-		else
+		} else {
 			return $url;
+		}
 	}
 
 	/**

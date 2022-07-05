@@ -161,22 +161,22 @@ function wpcf7_redirect_get_all_extensions_list() {
 			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/hubspot.png',
 			'classname'   => 'WPCF7R_Action_Hubspot',
 		),
-		'wpcf7r-hubspot'  => array(
-			'name'        => 'wpcf7r-twlio',
+		'wpcf7r-twilio'  		   => array(
+			'name'        => 'wpcf7r-twillio',
 			'filename'    => 'class-wpcf7r-action-twilio.php',
 			'title'       => __( 'Send sms with twlio', 'wpcf7-redirect' ),
 			'description' => __( 'Send sms to yourself or your users with twlio.', 'wpcf7-redirect' ),
 			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/twilio-icon.png',
 			'classname'   => 'WPCF7R_Action_TwilioSms',
 		),
-		'wpcf7r-actions-bundle'    => array(
-			'name'        => 'wpcf7r-actions-bundle',
-			'filename'    => 'wpcf7r-action-bundle.php',
-			'title'       => __( 'Actions Bundle', 'wpcf7-redirect' ),
-			'description' => __( 'Get it all.', 'wpcf7-redirect' ),
-			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/bundle.png',
-			'classname'   => 'WPCF7R_Action_Bundle',
-		),
+		'wpcf7r-slack'  		   => array(
+			'name'        => 'wpcf7r-slack',
+			'filename'    => 'class-wpcf7r-action-slack.php',
+			'title'       => __( 'Send slack message', 'wpcf7-redirect' ),
+			'description' => __( 'Send slack message.', 'wpcf7-redirect' ),
+			'icon'        => WPCF7_PRO_REDIRECT_BUILD_PATH . 'images/slack-icon.png',
+			'classname'   => 'WPCF7R_Action_SlackMessage',
+		)
 	);
 
 	$api = new Qs_Api();

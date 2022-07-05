@@ -340,20 +340,20 @@ $options_available = [
 		</td>
 	</tr>
 
-	<tr valign="top">
+	<!--<tr valign="top">
 		<th scope="row" class="titledesc">
-			<label for="<?php echo esc_attr( $options_available['switcher_editor']['key'] ); ?>">
-				<?php echo esc_html( $options_available['switcher_editor']['label'] ); ?>
+			<label for="<?php /*echo esc_attr( $options_available['switcher_editor']['key'] ); */?>">
+				<?php /*echo esc_html( $options_available['switcher_editor']['label'] ); */?>
 			</label>
-			<p class="sub-label"><?php echo esc_html( $options_available['switcher_editor']['description'] ); ?></p>
+			<p class="sub-label"><?php /*echo esc_html( $options_available['switcher_editor']['description'] ); */?></p>
 		</th>
 		<td class="forminp forminp-text">
 			<a 	class="btn btn-soft"
-				href="https://dashboard.weglot.com/settings/language-switcher/editor?url=<?php echo esc_url( get_home_url() ); ?>" target="_blank"><span
-					class="dashicons dashicons-admin-generic"></span> <?php esc_html_e( 'Use switcher editor', 'weglot' ); ?>
+				href="https://dashboard.weglot.com/settings/language-switcher/editor?url=<?php /*echo esc_url( get_home_url() ); */?>" target="_blank"><span
+					class="dashicons dashicons-admin-generic"></span> <?php /*esc_html_e( 'Use switcher editor', 'weglot' ); */?>
 			</a>
 		</td>
-	</tr>
+	</tr>-->
 </table>
 
 <template id="li-button-tpl">

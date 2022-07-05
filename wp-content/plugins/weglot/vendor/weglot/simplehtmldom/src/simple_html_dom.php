@@ -521,7 +521,8 @@ class simple_html_dom_node
                 foreach ($head as $k=>$v) {
                     $n = ($k===-1) ? $this->dom->root : $this->dom->nodes[$k];
                     //PaperG - Pass this optional parameter on to the seek function.
-                    $n->seek($selectors[$c][$l], $ret, $lowercase);
+	                $direct = $l>0? $selectors[$c][$l-1][5]:false;
+	                $n->seek($selectors[$c][$l], $ret, $lowercase, $direct);
                 }
                 $head = $ret;
             }
@@ -552,7 +553,7 @@ class simple_html_dom_node
 
     // seek for given conditions
     // PaperG - added parameter to allow for case insensitive testing of the value of a selector.
-    protected function seek($selector, &$ret, $lowercase=false)
+    protected function seek($selector, &$ret, $lowercase=false, $direct=false)
     {
         global $debugObject;
         if (is_object($debugObject)) {
@@ -589,6 +590,10 @@ class simple_html_dom_node
             $node = $this->dom->nodes[$i];
 
             $pass = true;
+
+	        if($direct && $this !== $node->parent) {
+		        continue;
+	        }
 
             if ($tag==='*' && !$key) {
                 if (in_array($node, $this->children, true)) {
@@ -707,7 +712,7 @@ class simple_html_dom_node
         // This implies that an html attribute specifier may start with an @ sign that is NOT captured by the expression.
         // farther study is required to determine of this should be documented or removed.
 //        $pattern = "/([a-zA-Z0-9_\-:\*]*)(?:\#([a-zA-Z0-9_\-]+)|\.([a-zA-Z0-9_\-]+))?(?:\[@?(!?[a-zA-Z0-9_\-]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
-        $pattern = "/([a-zA-Z0-9_\-:\*]*)(?:\#([a-zA-Z0-9_\-]+)|\.([a-zA-Z0-9_\-]+))?(?:\[@?(!?[a-zA-Z0-9_\-:]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
+        $pattern = "/([a-zA-Z0-9_\-:\*]*)(?:\#([a-zA-Z0-9_\-]+)|\.([a-zA-Z0-9_\-]+))?(?:\[@?(!?[a-zA-Z0-9_\-:]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, >]+)/is";
         preg_match_all($pattern, trim($selector_string).' ', $matches, PREG_SET_ORDER);
         if (is_object($debugObject)) {
             $debugObject->debugLog(2, "Matches Array: ", $matches);
@@ -727,7 +732,7 @@ class simple_html_dom_node
                 continue;
             }
 
-            list($tag, $key, $val, $exp, $no_key) = array($m[1], null, null, '=', false);
+	        list($tag, $key, $val, $exp, $no_key, $direct) = array($m[1], null, null, '=', false, false);
             if (!empty($m[2])) {
                 $key='id';
                 $val=$m[2];
@@ -756,8 +761,11 @@ class simple_html_dom_node
                 $key=substr($key, 1);
                 $no_key=true;
             }
+	        if (trim($m[7])==='>') {
+		        $direct = true;
+	        }
 
-            $result[] = array($tag, $key, $val, $exp, $no_key);
+            $result[] = array($tag, $key, $val, $exp, $no_key, $direct);
             if (trim($m[7])===',') {
                 $selectors[] = $result;
                 $result = array();

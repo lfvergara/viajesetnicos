@@ -48,7 +48,6 @@ class Wpcf7_Redirect {
 		define( 'WPCF7_PRO_REDIRECT_EXTENSION_UPDATES', $base_url . 'wp-json/api-v1/get-extension-update/' );
 		define( 'WPCF7_PRO_REDIRECT_PLUGIN_EXTENSIONS_LIST_URL', $base_url . 'wp-json/api-v1/extensions_list/' );
 		define( 'WPCF7_PRO_REDIRECT_PLUGIN_PROMOTIONS_URL', $base_url . 'wp-json/api-v1/promotions/' );
-		define( 'ACCESSIBE_API_URI', $base_url . 'wp-json/accesibe-api/activate' );
 
 		define( 'WPCF7_PRO_REDIRECT_WP_REQUIRES', '5.3' );
 		define( 'WPCF7_PRO_REDIRECT_WP_TESTED', '5.6' );

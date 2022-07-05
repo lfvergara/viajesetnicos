@@ -2,9 +2,9 @@
 Contributors: humanityco
 Tags: gdpr, ccpa, cookies, consent, compliance
 Requires at least: 4.3
-Requires PHP: 5.3
-Tested up to: 5.8.2
-Stable tag: 2.2.0
+Requires PHP: 5.4
+Tested up to: 6.0
+Stable tag: 2.3.1
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -114,9 +114,32 @@ Yes! The plugin + web appliaction version includes technical compliance features
 
 == Screenshots ==
 
-1. screenshot-1.png
+1. Cookie Notice settings, Compliance itegration inactive
+2. Cookie Notice settings, Compliance itegration active
+3. Cookie Compliance dashboard overview
+4. Cookie Compliance settings
 
 == Changelog ==
+
+= 2.3.1 =
+* New: Option to run consent banner in debug mode
+* Fix: Invalid validation of dismissable notices
+
+= 2.3.0 =
+* New: Compliance Multi-license pricing options
+* Tweak: WordPress 6.0 compatibility
+
+= 2.2.3 =
+* Fix: Undefined notice in WP dashboard
+* Fix: Close icon event not firing
+* Tweak: Remove aria-label from the close icon
+* Tweak: CSS tweaks in the admin
+
+= 2.2.2 =
+* Fix: Uncrawlable close notice link
+* Tweak: WordPress 5.9 compatibility
+* Tweak: Prevent displaying the notice in an iframe
+* Tweak: Send site language to a web app on signup 
 
 = 2.2.1 =
 * Fix: Missing variable definition in frontend
@@ -400,5 +423,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 2.2.1 =
-* Fix: Missing variable definition in frontend
+= 2.3.1 =
+* New: Option to run consent banner in debug mode
+* Fix: Invalid validation of dismissable notices

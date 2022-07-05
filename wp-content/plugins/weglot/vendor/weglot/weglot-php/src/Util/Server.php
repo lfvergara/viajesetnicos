@@ -32,6 +32,21 @@ class Server
 
     /**
      * @param array $server
+     * @return bool
+     */
+    public static function detectBotVe(array $server)
+    {
+        $userAgent = self::getUserAgent($server);
+        $checkBotVe = Text::contains($userAgent, 'Weglot Visual Editor');
+        if($userAgent !== null && $checkBotVe){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param array $server
      * @return int
      */
     public static function detectBot(array $server)

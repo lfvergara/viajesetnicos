@@ -123,7 +123,7 @@ class WPCF7R_Base {
 	 * Initialize affiliate extensions
 	 */
 	public function start_affiliate_extensions() {
-		$this->aff['accesibie'] = new Ext_Accessibe();
+		
 	}
 
 	/**

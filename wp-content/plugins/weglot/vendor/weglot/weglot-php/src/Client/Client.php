@@ -65,11 +65,11 @@ class Client
     /**
      * Client constructor.
      * @param string    $apiKey     your Weglot API key
-     * @param string    $version    your settings file version
      * @param int       $translationEngine
+     * @param string    $version    your settings file version
      * @param array     $options    an array of options, currently only "host" is implemented
      */
-    public function __construct($apiKey, $version = '1', $translationEngine, $options = [])
+    public function __construct($apiKey, $translationEngine, $version = '1', $options = [])
     {
         $this->apiKey = $apiKey;
         $this->version = $version;

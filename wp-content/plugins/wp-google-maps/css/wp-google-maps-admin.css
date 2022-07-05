@@ -1183,7 +1183,7 @@ background: #2b323c66 !important;
   max-width: 200px;
 }
 .feature-section.three-col .col {
-  max-width: 30%;
+  max-width: 33%;
   display: inline-block;
   margin-bottom: 30px;
 
@@ -1192,6 +1192,10 @@ background: #2b323c66 !important;
 .feature-section {
   text-align: center;
 
+}
+
+.wpgmza-margin-0 {
+  margin: 0 !important;
 }
 
 .wpgmza-promo-overlay {
@@ -2992,7 +2996,7 @@ button.wpgmza-retina {
 
 div#wpgmza_autoc_disabled {
     position: absolute;
-    bottom: 30px;
+    bottom: 15px;
     font-size: 0.8em;
     right: 0;
     width: 100%;

@@ -29,6 +29,10 @@
 		{
 			"type": "vcs",
 			"url":  "git@github.com:weglot/weglot-php.git"
+		},
+		{
+			"type": "vcs",
+			"url":  "git@github.com:weglot/simple_html_dom.git"
 		}
 	],
     "require-dev": {

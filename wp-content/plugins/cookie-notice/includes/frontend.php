@@ -9,16 +9,16 @@ if ( ! defined( 'ABSPATH' ) )
  * @class Cookie_Notice_Frontend
  */
 class Cookie_Notice_Frontend {
-	private $widget_url = '';
 	private $is_bot = false;
 	private $hide_banner = false;
 	
+	// api urls
+	private $widget_url = '//cdn.hu-manity.co/hu-banner.min.js';
+	private $app_url = 'https://app.hu-manity.co';
+
 	public function __construct() {
 		// actions
 		add_action( 'init', array( $this, 'init' ) );
-
-		$this->widget_url = '//cdn.hu-manity.co/hu-banner.min.js';
-		$this->app_url = 'https://app.hu-manity.co';
 	}
 
 	/**
@@ -88,6 +88,10 @@ class Cookie_Notice_Frontend {
 			'currentLanguage'	=> $locale_code[0],
 			'blocking' => (bool) ( ! is_user_logged_in() ? Cookie_Notice()->options['general']['app_blocking'] : false )
 		) );
+		
+		if ( Cookie_Notice()->options['general']['debug_mode'] ) {
+			$options['debugMode'] = true;
+		}
 		
 		// message output
 		$output = '
@@ -172,7 +176,7 @@ class Cookie_Notice_Frontend {
 			. '<span id="cn-notice-buttons" class="cn-buttons-container"><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie ' . $options['button_class'] . ( $options['css_class'] !== '' ? ' cn-button-custom ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['accept_text'] ) . '"' . ( $options['css_class'] == '' ? ' style="background-color: ' . esc_attr( $options['colors']['button'] ) . '"' : '' ) . '>' . esc_html( $options['accept_text'] ) . '</a>'
 			. ( $options['refuse_opt'] === true ? '<a href="#" id="cn-refuse-cookie" data-cookie-set="refuse" class="cn-set-cookie ' . $options['button_class'] . ( $options['css_class'] !== '' ? ' cn-button-custom ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['refuse_text'] ) . '"' . ( $options['css_class'] == '' ? ' style="background-color: ' . esc_attr( $options['colors']['button'] ) . '"' : '' ) . '>' . esc_html( $options['refuse_text'] ) . '</a>' : '' )
 			. ( $options['see_more'] === true && $options['link_position'] === 'banner' ? '<a href="' . ( $options['see_more_opt']['link_type'] === 'custom' ? esc_url( $options['see_more_opt']['link'] ) : get_permalink( $options['see_more_opt']['id'] ) ) . '" target="' . esc_attr( $options['link_target'] ) . '" id="cn-more-info" class="cn-more-info ' . $options['button_class'] . ( $options['css_class'] !== '' ? ' cn-button-custom ' . $options['css_class'] : '' ) . '" aria-label="' . esc_attr( $options['see_more_opt']['text'] ) . '"' . ( $options['css_class'] == '' ? ' style="background-color: ' . esc_attr( $options['colors']['button'] ) . '"' : '' ) . '>' . esc_html( $options['see_more_opt']['text'] ) . '</a>' : '' ) 
-			. '</span><a href="javascript:void(0);" id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" aria-label="' . esc_attr( $options['accept_text'] ) . '"></a>'
+			. '</span><span id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" title="' . esc_attr( $options['refuse_text'] ) . '"></span>'
 			. '</div>
 			' . ( $options['refuse_opt'] === true && $options['revoke_cookies'] == true ? 
 			'<div class="cookie-revoke-container" style="color: ' . esc_attr( $options['colors']['text'] ) . ';">'
@@ -241,7 +245,7 @@ class Cookie_Notice_Frontend {
 	 */
 	public function wp_print_footer_scripts() {
 		if ( Cookie_Notice()->cookies_accepted() ) {
-			$scripts = apply_filters( 'cn_refuse_code_scripts_html', html_entity_decode( trim( wp_kses( Cookie_Notice()->options['general']['refuse_code'], Cookie_Notice()->get_allowed_html() ) ) ) );
+			$scripts = apply_filters( 'cn_refuse_code_scripts_html', html_entity_decode( trim( wp_kses( Cookie_Notice()->options['general']['refuse_code'], Cookie_Notice()->get_allowed_html() ) ) ), 'body' );
 
 			if ( ! empty( $scripts ) )
 				echo $scripts;
@@ -255,7 +259,7 @@ class Cookie_Notice_Frontend {
 	 */
 	public function wp_print_header_scripts() {
 		if ( Cookie_Notice()->cookies_accepted() ) {
-			$scripts = apply_filters( 'cn_refuse_code_scripts_html', html_entity_decode( trim( wp_kses( Cookie_Notice()->options['general']['refuse_code_head'], Cookie_Notice()->get_allowed_html() ) ) ) );
+			$scripts = apply_filters( 'cn_refuse_code_scripts_html', html_entity_decode( trim( wp_kses( Cookie_Notice()->options['general']['refuse_code_head'], Cookie_Notice()->get_allowed_html() ) ) ), 'head' );
 
 			if ( ! empty( $scripts ) )
 				echo $scripts;

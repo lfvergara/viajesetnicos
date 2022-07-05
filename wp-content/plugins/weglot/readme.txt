@@ -4,7 +4,7 @@ Tags: translate, multilingual, language, translation, localization, multilingual
 Requires at least: 4.5
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 3.4
+Stable tag: 3.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,7 @@ Make your website multilingual in minutes with a free trial. Visit [https://wegl
 
 ### How Weglot Translate works
 
-[youtube https://www.youtube.com/watch?v=12k3Q4MpK_c]
+[youtube https://www.youtube.com/watch?v=frzdb79qTrU]
 
 
 ### Why Weglot Translate
@@ -210,16 +210,11 @@ See changelog for upgrade changes.
 
 == Changelog ==
 
-= 3.5 (07/12/2021) =
+= 3.6.1 (02/03/2022) =
 
-* Add: Autoswitch work on all page not only on homepage
-* Add: Exclude url doesn't generate redirection
-* Add: Add switcher from switcher editor
-* Add: Call API from cdn to translate
-* Add: Limited call API for deactivate account
-* Bugfix: Problem with gform and multisite
-* Bugfix: Fix hreflang generation with Cyrillic url
-* Bugfix: Weglot search option now works even if we're not on a main_query
+* Bugfix: Fix hide button option on switcher menu
+* Bugfix: Fix bug VE not translated
+* Bugfix: Fix bug add Custom full name for orginal language
 
 = Older versions =
 

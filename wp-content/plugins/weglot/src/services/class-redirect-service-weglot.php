@@ -156,14 +156,20 @@ class Redirect_Service_Weglot {
 			return;
 		}
 
+		//return;
 		// We retrieve the best language based on navigator languages and destination languages.
 		$navigator_languages            = $this->get_navigator_languages();
 		$destination_languages_external = $this->language_services->get_destination_languages_external( $this->request_url_services->is_allowed_private() );
 		$best_external_language         = $this->get_best_available_language( $navigator_languages, $destination_languages_external );
 		$best_language                  = $this->language_services->get_language_from_external( $best_external_language );
 
+
 		// Redirect using the best language.
 		if ( isset( $best_language ) && $best_language !== $this->language_services->get_original_language() && $this->language_services->get_original_language() === $this->request_url_services->get_current_language() ) {
+			//Cancel redirect if excluded page.
+			if ( ! $this->request_url_services->get_weglot_url()->getForLanguage( $best_language, false ) ){
+				return;
+			}
 			$url_auto_redirect = apply_filters( 'weglot_url_auto_redirect', $this->request_url_services->get_weglot_url()->getForLanguage( $best_language, true ) );
 			header( "Location: $url_auto_redirect", true, 302 );
 			exit();
@@ -175,6 +181,10 @@ class Redirect_Service_Weglot {
 			$this->option_services->get_option( 'autoswitch_fallback' ) !== null
 		) {
 			$fallback_language = $this->language_services->get_language_from_internal( $this->option_services->get_option( 'autoswitch_fallback' ) );
+			//Cancel redirect if excluded page.
+			if ( ! $this->request_url_services->get_weglot_url()->getForLanguage( $fallback_language, false ) ){
+				return;
+			}
 			$url_auto_redirect = apply_filters( 'weglot_url_auto_redirect', $this->request_url_services->get_weglot_url()->getForLanguage( $fallback_language, true ) );
 			header( "Location: $url_auto_redirect", true, 302 );
 			exit();

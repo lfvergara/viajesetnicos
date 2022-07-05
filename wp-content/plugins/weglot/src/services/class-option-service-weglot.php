@@ -54,9 +54,7 @@ class Option_Service_Weglot {
 				'flag_type'   => Helper_Flag_Type::RECTANGLE_MAT,
 				'custom_css'  => '',
 			),
-			'switchers'       => array(
-
-			),
+			'switchers'        => array(),
 			'rtl_ltr_style'    => '',
 			'active_wc_reload' => true,
 			'flag_css'         => '',
@@ -149,9 +147,9 @@ class Option_Service_Weglot {
 			} elseif ( wp_remote_retrieve_response_code( $response ) === 403 ) {
 				set_transient( 'weglot_cache_cdn', self::NO_OPTIONS, 0 );
 				$this->options_cdn = self::NO_OPTIONS;
+
 				return array( 'success' => false );
-			}
-			else {
+			} else {
 				$body = json_decode( $response['body'], true );
 				set_transient( 'weglot_cache_cdn', $body, apply_filters( 'weglot_get_options_from_cdn_cache_duration', 300 ) );
 			}
@@ -234,7 +232,6 @@ class Option_Service_Weglot {
 
 		try {
 			$body = json_decode( $response['body'], true );
-
 			if ( null === $body || ! is_array( $body ) ) {
 				return array(
 					'success' => false,
@@ -362,6 +359,7 @@ class Option_Service_Weglot {
 		if ( ! isset( $options['versions']['translation'] ) ) {
 			return apply_filters( 'weglot_get_version', 1 );
 		}
+
 		return apply_filters( 'weglot_get_version', $options['versions']['translation'] );
 	}
 
@@ -405,7 +403,7 @@ class Option_Service_Weglot {
 			}
 		}
 
-		if( ! array_key_exists('result', $response)) {
+		if ( ! array_key_exists( 'result', $response ) ) {
 			return $this->get_options_from_v2();
 		}
 
@@ -576,6 +574,7 @@ class Option_Service_Weglot {
 		) {
 			return $options['custom_settings']['switchers'];
 		}
+
 		return array();
 	}
 
@@ -596,6 +595,7 @@ class Option_Service_Weglot {
 				return $switcher[ $key ];
 			}
 		}
+
 		return null;
 	}
 
@@ -671,6 +671,7 @@ class Option_Service_Weglot {
 	 */
 	public function get_exclude_urls() {
 		$list_exclude_urls = $this->get_option( 'exclude_urls' );
+
 		/** @var $request_url_services Request_Url_Service_Weglot */
 		$request_url_services = weglot_get_service( 'Request_Url_Service_Weglot' );
 		$exclude_urls         = array();
@@ -687,7 +688,12 @@ class Option_Service_Weglot {
 						}
 					}
 					$regex          = new Regex( $item['type'], $request_url_services->url_to_relative( $item['value'] ) );
-					$exclude_urls[] = array( $regex->getRegex(), $excluded_languages );
+					$exclude_urls[] = array(
+						$regex->getRegex(),
+						$excluded_languages,
+						$item['exclusion_behavior'],
+						$item['language_button_displayed'],
+					);
 				}
 			}
 		}
@@ -800,13 +806,14 @@ class Option_Service_Weglot {
 	 */
 	public function get_switcher_editor_css() {
 		$switcher_editor_css = '';
-		if(!empty($this->get_switchers_editor_button())){
-			foreach ($this->get_switchers_editor_button() as $switcher){
-				if(!empty($switcher['style']['custom_css'])){
+		if ( ! empty( $this->get_switchers_editor_button() ) ) {
+			foreach ( $this->get_switchers_editor_button() as $switcher ) {
+				if ( ! empty( $switcher['style']['custom_css'] ) ) {
 					$switcher_editor_css .= $switcher['style']['custom_css'];
 				}
 			}
 		}
+
 		return $switcher_editor_css;
 	}
 }

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Cookie Notice & Compliance for GDPR / CCPA
 Description: Cookie Notice allows you to you elegantly inform users that your site uses cookies and helps you comply with GDPR, CCPA and other data privacy laws.
-Version: 2.2.1
+Version: 2.3.1
 Author: Hu-manity.co
 Author URI: https://hu-manity.co/
 Plugin URI: https://hu-manity.co/
@@ -12,7 +12,7 @@ Text Domain: cookie-notice
 Domain Path: /languages
 
 Cookie Notice
-Copyright (C) 2021, Hu-manity.co - info@hu-manity.co
+Copyright (C) 2022, Hu-manity.co - info@hu-manity.co
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -29,11 +29,12 @@ if ( ! defined( 'ABSPATH' ) )
  * Cookie Notice class.
  *
  * @class Cookie_Notice
- * @version	2.2.1
+ * @version	2.3.1
  */
 class Cookie_Notice {
 
 	private $status = '';
+	private $app_dashboard_url = 'https://app.hu-manity.co/#/en/cc/dashboard';
 
 	/**
 	 * @var $defaults
@@ -44,6 +45,7 @@ class Cookie_Notice {
 			'app_key'				=> '',
 			'app_blocking'			=> true,
 			'hide_banner'			=> false,
+			'debug_mode'			=> false,
 			'position'				=> 'bottom',
 			'message_text'			=> '',
 			'css_class'				=> '',
@@ -84,9 +86,10 @@ class Cookie_Notice {
 			'deactivation_delete'		=> false,
 			'update_version'			=> 5,
 			'update_notice'				=> true,
-			'update_delay_date'			=> 0
+			'update_delay_date'			=> 0,
+			'update_threshold_date'		=> 0
 		),
-		'version'	=> '2.2.1'
+		'version'	=> '2.3.1'
 	);
 	private $deactivaion_url = '';
 	
@@ -116,6 +119,7 @@ class Cookie_Notice {
 			self::$_instance->includes();
 
 			self::$_instance->bot_detect = new Cookie_Notice_Bot_Detect();
+			self::$_instance->dashboard = new Cookie_Notice_Dashboard();
 			self::$_instance->frontend = new Cookie_Notice_Frontend();
 			self::$_instance->settings = new Cookie_Notice_Settings();
 			self::$_instance->welcome = new Cookie_Notice_Welcome();
@@ -177,6 +181,7 @@ class Cookie_Notice {
 	 */
 	private function includes() {
 		include_once( plugin_dir_path( __FILE__ ) . 'includes/bot-detect.php' );
+		include_once( plugin_dir_path( __FILE__ ) . 'includes/dashboard.php' );
 		include_once( plugin_dir_path( __FILE__ ) . 'includes/frontend.php' );
 		include_once( plugin_dir_path( __FILE__ ) . 'includes/functions.php' );
 		include_once( plugin_dir_path( __FILE__ ) . 'includes/settings.php' );
@@ -207,6 +212,7 @@ class Cookie_Notice {
 			delete_option( 'cookie_notice_options' );
 			delete_option( 'cookie_notice_version' );
 			delete_option( 'cookie_notice_status' );
+			delete_option( 'cookie_notice_app_analytics' );
 			
 			delete_transient( 'cookie_notice_compliance_cache' );
 		}
@@ -245,14 +251,46 @@ class Cookie_Notice {
 		
 		// if visiting settings, mark notice as read
 		if ( ! empty( $_GET['page'] ) && $_GET['page'] === 'cookie-notice' && ! empty( $_GET['welcome'] ) ) {
-			$this->options['general'] = wp_parse_args( array( 'update_notice' => true ), $this->options['general'] );
+			$this->options['general'] = wp_parse_args( array( 'update_notice' => false ), $this->options['general'] );
 			update_option( 'cookie_notice_options', $this->options['general'] );
 		}
 		
 		// show notice, if no compliance only
 		if ( $this->options['general']['update_notice'] === true && empty( $this->status ) ) {
 			// set_transient( 'cn_show_welcome', 1 );
-			$this->add_notice( '<div class="cn-notice-text"><h2>' . __( 'Make sure your website complies with the latest cookie consent laws', 'cookie-notice' ) . '</h2><p>' . __( 'Run compliance check to learn if your website complies with the lastes consent record storage and cookie blocking requirements.', 'cookie-notice' ) . '</p><p class="cn-notice-actions"><a href="' . admin_url( 'admin.php' ) . '?page=cookie-notice&welcome=1' . '" class="button button-primary">' . __( 'Run Compliance Check', 'cookie-notice' ) . '</a> <a href="#" class="button-link cn-notice-dismiss">' . __( 'Dismiss Notice', 'cookie-notice' ) . '</a></p></div>', '', 'div' );
+			$this->add_notice( '<div class="cn-notice-text"><h2>' . __( 'Compliance fines exceeded &euro;1.3 BILLION in 2021. Avoid the risk by making sure your website complies with the latest cookie consent laws.', 'cookie-notice' ) . '</h2><p>' . __( 'Run compliance check to learn if your website complies with the latest consent record storage and cookie blocking requirements.', 'cookie-notice' ) . '</p><p class="cn-notice-actions"><a href="' . admin_url( 'admin.php' ) . '?page=cookie-notice&welcome=1' . '" class="button button-primary cn-button">' . __( 'Run Compliance Check', 'cookie-notice' ) . '</a> <a href="#" class="button-link cn-notice-dismiss">' . __( 'Dismiss Notice', 'cookie-notice' ) . '</a></p></div>', 'error', 'div' );
+		}
+		
+		// show treshold limit warning, compliance only
+		if ( $this->status === 'active' ) {
+			// get analytics data options
+			$analytics = get_option( 'cookie_notice_app_analytics' );
+			
+			if ( $analytics ) {
+				// cycle usage data
+				$cycle_usage = array(
+					'threshold' => ! empty( $analytics['cycleUsage']->threshold ) ? (int) $analytics['cycleUsage']->threshold : 0,
+					'visits' => ! empty( $analytics['cycleUsage']->visits ) ? (int) $analytics['cycleUsage']->visits : 0,
+					'days_to_go' => ! empty( $analytics['cycleUsage']->daysToGo ) ? (int) $analytics['cycleUsage']->daysToGo : 0,
+					'start_date' => ! empty( $analytics['cycleUsage']->startDate ) ? strtotime( $analytics['cycleUsage']->startDate ) : '',
+					'end_date' => ! empty( $analytics['cycleUsage']->endDate ) ? strtotime( $analytics['cycleUsage']->endDate ) : '',
+					'last_updated' => ! empty( $analytics['lastUpdated'] ) ? strtotime( $analytics['lastUpdated'] ) : strtotime( current_time( 'mysql' ) )
+				);
+				
+				// if threshold in use
+				if ( $cycle_usage['threshold'] ) {
+					// if threshold exceeded and there was no notice before
+					if ( $cycle_usage['visits'] >= $cycle_usage['threshold'] && $cycle_usage['last_updated'] < $cycle_usage['end_date'] && $this->options['general']['update_threshold_date'] < $cycle_usage['end_date'] ) {
+						$date_format = get_option( 'date_format' );
+						
+						$upgrade_link = $this->app_dashboard_url . '?app-id=' . $this->options['general']['app_id'] . '&open-modal=payment';
+						$threshold = $cycle_usage['threshold'];
+						$cycle_date = date_i18n( $date_format, $cycle_usage['end_date'] );
+								
+						$this->add_notice( '<div class="cn-notice-text" data-delay="' . $cycle_usage['end_date'] . '"><h2>' . __( 'Cookie Compliance Warning', 'cookie-notice') . '</h2><p>' . sprintf( __( 'Your website has reached the <b>%1$s visits usage limit for the Cookie Compliance Free Plan</b>. Compliance services such as Consent Record Storage, Autoblocking, and Consent Analytics have been deactivated until current usage cycle ends on %2$s.', 'cookie-notice' ), $threshold, $cycle_date ) . '<br>' . sprintf( __( 'To reactivate compliance services now, <a href="%s" target="_blank">upgrade your domain to a Pro plan.</a>', 'cookie-notice' ) . '</p></div>', $upgrade_link ), 'cn-threshold error is-dismissible', 'div' );
+					}
+				}
+			}
 		}
 	}
 
@@ -297,9 +335,17 @@ class Cookie_Notice {
 			return;
 
 		if ( wp_verify_nonce( $_REQUEST['nonce'], 'cn_dismiss_notice' ) ) {
-			$notice_action = empty( $_REQUEST['notice_action'] ) || $_REQUEST['notice_action'] === 'dismiss' ? 'dismiss' : sanitize_text_string( $_REQUEST['notice_action'] );
+			$notice_action = empty( $_REQUEST['notice_action'] ) || $_REQUEST['notice_action'] === 'dismiss' ? 'dismiss' : sanitize_text_field( $_REQUEST['notice_action'] );
 
 			switch ( $notice_action ) {
+				// delay notice
+				case 'threshold':
+					// set delay period last cycle day
+					$delay = isset( $_REQUEST['param'] ) ? (int) $_REQUEST['param'] : 0;
+					$this->options['general'] = wp_parse_args( array( 'update_threshold_date' => $delay + DAY_IN_SECONDS ), $this->options['general'] );
+					update_option( 'cookie_notice_options', $this->options['general'] );
+					break;
+				
 				// delay notice
 				case 'delay':
 					// set delay period to 1 week from now
@@ -505,23 +551,21 @@ class Cookie_Notice {
 			);
 		}
 		
-		// load notice, if no compliance only
-		if ( $this->options['general']['update_notice'] === true && empty( $this->status ) ) {
-			wp_enqueue_script(
-				'cookie-notice-admin-notice', plugins_url( '/js/admin-notice.js', __FILE__ ), array( 'jquery' ), Cookie_Notice()->defaults['version']
-			);
+		// notice js and css
+		wp_enqueue_script(
+			'cookie-notice-admin-notice', plugins_url( '/js/admin-notice.js', __FILE__ ), array( 'jquery' ), Cookie_Notice()->defaults['version']
+		);
 
-			wp_localize_script(
-				'cookie-notice-admin-notice', 'cnArgsNotice', array(
-					'ajaxURL'				=> admin_url( 'admin-ajax.php' ),
-					'nonce'					=> wp_create_nonce( 'cn_dismiss_notice' ),
-				)
-			);
-			
-			wp_enqueue_style(
-				'cookie-notice-admin-notice', plugins_url( '/css/admin-notice.css', __FILE__ ), array(), Cookie_Notice()->defaults['version']
-			);
-		}
+		wp_localize_script(
+			'cookie-notice-admin-notice', 'cnArgsNotice', array(
+				'ajaxURL'				=> admin_url( 'admin-ajax.php' ),
+				'nonce'					=> wp_create_nonce( 'cn_dismiss_notice' ),
+			)
+		);
+
+		wp_enqueue_style(
+			'cookie-notice-admin-notice', plugins_url( '/css/admin-notice.css', __FILE__ ), array(), Cookie_Notice()->defaults['version']
+		);
 	}
 
 	/**
@@ -736,9 +780,11 @@ class Cookie_Notice {
 	 * @return array
 	 */
 	public function check_legacy_params( $options, $params ) {
-		foreach ( $params as $param ) {
-			if ( array_key_exists( $param, $options ) && ! is_bool( $options[$param] ) )
-				$options[$param] = $options[$param] === 'yes';
+		if ( is_array( $options ) ) {
+			foreach ( $params as $param ) {
+				if ( array_key_exists( $param, $options ) && ! is_bool( $options[$param] ) )
+					$options[$param] = $options[$param] === 'yes';
+			}
 		}
 
 		return $options;

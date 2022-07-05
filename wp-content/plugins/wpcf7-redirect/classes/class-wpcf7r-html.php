@@ -31,7 +31,7 @@ class WPCF7R_Html {
 	/**
 	 * Print a single group of seetings
 	 */
-	public static function group_display( $block_key = '', $group_key = '', $group = array(), $prefix ) {
+	public static function group_display( $block_key = '', $group_key = '', $group = array(), $prefix = '' ) {
 		ob_start();
 		echo self::get_conditional_row_group_start( $group_key, $group );
 		echo self::get_conditional_row_group_rows_start( $group_key, $group );
@@ -89,7 +89,7 @@ class WPCF7R_Html {
 	 * @param  boolean          $echo
 	 * @param  $prefix
 	 */
-	public static function get_block_title( $group_block_key, $group_block, $active_tab_title, $echo = true, $prefix ) {
+	public static function get_block_title( $group_block_key, $group_block, $active_tab_title, $echo = true, $prefix = '') {
 		ob_start();
 		include WPCF7_PRO_REDIRECT_TEMPLATE_PATH . 'block-title.php';
 		if ( $echo ) {
@@ -102,7 +102,7 @@ class WPCF7R_Html {
 	/**
 	 * Get an HTML template of a condition row
 	 */
-	public static function get_conditional_row_template( $block_key = '', $group_key = '', $group_row = '', $row_fields = array(), $prefix, $required = true ) {
+	public static function get_conditional_row_template( $block_key = '', $group_key = '', $group_row = '', $row_fields = array(), $prefix = '', $required = true ) {
 		ob_start();
 		$condition = $row_fields['condition'];
 		$tags      = WPCF7R_Form::get_mail_tags();
@@ -200,7 +200,7 @@ class WPCF7R_Html {
 	 * @param  boolean         $echo
 	 * @param  $prefix
 	 */
-	public static function get_block_html( $group_block_key, $group_block, $active_tab, $echo = true, $prefix ) {
+	public static function get_block_html( $group_block_key, $group_block, $active_tab, $echo = true, $prefix = '' ) {
 		ob_start();
 		include WPCF7_PRO_REDIRECT_TEMPLATE_PATH . 'block-html.php';
 		if ( $echo ) {

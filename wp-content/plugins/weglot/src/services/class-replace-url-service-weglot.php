@@ -95,7 +95,6 @@ class Replace_Url_Service_Weglot {
 	}
 
 	public function replace_link_in_json( $json ) {
-
 		$replace_urls = apply_filters( 'weglot_ajax_replace_urls', [ 'redirecturl', 'url', 'link' ] );
 		foreach ( $json as $key => $val ) {
 			if ( is_array( $val ) ) {
